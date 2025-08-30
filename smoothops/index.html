@@ -51,6 +51,10 @@ a{outline:none}
   justify-content:center;
   overflow:hidden;
 }
+.section.c2
+{
+  padding: 3% 3%;
+}
 .section.i1 { background-image: url(images/BG1.jpg); }
 .section.i2 { background-image: url(images/BG6.jpg); }
 .section.i3 { background-image: url(images/image_1.jpg); }
@@ -98,24 +102,6 @@ a{outline:none}
   border-radius:8px;
   overflow:visible;
   background-color:transparent;
-}
-
-#header-group
-{
-  margin-top: -130px;
-
-}
-.page-title
-{
-  font-family: '5';
-  font-size: 120px;
-  text-align: center;
-  text-shadow:2px 2px 3px rgba(0, 0, 0, 0.3);
-}
-.page-brief
-{
-  text-align: center;
-  text-shadow:1px 1px 0 rgba(0,0,0,.3);
 }
 .demo-tooltip
 {
@@ -398,6 +384,7 @@ a{outline:none}
         margin: 0;
         height: 70%;
         position: relative;
+        display:none;
         }
         
         #EnvelopeFlip {
@@ -530,7 +517,7 @@ a{outline:none}
         animation-delay: calc((var(--n) - 1) * 0.5s);
         }     
       </style>
-      <div id="EnvelopeContainer" style="display: block;">
+      <div id="EnvelopeContainer">
         <div id="EnvelopeFlip">
           <div id="EnvelopeFrontWrap">
             <img id="FrontPage" src="images/FrontPage.png" class="envContents" style="z-index:-1;">
