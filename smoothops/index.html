@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html><head>
+
+<title>html5tooltips.js - Tooltips with smooth 3D animation</title>
+<meta name="description" content="Light and clean tooltips with smooth 3D animation. No framework required.">
+<meta name="keywords" content="tooltip,tooltips,smooth,3d,animation,animated,html5,html5tooltips,javascript,css,css3,style,ui,no framework,framework,script,lib,library">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style> .html5tooltip-box{background-color:#2A2A2A;border-radius:2px;box-shadow:0 0 0 1px rgba(255,255,255,.15),0 0 10px rgba(255,255,255,.15);color:#F7F7F7;font-family:arial,sans-serif;font-size:11px;font-weight:700}.html5tooltip-box:before{background-color:inherit;box-shadow:inherit;content:'';display:block;height:12px;position:absolute;width:12px;transform:translate3d(-6px,-6px,0) rotate3d(0,0,1,45deg);left:10px;top:10px}.html5tooltip-more,.html5tooltip-text{background-color:inherit;border-radius:inherit;position:relative}.html5tooltip-text{color:inherit;font-family:inherit;font-size:inherit;font-weight:inherit;padding:7px 9px}.html5tooltip-more .html5tooltip-text{margin-top:-7px}.html5tooltip-bottom .html5tooltip-box:before{left:50%;top:0}.html5tooltip-left .html5tooltip-box:before{left:100%;top:50%}.html5tooltip-right .html5tooltip-box:before{left:0;top:50%}.html5tooltip-top .html5tooltip-box:before{left:50%;top:100%}.html5tooltip-bottom,.html5tooltip-left,.html5tooltip-right,.html5tooltip-top{-moz-perspective:300px;-ms-perspective:300px;-o-perspective:300px;-webkit-perspective:300px;perspective:300px}.html5tooltip-bottom.animating,.html5tooltip-left.animating,.html5tooltip-right.animating,.html5tooltip-top.animating{transition:top .3s}.html5tooltip-box.animating{-moz-transition:opacity .3s,-moz-transform .3s;-ms-transition:opacity .3s,-ms-transform .3s;-o-transition:opacity .3s,-o-transform .3s;-webkit-transition:opacity .3s,-webkit-transform .3s;transition:opacity .3s,transform .3s}.html5tooltip-more.animating{-moz-transition:height .3s;-ms-transition:height .3s;-o-transition:height .3s;-webkit-transition:height .3s;transition:height .3s}.fadein-from{opacity:0}.fadein-to{opacity:1}.scalein-from{opacity:0;-moz-transform:scale3d(.7,.7,.7);-ms-transform:scale3d(.7,.7,.7);-o-transform:scale3d(.7,.7,.7);-webkit-transform:scale3d(.7,.7,.7);transform:scale3d(.7,.7,.7)}.scalein-to{opacity:1;-moz-transform:scale3d(1,1,1);-ms-transform:scale3d(1,1,1);-o-transform:scale3d(1,1,1);-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1)}.html5tooltip-bottom .scalein-to{-moz-transform-origin:center top;-ms-transform-origin:center top;-o-transform-origin:center top;-webkit-transform-origin:center top;transform-origin:center top}.html5tooltip-left .scalein-to{-moz-transform-origin:right center;-ms-transform-origin:right center;-o-transform-origin:right center;-webkit-transform-origin:right center;transform-origin:right center}.html5tooltip-right .scalein-to{-moz-transform-origin:left center;-ms-transform-origin:left center;-o-transform-origin:left center;-webkit-transform-origin:left center;transform-origin:left center}.html5tooltip-top .scalein-to{-moz-transform-origin:center bottom;-ms-transform-origin:center bottom;-o-transform-origin:center bottom;-webkit-transform-origin:center bottom;transform-origin:center bottom}.foldin-from,.foldout-from{opacity:0}.foldin-to,.foldout-to{opacity:1;-moz-transform:rotate3d(0,0,0,0);-ms-transform:rotate3d(0,0,0,0);-o-transform:rotate3d(0,0,0,0);-webkit-transform:rotate3d(0,0,0,0);transform:rotate3d(0,0,0,0)}.html5tooltip-bottom .foldin-from,.html5tooltip-top .foldout-from{-moz-transform:rotate3d(1,0,0,-90deg);-ms-transform:rotate3d(1,0,0,-90deg);-o-transform:rotate3d(1,0,0,-90deg);-webkit-transform:rotate3d(1,0,0,-90deg);transform:rotate3d(1,0,0,-90deg)}.html5tooltip-bottom .foldin-to,.html5tooltip-bottom .foldout-to{-moz-transform-origin:center top;-ms-transform-origin:center top;-o-transform-origin:center top;-webkit-transform-origin:center top;transform-origin:center top}.html5tooltip-left .foldin-from,.html5tooltip-right .foldout-from{-moz-transform:rotate3d(0,1,0,-90deg);-ms-transform:rotate3d(0,1,0,-90deg);-o-transform:rotate3d(0,1,0,-90deg);-webkit-transform:rotate3d(0,1,0,-90deg);transform:rotate3d(0,1,0,-90deg)}.html5tooltip-left .foldin-to,.html5tooltip-left .foldout-to{-moz-transform-origin:right center;-ms-transform-origin:right center;-o-transform-origin:right center;-webkit-transform-origin:right center;transform-origin:right center}.html5tooltip-left .foldout-from,.html5tooltip-right .foldin-from{-moz-transform:rotate3d(0,1,0,90deg);-ms-transform:rotate3d(0,1,0,90deg);-o-transform:rotate3d(0,1,0,90deg);-webkit-transform:rotate3d(0,1,0,90deg);transform:rotate3d(0,1,0,90deg)}.html5tooltip-right .foldin-to,.html5tooltip-right .foldout-to{-moz-transform-origin:left center;-ms-transform-origin:left center;-o-transform-origin:left center;-webkit-transform-origin:left center;transform-origin:left center}.html5tooltip-bottom .foldout-from,.html5tooltip-top .foldin-from{-moz-transform:rotate3d(1,0,0,90deg);-ms-transform:rotate3d(1,0,0,90deg);-o-transform:rotate3d(1,0,0,90deg);-webkit-transform:rotate3d(1,0,0,90deg);transform:rotate3d(1,0,0,90deg)}.html5tooltip-top .foldin-to,.html5tooltip-top .foldout-to{-moz-transform-origin:center bottom;-ms-transform-origin:center bottom;-o-transform-origin:center bottom;-webkit-transform-origin:center bottom;transform-origin:center bottom}.slidein-from{opacity:0}.slidein-to{opacity:1;-moz-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);-o-transform:translate3d(0,0,0);-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}.html5tooltip-bottom .slidein-from{-moz-transform:translate3d(0,20px,0);-ms-transform:translate3d(0,20px,0);-o-transform:translate3d(0,20px,0);-webkit-transform:translate3d(0,20px,0);transform:translate3d(0,20px,0)}.html5tooltip-left .slidein-from{-moz-transform:translate3d(-20px,0,0);-ms-transform:translate3d(-20px,0,0);-o-transform:translate3d(-20px,0,0);-webkit-transform:translate3d(-20px,0,0);transform:translate3d(-20px,0,0)}.html5tooltip-right .slidein-from{-moz-transform:translate3d(20px,0,0);-ms-transform:translate3d(20px,0,0);-o-transform:translate3d(20px,0,0);-webkit-transform:translate3d(20px,0,0);transform:translate3d(20px,0,0)}.html5tooltip-top .slidein-from{-moz-transform:translate3d(0,-20px,0);-ms-transform:translate3d(0,-20px,0);-o-transform:translate3d(0,-20px,0);-webkit-transform:translate3d(0,-20px,0);transform:translate3d(0,-20px,0)}.roll-from{opacity:0}.roll-to{opacity:1;-moz-transform:rotate3d(0,0,0,0);-ms-transform:rotate3d(0,0,0,0);-o-transform:rotate3d(0,0,0,0);-webkit-transform:rotate3d(0,0,0,0);transform:rotate3d(0,0,0,0)}.html5tooltip-bottom .roll-from{-moz-transform:rotate3d(0,0,1,-30deg);-ms-transform:rotate3d(0,0,1,-30deg);-o-transform:rotate3d(0,0,1,-30deg);-webkit-transform:rotate3d(0,0,1,-30deg);transform:rotate3d(0,0,1,-30deg)}.html5tooltip-bottom .roll-to{-moz-transform-origin:center top;-ms-transform-origin:center top;-o-transform-origin:center top;-webkit-transform-origin:center top;transform-origin:center top}.html5tooltip-left .roll-from{-moz-transform:rotate3d(0,0,1,30deg);-ms-transform:rotate3d(0,0,1,30deg);-o-transform:rotate3d(0,0,1,30deg);-webkit-transform:rotate3d(0,0,1,30deg);transform:rotate3d(0,0,1,30deg)}.html5tooltip-left .roll-to{-moz-transform-origin:right center;-ms-transform-origin:right center;-o-transform-origin:right center;-webkit-transform-origin:right center;transform-origin:right center}.html5tooltip-right .roll-from{-moz-transform:rotate3d(0,0,1,-30deg);-ms-transform:rotate3d(0,0,1,-30deg);-o-transform:rotate3d(0,0,1,-30deg);-webkit-transform:rotate3d(0,0,1,-30deg);transform:rotate3d(0,0,1,-30deg)}.html5tooltip-right .roll-to{-moz-transform-origin:left center;-ms-transform-origin:left center;-o-transform-origin:left center;-webkit-transform-origin:left center;transform-origin:left center}.html5tooltip-top .roll-from{-moz-transform:rotate3d(0,0,1,30deg);-ms-transform:rotate3d(0,0,1,30deg);-o-transform:rotate3d(0,0,1,30deg);-webkit-transform:rotate3d(0,0,1,30deg);transform:rotate3d(0,0,1,30deg)}.html5tooltip-top .roll-to{-moz-transform-origin:center bottom;-ms-transform-origin:center bottom;-o-transform-origin:center bottom;-webkit-transform-origin:center bottom;transform-origin:center bottom}.spin-from{opacity:0}.spin-to{opacity:1;-moz-transform:rotate3d(0,0,0,0) translate3d(0,0,0);-ms-transform:rotate3d(0,0,0,0) translate3d(0,0,0);-o-transform:rotate3d(0,0,0,0) translate3d(0,0,0);-webkit-transform:rotate3d(0,0,0,0) translate3d(0,0,0);transform:rotate3d(0,0,0,0) translate3d(0,0,0)}.html5tooltip-bottom .spin-from{-moz-transform:rotate3d(0,1,0,90deg) translate3d(0,20px,0);-ms-transform:rotate3d(0,1,0,90deg) translate3d(0,20px,0);-o-transform:rotate3d(0,1,0,90deg) translate3d(0,20px,0);-webkit-transform:rotate3d(0,1,0,90deg) translate3d(0,20px,0);transform:rotate3d(0,1,0,90deg) translate3d(0,20px,0)}.html5tooltip-left .spin-from{-moz-transform:rotate3d(1,0,0,-90deg) translate3d(-20px,0,0);-ms-transform:rotate3d(1,0,0,-90deg) translate3d(-20px,0,0);-o-transform:rotate3d(1,0,0,-90deg) translate3d(-20px,0,0);-webkit-transform:rotate3d(1,0,0,-90deg) translate3d(-20px,0,0);transform:rotate3d(1,0,0,-90deg) translate3d(-20px,0,0)}.html5tooltip-right .spin-from{-moz-transform:rotate3d(1,0,0,-90deg) translate3d(20px,0,0);-ms-transform:rotate3d(1,0,0,-90deg) translate3d(20px,0,0);-o-transform:rotate3d(1,0,0,-90deg) translate3d(20px,0,0);-webkit-transform:rotate3d(1,0,0,-90deg) translate3d(20px,0,0);transform:rotate3d(1,0,0,-90deg) translate3d(20px,0,0)}.html5tooltip-top .spin-from{-moz-transform:rotate3d(0,1,0,90deg) translate3d(0,-20px,0);-ms-transform:rotate3d(0,1,0,90deg) translate3d(0,-20px,0);-o-transform:rotate3d(0,1,0,90deg) translate3d(0,-20px,0);-webkit-transform:rotate3d(0,1,0,90deg) translate3d(0,-20px,0);transform:rotate3d(0,1,0,90deg) translate3d(0,-20px,0)} </style>
+<script> !function(a,b){"use strict";"function"==typeof define&&define.amd?define([],b):"object"==typeof module&&module.exports?module.exports=b():a.html5tooltips=b()}(this,function(){"use strict";function d(a,b){function c(a){var b=f(a).map(function(a){return typeof a}),c={};if("object"===b[0])c=a[0];else if("string"===b[0]){var d=a[0].split(" ");for(var e in d)c[d[e]]=a[1]}else"function"===b[0]&&(c={"":a[0]});return c}function d(a,b){for(var c,e=0;e<a.length;e++){for(var f=0;f<a[e].attributes.length;f++)c=a[e].attributes.item(f).name.replace(/-([a-z])/g,function(a){return a[1].toUpperCase()}),b[c]=b[c]||[],b[c].push(a[e]);d(a[e].children,b)}}function e(a){clearTimeout(m[a]),m[a]=setTimeout(function(){for(var b in k[a])k[a][b](l[a]);if(k[""])for(var b in k[""])k[""][b]()})}function f(a,b){return Array.prototype.slice.call(a,b)}var g=[],h={},i=[],j={},k={},l={},m={};if(b){var n=document.createElement("div");n.innerHTML=b,i=f(n.children),d(i,g)}return h.anchors=g,h.components=a.components={},h.elements=a.elements=i,h.model=a.model=l,h.assignModel=a.assignModel=function(b){h.model=a.model=l=b;for(var c in l)e(c)},h.destroy=a.destroy=function(){for(var a in h.components)h.components[a].destroy&&h.components[a].destroy();for(var b=i.length;b--;)i[b].parentNode&&i[b].parentNode.removeChild(i[b])},h.dispatch=function(b){var c=f(arguments,1);setTimeout(function(){for(var d in j[b])j[b][d].apply(a,c)})},h.on=a.on=function(){var a=c(arguments);for(var b in a)j[b]=j[b]||[],j[b].push(a[b])},h.onModelUpdate=function(){var a=c(arguments);for(var b in a)l[b]=l[b]||null,k[b]=k[b]||[],k[b].push(a[b]),e(b)},h.set=a.set=function(){var a=c(arguments);for(var b in a)l[b]=a[b],e(b)},h}function e(){function e(a,b){q.disableAnimation?b():(a.getBoundingClientRect(),a.classList.add("animating"),b&&b(),setTimeout(function(){a.classList.remove("animating")},q.animateDuration))}function f(a,b,c,d){q.disableAnimation?d&&d():(a.classList.add(b),a.getBoundingClientRect(),a.classList.add("animating"),a.classList.remove(b),a.classList.add(c),d&&d(),setTimeout(function(){a.classList.remove("animating"),a.classList.remove(c)},q.animateDuration))}function g(){return"collapse"!==p.style.visibility&&(p.style.visibility="collapse"),p.style.left="-9999px",p.style.top="-9999px","none"!==n.style.display&&(n.style.display="none",n.style.visibility="collapse",n.style.height="auto"),this}function h(){var a,c;if(k.model.target&&"visible"===p.style.visibility){p.style.width="auto",c=p.getBoundingClientRect();var d=parseInt(q.maxWidth);switch(d&&(p.style.width=c.width>d?d+"px":"auto"),a=k.model.target.getBoundingClientRect(),c=p.getBoundingClientRect(),q.stickTo){case b.stickTo.bottom:p.style.left=a.left+parseInt((a.width-c.width)/2)+"px",p.style.top=a.top+a.height+parseInt(q.stickDistance)+"px";break;case b.stickTo.left:p.style.left=a.left-c.width-parseInt(q.stickDistance)+"px",p.style.top=a.top+(a.height-c.height)/2+"px";break;case b.stickTo.right:p.style.left=a.left+a.width+parseInt(q.stickDistance)+"px",p.style.top=a.top+(a.height-c.height)/2+"px";break;case b.stickTo.top:p.style.left=a.left+(a.width-c.width)/2+"px",p.style.top=a.top-c.height-parseInt(q.stickDistance)+"px"}}}function i(){return"visible"!==p.style.visibility&&(p.style.visibility="visible",setTimeout(function(){h(),f(l,q.animateFunction+"-from",q.animateFunction+"-to")})),this}function j(){if("visible"!==p.style.visibility)p.style.visibility="visible",f(l,q.animateFunction+"-from",q.animateFunction+"-to"),q.contentMore&&(n.style.display="block",n.style.visibility="visible"),h();else if("block"!==n.style.display&&q.contentMore){n.style.display="block",e(p),h();var a=n.getBoundingClientRect().height;n.style.visibility="visible",n.style.height="0px",e(n,function(){n.style.height=a>0?a+"px":"auto"})}return this}var k=new d(this,a),l=k.anchors.box[0],n=(k.anchors.text[0],k.anchors.more[0]),p=(k.anchors.moreText[0],k.elements[0]);g(),"undefined"!=typeof window&&window.addEventListener("scroll",h,!1),k.set(c);var q=k.model;k.onModelUpdate({color:function(a){b.color[a]&&(a=b.color[a],a="rgb("+a.r+", "+a.g+", "+a.b+")"),l.style.backgroundColor=a},contentText:function(a){k.anchors.text[0].innerHTML=a},contentMore:function(a){k.anchors.moreText[0].innerHTML=a},stickTo:function(a){k.elements[0].className="html5tooltip-"+a}}),this.hide=g,this.show=i,this.showMore=j}function h(a,b,c){for(var d,f=c.length;f--;)if(c[f].model.target===a){d=c[f];break}d||(d=new e,c.push(d)),d.set(b),d.set("target",a);var g,h;a.addEventListener("mouseenter",function(){this!==g&&this!==h&&(g=this,document.body.appendChild(d.elements[0]),setTimeout(function(){this===g&&d.show()}.bind(this),d.model.delay))}),a.addEventListener("mouseleave",function(){g=null,this!==h&&(d.hide(),d.elements[0].parentNode&&d.elements[0].parentNode.removeChild(d.elements[0]))}),a.addEventListener("focus",function(){(-1!==["INPUT","TEXTAREA"].indexOf(this.tagName)||null!==this.getAttribute("contenteditable"))&&(h=this,document.body.appendChild(d.elements[0]),d.showMore())}),a.addEventListener("blur",function(){h=null,d.hide(),d.elements[0].parentNode&&d.elements[0].parentNode.removeChild(d.elements[0])})}function i(a,b){for(var f,c=(b||document).getElementsByTagName("*"),d=[],e=0;f=c[e];e++)f.getAttribute(a)&&d.push(f);return d}function j(){i("data-tooltip").forEach(function(a){var b={animateFunction:a.getAttribute("data-tooltip-animate-function")||c.animateFunction,color:a.getAttribute("data-tooltip-color")||"",contentMore:a.getAttribute("data-tooltip-more")||"",contentText:a.getAttribute("data-tooltip")||"",delay:a.getAttribute("data-tooltip-delay")||c.delay,maxWidth:a.getAttribute("data-tooltip-maxwidth")||"auto",stickTo:a.getAttribute("data-tooltip-stickto")||c.stickTo};h(a,b,g)})}function k(a,b){var c=[];try{c=Array.prototype.slice.call((b||document).querySelectorAll(a))}catch(d){}return c}function l(a){a.forEach(function(a){var b=[];a.targetSelector&&(b=k(a.targetSelector)),b.forEach(function(b){h(b,a,f)})})}function n(){document.removeEventListener("DOMContentLoaded",n,!1),window.removeEventListener("load",n,!1),m.refresh()}var a='<div class="html5tooltip" style="box-sizing:border-box;position:fixed;">  <div class="html5tooltip-box" box>    <div class="html5tooltip-text" text></div>      <div class="html5tooltip-more" style="overflow:hidden;" more>        <div class="html5tooltip-text" more-text></div>      </div>    </div></div>',b={animateFunction:{fadeIn:"fadein",foldIn:"foldin",foldOut:"foldout",roll:"roll",scaleIn:"scalein",slideIn:"slidein",spin:"spin"},color:{daffodil:{r:255,g:230,b:23},daisy:{r:250,g:211,b:28},mustard:{r:253,g:183,b:23},"citrus zest":{r:250,g:170,b:33},pumpkin:{r:241,g:117,b:63},tangerine:{r:237,g:87,b:36},salmon:{r:240,g:70,b:57},persimmon:{r:234,g:40,b:48},rouge:{r:188,g:35,b:38},scarlet:{r:140,g:12,b:3},"hot pink":{r:229,g:24,b:93},princess:{r:243,g:132,b:174},petal:{r:250,g:198,b:210},lilac:{r:178,g:150,b:199},lavender:{r:123,g:103,b:174},violet:{r:95,g:53,b:119},cloud:{r:195,g:222,b:241},dream:{r:85,g:190,b:237},gulf:{r:49,g:168,b:224},turquoise:{r:35,g:138,b:204},sky:{r:13,g:96,b:174},indigo:{r:20,g:59,b:134},navy:{r:0,g:27,b:74},"sea foam":{r:125,g:205,b:194},teal:{r:0,g:168,b:168},peacock:{r:18,g:149,b:159},ceadon:{r:193,g:209,b:138},olive:{r:121,g:145,b:85},bamboo:{r:128,g:188,b:66},grass:{r:74,g:160,b:63},kelly:{r:22,g:136,b:74},forrest:{r:0,g:63,b:46},chocolate:{r:56,g:30,b:17},"terra cotta":{r:192,g:92,b:32},camel:{r:191,g:155,b:107},linen:{r:233,g:212,b:167},stone:{r:231,g:230,b:225},smoke:{r:207,g:208,b:210},steel:{r:138,g:139,b:143},slate:{r:119,g:133,b:144},charcoal:{r:71,g:77,b:77},black:{r:5,g:6,b:8},white:{r:255,g:255,b:255},"metalic silver":{r:152,g:162,b:171},"metalic gold":{r:159,g:135,b:89},"metalic copper":{r:140,g:102,b:65}},stickTo:{bottom:"bottom",left:"left",right:"right",top:"top"}},c={animateDuration:300,animateFunction:b.animateFunction.fadeIn,delay:500,disableAnimation:!1,stickTo:b.stickTo.bottom,stickDistance:10},f=[],g=[],m=function(a){Array.isArray(a)||(a=[a]),l(a)};return m.autoinit=m.refresh=function(){j()},m.getTooltipByTarget=function(a){for(var b=f.length;b--;)if(f[b].model.target===a)return f[b];for(var b=g.length;b--;)if(g[b].model.target===a)return g[b]},"undefined"!=typeof window&&("complete"===document.readyState?n():(document.addEventListener("DOMContentLoaded",n,!1),window.addEventListener("load",n,!1)),window.html5tooltipsPredefined||(window.html5tooltipsPredefined=b,window.HTML5TooltipUIComponent=e)),m});</script>
+
+<style>@font-face {
+  font-family: 'VollkornItalic';
+  src: url('Vollkorn-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face{font-family:'4';src:url('OpenSans-Light.ttf')}
+@font-face{font-family:'5';src:url('OpenSans-CondLight.ttf')}
+
+* { -moz-box-sizing: border-box; box-sizing: border-box; }
+body, html { height: 100%; }
+body
+{
+  background-color:#BCBFA3;
+  color: white;
+  font-family: '4', Arial, sans-serif;
+  margin: 0;
+}
+a{outline:none}
+
+.split-20{ float: left; width: 20%; }
+.split-25{ float: left; width: 25%; }
+.split-50{ float: left; width: 50%; }
+.clearboth { display: block; clear: both; }
+
+.section.c2 { background-color: #89B399; }
+.section.c3 { background-color: #F7F7F7; }
+.section.c4 { background-color: #E39B7D; }
+.section.c5 { background-color: #6E6460; }
+
+.section.i1,
+.section.i2,
+.section.i3,
+.section.i4
+{
+  background-attachment: fixed;
+  background-position: center 50%;
+  background-size: cover;
+  font-family:'4';
+  font-size: 28px;
+}
+.section.i1 { background-image: url(04.jpg); }
+.section.i2 { background-image: url(03.jpg); }
+.section.i3 { background-image: url(02.jpg); }
+.section.i4 { background-image: url(01.jpg); }
+
+.full-height { height: 100%; }
+.height-80 { height: 90%; }
+.box
+{
+  height: 100%;
+  padding: 1px 0;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Text box */
+.textbox-1
+{
+  margin-top: -36px;
+  top: 50%;
+  position: absolute;
+  text-align: center;
+  text-shadow:1px 1px 0 rgba(0,0,0,.3);
+  width: 100%;
+}
+
+/* Slide 1 */
+#header-group
+{
+  margin-top: -130px;
+  position: relative;
+  top: 50%;
+}
+.page-title
+{
+  font-family: '5';
+  font-size: 120px;
+  text-align: center;
+  text-shadow:2px 2px 3px rgba(0, 0, 0, 0.3);
+}
+.page-brief
+{
+  text-align: center;
+  text-shadow:1px 1px 0 rgba(0,0,0,.3);
+}
+.demo-tooltip
+{
+  left: 428px;
+  top: 310px;
+}
+.demo-tooltip .html5tooltip-pointer-bottom
+{
+  left: 47px;
+  top: -13px;
+}
+
+/* Slide 2 */
+#demo-group
+{
+  margin: -30px auto 0;
+  position: relative;
+  top: 50%;
+  text-align: center;
+  width: 490px;
+}
+#demo-group > .button1,
+#demo-group > .textfield
+{
+  float: left;
+  margin: 0 10px;
+}
+.button1
+{
+  background-color: #222;
+  cursor: pointer;
+  margin: 0 10px;
+  height: 60px;
+  width: 60px;
+}
+.icon-cloud
+{
+  background-image: url('Cloud-32.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.icon-coffee
+{
+  background-image: url('Mug-32.png');
+  background-position: 11px center;
+  background-repeat: no-repeat;
+}
+.icon-trash
+{
+  background-image: url('Garbage-Open-32.png');
+  background-position: 17px center;
+  background-repeat: no-repeat;
+}
+.textfield
+{
+  background-color: white;
+  color: black;
+  height: 60px;
+  line-height: 60px;
+  padding: 0 10px;
+  text-align: left;
+  width: 230px;
+}
+.anim-text1,
+.demo-text1
+{
+  font-size: 32px;
+  margin-top: -24px;
+  position: absolute;
+  text-align: center;
+  top: 25%;
+  width: 100%;
+}
+.anim-text2,
+.demo-text2
+{
+  bottom: 25%;
+  font-size: 18px;
+  margin-bottom: -24px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+
+/* Slide animation */
+#anim-group
+{
+  margin: -50px auto 0;
+  position: relative;
+  top: 50%;
+  width: 800px;
+}
+.anim-item
+{
+  border-radius: 50px;
+  background: white;
+  color: #666;
+  cursor: default;
+  font-family: 'VollkornItalic';
+  font-size: 24px;
+  float: left;
+  line-height: 100px;
+  margin: 0 30px;
+  position: relative;
+  text-align: center;
+  width: 100px;
+}
+.anim-item.item1
+{
+  top: 0;
+}
+.anim-item.item2
+{
+  top: -25px;
+}
+.anim-item.item3
+{
+  top: 0;
+}
+.anim-item.item4
+{
+  top: 25px;
+}
+.anim-item.item5
+{
+  top: 0;
+}
+
+
+/* Slide colors */
+#customization-group
+{
+  margin: 0 auto 80px;
+  max-width:980px;
+}
+#customization-group>div{
+  min-width:220px;
+}
+.customization-text1
+{
+  color: #222222;
+  font-size: 32px;
+  margin: 80px 0 40px;
+  text-align: center;
+}
+#customization-group .html5tooltip-bottom
+{
+  margin: 20px auto;
+  position: relative;
+  text-align: center;
+  width: 200px;
+}
+
+/* Slide last */
+#get-group
+{
+  margin-top: -100px;
+  position: relative;
+  top: 50%;
+}
+.get-github
+{
+  background-position: center 20px;
+  background-repeat: no-repeat;
+  color: white;
+  display: block;
+  font-size: 24px;
+  margin: 0 auto;
+  padding-top: 160px;
+  text-align: center;
+  text-decoration: none;
+  width: 200px;
+}
+.get-github { background-image: url('GitHub-Mark-Light-120px-plus.png');}
+#compat-group
+{
+  bottom: 20px;
+  left: 50%;
+  margin-left: -290px;
+  position: absolute;
+  width: 580px;
+}
+.compat-chrome,
+.compat-firefox,
+.compat-opera,
+.compat-ie,
+.compat-safari
+{
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  color: white;
+  font-size: 24px;
+  margin: 0 auto;
+  padding-top: 48px;
+  text-align: center;
+  width: 48px;
+} .html5tooltip-box{
+  font-family:'4';
+  font-size:12px;
+}</style>
+</head><body>
+
+<div class="section i1 parallax full-height">
+  <div class="box">
+    <div id="header-group">
+      <div class="page-title">html5tooltips.js</div>
+      <div class="page-brief">Light and clean tooltips with smooth 3D animation<br>No framework required</div>
+    </div>
+  </div>
+</div>
+
+<div class="section height-80 c2">
+  <div class="box">
+    <div class="demo-text1">Good old tooltips fit the modern UI wave</div>
+
+    <div id="demo-group">
+      <div class="button1 icon-trash" data-tooltip="Delete" data-tooltip-animate-function="spin"></div>
+      <div class="button1 icon-coffee" data-tooltip="Build" data-tooltip-animate-function="spin"></div>
+      <div class="button1 icon-cloud" data-tooltip="Send to cloud" data-tooltip-animate-function="spin"></div>
+      <div class="textfield" contenteditable="true" data-tooltip="Search phrase" data-tooltip-more="You may put several words here as a search phrase" data-tooltip-stickto="right" data-tooltip-maxwidth="200" data-tooltip-animate-function="foldin"></div>
+      <div class="clearboth"></div>
+    </div>
+
+    <div class="demo-text2">Tooltips are very usefull detail that gives an impression of solid UI design.</div>
+  </div>
+</div>
+
+<div class="section i2 parallax full-height">
+    <div class="box">
+      <div class="textbox-1">
+        Animation makes things look natural and complete
+      </div>
+    </div>
+</div>
+
+<div class="section height-80 c4">
+  <div class="box">
+    <div class="anim-text1">Animation presets are available</div>
+
+    <div id="anim-group">
+      <div class="anim-item item1" data-tooltip="Sliding" data-tooltip-animate-function="slidein" data-tooltip-stickto="left" data-tooltip-color="slate">Slide</div>
+      <div class="anim-item item2" data-tooltip="Scaling" data-tooltip-animate-function="scalein" data-tooltip-color="peacock">Scale</div>
+      <div class="anim-item item3" data-tooltip="Rolling" data-tooltip-animate-function="roll" data-tooltip-color="rouge">Roll</div>
+      <div class="anim-item item4" data-tooltip="Spinning" data-tooltip-animate-function="spin" data-tooltip-stickto="top" data-tooltip-color="chocolate">Spin</div>
+      <div class="anim-item item5" data-tooltip="Folding" data-tooltip-animate-function="foldin" data-tooltip-stickto="right" data-tooltip-color="pumpkin">Fold</div>
+      <div class="clearboth"></div>
+    </div>
+
+    <div class="anim-text2">Movement capture the attention which is very important<br>when the interface is overloaded with controls.</div>
+  </div>
+</div>
+
+<div class="section i3 parallax full-height">
+    <div class="box">
+      <div class="textbox-1">
+        Every unique case requires unique color
+      </div>
+    </div>
+</div>
+
+<div class="section c3">
+  <div class="box">
+    <div class="customization-text1">A palette of predefined colors</div>
+
+    <div id="customization-group">
+      <div class="split-25">
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box daffodil"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">daffodil</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box daisy"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">daisy</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box mustard"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">mustard</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box citrus-zest"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">citrus zest</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box pumpkin"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">pumpkin</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box tangerine"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">tangerine</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box salmon"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">salmon</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box persimmon"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">persimmon</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box rouge"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">rouge</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box scarlet"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">scarlet</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box hot-pink"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">hot pink</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box princess"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">princess</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box petal"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">petal</div></div></div>
+      </div>
+      <div class="split-25">
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box lilac"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">lilac</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box lavender"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">lavender</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box violet"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">violet</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box cloud"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">cloud</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box dream"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">dream</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box gulf"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">gulf</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box turquoise"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">turquoise</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box sky"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">sky</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box indigo"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">indigo</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box navy"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">navy</div></div></div>
+      </div>
+      <div class="split-25">
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box sea-foam"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">sea foam</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box teal"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">teal</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box peacock"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">peacock</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box ceadon"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">ceadon</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box olive"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">olive</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box bamboo"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">bamboo</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box grass"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">grass</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box kelly"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">kelly</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box forrest"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">forrest</div></div></div>
+      </div>
+      <div class="split-25">
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box chocolate"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">chocolate</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box terra-cotta"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">terra-cotta</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box camel"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">camel</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box linen"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">linen</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box stone"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">stone</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box smoke"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">smoke</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box steel"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">steel</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box slate"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">slate</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box charcoal"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">charcoal</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box metalic-silver"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">metalic silver</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box metalic-gold"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">metalic gold</div></div></div>
+        <div class="html5tooltip-bottom"><div class="html5tooltip-box metalic-copper"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">metalic copper</div></div></div>
+      </div>
+      <div class="clearboth"></div>
+    </div>
+  </div>
+</div>
+
+<div class="section i4 parallax full-height">
+    <div class="box">
+      <div class="textbox-1">
+        Smooth animation, lightness and framework independency
+      </div>
+    </div>
+</div>
+
+<div class="section full-height c5">
+  <div class="box">
+    <div id="get-group">
+      <a class="get-github" href="https://github.com/ytiurin/html5tooltipsjs" target="_blank" data-tooltip="Fork on GitHub" data-tooltip-animate-function="spin" data-tooltip-color="slate"></a>
+    </div>
+    <div id="compat-group">
+      <div class="split-20"><div class="compat-chrome">1+</div></div>
+      <div class="split-20"><div class="compat-firefox">2+</div></div>
+      <div class="split-20"><div class="compat-opera">10.5+</div></div>
+      <div class="split-20"><div class="compat-ie">10+</div></div>
+      <div class="split-20"><div class="compat-safari">3.2+</div></div>
+      <div class="clearboth"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+/*
+* https://github.com/ytiurin/parallax-background.js
+* https://github.com/ytiurin/parallax-background.js/raw/master/LICENSE
+*/
+(function(p,r,l,x){
+  function v(b,c,k,g,n,d)
+  {
+    if((-1*b.top)>b.height||b.top>k)
+      return;
+
+    d=0;
+    b.top<0&&
+      (d=-1*b.top/2);
+
+    n=b.top+b.height;
+    n>k&&
+      (d=-1*(n-k)/2);
+
+    c[l[0]]=(c[l[0]].split(' ')[0]||'50%')+' '+d+'px';
+    c[l[1]]!=='scroll'&&
+      (c[l[1]]='scroll')
+  }
+
+  function w(i)
+  {
+    for(i=x.length;i--;)
+      v(x[i].getBoundingClientRect(),x[i].style,r.innerHeight)
+  }
+
+  r=window,l=['backgroundPosition','backgroundAttachment','addEventListener',
+    'console'],x=document.querySelectorAll(p);
+
+  r[l[3]]&&(r[l[3]].log('https://github.com/ytiurin/parallax-background.js')||
+    r[l[3]].log(x));
+
+  if(x.length){
+    r[l[2]]('scroll',w);
+    r[l[2]]('resize',w);
+    w()
+  }
+}
+('.parallax'))
+</script>
+
+<script>
+//GA
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2810014-7', 'ytiurin.github.io');
+ga('send', 'pageview');
+
+</script>
+
+</body></html>
