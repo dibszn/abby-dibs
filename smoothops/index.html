@@ -40,18 +40,15 @@ a{outline:none}
   background-size: cover;
   font-family:'4';
   font-size: 28px;
+  background-position: center 50%;
   
 }
 .section.i1
 {
-  background-position: center 70%;
   display:flex;
   border:0;
-  width:100vw;
-  height:95vh;
   align-items:center;
   justify-content:center;
-  position:relative;
   overflow:hidden;
 }
 .section.i1 { background-image: url(images/BG1.jpg); }
@@ -83,12 +80,11 @@ a{outline:none}
 
 #LogoContainer
 {
-  position:absolute;
+  position: relative;
+  top: 50%;
   aspect-ratio:0.717;
-  max-width:80vw;
+  max-width:80%;
   max-height:90%;
-  width:100%;
-  height:auto;
 }
 #plyrContainer
 {
@@ -101,14 +97,13 @@ a{outline:none}
   justify-content:flex-end;
   border-radius:8px;
   overflow:visible;
-  ackground-color:transparent;
+  background-color:transparent;
 }
 
 #header-group
 {
   margin-top: -130px;
-  position: relative;
-  top: 50%;
+
 }
 .page-title
 {
@@ -320,8 +315,9 @@ a{outline:none}
 } .html5tooltip-box{
   font-family:'4';
   font-size:12px;
-}</style>
-  <style>
+}
+</style>
+<style>
     @font-face {
         font-family: 'Baskerville Display PT';
         font-style: normal;
