@@ -436,22 +436,162 @@ a{outline:none}
 </div>
 
 <div class="section full-height c2">
+        <style>
+        #EnvelopeContainer {
+        transform: scale(0.8);
+        -ms-transform: scale(0.8);
+        -moz-transform: scale(0.8);
+        -webkit-transform: scale(0.8);
+        perspective: 1000px;
+        margin: 0;
+        }
+        
+        #EnvelopeFlip {
+        width: 100%;
+        transition: transform 2s ease;
+        position: relative;
+        cursor: pointer;
+        transform-style: preserve-3d;
+        }
+        
+        #EnvelopeFrontWrap {
+        backface-visibility: hidden;
+        -ms-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        position: relative;
+        width: 100%;
+        z-index: 1000;
+        }
+        
+        .text {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        font-family: 'Pinyon Script', cursive;
+        color: #113c25;
+        z-index: 1000;
+        text-align: center;
+        font-size: 7vmin;
+        margin: 0;
+        }
+        
+        #EnvelopeBack {
+        backface-visibility: hidden;
+        -ms-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        }
+        
+        #EnvelopeGroup {
+        position: relative;
+        width: 100%;
+        }
+        
+        #EnvelopeFold {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: auto;
+        }
+        
+        #EnvelopeSealWrap {
+        position: absolute;
+        top: 0;
+        left: 0;             
+        width: 100%;
+        height: 100%;
+        object-fit: none;
+        transform-origin: top center;
+        transition: transform 1500ms ease;
+        perspective: 1000px;
+        z-index:3;
+        }
+        
+        #EnvelopeSealWrap.opened {
+        transform: rotateX(-180deg);
+        -ms-transform: rotateX(-180deg);
+        -moz-transform: rotateX(-180deg);
+        -webkit-transform: rotateX(-180deg);
+        }
+        .seal-img, .flap-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        transition: opacity 750ms ease-in-out;
+        opacity: 1;
+        z-index: 2;
+        }
+        
+        .seal-img.hidden {
+        opacity: 0;
+        }
+        
+        .flip, #EnvelopeBack {
+        transform: rotateY(180deg);
+        -ms-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        -webkit-transform: rotateY(180deg);
+        }
+        
+        .envContents {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit:cover;
+        }
+        
+        .envContents.after:nth-child(1) {
+        --n: 1;
+        --top-pos: -15%;
+        z-index: 3;
+        }
+        
+        .envContents.after:nth-child(2) {
+        --n: 2;
+        --top-pos: -30%;
+        z-index: 2;
+        }
+        
+        .envContents.after:nth-child(3) {
+        --n: 3;
+        --top-pos: -45%;
+        z-index: 1;
+        }
+        
+        .envContents.after:nth-child(n) {
+        animation-delay: calc((var(--n) - 1) * 0.5s);
+        }     
+      </style>
       <div id="EnvelopeContainer" style="display: block;">
         <div id="EnvelopeFlip">
           <div id="EnvelopeFrontWrap">
-            <img id="FrontPage" src="/images/FrontPage.png" class="envContents" style="z-index:-1;">
-            <img src="/images/EnvelopeMaterials/EnvelopeFront.png" style="width:100%; height:100%; display: block; z-index:2;" alt="Envelope Front" id="EnvelopeFront"> 
+            <img id="FrontPage" src="images/FrontPage.png" class="envContents" style="z-index:-1;">
+            <img src="images/EnvelopeMaterials/EnvelopeFront.png" style="width:100%; height:100%; display: block; z-index:2;" alt="Envelope Front" id="EnvelopeFront"> 
             <p class="text" style="top: 50%; left: 50%; z-index: 3;">To our favourite people;</p>
           </div>
           <div id="EnvelopeBack">
             <div id="EnvelopeSealWrap">
-              <img id="EnvelopeSealOld" class="seal-img" src="/images/EnvelopeMaterials/EnvelopeBackPlain.png">
-              <img src="/images/EnvelopeMaterials/EnvelopeBackFlapMask.png" style="z-index:0" class="flap-img">          
-              <img id="EnvelopeSealNew" class="seal-img hidden" src="/images/EnvelopeMaterials/EnvelopeBackFlapOpen.png">
+              <img id="EnvelopeSealOld" class="seal-img" src="images/EnvelopeMaterials/EnvelopeBackPlain.png">
+              <img src="images/EnvelopeMaterials/EnvelopeBackFlapMask.png" style="z-index:0" class="flap-img">          
+              <img id="EnvelopeSealNew" class="seal-img hidden" src="images/EnvelopeMaterials/EnvelopeBackFlapOpen.png">
               <p class="text" style="top: 20%; left: 50%; z-index: 3">You're invited!</p>
             </div>
-            <img src="/images/EnvelopeMaterials/EnvelopeBackBottom.png" id="EnvelopeFold" style="z-index:2;">
-            <img id="ThirdPage" src="/images/BG4.jpg" class="envContents" style="z-index:-1">
+            <img src="images/EnvelopeMaterials/EnvelopeBackBottom.png" id="EnvelopeFold" style="z-index:2;">
+            <img id="ThirdPage" src="images/BG4.jpg" class="envContents" style="z-index:-1">
           </div>
         </div>
       </div>
