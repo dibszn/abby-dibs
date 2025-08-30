@@ -40,7 +40,7 @@ a{outline:none}
   background-size: cover;
   font-family:'4';
   font-size: 28px;
-  background-position: 50% 42%;
+  background-position: center;
   
 }
 .section.i1
@@ -50,11 +50,6 @@ a{outline:none}
   align-items:center;
   justify-content:center;
   overflow:hidden;
-}
-.section.c2
-{
-  padding: 3% 3%;
-  object-fit: contain;
 }
 .section.i1 { background-image: url(images/BG1.jpg); }
 .section.i2 { background-image: url(images/BG6.jpg); }
@@ -72,6 +67,7 @@ a{outline:none}
   width: 100%;
 }
 
+/* Text box */
 .textbox-1
 {
   margin-top: -36px;
@@ -81,7 +77,7 @@ a{outline:none}
   width: 90%;
   font-family: 'Six Hands Chalk', auto;
   color: #383838;
-  font-size: 10vmin;
+  font-size: 30px;
 }
 
 #LogoContainer
@@ -103,6 +99,24 @@ a{outline:none}
   border-radius:8px;
   overflow:visible;
   background-color:transparent;
+}
+
+#header-group
+{
+  margin-top: -130px;
+
+}
+.page-title
+{
+  font-family: '5';
+  font-size: 120px;
+  text-align: center;
+  text-shadow:2px 2px 3px rgba(0, 0, 0, 0.3);
+}
+.page-brief
+{
+  text-align: center;
+  text-shadow:1px 1px 0 rgba(0,0,0,.3);
 }
 .demo-tooltip
 {
@@ -256,6 +270,53 @@ a{outline:none}
   width: 200px;
 }
 
+/* Slide last */
+#get-group
+{
+  margin-top: -100px;
+  position: relative;
+  top: 50%;
+}
+.get-github
+{
+  background-position: center 20px;
+  background-repeat: no-repeat;
+  color: white;
+  display: block;
+  font-size: 24px;
+  margin: 0 auto;
+  padding-top: 160px;
+  text-align: center;
+  text-decoration: none;
+  width: 200px;
+}
+.get-github { background-image: url('GitHub-Mark-Light-120px-plus.png');}
+#compat-group
+{
+  bottom: 20px;
+  left: 50%;
+  margin-left: -290px;
+  position: absolute;
+  width: 580px;
+}
+.compat-chrome,
+.compat-firefox,
+.compat-opera,
+.compat-ie,
+.compat-safari
+{
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  color: white;
+  font-size: 24px;
+  margin: 0 auto;
+  padding-top: 48px;
+  text-align: center;
+  width: 48px;
+} .html5tooltip-box{
+  font-family:'4';
+  font-size:12px;
+}
 </style>
 <style>
     @font-face {
@@ -377,13 +438,12 @@ a{outline:none}
 <div class="section full-height c2">
         <style>
         #EnvelopeContainer {
-        transform: scale(0.7);
-        -ms-transform: scale(0.7);
-        -moz-transform: scale(0.7);
-        -webkit-transform: scale(0.7);
+        transform: scale(0.8);
+        -ms-transform: scale(0.8);
+        -moz-transform: scale(0.8);
+        -webkit-transform: scale(0.8);
         perspective: 1000px;
         margin: 0;
-        display:none;
         }
         
         #EnvelopeFlip {
@@ -516,8 +576,7 @@ a{outline:none}
         animation-delay: calc((var(--n) - 1) * 0.5s);
         }     
       </style>
-  <div class="box">
-      <div id="EnvelopeContainer">
+      <div id="EnvelopeContainer" style="display: block;">
         <div id="EnvelopeFlip">
           <div id="EnvelopeFrontWrap">
             <img id="FrontPage" src="images/FrontPage.png" class="envContents" style="z-index:-1;">
@@ -536,7 +595,7 @@ a{outline:none}
           </div>
         </div>
       </div>
- 
+      
       <script>
         document.addEventListener('DOMContentLoaded', function() {
         const images = document.querySelectorAll('#EnvelopeContainer img');
@@ -588,7 +647,6 @@ a{outline:none}
       }
         });
       </script>
-     </div>
 </div>
 
 <div class="section i2 parallax full-height">
