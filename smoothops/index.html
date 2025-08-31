@@ -1156,7 +1156,7 @@ padding: 3% 3%;
       </div>
     </div>
     <div id="AttendanceData">
-      <div class="custom-select">
+      <div id="custom-select" class="custom-select">
         <div class="select__input" id="attendanceDisplay" style="line-height: 78px;"> </div>
         <select id="attendance" name="attendance" style="display:none;">
           <option value="" disabled="" selected=""></option>
@@ -1252,8 +1252,8 @@ padding: 3% 3%;
       };
         target.addEventListener("input", removeTooltip);
         target.addEventListener("change", removeTooltip);
-        document.getElementById("attendanceDisplay").addEventListener("input", removeTooltip);
-        document.getElementById("attendanceDisplay").addEventListener("change", removeTooltip);
+        document.querySelector(".custom-select").addEventListener("input", removeTooltip);
+        document.querySelector(".custom-select");.addEventListener("change", removeTooltip);
     }
 
     selectElement.addEventListener("change", () => {
