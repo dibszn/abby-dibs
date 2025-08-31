@@ -11,7 +11,7 @@
     border-radius:2px;
     box-shadow:0 0 0 1px rgba(255,255,255,.15),0 0 10px rgba(255,255,255,.15);
     color:#FFFFFF;
-    font-family:'The Seasons', auto;
+    font-family:'Baskerville Display PT', auto;
     font-size:80%;
     font-weight:700;
   }
@@ -1209,19 +1209,16 @@ padding: 3% 3%;
     const headcount = document.getElementById("headcount");
     
     function showError(input, message) {
-      
       let target = input.id === "attendance" 
-      ? document.getElementById("attendanceDisplay") 
-      : input;
+        ? document.getElementById("attendanceDisplay") 
+        : input;
       
-      const oldTooltip = input.parentElement.querySelector(".html5tooltip-box");
+      const oldTooltip = target.parentElement.querySelector(".html5tooltip-box");
       if (oldTooltip) oldTooltip.remove();
 
       const tooltip = document.createElement("div");
       tooltip.className = "html5tooltip-box scalein-to";
       tooltip.style.position = "absolute";
-      tooltip.style.top = input.offsetTop + input.offsetHeight + 6 + "px";
-      tooltip.style.left = input.offsetLeft + "px";
       tooltip.style.zIndex = "9999";
 
       const arrow = document.createElement("div");
@@ -1233,11 +1230,30 @@ padding: 3% 3%;
 
       tooltip.appendChild(arrow);
       tooltip.appendChild(text);
-      input.parentElement.appendChild(tooltip);
+      target.parentElement.appendChild(tooltip);
 
-      const removeTooltip = () => tooltip.remove();
-      input.addEventListener("input", removeTooltip, { once: true });
-      input.addEventListener("change", removeTooltip, { once: true });
+      // position updater
+      function updateTooltipPosition() {
+        const rect = target.getBoundingClientRect();
+        const parentRect = target.parentElement.getBoundingClientRect();
+
+        tooltip.style.top = rect.bottom - parentRect.top + 6 + "px";
+        tooltip.style.left = rect.left - parentRect.left + "px";
+      }
+
+      // initial + dynamic
+      updateTooltipPosition();
+      window.addEventListener("resize", updateTooltipPosition);
+      window.addEventListener("scroll", updateTooltipPosition, true);
+
+      // cleanup when input changes
+      const removeTooltip = () => {
+        tooltip.remove();
+        window.removeEventListener("resize", updateTooltipPosition);
+        window.removeEventListener("scroll", updateTooltipPosition, true);
+      };
+      target.addEventListener("input", removeTooltip, { once: true });
+      target.addEventListener("change", removeTooltip, { once: true });
     }
 
     selectElement.addEventListener("change", () => {
@@ -1299,25 +1315,26 @@ padding: 3% 3%;
 
       let valid = true;
 
-    if (!firstname.value.trim()) {
-  showError(firstname, "Please enter your first name");
-  valid = false;
-}
+      if (!firstname.value.trim()) {
+        showError(firstname, "Please enter your first name");
+        valid = false;
+      }
 
-if (!lastname.value.trim()) {
-  showError(lastname, "Please enter your last name");
-  valid = false;
-}
+      if (!lastname.value.trim()) {
+        showError(lastname, "Please enter your last name");
+        valid = false;
+      }
 
-if (!attendance.value.trim()) {
-  showError(attendance, "Please select your attendance");
-  valid = false;
-}
+      if (!attendance.value.trim()) {
+        showError(attendance, "Please select your attendance");
+        valid = false;
+      }
 
-if (attendance.value === "Yes" && (!headcount.value.trim() || Number(headcount.value) < 1)) {
-      showError(headcount, "Please enter number of guests");
-      valid = false;
-    }
+      if (attendance.value === "Yes" && (!headcount.value.trim() || Number(headcount.value) < 1)) {
+        showError(headcount, "Please enter number of guests");
+        valid = false;
+      }
+
       if (!valid) return;
 
       const formData = new FormData(form);  
@@ -1347,6 +1364,7 @@ if (attendance.value === "Yes" && (!headcount.value.trim() || Number(headcount.v
     });
   });
 </script>
+
 
 </div>
 
