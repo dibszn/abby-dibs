@@ -1195,7 +1195,7 @@ padding: 3% 3%;
       </div>
   </div>
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("bootstrapForm");
     const selectElement = document.getElementById("attendance");
     const labelElement = document.querySelector("selectlabel");
@@ -1207,7 +1207,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const firstname = document.getElementById("firstname");
     const lastname = document.getElementById("lastname");
     const headcount = document.getElementById("headcount");
-
+    
     function showError(input, message) {
       let target = input.id === "attendance" 
         ? document.getElementById("attendanceDisplay") 
@@ -1280,7 +1280,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const height = selectDisplay.offsetHeight;
       selectDisplay.style.lineHeight = height + "px";
     }
-    
     centerSelectDisplay();
     window.addEventListener("resize", centerSelectDisplay);
 
@@ -1288,12 +1287,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const isOpen = optionsBox.style.display === "block";
       optionsBox.style.display = isOpen ? "none" : "block";
       selectDisplay.classList.toggle("select-arrow-active", !isOpen);
-
-      // Remove the tooltip when the select dropdown is clicked
-      const tooltip = document.querySelector('.html5tooltip-box');
-      if (tooltip) {
-        tooltip.remove();  // Removes tooltip on click
-      }
     });
 
     optionsBox.querySelectorAll("div").forEach(option => {
@@ -1306,21 +1299,17 @@ document.addEventListener("DOMContentLoaded", () => {
         optionsBox.style.display = "none";
         selectDisplay.classList.remove("select-arrow-active");
         centerSelectDisplay();
-
-        // Remove the tooltip after selecting an option
-        const tooltip = document.querySelector('.html5tooltip-box');
-        if (tooltip) {
-          tooltip.remove();
-        }
+        tooltip.remove();
       });
     });
 
     window.addEventListener("click", e => {
       if (!customSelect.contains(e.target)) {
         optionsBox.style.display = "none";
+        tooltip.remove();
       }
     });
-
+    
     form.addEventListener("submit", e => {
       e.preventDefault();
 
@@ -1373,8 +1362,7 @@ document.addEventListener("DOMContentLoaded", () => {
       window.addEventListener("touchmove", closeHandler, { once: true });
       window.addEventListener("scroll", closeHandler, { once: true });
     });
-});
-
+  });
 </script>
 
 
