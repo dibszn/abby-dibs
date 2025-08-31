@@ -942,7 +942,7 @@ padding: 3% 3%;
       </script>
 </div>
 
-<div class="section i2 parallax full-height">
+<div class="section i2 parallax">
   <div id="note-parent">
     <div id="note-container">
       <p style="width:90%;font-size:2em;margin:0;color:rgb(17,60,37);">YOUR PRESENCE &amp; WELL-WISHES AT OUR CELEBRATION IS THE BEST GIFT OF ALL!</p>
@@ -1301,14 +1301,12 @@ padding: 3% 3%;
         optionsBox.style.display = "none";
         selectDisplay.classList.remove("select-arrow-active");
         centerSelectDisplay();
-        tooltip.remove();
       });
     });
 
     window.addEventListener("click", e => {
       if (!customSelect.contains(e.target)) {
         optionsBox.style.display = "none";
-        tooltip.remove();
       }
     });
     
