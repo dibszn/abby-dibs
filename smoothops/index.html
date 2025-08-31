@@ -1299,14 +1299,14 @@ padding: 3% 3%;
         optionsBox.style.display = "none";
         selectDisplay.classList.remove("select-arrow-active");
         centerSelectDisplay();
-        removeTooltip();
+        tooltip.remove();
       });
     });
 
     window.addEventListener("click", e => {
       if (!customSelect.contains(e.target)) {
         optionsBox.style.display = "none";
-        removeTooltip();
+        tooltip.remove();
       }
     });
     
