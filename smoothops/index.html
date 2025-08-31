@@ -1255,6 +1255,11 @@ padding: 3% 3%;
     }
 
     selectElement.addEventListener("change", () => {
+    const tooltipBox = selectElement.parentElement.querySelector('.html5tooltip-box');
+    if (tooltipBox) {
+        tooltipBox.classList.remove("html5tooltip-box", "scalein-to");
+    }
+      
       if (selectElement.value === "Yes") {
         labelElement.style.top = "-1.3em"; 
         GuestField.style.display = "block";
