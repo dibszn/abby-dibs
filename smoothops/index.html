@@ -161,6 +161,7 @@ a{outline:none}
   -webkit-transform: rotate(-2.7deg);
   transform-origin: center top;
   font-size:1.7vmin;
+  font-family: 'Times New Roman', auto;
 }
 
 #header-group
@@ -687,7 +688,7 @@ a{outline:none}
   window.addEventListener('load', function() {
     const img = document.getElementById('note-image');
     const noteContainer = document.getElementById('note-container');
-    noteContainer.style.width = `${img.clientWidth}px`;
+    noteContainer.style.width = `${img.clientWidth * 0.8}px`;
   });
 </script>
 </div>
