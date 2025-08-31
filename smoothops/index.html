@@ -137,6 +137,7 @@ a{outline:none}
   transform-origin: center top;
   max-width:85%;
   display:flex;
+  align-items: center;
   justify-content:center;
   overflow:auto;
 }
@@ -669,7 +670,7 @@ a{outline:none}
 </div>
 
 <div class="section i2 parallax full-height">
-  <div class="note-parent">
+  <div id="note-parent">
     <div id="note-container">
       <p style="width:90%;font-size:2em;margin:0;color:rgb(17,60,37);">YOUR PRESENCE &amp; WELL-WISHES AT OUR CELEBRATION IS THE BEST GIFT OF ALL!</p>
       <p style="width:90%;font-size:1.7em;font-style:italic;margin:0;color:rgb(17,60,37);">But if you would like to contribute to our new life together, a monetary gift is a delightful blessing.</p>
@@ -688,7 +689,7 @@ a{outline:none}
   window.addEventListener('load', function() {
     const img = document.getElementById('note-image');
     const noteContainer = document.getElementById('note-container');
-    noteContainer.style.width = `${img.clientWidth * 0.8}px`;
+    noteContainer.style.width = `${img.clientWidth * 0.9}px`;
   });
 </script>
 </div>
