@@ -67,6 +67,17 @@ a{outline:none}
   justify-content:center;
   padding:2% 3%;
 }
+.section.c3
+{
+display: flex; 
+flex-direction: column;
+font-size: 2vmin; 
+font-family:'The Seasons', auto; 
+gap: 5vmin;
+justify-content: space-between; 
+padding: 3% 3%;
+}
+  
 .section.i1 { background-image: url(images/BG12.jpg); }
 .section.i2 { background-image: url(images/BG61.jpg); }
 .section.i3 { background-image: url(images/BG7.jpg); }
@@ -718,65 +729,324 @@ a{outline:none}
 </div>
 
 <div class="section c3">
-  <div class="box">
-    <div class="customization-text1">A palette of predefined colors</div>
+      <style>    
+      #NameData, #AttendanceData, #Headcount, #MessageData { 
+        width: 100%; 
+        min-height:10%; 
+        border:none; 
+        margin: 0;
+      }
+      .Name_fieldContainer {
+      position: relative;
+      height: 100%;
+      width: 45%;
+    }
+    .msg_fieldContainer, .Headcount_fieldContainer {
+      position: relative;
+      height: 100%;
+      width: 100%;
+    }
+    .form__input {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      background: #FFFFFF;
+      border: 0.5px solid #fff;
+      border-radius: 0.5em;
+      font-size:1.5em;
+      color: #113c25;
+      padding-left: 10px;
+    }
+    namelabel, selectlabel, msglabel, headcountlabel {
+      position: absolute;
+      background: transparent;
+      color: #113c25;
+      font-family: sans-serif;
+      pointer-events: none;
+      font-size: 1.5em;
+      transition: top 350ms ease;
+      left:10px;
+    }
+    headcountlabel, namelabel {
+        top: 35%;  }
+    msglabel {
+        top:42%;  }
+    selectlabel {
+      top: 30%;  }
+    .form__input:hover {
+      border: 0.5px solid #383838;  }
+    .form__input:focus {
+      border: 0.5px solid #113c25;  }
+    input[id="headcount"]:focus ~ headcountlabel,
+    .form__input:not(:placeholder-shown) ~ headcountlabel, input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel, .form__input:not(:placeholder-shown) ~ namelabel, input[id="message"]:focus ~ msglabel, .form__input:not(:placeholder-shown) ~ msglabel, .custom_select:focus ~ selectlabel  {
+      top: -1.3em;  }
 
-    <div id="customization-group">
-      <div class="split-25">
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box daffodil"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">daffodil</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box daisy"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">daisy</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box mustard"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">mustard</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box citrus-zest"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">citrus zest</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box pumpkin"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">pumpkin</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box tangerine"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">tangerine</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box salmon"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">salmon</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box persimmon"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">persimmon</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box rouge"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">rouge</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box scarlet"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">scarlet</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box hot-pink"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">hot pink</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box princess"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">princess</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box petal"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">petal</div></div></div>
+    #thanksModal {
+        position: fixed;
+        left: 0; top: 0;
+        width: 100%; height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+    .modal-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        max-width: 400px;
+        margin: 0 auto;
+        position: relative;
+    }
+    #Headcount {
+      display: none;
+    }
+    .error {
+      width: 100%;
+      font-size: 80%;
+      color: #113c25;
+      background-color: #ffffff;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+.custom-select {
+  position: relative;
+  border-radius: 10px;
+  width: 100%; height:100%;
+}
+
+.custom-select select {
+  display: none;
+}
+
+#attendanceDisplay {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      background: #FFFFFF;
+      border: 0.5px solid #fff;
+      border-radius: 0.5em;
+      font-size:1.5em;
+      color: #113c25;
+      padding-left: 10px;
+}
+
+#attendanceDisplay::after {
+  position: absolute;
+  content: "";
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-color: #113c25 transparent transparent transparent;
+}
+
+#attendanceDisplay.select-arrow-active::after {
+  border-color: transparent transparent #113c25 transparent;
+  top: 45%;
+}
+
+#attendanceOptions {
+  position: absolute;
+  margin-top: 5px;
+  background-color: #ffffff;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  border-radius: 20px; border: 1px solid transparent;
+  border-color: transparent #113c25 #113c25 #113c25;
+}
+
+#attendanceOptions div {
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content:center;
+  color: #113c25;
+}
+
+#attendanceOptions div:hover,
+#attendanceOptions .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+    </style>
+  <form style="width:90%; height:90%; display: flex; flex-direction: column; align-items: center; justify-content: space-between; object-fit: contain" id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec">    
+    <div id="NameData" style="display: flex; justify-content: space-between;">
+      <div class="Name_fieldContainer">
+        <input type="text" id="firstname" name="firstname" autocomplete="off" placeholder=" " class="form__input" required="">
+        <namelabel for="firstname">First Name</namelabel>
       </div>
-      <div class="split-25">
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box lilac"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">lilac</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box lavender"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">lavender</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box violet"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">violet</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box cloud"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">cloud</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box dream"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">dream</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box gulf"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">gulf</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box turquoise"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">turquoise</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box sky"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">sky</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box indigo"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">indigo</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box navy"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">navy</div></div></div>
+      <div class="Name_fieldContainer">
+        <input type="text" id="lastname" name="lastname" autocomplete="off" placeholder=" " class="form__input" required="">
+        <namelabel for="lastname">Last Name</namelabel>
       </div>
-      <div class="split-25">
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box sea-foam"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">sea foam</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box teal"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">teal</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box peacock"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">peacock</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box ceadon"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">ceadon</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box olive"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">olive</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box bamboo"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">bamboo</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box grass"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">grass</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box kelly"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">kelly</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box forrest"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">forrest</div></div></div>
+    </div>
+    <div id="AttendanceData">
+      <div class="custom-select">
+        <div class="select__input" id="attendanceDisplay" style="line-height: 78px;"> </div>
+        <select id="attendance" name="attendance" style="display:none;">
+          <option value="" disabled="" selected=""></option>
+          <option value="Yes">Yes, I will be!</option>
+          <option value="No">No, I won't be attending.</option>
+        </select>
+
+        <div class="select__input-items" id="attendanceOptions" required="" style="display:none;">
+          <div style=" border:1px solid transparent;
+  border-color:  #113c25 transparent transparent transparent" data-value="Yes">Yes, I will be!</div>
+          <div data-value="No">No, I won't be attending.</div>
+          
+        </div>
+                <selectlabel for="attendance">Will you be attending?</selectlabel>
       </div>
-      <div class="split-25">
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box chocolate"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">chocolate</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box terra-cotta"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">terra-cotta</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box camel"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">camel</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box linen"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">linen</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box stone"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">stone</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box smoke"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">smoke</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box steel"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">steel</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box slate"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">slate</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box charcoal"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">charcoal</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box metalic-silver"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">metalic silver</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box metalic-gold"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">metalic gold</div></div></div>
-        <div class="html5tooltip-bottom"><div class="html5tooltip-box metalic-copper"><div class="html5tooltip-pointer"></div><div class="html5tooltip-text">metalic copper</div></div></div>
+    </div>
+    <div id="Headcount" style="display: none;">
+      <div class="Headcount_fieldContainer">
+        <input type="number" id="headcount" name="headcount" min="1" autocomplete="off" placeholder=" " class="form__input">
+        <headcountlabel for="headcount">Number of Guests</headcountlabel>
       </div>
-      <div class="clearboth"></div>
+    </div>
+  <div id="MessageData" style="height: 30%">
+      <div class="msg_fieldContainer">
+        <input type="text" id="message" name="message" autocomplete="off" placeholder=" " class="form__input">
+        <msglabel for="message">Any wishes/messages for the newlyweds?</msglabel>
     </div>
   </div>
+  <input class="btn btn-primary" type="submit" value="Submit" style="margin-top:0.7vmin; padding: 1% 5%; font-size: 1.3em; color:white; background-color: #113c25; border-radius:10px; border:none;">
+</form>
+
+  <div id="thanksModal" style="display: none;">
+      <div class="modal-content">
+        <h2 id="modalTitle" style="font-size: 2em;">Thanks for the confirmation!</h2>
+        <p id="modalMessage" style="font-size: 1.5em;">See you on 21st December 🥳</p>
+      </div>
+  </div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("bootstrapForm");
+    const selectElement = document.getElementById("attendance");
+    const labelElement = document.querySelector("selectlabel");
+    const GuestField = document.getElementById("Headcount");
+    const modal = document.getElementById("thanksModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalMessage = document.getElementById("modalMessage");
+
+    const firstname = document.getElementById("firstname");
+    const lastname = document.getElementById("lastname");
+    const headcount = document.getElementById("headcount");
+    
+
+    selectElement.addEventListener("change", () => {
+      if (selectElement.value === "Yes") {
+        labelElement.style.top = "-1.3em"; 
+        GuestField.style.display = "block";
+        document.getElementById("headcount").setAttribute("required", "");
+        modalTitle.textContent = "Thanks for the confirmation!";
+        modalMessage.textContent = "See you on 21st December 🥳";
+      } 
+      else if (selectElement.value === "No") {
+        labelElement.style.top = "-1.3em";
+        GuestField.style.display = "none";
+        document.getElementById("headcount").removeAttribute("required");
+        modalTitle.textContent = "Aw shucks 🥲";
+        modalMessage.textContent = "See you when I see you";
+      }
+    });
+
+    function showError(input, message) {
+      const oldError = input.parentElement.querySelector(".error");
+      if (oldError) oldError.remove();
+
+      const error = document.createElement("div");
+      error.className = "error";
+      error.textContent = message;
+      input.parentElement.appendChild(error);
+
+      input.addEventListener("input", () => error.remove(), { once: true });
+      input.addEventListener("change", () => error.remove(), { once: true });
+    }
+
+    const customSelect = document.querySelector(".custom-select");
+    const selectDisplay = document.getElementById("attendanceDisplay");
+    const selectHidden = document.getElementById("attendance");
+    const optionsBox = document.getElementById("attendanceOptions");
+
+    function centerSelectDisplay() {
+      const height = selectDisplay.offsetHeight;
+      selectDisplay.style.lineHeight = height + "px";
+    }
+    centerSelectDisplay();
+    window.addEventListener("resize", centerSelectDisplay);
+
+    selectDisplay.addEventListener("click", () => {
+      const isOpen = optionsBox.style.display === "block";
+      optionsBox.style.display = isOpen ? "none" : "block";
+      selectDisplay.classList.toggle("select-arrow-active", !isOpen);
+    });
+
+    optionsBox.querySelectorAll("div").forEach(option => {
+      option.addEventListener("click", () => {
+        selectDisplay.textContent = option.textContent;
+        selectHidden.value = option.dataset.value;
+
+        selectHidden.dispatchEvent(new Event("change"));
+
+        optionsBox.style.display = "none";
+        selectDisplay.classList.remove("select-arrow-active");
+        centerSelectDisplay();
+      });
+    });
+
+    window.addEventListener("click", e => {
+      if (!customSelect.contains(e.target)) {
+        optionsBox.style.display = "none";
+      }
+    });
+    
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+
+      if (!firstname.value.trim()) {
+        showError(firstname, "Please enter your first name 🌸");
+        return;
+      }
+
+      if (!lastname.value.trim()) {
+        showError(lastname, "Please enter your last name ✨");
+        return;
+      }
+      
+      const formData = new FormData(form);  
+      
+      fetch(form.action, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors"
+      });
+
+      form.reset();
+      GuestField.style.display = "none";
+      modal.style.display = "flex";
+
+      const closeHandler = () => {
+        modal.style.display = "none";
+        window.removeEventListener("click", closeHandler);
+        window.removeEventListener("touchstart", closeHandler);
+        window.removeEventListener("touchmove", closeHandler);
+        window.removeEventListener("scroll", closeHandler);
+      };
+
+      window.addEventListener("click", closeHandler, { once: true });
+      window.addEventListener("touchstart", closeHandler, { once: true });
+      window.addEventListener("touchmove", closeHandler, { once: true });
+      window.addEventListener("scroll", closeHandler, { once: true });
+    });
+  });
+</script>
+
 </div>
 
 <div class="section i4 parallax full-height">
