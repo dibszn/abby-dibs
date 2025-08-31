@@ -1198,31 +1198,30 @@ padding: 3% 3%;
     const headcount = document.getElementById("headcount");
     
     function showError(input, message) {
-  // For attendance (hidden <select>), attach to visible #attendanceDisplay
   let target = input.id === "attendance" 
     ? document.getElementById("attendanceDisplay") 
     : input;
 
-  target.removeAttribute("data-tooltip");
-  target.removeAttribute("data-tooltip-animate-function");
-  target.removeAttribute("data-tooltip-color");
-  target.removeAttribute("data-tooltip-stick-to");
+  const oldTooltip = target.parentElement.querySelector(".error-tooltip");
+  if (oldTooltip) oldTooltip.remove();
 
-  target.setAttribute("data-tooltip", message);
-  target.setAttribute("data-tooltip-animate-function", "scalein");
-  target.setAttribute("data-tooltip-color", "#113c25");
-  target.setAttribute("data-tooltip-stick-to", "bottom");
+  const tooltip = document.createElement("div");
+  tooltip.className = "error-tooltip";
+  tooltip.style.display = "inline-block";  // ensure it has height/width
+  tooltip.style.width = "1px";            // tiny box, just for anchor
+  tooltip.style.height = "1px";
+  tooltip.style.position = "relative";
 
-  const clearTooltip = () => {
-    target.removeAttribute("data-tooltip");
-    target.removeAttribute("data-tooltip-animate-function");
-    target.removeAttribute("data-tooltip-color");
-    target.removeAttribute("data-tooltip-stick-to");
-  };
+  tooltip.setAttribute("data-tooltip", message);
+  tooltip.setAttribute("data-tooltip-animate-function", "scalein");
+  tooltip.setAttribute("data-tooltip-color", "#113c25");
+  tooltip.setAttribute("data-tooltip-stick-to", "bottom");
 
-  // Remove tooltip when user fixes input
-  target.addEventListener("input", clearTooltip, { once: true });
-  target.addEventListener("change", clearTooltip, { once: true });
+  target.insertAdjacentElement("afterend", tooltip);
+
+  const removeTooltip = () => tooltip.remove();
+  target.addEventListener("input", removeTooltip, { once: true });
+  target.addEventListener("change", removeTooltip, { once: true });
 }
 
     selectElement.addEventListener("change", () => {
