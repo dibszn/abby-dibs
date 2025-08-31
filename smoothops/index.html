@@ -1195,7 +1195,6 @@ padding: 3% 3%;
       </div>
   </div>
 <script>
-  <script>
   document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("bootstrapForm");
     const selectElement = document.getElementById("attendance");
@@ -1209,17 +1208,15 @@ padding: 3% 3%;
     const firstname = document.getElementById("firstname");
     const lastname = document.getElementById("lastname");
     const headcount = document.getElementById("headcount");
-
+    
     function showError(input, message) {
       let target = input.id === "attendance" 
         ? document.getElementById("attendanceDisplay") 
         : input;
-
-      // Remove existing tooltip if it exists
+      
       const oldTooltip = target.parentElement.querySelector(".html5tooltip-box");
       if (oldTooltip) oldTooltip.remove();
 
-      // Create new tooltip
       const tooltip = document.createElement("div");
       tooltip.className = "html5tooltip-box scalein-to";
       tooltip.style.position = "absolute";
@@ -1236,12 +1233,6 @@ padding: 3% 3%;
       tooltip.appendChild(text);
       target.parentElement.appendChild(tooltip);
 
-      const removeTooltip = () => {
-        tooltip.remove();
-        target.removeEventListener("input", removeTooltip);
-        target.removeEventListener("change", removeTooltip);
-      };
-      
       function updateTooltipPosition() {
         const rect = target.getBoundingClientRect();
         const parentRect = target.parentElement.getBoundingClientRect();
@@ -1253,22 +1244,19 @@ padding: 3% 3%;
       updateTooltipPosition();
       window.addEventListener("resize", updateTooltipPosition);
       window.addEventListener("scroll", updateTooltipPosition, true);
+
+      const removeTooltip = () => {
+        tooltip.remove();
+        window.removeEventListener("resize", updateTooltipPosition);
+        window.removeEventListener("scroll", updateTooltipPosition, true);
+      };
+        target.addEventListener("input", removeTooltip);
+        target.addEventListener("change", removeTooltip);
+        document.getElementById("attendanceDisplay").addEventListener("input", removeTooltip);
+        document.getElementById("attendanceDisplay").addEventListener("change", removeTooltip);
     }
 
-    firstname.addEventListener("input", () => {
-      const oldTooltip = firstname.parentElement.querySelector(".html5tooltip-box");
-      if (oldTooltip) oldTooltip.remove();
-    });
-
-    lastname.addEventListener("input", () => {
-      const oldTooltip = lastname.parentElement.querySelector(".html5tooltip-box");
-      if (oldTooltip) oldTooltip.remove();
-    });
-
     selectElement.addEventListener("change", () => {
-      const oldTooltip = attendanceDisplay.parentElement.querySelector(".html5tooltip-box");
-      if (oldTooltip) oldTooltip.remove();
-
       if (selectElement.value === "Yes") {
         labelElement.style.top = "-1.3em"; 
         GuestField.style.display = "block";
@@ -1321,7 +1309,7 @@ padding: 3% 3%;
         optionsBox.style.display = "none";
       }
     });
-
+    
     form.addEventListener("submit", e => {
       e.preventDefault();
 
@@ -1376,6 +1364,8 @@ padding: 3% 3%;
     });
   });
 </script>
+
+
 </div>
 
 <div class="section i4 parallax full-height">
