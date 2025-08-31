@@ -1156,7 +1156,7 @@ padding: 3% 3%;
       </div>
     </div>
     <div id="AttendanceData">
-      <div id="custom-select" class="custom-select">
+      <div class="custom-select">
         <div class="select__input" id="attendanceDisplay" style="line-height: 78px;"> </div>
         <select id="attendance" name="attendance" style="display:none;">
           <option value="" disabled="" selected=""></option>
@@ -1233,6 +1233,12 @@ padding: 3% 3%;
       tooltip.appendChild(text);
       target.parentElement.appendChild(tooltip);
 
+      const removeTooltip = () => {
+        tooltip.remove();
+        target.addEventListener("input", removeTooltip);
+        target.addEventListener("change", removeTooltip);
+      };
+      
       function updateTooltipPosition() {
         const rect = target.getBoundingClientRect();
         const parentRect = target.parentElement.getBoundingClientRect();
@@ -1244,16 +1250,6 @@ padding: 3% 3%;
       updateTooltipPosition();
       window.addEventListener("resize", updateTooltipPosition);
       window.addEventListener("scroll", updateTooltipPosition, true);
-
-      const removeTooltip = () => {
-        tooltip.remove();
-        window.removeEventListener("resize", updateTooltipPosition);
-        window.removeEventListener("scroll", updateTooltipPosition, true);
-      };
-        target.addEventListener("input", removeTooltip);
-        target.addEventListener("change", removeTooltip);
-        document.querySelector(".custom-select").addEventListener("input", removeTooltip);
-        document.querySelector(".custom-select");.addEventListener("change", removeTooltip);
     }
 
     selectElement.addEventListener("change", () => {
