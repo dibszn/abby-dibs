@@ -175,6 +175,71 @@ padding: 3% 3%;
   font-family: 'Times New Roman', auto;
 }
 
+#end-page-container
+{
+  width:90%; 
+  display:flex; 
+  flex-direction:column; 
+  align-items:center; 
+  gap:3vmin; 
+  text-align:center;
+  font-family:'The Seasons', auto;
+  font-size:2vmin;
+}
+
+#countdown-container
+{
+  width:70%; 
+  color:rgb(17,60,37); 
+  font-family:'Pinyon Script',cursive; 
+  margin-bottom:1.5vmin;
+}
+.countdownBox
+{
+  display:flex; justify-content:space-between; width:100%; color:#113C25;
+}
+
+.SpaceDays, .SpaceHours, .SpaceMinutes, .SpaceSeconds
+{
+  display:flex; flex-direction:column; flex:1; min-width:10%;
+}
+
+.LabelDays, .LabelHours, LabelMinutes, .LabelSeconds
+{
+  font-size:1.1em; opacity:0.9;
+}
+
+.D-Day
+{
+  display:none; font-size:1.4em; color:#113C25;
+}
+
+.SpanDays, .SpanHours, .SpanMinutes, .SpanSeconds
+{
+  font-size:1.2em; font-weight:bold; line-height:1;
+}
+
+#EndNoteText
+{
+  width:100%; text-align:center; display:flex; flex-direction:column; justify-content:center;
+}
+
+.ThanksText
+{
+  font-family:'Six Hands Chalk',auto; color:rgb(17,60,37); letter-spacing:0em; margin:0; font-size:3em; font-weight:400; font-style:normal; transform:rotate(-8.2deg); width:auto;
+}
+
+.ShoutoutText
+{
+  font-family:'Baskerville Display PT',auto; color:rgb(17,60,37); letter-spacing:0em; margin:0; font-size:1.3em; font-weight:400; font-style:italic; text-align:center;
+}
+
+.WithLove
+{
+  align-items:flex-start; font-family:'New Icon Script',auto; color:rgb(17,60,37); margin:0; margin-top:3vmin; font-size:1.3em; font-weight:400; font-style:normal; text-align:center;
+}
+  
+
 #header-group
 {
   margin-top: -130px;
@@ -1065,16 +1130,58 @@ padding: 3% 3%;
 </div>
 
 <div class="section full-height c5">
-  <div class="box">
-    <div id="compat-group">
-      <div class="split-20"><div class="compat-chrome">1+</div></div>
-      <div class="split-20"><div class="compat-firefox">2+</div></div>
-      <div class="split-20"><div class="compat-opera">10.5+</div></div>
-      <div class="split-20"><div class="compat-ie">10+</div></div>
-      <div class="split-20"><div class="compat-safari">3.2+</div></div>
-      <div class="clearboth"></div>
+  <div id="end-page-container">
+    <div id="countdown-container">
+      <div style="font-size:2em; color:#113C25; font-weight:200; margin:0 0 2vmin 0;">days till our forever</div>
+      <div class="countdownBox">
+        <div class="SpaceDays">
+          <span id="SpanDays"></span>
+          <p id="LabelDays">days</p>
+        </div>
+        
+        <div class="SpaceHours">
+          <span id="SpanHours"></span>
+          <p id="LabelHours">hours</p>
+        </div>
+
+        <div class="SpaceMinutes">
+          <span id="SpanMinutes"></span>
+          <p id="LabelMinutes">minutes</p>
+        </div>
+
+        <div class="SpaceSeconds">
+          <span id="SpanSeconds"></span>
+          <p id="LabelSeconds">seconds</p>
+        </div>
+      </div>
+
+      <div class="D-Day"> 🎉 It's D-day! 🎉 </div>
+      <img src="images/BG6.jpg" alt="polaroids" crossorigin="anonymous" draggable="false" style="width:auto; max-width:80%; height:auto; object-fit:contain; display:block;">
+      <div id="EndNoteText">
+        <p id="ThanksText">Thank you!</p>
+        <p id="ShoutoutText">We can’t wait to celebrate our marriage with you on 21 December 2025!<br> We hope you all bless us with your well-wishes & good prayers as we move on this new chapter of our lives.</p>
+        <p id="WithLove">With love,<br>Adibah & Abby</p>
+      </div>
+      
     </div>
   </div>
+  <script>
+  const targetDate = new Date('2025-12-21T09:00:00+08:00').getTime();
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    document.getElementById('SpanDays').textContent = days.toString().padStart(2, '0');
+    document.getElementById('SpanHours').textContent = hours.toString().padStart(2, '0');
+    document.getElementById('SpanMinutes').textContent = minutes.toString().padStart(2, '0');
+    document.getElementById('SpanSeconds').textContent = seconds.toString().padStart(2, '0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
 </div>
 
 <script>
