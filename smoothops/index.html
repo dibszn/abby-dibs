@@ -101,7 +101,8 @@ a{outline:none}
 {
   position: relative;
   aspect-ratio:0.717;
-  max-width:90%;
+  width:95%;
+  max-height:90%;
 }
 #plyrContainer
 {
@@ -115,6 +116,43 @@ a{outline:none}
   border-radius:8px;
   overflow:visible;
   background-color:transparent;
+}
+
+#note-parent
+{
+  position:relative; 
+  transform: scale(0.9);
+  -ms-transform: scale(0.9);
+  -moz-transform: scale(0.9);
+  -webkit-transform: scale(0.9);
+  margin-top: 3vmin; 
+  transform-origin: center top;
+  max-width:85%;
+  display:flex;
+  justify-content:center;
+  overflow:auto;
+  font-size:1.7vmin;
+}
+
+#note-container
+{
+  position: absolute; 
+  top: 17%; 
+  bottom: 5%; 
+  width: 80%; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-around; 
+  align-items: center; 
+  text-align: center; 
+  background: transparent; 
+  box-sizing: border-box;
+  z-index: 1; 
+  transform: rotate(-2.7deg);
+  -ms-transform: rotate(-2.7deg);
+  -moz-transform: rotate(-2.7deg);
+  -webkit-transform: rotate(-2.7deg);
+  transform-origin: center top;
 }
 
 #header-group
@@ -622,11 +660,9 @@ a{outline:none}
 </div>
 
 <div class="section i2 parallax full-height">
-    <div class="box2">
-      <div class="textbox-1">
-        And He placed in between you mercy & affection <br> Ar-Rum: 21
-      </div>
-    </div>
+  <div class="note-parent">
+    <img src="images/blanknote.png" alt="Note" crossorigin="anonymous" draggable="false" style="width:100%;object-fit:contain;opacity:0.85;">
+  </div>
 </div>
 
 <div class="section height-80 c4">
@@ -649,7 +685,7 @@ a{outline:none}
 <div class="section i3 parallax full-height">
     <div class="box2">
       <div class="textbox-1">
-        Every unique case requires unique color
+        And He placed in between you mercy & affection <br> Ar-Rum: 21
       </div>
     </div>
 </div>
