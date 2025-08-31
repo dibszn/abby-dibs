@@ -1198,33 +1198,32 @@ padding: 3% 3%;
     const headcount = document.getElementById("headcount");
     
     function showError(input, message) {
-      let targetElement = input;
-      if (input.id === "attendance") {
-        targetElement = document.getElementById("attendanceDisplay");
-      }
+  // For attendance (hidden <select>), attach to visible #attendanceDisplay
+  let target = input.id === "attendance" 
+    ? document.getElementById("attendanceDisplay") 
+    : input;
 
-      const oldTooltip = targetElement.parentElement.querySelector(".error-tooltip");
-      if (oldTooltip) oldTooltip.remove();
+  target.removeAttribute("data-tooltip");
+  target.removeAttribute("data-tooltip-animate-function");
+  target.removeAttribute("data-tooltip-color");
+  target.removeAttribute("data-tooltip-stick-to");
 
-      const tooltip = document.createElement("div");
-      tooltip.className = "error-tooltip";
-      tooltip.setAttribute("data-tooltip", message);
-      tooltip.setAttribute("data-tooltip-animate-function", "scalein");
-      tooltip.setAttribute("data-tooltip-color", "#113c25");
-      tooltip.setAttribute("data-tooltip-stick-to", "bottom");
+  target.setAttribute("data-tooltip", message);
+  target.setAttribute("data-tooltip-animate-function", "scalein");
+  target.setAttribute("data-tooltip-color", "#113c25");
+  target.setAttribute("data-tooltip-stick-to", "bottom");
 
-      targetElement.insertAdjacentElement("afterend", tooltip);
+  const clearTooltip = () => {
+    target.removeAttribute("data-tooltip");
+    target.removeAttribute("data-tooltip-animate-function");
+    target.removeAttribute("data-tooltip-color");
+    target.removeAttribute("data-tooltip-stick-to");
+  };
 
-      const removeTooltip = () => tooltip.remove();
-
-      if (input.id === "attendance") {
-        document.getElementById("attendanceDisplay").addEventListener("click", removeTooltip, { once: true });
-        input.addEventListener("change", removeTooltip, { once: true });
-      } else {
-        input.addEventListener("input", removeTooltip, { once: true });
-        input.addEventListener("change", removeTooltip, { once: true });
-      }
-    }
+  // Remove tooltip when user fixes input
+  target.addEventListener("input", clearTooltip, { once: true });
+  target.addEventListener("change", clearTooltip, { once: true });
+}
 
     selectElement.addEventListener("change", () => {
       if (selectElement.value === "Yes") {
