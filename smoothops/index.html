@@ -1233,12 +1233,6 @@ padding: 3% 3%;
       tooltip.appendChild(text);
       target.parentElement.appendChild(tooltip);
 
-      const removeTooltip = () => {
-        tooltip.remove();
-        target.addEventListener("input", removeTooltip);
-        target.addEventListener("change", removeTooltip);
-      };
-      
       function updateTooltipPosition() {
         const rect = target.getBoundingClientRect();
         const parentRect = target.parentElement.getBoundingClientRect();
@@ -1250,6 +1244,13 @@ padding: 3% 3%;
       updateTooltipPosition();
       window.addEventListener("resize", updateTooltipPosition);
       window.addEventListener("scroll", updateTooltipPosition, true);
+
+      const removeTooltip = () => {
+        tooltip.remove();
+        const TooltipParent = input.id === "attendance" ? document.querySelector(".custom-select") : input;
+        TooltipParent.addEventListener("input", removeTooltip);
+        TooltipParent.addEventListener("change", removeTooltip);
+      };
     }
 
     selectElement.addEventListener("change", () => {
