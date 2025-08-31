@@ -65,6 +65,7 @@ a{outline:none}
   align-items:flex-end;
   justify-content:center;
   padding:2% 3%;
+  font-family: 'The Seasons', auto;
 }
 .section.c3
 {
@@ -696,9 +697,9 @@ padding: 3% 3%;
   </div>
   <script>
   window.addEventListener('load', function() {
-    const img = document.getElementById('note-image');
+    const Noteimg = document.getElementById('note-image');
     const noteContainer = document.getElementById('note-container');
-    noteContainer.style.width = `${img.clientWidth * 0.9}px`;
+    noteContainer.style.width = `${Noteimg.clientWidth * 0.9}px`;
   });
 </script>
 </div>
@@ -728,7 +729,7 @@ padding: 3% 3%;
     </div>
 </div>
 
-<div class="section c3">
+<div class="section c3 full-height">
       <style>    
       #NameData, #AttendanceData, #Headcount, #MessageData { 
         width: 100%; 
@@ -753,7 +754,7 @@ padding: 3% 3%;
       background: #FFFFFF;
       border: 0.5px solid #fff;
       border-radius: 0.5em;
-      font-size:1.5em;
+      font-size:1.4em;
       color: #113c25;
       padding-left: 10px;
     }
@@ -761,9 +762,8 @@ padding: 3% 3%;
       position: absolute;
       background: transparent;
       color: #113c25;
-      font-family: sans-serif;
       pointer-events: none;
-      font-size: 1.5em;
+      font-size: 1.4em;
       transition: top 350ms ease;
       left:10px;
     }
@@ -827,7 +827,7 @@ padding: 3% 3%;
       background: #FFFFFF;
       border: 0.5px solid #fff;
       border-radius: 0.5em;
-      font-size:1.5em;
+      font-size:1.4em;
       color: #113c25;
       padding-left: 10px;
 }
@@ -874,6 +874,7 @@ padding: 3% 3%;
   background-color: rgba(0, 0, 0, 0.1);
 }
     </style>
+  <div style="font-family: 'Pinyon Script', auto; font-size: 4vmin; letter-spacing: 2px; color: #113c25">Kindly RSVP by 7th December</div>
   <form style="width:90%; height:90%; display: flex; flex-direction: column; align-items: center; justify-content: space-between; object-fit: contain" id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec">    
     <div id="NameData" style="display: flex; justify-content: space-between;">
       <div class="Name_fieldContainer">
