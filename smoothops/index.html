@@ -139,7 +139,6 @@ a{outline:none}
   display:flex;
   justify-content:center;
   overflow:auto;
-  font-size:1.7vmin;
 }
 
 #note-container
@@ -161,6 +160,7 @@ a{outline:none}
   -moz-transform: rotate(-2.7deg);
   -webkit-transform: rotate(-2.7deg);
   transform-origin: center top;
+  font-size:1.7vmin;
 }
 
 #header-group
@@ -681,8 +681,15 @@ a{outline:none}
         <a href="https://www.google.com" target="_blank" style="display:flex;align-items:center;justify-content:center;border-radius:25px;width:auto; padding: 0.6% 2.5%; font-size:0.65em;color:white;background-color:#113c25;text-decoration:none;">GIFT REGISTRY</a>
       </div>
     </div>
-    <img src="images/blanknote.png" alt="Note" crossorigin="anonymous" draggable="false" style="width:100%;object-fit:contain;opacity:0.85;">
+    <img id="note-image" src="images/blanknote.png" alt="Note" crossorigin="anonymous" draggable="false" style="width:100%;object-fit:contain;opacity:0.85;">
   </div>
+  <script>
+  window.addEventListener('load', function() {
+    const img = document.getElementById('note-image');
+    const noteContainer = document.getElementById('note-container');
+    noteContainer.style.width = `${img.clientWidth}px`;
+  });
+</script>
 </div>
 
 <div class="section height-80 c4">
