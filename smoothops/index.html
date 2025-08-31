@@ -1232,7 +1232,6 @@ padding: 3% 3%;
       tooltip.appendChild(text);
       target.parentElement.appendChild(tooltip);
 
-      // position updater
       function updateTooltipPosition() {
         const rect = target.getBoundingClientRect();
         const parentRect = target.parentElement.getBoundingClientRect();
@@ -1241,19 +1240,17 @@ padding: 3% 3%;
         tooltip.style.left = rect.left - parentRect.left + "px";
       }
 
-      // initial + dynamic
       updateTooltipPosition();
       window.addEventListener("resize", updateTooltipPosition);
       window.addEventListener("scroll", updateTooltipPosition, true);
 
-      // cleanup when input changes
       const removeTooltip = () => {
         tooltip.remove();
         window.removeEventListener("resize", updateTooltipPosition);
         window.removeEventListener("scroll", updateTooltipPosition, true);
       };
-      target.addEventListener("input", removeTooltip, { once: true });
-      target.addEventListener("change", removeTooltip, { once: true });
+      target.addEventListener("input", removeTooltip);
+      target.addEventListener("change", removeTooltip);
     }
 
     selectElement.addEventListener("change", () => {
