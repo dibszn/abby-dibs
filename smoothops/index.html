@@ -1203,6 +1203,7 @@ padding: 3% 3%;
     const modal = document.getElementById("thanksModal");
     const modalTitle = document.getElementById("modalTitle");
     const modalMessage = document.getElementById("modalMessage");
+    const attendanceDisplay = document.getElementById("attendanceDisplay");
 
     const firstname = document.getElementById("firstname");
     const lastname = document.getElementById("lastname");
@@ -1313,22 +1314,22 @@ padding: 3% 3%;
       let valid = true;
 
       if (!firstname.value.trim()) {
-        showError(firstname, "Please enter your first name");
+        showError(firstname, "please enter your first name");
         valid = false;
       }
 
       if (!lastname.value.trim()) {
-        showError(lastname, "Please enter your last name");
+        showError(lastname, "please enter your last name");
         valid = false;
       }
 
       if (!attendance.value.trim()) {
-        showError(attendance, "Please select your attendance");
+        showError(attendanceDisplay, "please select your attendance");
         valid = false;
       }
 
       if (attendance.value === "Yes" && (!headcount.value.trim() || Number(headcount.value) < 1)) {
-        showError(headcount, "Please enter number of guests");
+        showError(headcount, "please enter a valid number of guests");
         valid = false;
       }
 
