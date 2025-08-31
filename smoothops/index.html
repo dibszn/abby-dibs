@@ -956,7 +956,7 @@ padding: 3% 3%;
         <a href="https://www.google.com" target="_blank" style="display:flex;align-items:center;justify-content:center;border-radius:25px;width:auto; padding: 0.6% 2.5%; font-size:0.65em;color:white;background-color:#113c25;text-decoration:none;">GIFT REGISTRY</a>
       </div>
     </div>
-    <img id="note-image" src="images/blanknote.png" alt="Note" crossorigin="anonymous" draggable="false" style="width:100%;height: 100%;object-fit:contain;opacity:0.85;">
+    <img id="note-image" src="images/blanknote.png" alt="Note" crossorigin="anonymous" draggable="false" style="width:100%;object-fit:contain;opacity:0.85;">
   </div>
 <script>
   function updateNoteContainerWidth() {
@@ -1203,7 +1203,6 @@ padding: 3% 3%;
     const modal = document.getElementById("thanksModal");
     const modalTitle = document.getElementById("modalTitle");
     const modalMessage = document.getElementById("modalMessage");
-    const attendanceDisplay = document.getElementById("attendanceDisplay");
 
     const firstname = document.getElementById("firstname");
     const lastname = document.getElementById("lastname");
@@ -1233,6 +1232,7 @@ padding: 3% 3%;
       tooltip.appendChild(text);
       target.parentElement.appendChild(tooltip);
 
+      // position updater
       function updateTooltipPosition() {
         const rect = target.getBoundingClientRect();
         const parentRect = target.parentElement.getBoundingClientRect();
@@ -1241,16 +1241,19 @@ padding: 3% 3%;
         tooltip.style.left = rect.left - parentRect.left + "px";
       }
 
+      // initial + dynamic
       updateTooltipPosition();
       window.addEventListener("resize", updateTooltipPosition);
       window.addEventListener("scroll", updateTooltipPosition, true);
 
+      // cleanup when input changes
       const removeTooltip = () => {
         tooltip.remove();
-        const TooltipParent = input.id === "attendance" ? document.querySelector(".custom-select") : input;
-        TooltipParent.addEventListener("input", removeTooltip);
-        TooltipParent.addEventListener("change", removeTooltip);
+        window.removeEventListener("resize", updateTooltipPosition);
+        window.removeEventListener("scroll", updateTooltipPosition, true);
       };
+      target.addEventListener("input", removeTooltip, { once: true });
+      target.addEventListener("change", removeTooltip, { once: true });
     }
 
     selectElement.addEventListener("change", () => {
@@ -1323,12 +1326,12 @@ padding: 3% 3%;
       }
 
       if (!attendance.value.trim()) {
-        showError(attendanceDisplay, "Please select your attendance");
+        showError(attendance, "Please select your attendance");
         valid = false;
       }
 
       if (attendance.value === "Yes" && (!headcount.value.trim() || Number(headcount.value) < 1)) {
-        showError(headcount, "Please enter a valid number of guests");
+        showError(headcount, "Please enter number of guests");
         valid = false;
       }
 
