@@ -1333,7 +1333,7 @@ padding: 3% 3%;
       }
 
       if (attendance.value === "Yes" && (!headcount.value.trim() || Number(headcount.value) < 1)) {
-        showError(headcount, "Please enter number of guests");
+        showError(headcount, "Please enter a valid number of guests");
         valid = false;
       }
 
