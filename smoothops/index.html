@@ -1251,7 +1251,7 @@ padding: 3% 3%;
         window.removeEventListener("scroll", updateTooltipPosition, true);
       };
       
-        const inputElement = input.id === "attendance" ? attendanceDisplay : input;
+        const inputElement = input.id === "attendance" ? document.getElementById("attendanceDisplay") : input;
         inputElement.addEventListener("input", removeTooltip);
         inputElement.addEventListener("change", removeTooltip);
     }
