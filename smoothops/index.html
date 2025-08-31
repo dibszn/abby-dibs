@@ -10,8 +10,8 @@
     background-color:#2A2A2A;
     border-radius:2px;
     box-shadow:0 0 0 1px rgba(255,255,255,.15),0 0 10px rgba(255,255,255,.15);
-    color:#F7F7F7;
-    font-family:arial,sans-serif;
+    color:#113C25;
+    font-family:'The Seasons', auto;
     font-size:11px;font-weight:700
   }
   .html5tooltip-box:before
@@ -1196,34 +1196,7 @@ padding: 3% 3%;
     const firstname = document.getElementById("firstname");
     const lastname = document.getElementById("lastname");
     const headcount = document.getElementById("headcount");
-    
-    function showError(input, message) {
-      const oldTooltip = input.parentElement.querySelector(".html5tooltip-box");
-      if (oldTooltip) oldTooltip.remove();
 
-      const tooltip = document.createElement("div");
-      tooltip.className = "html5tooltip-box scalein-to";
-      tooltip.style.position = "absolute";
-      tooltip.style.top = input.offsetTop + input.offsetHeight + 6 + "px";
-      tooltip.style.left = input.offsetLeft + "px";
-      tooltip.style.zIndex = "9999";
-
-      const arrow = document.createElement("div");
-      arrow.className = "html5tooltip-arrow";
-
-      const text = document.createElement("div");
-      text.className = "html5tooltip-text";
-      text.textContent = message;
-
-      tooltip.appendChild(arrow);
-      tooltip.appendChild(text);
-      input.parentElement.appendChild(tooltip);
-
-      const removeTooltip = () => tooltip.remove();
-      input.addEventListener("input", removeTooltip, { once: true });
-      input.addEventListener("change", removeTooltip, { once: true });
-    }
-    
     selectElement.addEventListener("change", () => {
       if (selectElement.value === "Yes") {
         labelElement.style.top = "-1.3em"; 
@@ -1241,7 +1214,22 @@ padding: 3% 3%;
       }
     });
 
+    function showError(input, message) {
+      input.setAttribute("data-tooltip", message);
+      input.setAttribute("data-tooltip-animate-function", "scalein");
+      input.setAttribute("data-tooltip-color", "#113c25");
+      input.setAttribute("data-tooltip-stick-to", "bottom");
 
+      const clearError = () => {
+        input.removeAttribute("data-tooltip");
+        input.removeAttribute("data-tooltip-animate-function");
+        input.removeAttribute("data-tooltip-color");
+        input.removeAttribute("data-tooltip-stick-to");
+      };
+
+      input.addEventListener("input", clearError, { once: true });
+      input.addEventListener("change", clearError, { once: true });
+    }
 
     const customSelect = document.querySelector(".custom-select");
     const selectDisplay = document.getElementById("attendanceDisplay");
@@ -1285,27 +1273,27 @@ padding: 3% 3%;
 
       let valid = true;
 
-    if (!firstname.value.trim()) {
-      showError(firstname, "Please enter your first name");
-      valid = false;
-    }
+      if (!firstname.value.trim()) {
+        showError(firstname, "Please enter your first name");
+        valid = false;
+      }
 
-    if (!lastname.value.trim()) {
-      showError(lastname, "Please enter your last name");
-      valid = false;
-    }
+      if (!lastname.value.trim()) {
+        showError(lastname, "Please enter your last name");
+        valid = false;
+      }
 
-    if (!attendance.value.trim()) {
-      showError(attendance, "Please select your attendance");
-      valid = false;
-    }
+      if (!selectHidden.value.trim()) {
+        showError(selectDisplay, "Please select your attendance");
+        valid = false;
+      }
 
-    if (attendance.value === "Yes" && (!headcount.value.trim() || Number(headcount.value) < 1)) {
-      showError(headcount, "Please enter number of guests");
-      valid = false;
-    }
+      if (selectHidden.value === "Yes" && (!headcount.value.trim() || Number(headcount.value) < 1)) {
+        showError(headcount, "Please enter number of guests");
+        valid = false;
+      }
       
-    if (!valid) return;
+      if (!valid) return;
 
       const formData = new FormData(form);  
       
@@ -1334,6 +1322,8 @@ padding: 3% 3%;
     });
   });
 </script>
+
+
 
 </div>
 
