@@ -695,12 +695,16 @@ padding: 3% 3%;
     </div>
     <img id="note-image" src="images/blanknote.png" alt="Note" crossorigin="anonymous" draggable="false" style="width:100%;object-fit:contain;opacity:0.85;">
   </div>
-  <script>
-  window.addEventListener('load', function() {
+<script>
+  function updateNoteContainerWidth() {
     const Noteimg = document.getElementById('note-image');
     const noteContainer = document.getElementById('note-container');
+    
     noteContainer.style.width = `${Noteimg.clientWidth * 0.9}px`;
-  });
+  }
+
+  window.addEventListener('load', updateNoteContainerWidth);
+  window.addEventListener('resize', updateNoteContainerWidth);
 </script>
 </div>
 
@@ -874,7 +878,7 @@ padding: 3% 3%;
   background-color: rgba(0, 0, 0, 0.1);
 }
     </style>
-  <div style="font-family: 'Pinyon Script', auto; font-size: 4vmin; letter-spacing: 2px; color: #113c25">Kindly RSVP by 7th December</div>
+  <div style="font-family: 'Pinyon Script', auto; font-size: 5vmin; letter-spacing: 2px; color: #113c25">Kindly RSVP by 7th December</div>
   <form style="width:90%; height:90%; display: flex; flex-direction: column; align-items: center; justify-content: space-between; object-fit: contain" id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec">    
     <div id="NameData" style="display: flex; justify-content: space-between;">
       <div class="Name_fieldContainer">
@@ -916,7 +920,7 @@ padding: 3% 3%;
         <msglabel for="message">Any wishes/messages for the newlyweds?</msglabel>
     </div>
   </div>
-  <input class="btn btn-primary" type="submit" value="Submit" style="margin-top:0.7vmin; padding: 1% 5%; font-size: 1.3em; color:white; background-color: #113c25; border-radius:10px; border:none;">
+  <input class="btn btn-primary" type="submit" value="Submit" style="font-family: 'The Seasons',auto; margin-top:0.7vmin; padding: 1% 5%; font-size: 1.3em; color:white; background-color: #113c25; border-radius:10px; border:none;">
 </form>
 
   <div id="thanksModal" style="display: none;">
