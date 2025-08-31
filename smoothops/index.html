@@ -1314,22 +1314,22 @@ padding: 3% 3%;
       let valid = true;
 
       if (!firstname.value.trim()) {
-        showError(firstname, "please enter your first name");
+        showError(firstname, "Please enter your first name");
         valid = false;
       }
 
       if (!lastname.value.trim()) {
-        showError(lastname, "please enter your last name");
+        showError(lastname, "Please enter your last name");
         valid = false;
       }
 
       if (!attendance.value.trim()) {
-        showError(attendanceDisplay, "please select your attendance");
+        showError(attendanceDisplay, "Please select your attendance");
         valid = false;
       }
 
       if (attendance.value === "Yes" && (!headcount.value.trim() || Number(headcount.value) < 1)) {
-        showError(headcount, "please enter a valid number of guests");
+        showError(headcount, "Please enter a valid number of guests");
         valid = false;
       }
 
