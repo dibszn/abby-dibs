@@ -1250,8 +1250,10 @@ padding: 3% 3%;
         window.removeEventListener("resize", updateTooltipPosition);
         window.removeEventListener("scroll", updateTooltipPosition, true);
       };
-      target.addEventListener("input", removeTooltip);
-      target.addEventListener("change", removeTooltip);
+      
+        const inputElement = input.id === "attendance" ? selectElement : input;
+        inputElement.addEventListener("input", removeTooltip);
+        inputElement.addEventListener("change", removeTooltip);
     }
 
     selectElement.addEventListener("change", () => {
