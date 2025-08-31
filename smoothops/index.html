@@ -956,7 +956,7 @@ padding: 3% 3%;
         <a href="https://www.google.com" target="_blank" style="display:flex;align-items:center;justify-content:center;border-radius:25px;width:auto; padding: 0.6% 2.5%; font-size:0.65em;color:white;background-color:#113c25;text-decoration:none;">GIFT REGISTRY</a>
       </div>
     </div>
-    <img id="note-image" src="images/blanknote.png" alt="Note" crossorigin="anonymous" draggable="false" style="width:100%;object-fit:contain;opacity:0.85;">
+    <img id="note-image" src="images/blanknote.png" alt="Note" crossorigin="anonymous" draggable="false" style="width:100%;height: 100%;object-fit:contain;opacity:0.85;">
   </div>
 <script>
   function updateNoteContainerWidth() {
@@ -1251,7 +1251,7 @@ padding: 3% 3%;
         window.removeEventListener("scroll", updateTooltipPosition, true);
       };
       
-        const inputElement = input.id === "attendance" ? selectElement : input;
+        const inputElement = input.id === "attendance" ? attendanceDisplay : input;
         inputElement.addEventListener("input", removeTooltip);
         inputElement.addEventListener("change", removeTooltip);
     }
