@@ -956,13 +956,12 @@ padding: 3% 3%;
         <a href="https://www.google.com" target="_blank" style="display:flex;align-items:center;justify-content:center;border-radius:25px;width:auto; padding: 0.6% 2.5%; font-size:0.65em;color:white;background-color:#113c25;text-decoration:none;">GIFT REGISTRY</a>
       </div>
     </div>
-    <img id="note-image" src="images/blanknote.png" alt="Note" crossorigin="anonymous" draggable="false" style="width:100%;height: 100%;object-fit:contain;opacity:0.85;">
+    <img id="note-image" src="images/blanknote.png" alt="Note" crossorigin="anonymous" draggable="false" style="height: 90%;object-fit:contain;opacity:0.85;">
   </div>
 <script>
   function updateNoteContainerWidth() {
     const Noteimg = document.getElementById('note-image');
     const noteContainer = document.getElementById('note-container');
-    
     noteContainer.style.width = `${Noteimg.clientWidth * 0.9}px`;
   }
 
@@ -1208,36 +1207,6 @@ padding: 3% 3%;
     const firstname = document.getElementById("firstname");
     const lastname = document.getElementById("lastname");
     const headcount = document.getElementById("headcount");
-    
-    function showError(input, message) {
-      let target = input.id === "attendance" 
-        ? document.getElementById("attendanceDisplay") 
-        : input;
-      
-      const oldTooltip = target.parentElement.querySelector(".html5tooltip-box");
-      if (oldTooltip) oldTooltip.remove();
-
-      const tooltip = document.createElement("div");
-      tooltip.className = "html5tooltip-box scalein-to";
-      tooltip.style.position = "absolute";
-      tooltip.style.zIndex = "9999";
-
-      const arrow = document.createElement("div");
-      arrow.className = "html5tooltip-arrow";
-
-      const text = document.createElement("div");
-      text.className = "html5tooltip-text";
-      text.textContent = message;
-
-      tooltip.appendChild(arrow);
-      tooltip.appendChild(text);
-      target.parentElement.appendChild(tooltip);
-
-      const removeTooltip = () => {
-        tooltip.remove();
-        target.addEventListener("input", removeTooltip);
-        target.addEventListener("change", removeTooltip);
-      };
       
       function updateTooltipPosition() {
         const rect = target.getBoundingClientRect();
@@ -1305,7 +1274,37 @@ padding: 3% 3%;
         optionsBox.style.display = "none";
       }
     });
-    
+
+ function showError(input, message) {
+      let target = input.id === "attendance" 
+        ? document.getElementById("attendanceDisplay") 
+        : input;
+      
+      const oldTooltip = target.parentElement.querySelector(".html5tooltip-box");
+      if (oldTooltip) oldTooltip.remove();
+
+      const tooltip = document.createElement("div");
+      tooltip.className = "html5tooltip-box scalein-to";
+      tooltip.style.position = "absolute";
+      tooltip.style.zIndex = "9999";
+
+      const arrow = document.createElement("div");
+      arrow.className = "html5tooltip-arrow";
+
+      const text = document.createElement("div");
+      text.className = "html5tooltip-text";
+      text.textContent = message;
+
+      tooltip.appendChild(arrow);
+      tooltip.appendChild(text);
+      target.parentElement.appendChild(tooltip);
+
+      const removeTooltip = () => {
+        tooltip.remove();
+        target.addEventListener("input", removeTooltip);
+        target.addEventListener("change", removeTooltip);
+      };
+  
     form.addEventListener("submit", e => {
       e.preventDefault();
 
