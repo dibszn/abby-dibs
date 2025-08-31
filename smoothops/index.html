@@ -1037,16 +1037,30 @@ padding: 3% 3%;
     });
 
     function showError(input, message) {
-      const oldError = input.parentElement.querySelector(".error");
-      if (oldError) oldError.remove();
+      const oldTooltip = input.parentElement.querySelector(".html5tooltip-box");
+      if (oldTooltip) oldTooltip.remove();
 
-      const error = document.createElement("div");
-      error.className = "error";
-      error.textContent = message;
-      input.parentElement.appendChild(error);
+      const tooltip = document.createElement("div");
+      tooltip.className = "html5tooltip-box scalein-to";
+      tooltip.style.position = "absolute";
+      tooltip.style.top = input.offsetTop + input.offsetHeight + 6 + "px";
+      tooltip.style.left = input.offsetLeft + "px";
+      tooltip.style.zIndex = "9999";
 
-      input.addEventListener("input", () => error.remove(), { once: true });
-      input.addEventListener("change", () => error.remove(), { once: true });
+      const arrow = document.createElement("div");
+      arrow.className = "html5tooltip-arrow";
+
+      const text = document.createElement("div");
+      text.className = "html5tooltip-text";
+      text.textContent = message;
+
+      tooltip.appendChild(arrow);
+      tooltip.appendChild(text);
+      input.parentElement.appendChild(tooltip);
+
+      const removeTooltip = () => tooltip.remove();
+      input.addEventListener("input", removeTooltip, { once: true });
+      input.addEventListener("change", removeTooltip, { once: true });
     }
 
     const customSelect = document.querySelector(".custom-select");
@@ -1089,16 +1103,30 @@ padding: 3% 3%;
     form.addEventListener("submit", e => {
       e.preventDefault();
 
-      if (!firstname.value.trim()) {
-        showError(firstname, "Please enter your first name 🌸");
-        return;
-      }
+      let valid = true;
 
-      if (!lastname.value.trim()) {
-        showError(lastname, "Please enter your last name ✨");
-        return;
-      }
+    if (!firstname.value.trim()) {
+      showError(firstname, "Please enter your first name");
+      valid = false;
+    }
+
+    if (!lastname.value.trim()) {
+      showError(lastname, "Please enter your last name");
+      valid = false;
+    }
+
+    if (!attendance.value.trim()) {
+      showError(attendance, "Please select your attendance");
+      valid = false;
+    }
+
+    if (attendance.value === "Yes" && (!headcount.value.trim() || Number(headcount.value) < 1)) {
+      showError(headcount, "Please enter number of guests");
+      valid = false;
+    }
       
+    if (!valid) return;
+
       const formData = new FormData(form);  
       
       fetch(form.action, {
