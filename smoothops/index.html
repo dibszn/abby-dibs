@@ -1198,31 +1198,36 @@ padding: 3% 3%;
     const headcount = document.getElementById("headcount");
     
     function showError(input, message) {
-  let target = input.id === "attendance" 
-    ? document.getElementById("attendanceDisplay") 
-    : input;
+      
+      let target = input.id === "attendance" 
+      ? document.getElementById("attendanceDisplay") 
+      : input;
+      
+      const oldTooltip = input.parentElement.querySelector(".html5tooltip-box");
+      if (oldTooltip) oldTooltip.remove();
 
-  const oldTooltip = target.parentElement.querySelector(".error-tooltip");
-  if (oldTooltip) oldTooltip.remove();
+      const tooltip = document.createElement("div");
+      tooltip.className = "html5tooltip-box scalein-to";
+      tooltip.style.position = "absolute";
+      tooltip.style.top = input.offsetTop + input.offsetHeight + 6 + "px";
+      tooltip.style.left = input.offsetLeft + "px";
+      tooltip.style.zIndex = "9999";
 
-  const tooltip = document.createElement("div");
-  tooltip.className = "error-tooltip";
-  tooltip.style.display = "inline-block";  // ensure it has height/width
-  tooltip.style.width = "1px";            // tiny box, just for anchor
-  tooltip.style.height = "1px";
-  tooltip.style.position = "relative";
+      const arrow = document.createElement("div");
+      arrow.className = "html5tooltip-arrow";
 
-  tooltip.setAttribute("data-tooltip", message);
-  tooltip.setAttribute("data-tooltip-animate-function", "scalein");
-  tooltip.setAttribute("data-tooltip-color", "#113c25");
-  tooltip.setAttribute("data-tooltip-stick-to", "bottom");
+      const text = document.createElement("div");
+      text.className = "html5tooltip-text";
+      text.textContent = message;
 
-  target.insertAdjacentElement("afterend", tooltip);
+      tooltip.appendChild(arrow);
+      tooltip.appendChild(text);
+      input.parentElement.appendChild(tooltip);
 
-  const removeTooltip = () => tooltip.remove();
-  target.addEventListener("input", removeTooltip, { once: true });
-  target.addEventListener("change", removeTooltip, { once: true });
-}
+      const removeTooltip = () => tooltip.remove();
+      input.addEventListener("input", removeTooltip, { once: true });
+      input.addEventListener("change", removeTooltip, { once: true });
+    }
 
     selectElement.addEventListener("change", () => {
       if (selectElement.value === "Yes") {
@@ -1284,26 +1289,25 @@ padding: 3% 3%;
       let valid = true;
 
     if (!firstname.value.trim()) {
-      showError(firstname, "Please enter your first name");
-      valid = false;
-    }
+  showError(firstname, "Please enter your first name");
+  valid = false;
+}
 
-    if (!lastname.value.trim()) {
-      showError(lastname, "Please enter your last name");
-      valid = false;
-    }
+if (!lastname.value.trim()) {
+  showError(lastname, "Please enter your last name");
+  valid = false;
+}
 
-    if (!selectElement.value.trim()) {
-      showError(selectElement, "Please select your attendance");
-      valid = false;
-    }
+if (!attendance.value.trim()) {
+  showError(attendance, "Please select your attendance");
+  valid = false;
+}
 
-    if (selectElement.value === "Yes" && (!headcount.value.trim() || Number(headcount.value) < 1)) {
+if (attendance.value === "Yes" && (!headcount.value.trim() || Number(headcount.value) < 1)) {
       showError(headcount, "Please enter number of guests");
       valid = false;
     }
-      
-    if (!valid) return;
+      if (!valid) return;
 
       const formData = new FormData(form);  
       
