@@ -881,11 +881,11 @@ padding: 3% 3%;
     }
 
     .slid {
-      animation: slideUp 1000ms 1500ms forwards ease-out;
+      animation: slideUp 1000ms forwards ease-out;
       animation-delay: calc((var(--n, 1) - 1) * 0.4s);
     }
     .envSlide {
-      animation: EnvelopeSlide 2500ms forwards ease-out;
+      animation: EnvelopeSlide 1650ms forwards ease-out;
     }
     .down {
       animation: slideDown 1500ms forwards ease-in-out;
@@ -893,14 +893,11 @@ padding: 3% 3%;
     }
 
     @keyframes slideUp {
-      0% {
+      from {
         transform: translateY(0);
       }
-      50% {
+      to {
         transform: translateY(var(--top-pos));
-      }
-      100% {
-        transform: translateY(calc((var(--top-pos)) * -0.2)) rotate(-3.7deg) scale(1.1);
       }
     }
     @keyframes slideDown {
@@ -916,7 +913,7 @@ padding: 3% 3%;
         transform: scale(0.8) translateY(0);
       }
       to {
-        transform: scale(0.8) translateY(-20%);
+        transform: scale(0.8) translateY(-10%);
       }
     }
       </style>
@@ -999,21 +996,20 @@ function animateEnvelope() {
     document.getElementById("EnvelopeSealWrap").style.zIndex = '-1';
 
     ContentsStack.style.display = "block";
-    document.getElementById("EnvelopeContainer").classList.add('envSlide');
     document.querySelectorAll('.envContents2').forEach(img => {
       img.classList.add('slid');
     });
   }, { once: true });
   
-  /*Page1.addEventListener('animationend', function() {
+  Page1.addEventListener('animationend', function() {
+    document.getElementById("EnvelopeContainer").classList.add('envSlide');
     setTimeout(() => {
       document.getElementById("EnvelopeFold").style.zIndex = '-1';
-      document.getElementById("EnvelopeContainer").classList.add('envSlide');
       document.querySelectorAll('.envContents2').forEach(img => {
         img.classList.add('down');
       });
     }, 150);
-  }, { once: true });*/
+  }, { once: true });
 }
         envelopeFlip.addEventListener('click', animateEnvelope);
         envelopeFlip.addEventListener('touchstart', animateEnvelope);
