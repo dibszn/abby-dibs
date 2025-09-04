@@ -733,11 +733,11 @@ padding: 3% 3%;
 <div class="section full-height c2">
         <style>
         #EnvelopeContainer {
-    -moz-transform:scale(0.7);
-    -ms-transform:scale(0.7);
-    -o-transform:scale(0.7);
-    -webkit-transform:scale(0.7);
-    transform:scale(0.7);
+    -moz-transform:scale(0.8);
+    -ms-transform:scale(0.8);
+    -o-transform:scale(0.8);
+    -webkit-transform:scale(0.8);
+    transform:scale(0.8);
       perspective: 1000px;
       margin: 0;
       position: relative;
@@ -884,6 +884,9 @@ padding: 3% 3%;
       animation: slideUp 1000ms forwards ease-out;
       animation-delay: calc((var(--n, 1) - 1) * 0.4s);
     }
+    .envSlide {
+      animation: slideUp 1500ms forwards ease-out;
+    }
     .down {
       animation: slideDown 1500ms forwards ease-in-out;
       animation-delay: calc((var(--n, 1) - 1) * 0.5s);
@@ -904,7 +907,15 @@ padding: 3% 3%;
       to {
         transform: translateY(calc((var(--top-pos)) * -0.2)) rotate(-3.7deg) scale(1.1);
       }
-    }  
+    }
+    @keyframes EnvelopeSlide {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(-20%);
+      }
+    }
       </style>
       <div id="EnvelopeContainer">
       <div id="EnvelopeFlip">
@@ -993,6 +1004,7 @@ function animateEnvelope() {
   Page1.addEventListener('animationend', function() {
     setTimeout(() => {
       document.getElementById("EnvelopeFold").style.zIndex = '-1';
+      document.getElementById("EnvelopeContainer").classList.add('envSlide');
       document.querySelectorAll('.envContents2').forEach(img => {
         img.classList.add('down');
       });
