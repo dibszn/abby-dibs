@@ -881,11 +881,11 @@ padding: 3% 3%;
     }
 
     .slid {
-      animation: slideUp 1000ms forwards ease-out;
+      animation: slideUp 1000ms 1500ms forwards ease-out;
       animation-delay: calc((var(--n, 1) - 1) * 0.4s);
     }
     .envSlide {
-      animation: EnvelopeSlide 1500ms forwards ease-out;
+      animation: EnvelopeSlide 2500ms forwards ease-out;
     }
     .down {
       animation: slideDown 1500ms forwards ease-in-out;
@@ -893,11 +893,14 @@ padding: 3% 3%;
     }
 
     @keyframes slideUp {
-      from {
+      0% {
         transform: translateY(0);
       }
-      to {
+      50% {
         transform: translateY(var(--top-pos));
+      }
+      100% {
+        transform: translateY(calc((var(--top-pos)) * -0.2)) rotate(-3.7deg) scale(1.1);
       }
     }
     @keyframes slideDown {
@@ -996,12 +999,13 @@ function animateEnvelope() {
     document.getElementById("EnvelopeSealWrap").style.zIndex = '-1';
 
     ContentsStack.style.display = "block";
+    document.getElementById("EnvelopeContainer").classList.add('envSlide');
     document.querySelectorAll('.envContents2').forEach(img => {
       img.classList.add('slid');
     });
   }, { once: true });
   
-  Page1.addEventListener('animationend', function() {
+  /*Page1.addEventListener('animationend', function() {
     setTimeout(() => {
       document.getElementById("EnvelopeFold").style.zIndex = '-1';
       document.getElementById("EnvelopeContainer").classList.add('envSlide');
@@ -1009,7 +1013,7 @@ function animateEnvelope() {
         img.classList.add('down');
       });
     }, 150);
-  }, { once: true });
+  }, { once: true });*/
 }
         envelopeFlip.addEventListener('click', animateEnvelope);
         envelopeFlip.addEventListener('touchstart', animateEnvelope);
