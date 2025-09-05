@@ -1038,18 +1038,10 @@ function animateEnvelope() {
   function updateNoteContainerWidth() {
     const Noteimg = document.getElementById('note-image');
     const noteContainer = document.getElementById('note-container');
-
-    const newWidth = Noteimg.clientWidth * 0.9;
-    noteContainer.style.width = `${newWidth}px`;
-
-    const vmin = Math.min(window.innerWidth, window.innerHeight);
-    const baseFontSize = vmin * 0.017; // 1.7vmin
-
-    const scaleFactor = newWidth / window.innerWidth; 
-    const newFontSize = baseFontSize * scaleFactor;
-
-    noteContainer.style.fontSize = `${newFontSize}px`;
+    
+    noteContainer.style.width = `${Noteimg.clientWidth * 0.9}px`;
   }
+
   window.addEventListener('load', updateNoteContainerWidth);
   window.addEventListener('resize', updateNoteContainerWidth);
 </script>
