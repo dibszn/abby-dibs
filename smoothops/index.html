@@ -1029,7 +1029,7 @@ function animateEnvelope() {
       </div>
       <div style="width:90%;display:flex;flex-direction:column;align-items:center;text-align:center; gap:0.5em; font-size:1.7em;font-style:italic;color:rgb(17,60,37);">
         <p style="margin:0.6vh;">Alternatively, you could also view our gift registry here:</p>
-        <a href="https://www.google.com" target="_blank" style="display:flex;align-items:center;justify-content:center;border-radius:25px;width:auto; padding: 0.6% 2.5%; font-size:0.65em;color:white;background-color:#113c25;text-decoration:none;">GIFT REGISTRY</a>
+        <a href="https://dibszn.github.io/abby-dibs/giftregistry/index.html" target="_blank" style="display:flex;align-items:center;justify-content:center;border-radius:25px;width:auto; padding: 0.6% 2.5%; font-size:0.65em;color:white;background-color:#113c25;text-decoration:none;">GIFT REGISTRY</a>
       </div>
     </div>
     <img id="note-image" src="images/blanknote.png" alt="Note" crossorigin="anonymous" draggable="false" style="width:100%;object-fit:contain;opacity:0.85;">
@@ -1038,8 +1038,12 @@ function animateEnvelope() {
   function updateNoteContainerWidth() {
     const Noteimg = document.getElementById('note-image');
     const noteContainer = document.getElementById('note-container');
-    
     noteContainer.style.width = `${Noteimg.clientWidth * 0.9}px`;
+    const vmin = Math.min(window.innerWidth, window.innerHeight);
+    const baseFontSize = vmin * 0.017;
+    const scaleFactor = newWidth / window.innerWidth; 
+    const newFontSize = baseFontSize * scaleFactor;
+    noteContainer.style.fontSize = `${newFontSize}px`;
   }
 
   window.addEventListener('load', updateNoteContainerWidth);
