@@ -795,6 +795,25 @@ padding: 3% 3%;
       transform: rotateY(180deg);
     }
 
+    .revealBtn {
+      text-align:center;
+      border:0; 
+      border-radius:15px;
+      width:auto; padding: .5% 2%;
+      font-size:2vmin;
+      color:#113c25;
+      font-family: 'Baskerville Display PT',auto;
+      font-style: italic;
+      background-color:#F7F7F7;
+      text-decoration:none;
+      bottom: 3%;
+      position:absolute;
+      opacity:0;
+    }
+    .revealBtn.shown {
+      opacity:1;
+    }
+
     .envContents {
       position: absolute;
       top: 0;
@@ -919,7 +938,8 @@ padding: 3% 3%;
         </div>
       </div>
     </div>
-  
+
+  <button id="revealBtn" class="revealBtn">Reveal now</button>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -984,6 +1004,9 @@ function animateEnvelope() {
         img.classList.add('down');
       });
     }, 150);
+    setTimeout(() => {
+      document.getElementById("revealBtn").classList.add('shown');
+    }, 100)
   }, { once: true });
 }
         envelopeFlip.addEventListener('click', animateEnvelope);
