@@ -855,75 +855,74 @@ padding: 3% 3%;
 
   <button id="revealBtn" class="revealBtn">Reveal now</button>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const images = document.querySelectorAll('.section.c2 img');
-    let loadedImages = 0;
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const images = document.querySelectorAll('.section.c2 img');
+      let loadedImages = 0;
 
-    function checkImagesLoaded() {
-      loadedImages++;
-      if (loadedImages === images.length) {
-        document.getElementById('EnvelopeContainer').style.display = 'block';
-        initAnimation();
+      function checkImagesLoaded() {
+        loadedImages++;
+        if (loadedImages === images.length) {
+          document.getElementById('EnvelopeContainer').style.display = 'block';
+          initAnimation();
+        }
       }
-    }
 
-    images.forEach(function(img) {
-      img.addEventListener('load', checkImagesLoaded);
-      if (img.complete) checkImagesLoaded();
+      images.forEach(function(img) {
+        img.addEventListener('load', checkImagesLoaded);
+        if (img.complete) checkImagesLoaded();
+      });
+
+      function initAnimation() {
+        const envelopeFlip = document.getElementById('EnvelopeFlip');
+        const sealWrap = document.getElementById('EnvelopeSealWrap');
+        const sealOldImg = document.getElementById('EnvelopeSealOld');
+        const sealNewImg = document.getElementById('EnvelopeSealNew');
+        const foldImg = document.getElementById('EnvelopeFold');
+        const ContentsStack = document.getElementById('ContentsStack');
+        const Page1 = document.getElementById('Page1');
+
+        const foldHeight = foldImg.offsetHeight;
+        const sealHeight = sealOldImg.offsetHeight;
+        const newSealImgHeight = foldHeight + sealHeight + 'px';
+
+function animateEnvelope() {
+  envelopeFlip.removeEventListener('click', animateEnvelope);
+  envelopeFlip.removeEventListener('touchstart', animateEnvelope);
+  envelopeFlip.classList.add('flip');
+
+  envelopeFlip.addEventListener('transitionend', function() {
+    sealWrap.classList.add('opened');
+    sealNewImg.style.height = "newSealImgHeight";
+    sealOldImg.style.height = "newSealImgHeight";
+    sealOldImg.classList.add('hidden');
+    sealNewImg.classList.remove('hidden');
+  }, { once: true });
+
+  sealWrap.addEventListener('transitionend', function() {
+    document.getElementById("ThirdPage").style.display = 'none';
+    document.getElementById("EnvelopeFold").style.zIndex = '1000';
+    document.getElementById("EnvelopeSealWrap").style.zIndex = '-1';
+
+    ContentsStack.style.display = "block";
+    document.querySelectorAll('.envContents2').forEach(img => {
+      img.classList.add('slid');
     });
-
-    function initAnimation() {
-      const envelopeFlip = document.getElementById('EnvelopeFlip');
-      const sealWrap = document.getElementById('EnvelopeSealWrap');
-      const sealOldImg = document.getElementById('EnvelopeSealOld');
-      const sealNewImg = document.getElementById('EnvelopeSealNew');
-      const foldImg = document.getElementById('EnvelopeFold');
-      const ContentsStack = document.getElementById('ContentsStack');
-      const Page1 = document.getElementById('Page1');
-      const revealBtn = document.getElementById('revealBtn'); // Define the revealBtn
-
-      const foldHeight = foldImg.offsetHeight;
-      const sealHeight = sealOldImg.offsetHeight;
-      const newSealImgHeight = foldHeight + sealHeight + 'px';
-
-      function animateEnvelope() {
-        envelopeFlip.removeEventListener('click', animateEnvelope);
-        envelopeFlip.removeEventListener('touchstart', animateEnvelope);
-        envelopeFlip.classList.add('flip');
-
-        envelopeFlip.addEventListener('transitionend', function() {
-          sealWrap.classList.add('opened');
-          sealNewImg.style.height = "newSealImgHeight";
-          sealOldImg.style.height = "newSealImgHeight";
-          sealOldImg.classList.add('hidden');
-          sealNewImg.classList.remove('hidden');
-        }, { once: true });
-
-        sealWrap.addEventListener('transitionend', function() {
-          document.getElementById("ThirdPage").style.display = 'none';
-          document.getElementById("EnvelopeFold").style.zIndex = '1000';
-          document.getElementById("EnvelopeSealWrap").style.zIndex = '-1';
-
-          ContentsStack.style.display = "block";
-          document.querySelectorAll('.envContents2').forEach(img => {
-            img.classList.add('slid');
-          });
-        }, { once: true });
-
-        Page1.addEventListener('animationend', function() {
-          document.getElementById("EnvelopeContainer").classList.add('envSlide');
-          setTimeout(() => {
-            document.getElementById("EnvelopeFold").style.zIndex = '-1';
-            document.querySelectorAll('.envContents2').forEach(img => {
-              img.classList.add('down');
-            });
-          }, 150);
-          setTimeout(() => {
-            revealBtn.classList.add('visible');
-          }, 1600);
-        }, { once: true });
-      }
+  }, { once: true });
+  
+  Page1.addEventListener('animationend', function() {
+    document.getElementById("EnvelopeContainer").classList.add('envSlide');
+    setTimeout(() => {
+      document.getElementById("EnvelopeFold").style.zIndex = '-1';
+      document.querySelectorAll('.envContents2').forEach(img => {
+        img.classList.add('down');
+      });
+    }, 150);
+    setTimeout(() => {
+      document.getElementById("revealBtn").classList.add('visible');
+    }, 1600)
+  }, { once: true });
+}
 
       envelopeFlip.addEventListener('click', animateEnvelope);
       envelopeFlip.addEventListener('touchstart', animateEnvelope);
