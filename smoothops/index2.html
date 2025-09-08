@@ -935,13 +935,16 @@ function animateEnvelope() {
           img.classList.remove('down');
           img.classList.add('back');
         });
-        Page1.addEventListener('animationend', function() {
+        setTimeout(() => {
+          document.getElementById("EnvelopeFold").style.zIndex = '-1';
           document.querySelectorAll('.envContents2').forEach(img => {
             img.classList.remove('slid');
             img.classList.remove('back');
             img.classList.add('slidReverse');
-          });
       });
+      }, 1000)
+        }, { once: true });
+        
         Page1.addEventListener('animationend', function() {
             sealWrap.style.zIndex = '1000';
             sealWrap.classList.remove('opened');
