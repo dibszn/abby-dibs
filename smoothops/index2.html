@@ -576,6 +576,9 @@ padding: 3% 3%;
 </style>
 </head>
   <body>
+
+
+
 <div class="section full-height c2">
         <style>
         #EnvelopeContainer {
@@ -750,10 +753,6 @@ padding: 3% 3%;
       animation: slideUp 1000ms forwards ease-out;
       animation-delay: calc((var(--n, 1) - 1) * 0.4s);
     }
-    .slidReverse {
-      animation: slideUpReverse 1000ms forwards ease-out;
-      animation-delay: calc((var(--n, 1) - 1) * 0.4s);
-    }
     .envSlide {
       animation: EnvelopeSlide 1650ms forwards ease-out;
     }
@@ -775,14 +774,6 @@ padding: 3% 3%;
       }
       to {
         transform: translateY(var(--top-pos));
-      }
-    }
-    @keyframes slideUpReverse {
-      from {
-        transform: translateY(var(--top-pos));
-      }
-      to {
-        transform: translateY(0);
       }
     }
     @keyframes slideDown {
@@ -807,7 +798,7 @@ padding: 3% 3%;
         transform: translateY(calc((var(--top-pos)) * -0.2)) rotate(-3.7deg) scale(1.1);
       }
       to {
-        transform:translateY(var(--top-pos));
+        transform: translateY(var(--top-pos));
       }
     }
 
@@ -911,12 +902,12 @@ function animateEnvelope() {
     setTimeout(() => {
       document.getElementById("EnvelopeFold").style.zIndex = '-1';
       document.querySelectorAll('.envContents2').forEach(img => {
-        img.classList.add('slidReverse');
+        img.classList.add('down');
       });
     }, 150);
     setTimeout(() => {
       document.getElementById("revealBtn").classList.add('visible');
-    }, 1650)
+    }, 1600)
   }, { once: true });
 }
         envelopeFlip.addEventListener('click', animateEnvelope);
@@ -924,7 +915,7 @@ function animateEnvelope() {
 
          revealBtn.addEventListener('click', function() {
           revealBtn.classList.remove('visible');
-           document.getElementById("EnvelopeFold").style.zIndex = '1000';
+           sealWrap.style.zIndex = '1000';
            document.getElementById("EnvelopeContainer").classList.remove('envSlide');
            document.getElementById("EnvelopeContainer").classList.add('envSlideBack');
            document.querySelectorAll('.envContents2').forEach(img => {
