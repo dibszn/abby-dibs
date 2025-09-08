@@ -954,8 +954,10 @@ document.addEventListener('DOMContentLoaded', function() {
       }, { once: true });
 
       sealWrap.addEventListener('transitionend', function() {
-            document.getElementById("FrontPage").src = 'images/PoemFront2.png';
-            envelopeFlip.classList.remove('flip');
+      setTimeout(() => {
+        document.getElementById("FrontPage").src = 'images/PoemFront2.png';
+        envelopeFlip.classList.remove('flip');
+      }, 1500);
       }, { once: true });
     });
   }
