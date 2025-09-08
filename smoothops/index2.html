@@ -753,6 +753,10 @@ padding: 3% 3%;
       animation: slideUp 1000ms forwards ease-out;
       animation-delay: calc((var(--n, 1) - 1) * 0.4s);
     }
+    .slidReverse {
+      animation: slideUpReverse 1000ms forwards ease-out;
+      animation-delay: calc((var(--n, 1) - 1) * 0.4s);
+    }
     .envSlide {
       animation: EnvelopeSlide 1650ms forwards ease-out;
     }
@@ -774,6 +778,15 @@ padding: 3% 3%;
       }
       to {
         transform: translateY(var(--top-pos));
+      }
+    }
+
+     @keyframes slideUpReverse {
+      from {
+        transform: translateY(var(--top-pos));
+      }
+      to {
+        transform: translateY(0);
       }
     }
     @keyframes slideDown {
@@ -924,8 +937,11 @@ function animateEnvelope() {
           });
 
             Page1.addEventListener('animationend', function() {
-              sealWrap.classList.remove('opened');
+              document.querySelectorAll('.envContents2').forEach(img => {
+            img.classList.add('slidReverse');
+              });
               sealWrap.style.zIndex = '1000';
+              sealWrap.classList.remove('opened');
               sealOldImg.classList.remove('hidden');
               sealNewImg.classList.add('hidden');
           }, { once: true });
