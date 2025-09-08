@@ -881,8 +881,15 @@ padding: 3% 3%;
     .envSlide {
       animation: EnvelopeSlide 1650ms forwards ease-out;
     }
+    .envSlideBack {
+      animation: EnvelopeSlideBack 1650ms forwards ease-out;
+    }
     .down {
       animation: slideDown 1500ms forwards ease-in-out;
+      animation-delay: calc((var(--n, 1) - 1) * 0.5s);
+    }
+    .back {
+      animation: slideBack 1500ms forwards ease-in-out;
       animation-delay: calc((var(--n, 1) - 1) * 0.5s);
     }
 
@@ -913,7 +920,7 @@ padding: 3% 3%;
 
     @keyframes slideBack {
       from {
-        transform: translateY(calc((var(--top-pos)) * -0.2)) rotate(-3.7deg) scale(1.1);
+        transform: translateY(calc((var(--top-pos)) * 0.2)) rotate(3.7deg) scale(0.9);
       }
       to {
         transform: translateY(0);
@@ -1024,7 +1031,7 @@ function animateEnvelope() {
       });
     }, 150);
     setTimeout(() => {
-      document.getElementById("revealBtn").classList.add('shown');
+      document.getElementById("revealBtn").classList.add('visible');
     }, 1520)
   }, { once: true });
 }
@@ -1034,8 +1041,8 @@ function animateEnvelope() {
          revealBtn.addEventListener('click', function() {
           revealBtn.classList.remove('visible');
            document.getElementById("EnvelopeFold").style.zIndex = '1000';
-          envelopeContainer.classList.remove('envSlide');
-          envelopeContainer.classList.add('envSlideBack');
+           document.getElementById("EnvelopeContainer").classList.remove('envSlide');
+           document.getElementById("EnvelopeContainer").classList.add('envSlideBack');
            document.querySelectorAll('.envContents2').forEach(img => {
             img.classList.remove('down');
             img.classList.add('back');
