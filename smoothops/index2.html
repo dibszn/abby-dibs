@@ -930,35 +930,19 @@ function animateEnvelope() {
           revealBtn.classList.remove('visible');
            document.getElementById("EnvelopeContainer").classList.remove('envSlide');
            document.getElementById("EnvelopeContainer").classList.add('envSlideBack');
-            setTimeout(() => {
-              document.querySelectorAll('.envContents2').forEach(img => {
+            document.querySelectorAll('.envContents2').forEach(img => {
               img.classList.remove('down');
               img.classList.add('back');
               });
-            }, 150);
+            }, { once: true });
 
           Page1.addEventListener('animationend', function() {
-            document.querySelectorAll('.envContents2').forEach(img => {
-            img.classList.remove('slid');
-            img.classList.add('slidReverse');
-            });
-            sealWrap.style.zIndex = '1000';
-            sealWrap.classList.remove('opened');
-            sealOldImg.classList.remove('hidden');
-            sealNewImg.classList.add('hidden');
-            }, { once: true });
-            
-           sealWrap.addEventListener('transitionend', function() {
-                envelopeFlip.classList.remove('flip');
-          }, { once: true });
-
-           envelopeFlip.addEventListener('transitionend', function() {
+                setTimeout(() => {
                 document.querySelectorAll('.envContents2').forEach(img => {
-              img.classList.remove('slid', 'back');
-            });
-            document.getElementById("EnvelopeContainer").classList.remove('envSlideBack');
-          }, { once: true });
-        });
+                img.classList.remove('slid');
+                img.classList.add('slidReverse');
+              });
+              }, 150);
       }
     });
   </script>
