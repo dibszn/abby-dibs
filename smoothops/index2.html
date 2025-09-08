@@ -947,10 +947,15 @@ document.addEventListener('DOMContentLoaded', function() {
       }, 1500);
       
         Page1.addEventListener('animationend', function() {
-            sealWrap.style.zIndex = '1000';
+            sealWrap.style.zIndex = '1001';
             sealWrap.classList.remove('opened');
             sealOldImg.classList.remove('hidden');
             sealNewImg.classList.add('hidden');
+      }, { once: true });
+
+      sealWrap.addEventListener('transitionend', function() {
+            document.getElementById("FrontPage").src = 'images/PoemFront2.png';
+            envelopeFlip.classList.remove('flip');
       }, { once: true });
     });
   }
