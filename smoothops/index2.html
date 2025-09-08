@@ -934,12 +934,12 @@ function animateEnvelope() {
            document.querySelectorAll('.envContents2').forEach(img => {
             img.classList.remove('down');
             img.classList.add('back');
+            setTimeout(() => {
+              img.classList.add('slid');
+              img.classList.add('slidReverse');
+            }, 150)
           });
 
-            Page1.addEventListener('animationend', function() {
-              document.querySelectorAll('.envContents2').forEach(img => {
-            img.classList.add('slidReverse');
-              }); }, { once: true });
            Page1.addEventListener('animationend', function() {
               sealWrap.style.zIndex = '1000';
               sealWrap.classList.remove('opened');
