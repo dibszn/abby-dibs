@@ -754,7 +754,7 @@ padding: 3% 3%;
       animation-delay: calc((var(--n, 1) - 1) * 0.4s);
     }
     .slidReverse {
-      animation: slideUpReverse 1000ms forwards ease-out;
+      animation: slideUpReverse 1000ms forwards ease-in-out;
       animation-delay: calc((var(--n, 1) - 1) * 0.4s);
     }
     .envSlide {
@@ -944,7 +944,7 @@ document.addEventListener('DOMContentLoaded', function() {
           img.classList.remove('back');
           img.classList.add('slidReverse');
         });
-      }, 1000);
+      }, 1500);
     });
   }
 });
