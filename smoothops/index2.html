@@ -924,8 +924,8 @@ function animateEnvelope() {
           });
 
             Page1.addEventListener('animationend', function() {
-              sealWrap.style.zIndex = '1000';
               sealWrap.classList.remove('opened');
+              sealWrap.style.zIndex = '1000';
               sealOldImg.classList.remove('hidden');
               sealNewImg.classList.add('hidden');
           }, { once: true });
