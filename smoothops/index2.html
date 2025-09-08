@@ -930,22 +930,23 @@ function animateEnvelope() {
           revealBtn.classList.remove('visible');
            document.getElementById("EnvelopeContainer").classList.remove('envSlide');
            document.getElementById("EnvelopeContainer").classList.add('envSlideBack');
-           setTimeout(() => {
+            setTimeout(() => {
               document.querySelectorAll('.envContents2').forEach(img => {
               img.classList.remove('down');
               img.classList.add('back');
+              });
             }, 150);
-          });
 
-           Page1.addEventListener('animationend', function() {
-              document.querySelectorAll('.envContents2').forEach(img => {
-              img.classList.remove('slid');
-              img.classList.add('slidReverse');
-              sealWrap.style.zIndex = '1000';
-              sealWrap.classList.remove('opened');
-              sealOldImg.classList.remove('hidden');
-              sealNewImg.classList.add('hidden');
-          }, { once: true });
+          Page1.addEventListener('animationend', function() {
+            document.querySelectorAll('.envContents2').forEach(img => {
+            img.classList.remove('slid');
+            img.classList.add('slidReverse');
+            });
+            sealWrap.style.zIndex = '1000';
+            sealWrap.classList.remove('opened');
+            sealOldImg.classList.remove('hidden');
+            sealNewImg.classList.add('hidden');
+            }, { once: true });
             
            sealWrap.addEventListener('transitionend', function() {
                 envelopeFlip.classList.remove('flip');
@@ -957,7 +958,6 @@ function animateEnvelope() {
             });
             document.getElementById("EnvelopeContainer").classList.remove('envSlideBack');
           }, { once: true });
-
         });
       }
     });
