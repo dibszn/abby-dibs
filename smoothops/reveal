@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html><head>
 <title>Smoother abbygotthedibs</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="content-security-policy" content="default-src 'none'; connect-src 'self' https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; media-src 'self' data:; script-src 'unsafe-inline' data:; object-src 'self' data:; frame-src 'self' data:;">
@@ -468,7 +467,122 @@ padding: 3% 3%;
   top: -13px;
 }
 
-.html5tooltip-bottom
+/* Slide 2 */
+#demo-group
+{
+  margin: -30px auto 0;
+  position: relative;
+  top: 50%;
+  text-align: center;
+  width: 490px;
+}
+#demo-group > .button1,
+#demo-group > .textfield
+{
+  float: left;
+  margin: 0 10px;
+}
+.button1
+{
+  background-color: #222;
+  cursor: pointer;
+  margin: 0 10px;
+  height: 60px;
+  width: 60px;
+}
+.textfield
+{
+  background-color: white;
+  color: black;
+  height: 60px;
+  line-height: 60px;
+  padding: 0 10px;
+  text-align: left;
+  width: 230px;
+}
+.anim-text1,
+.demo-text1
+{
+  font-size: 32px;
+  margin-top: -24px;
+  position: absolute;
+  text-align: center;
+  top: 25%;
+  width: 100%;
+}
+.anim-text2,
+.demo-text2
+{
+  bottom: 25%;
+  font-size: 18px;
+  margin-bottom: -24px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+
+/* Slide animation */
+#anim-group
+{
+  margin: -50px auto 0;
+  position: relative;
+  top: 50%;
+  width: 800px;
+}
+.anim-item
+{
+  border-radius: 50px;
+  background: white;
+  color: #666;
+  cursor: default;
+  font-family: 'VollkornItalic';
+  font-size: 24px;
+  float: left;
+  line-height: 100px;
+  margin: 0 30px;
+  position: relative;
+  text-align: center;
+  width: 100px;
+}
+.anim-item.item1
+{
+  top: 0;
+}
+.anim-item.item2
+{
+  top: -25px;
+}
+.anim-item.item3
+{
+  top: 0;
+}
+.anim-item.item4
+{
+  top: 25px;
+}
+.anim-item.item5
+{
+  top: 0;
+}
+
+
+/* Slide colors */
+#customization-group
+{
+  margin: 0 auto 80px;
+  max-width:980px;
+}
+#customization-group>div{
+  min-width:220px;
+}
+.customization-text1
+{
+  color: #222222;
+  font-size: 32px;
+  margin: 80px 0 40px;
+  text-align: center;
+}
+#customization-group .html5tooltip-bottom
 {
   margin: 20px auto;
   position: relative;
@@ -586,7 +700,7 @@ padding: 3% 3%;
     }
 </style>
 </head>
-<body>
+  <body>
 
 
 
@@ -878,5 +992,4 @@ function animateEnvelope() {
     });
   </script>
 </div>
-</body>
-</html>
+</body></html>
