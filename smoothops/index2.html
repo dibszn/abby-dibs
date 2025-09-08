@@ -935,9 +935,7 @@ function animateEnvelope() {
           img.classList.remove('down');
           img.classList.add('back');
         });
-      }, { once: true });
-
-      Page1.addEventListener('animationend', function() {
+              Page1.addEventListener('animationend', function() {
         setTimeout(() => {
           document.querySelectorAll('.envContents2').forEach(img => {
             img.classList.remove('slid');
@@ -950,8 +948,7 @@ function animateEnvelope() {
             sealOldImg.classList.remove('hidden');
             sealNewImg.classList.add('hidden');
       });
-
-      
+      }, { once: true });    
     }
   });
 </script>
