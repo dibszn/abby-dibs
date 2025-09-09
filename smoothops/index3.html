@@ -760,6 +760,9 @@ padding: 3% 3%;
     .envSlide {
       animation: EnvelopeSlide 1650ms forwards ease-out;
     }
+    .SealSlide {
+      animation: SealSlide 1650ms forwards ease-out;
+    }
     .envSlideBack {
       animation: EnvelopeSlideBack 1650ms forwards ease-out;
     }
@@ -802,7 +805,15 @@ padding: 3% 3%;
         transform: scale(0.85) translateY(0);
       }
       to {
-        transform: scale(0.85) translateY(-20%);
+        transform: scale(0.85) translateY(-120%);
+      }
+    }
+    @keyframes SealSlide {
+      from {
+        transform: rotateX(-180deg) scale(0.85) translateY(0);
+      }
+      to {
+        transform: rotateX(-180deg) scale(0.85) translateY(-120%);
       }
     }
 
@@ -817,7 +828,7 @@ padding: 3% 3%;
 
     @keyframes EnvelopeSlideBack {
       from {
-        transform: scale(0.85) translateY(-20%);
+        transform: scale(0.85) translateY(-120%);
       }
       to {
         transform: scale(0.85) translateY(0);
@@ -917,6 +928,8 @@ document.addEventListener('DOMContentLoaded', function() {
           document.querySelectorAll('.envContents2').forEach(img => {
             img.classList.add('down');
           });
+          document.getElementById("EnvelopeSealWrap").classList.add('SealSlide');
+          document.getElementById("EnvelopeFold").classList.add('envSlide');
         }, 150);
         setTimeout(() => {
           revealBtn.classList.add('visible');
@@ -963,3 +976,4 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </div>
 </body></html>
+
