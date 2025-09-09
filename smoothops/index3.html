@@ -921,11 +921,14 @@ document.addEventListener('DOMContentLoaded', function() {
       Page1.classList.replace('down', 'back');
 
       Page1.addEventListener('animationend', function() {
-        Page1.classList.remove('back');
-        Page1.classList.replace('slid', 'slidReverse');
-        Page1.id = 'ReverseCard';
+        setTimeout(() => {
+          Page1.classList.remove('back');
+          Page1.classList.replace('slid', 'slidReverse');
+          document.getElementById("EnvelopeFold").style.zIndex = '1000'
+          Page1.id = 'ReverseCard';
+        }, 200);
       }, { once: true });
-      
+        
       document.getElementById("ReverseCard").addEventListener('animationend', function() {
             sealWrap.style.zIndex = '1001';
             sealWrap.classList.remove('opened');
@@ -945,4 +948,5 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </div>
 </body></html>
+
 
