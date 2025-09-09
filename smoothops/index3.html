@@ -725,12 +725,12 @@ padding: 3% 3%;
     }
     .envContents2:nth-child(1) {
       --n: 1;
-      --top-pos: -180%;
+      --top-pos: -100%;
       z-index: 5;
     }
     .envContents2:nth-child(2) {
       --n: 2;
-      --top-pos: -150%;
+      --top-pos: -100%;
       z-index: 4;
     }
     .envContents2:nth-child(3) {
@@ -794,7 +794,7 @@ padding: 3% 3%;
         transform: translateY(var(--top-pos));
       }
       to {
-        transform: translateY(calc((var(--top-pos)) * -1)) rotate(-3.7deg) scale(1.1);
+        transform: translateY(calc((var(--top-pos)) * -0.2)) rotate(-3.7deg) scale(1.1);
       }
     }
     @keyframes EnvelopeSlide {
@@ -808,7 +808,7 @@ padding: 3% 3%;
 
     @keyframes slideBack {
       from {
-        transform: translateY(calc((var(--top-pos)) * -1)) rotate(-3.7deg) scale(1.1);
+        transform: translateY(calc((var(--top-pos)) * -0.2)) rotate(-3.7deg) scale(1.1);
       }
       to {
         transform: translateY(var(--top-pos));
@@ -859,7 +859,6 @@ padding: 3% 3%;
 document.addEventListener('DOMContentLoaded', function() {
   const images = document.querySelectorAll('.section.c2 img');
   let loadedImages = 0;
-  const revealBtn = document.getElementById('revealBtn'); // Fix undefined variable
 
   function checkImagesLoaded() {
     loadedImages++;
@@ -913,12 +912,12 @@ document.addEventListener('DOMContentLoaded', function() {
       }, { once: true });
 
       Page1.addEventListener('animationend', function() {
-        document.getElementById("EnvelopeContainer").classList.add('envSlide');
         setTimeout(() => {
           document.getElementById("EnvelopeFold").style.zIndex = '-1';
           document.querySelectorAll('.envContents2').forEach(img => {
             img.classList.add('down');
           });
+          document.getElementById("EnvelopeContainer").classList.add('envSlide');
         }, 150);
         setTimeout(() => {
           revealBtn.classList.add('visible');
