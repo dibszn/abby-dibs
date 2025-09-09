@@ -913,16 +913,13 @@ document.addEventListener('DOMContentLoaded', function() {
       }, { once: true });
 
       Page1.addEventListener('animationend', function() {
+        document.getElementById("EnvelopeFlip").classList.add('envSlide');
         setTimeout(() => {
+          document.getElementById("EnvelopeFold").style.zIndex = '-1';
           document.querySelectorAll('.envContents2').forEach(img => {
-            img.style.zIndex = '100';
             img.classList.add('down');
           });
         }, 150);
-        document.getElementById("EnvelopeFrontWrap").classList.add('envSlide');
-        document.getElementById("EnvelopeSealWrap").classList.add('envSlide');
-        document.getElementById("EnvelopeFold").classList.add('envSlide');
-        
         setTimeout(() => {
           revealBtn.classList.add('visible');
         }, 1600);
@@ -934,8 +931,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     revealBtn.addEventListener('click', function() {
       revealBtn.classList.remove('visible');
-      document.getElementById("FrontPage").classList.remove('flip');
-      }, { once: true });
+    });
   }
 });
 
