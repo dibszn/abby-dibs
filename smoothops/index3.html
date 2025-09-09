@@ -925,15 +925,15 @@ document.addEventListener('DOMContentLoaded', function() {
           Page1.id = 'ReverseCard';
           document.getElementById("ReverseCard").classList.remove('back');
           document.getElementById("ReverseCard").classList.replace('slid', 'slidReverse');
-          document.getElementById("EnvelopeFold").style.zIndex = '1000'
-        }, 200);
-      }, { once: true });
-        
-      document.getElementById("ReverseCard").addEventListener('animationend', function() {
+          document.getElementById("EnvelopeFold").style.zIndex = '1000';
+
+          document.getElementById("ReverseCard").addEventListener('animationend', function() {
             sealWrap.style.zIndex = '1001';
             sealWrap.classList.remove('opened');
             sealOldImg.classList.remove('hidden');
             sealNewImg.classList.add('hidden');
+          }, { once: true });
+        }, 200);
       }, { once: true });
 
       sealWrap.addEventListener('transitionend', function() {
@@ -948,4 +948,5 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </div>
 </body></html>
+
 
