@@ -879,7 +879,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const sealOldImg = document.getElementById('EnvelopeSealOld');
     const sealNewImg = document.getElementById('EnvelopeSealNew');
     const foldImg = document.getElementById('EnvelopeFold');
-    const ContentsStack = document.getElementById('ContentsStack');
     const Page1 = document.getElementById('Page1');
     const revealBtn = document.getElementById('revealBtn');
 
@@ -933,22 +932,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     revealBtn.addEventListener('click', function() {
       revealBtn.classList.remove('visible');
+      document.getElementById("Page1").style.transform: 'rotate(3.7deg)';
+      document.getElementById("FrontPage").classList.replace('slid','slidReverse');
       document.getElementById("FrontPage").classList.replace('slid','slidReverse');
       document.getElementById("FrontPage").classList.remove('down');
       document.getElementById("FrontPage").src = 'images/PoemFront2.png';
       setTimeout(() => {
         envelopeFlip.classList.remove('flip');
       }, 600);
-      document.getElementById("FrontPage").style.transform = 'scale(3)';
       }, { once: true });
   }
 });
 </script>
 </div>
 </body></html>
-
-
-
-
-
-
