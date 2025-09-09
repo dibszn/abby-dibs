@@ -725,31 +725,6 @@ padding: 3% 3%;
       bottom: 0;
       object-fit: cover;
     }
-    .envContents2:nth-child(1) {
-      --n: 1;
-      --top-pos: -100%;
-      z-index: 5;
-    }
-    .envContents2:nth-child(2) {
-      --n: 2;
-      --top-pos: -100%;
-      z-index: 4;
-    }
-    .envContents2:nth-child(3) {
-      --n: 3;
-      --top-pos: -20%;
-      z-index: 3;
-    }
-    .envContents2:nth-child(4) {
-      --n: 4;
-      --top-pos: -25%;
-      z-index: 2;
-    }
-    .envContents2:nth-child(5) {
-      --n: 5;
-      --top-pos: -30%;
-      z-index: 1;
-    }
 
     .slid {
       animation: slideUp 1000ms forwards ease-out;
@@ -782,13 +757,13 @@ padding: 3% 3%;
         transform: translateY(0);
       }
       to {
-        transform: translateY(var(--top-pos));
+        transform: translateY(-100%);
       }
     }
 
      @keyframes slideUpReverse {
       from {
-        transform: translateY(var(--top-pos));
+        transform: translateY(-100%);
       }
       to {
         transform: translateY(0);
@@ -815,16 +790,16 @@ padding: 3% 3%;
         transform: rotateX(-180deg) scale(0.85) translateY(0);
       }
       to {
-        transform: rotateX(-180deg) scale(0.85) translateY(118%);
+        transform: rotateX(-180deg) scale(0.85) translateY(120%);
       }
     }
 
     @keyframes slideBack {
       from {
-        transform: translateY(calc((var(--top-pos)) * -0.2)) rotate(-3.7deg) scale(1.1);
+        transform: translateY(-100%) * -0.2)) rotate(-3.7deg) scale(1.1);
       }
       to {
-        transform: translateY(var(--top-pos));
+        transform: translateY(-100%);
       }
     }
 
@@ -968,4 +943,5 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </div>
 </body></html>
+
 
