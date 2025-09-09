@@ -590,6 +590,7 @@ padding: 3% 3%;
       display: none;
       max-width:95%;
       max-height:95%;
+        perspective: 1000px;
     }
 
     #EnvelopeFlip {
@@ -918,12 +919,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 200);
         setTimeout(() => {
           revealBtn.classList.add('visible');
+          document.getElementById("EnvelopeSealWrap").style.opacity = '0';
+          document.getElementById("EnvelopeFold").style.opacity = '0';
+          document.getElementById("EnvelopeFront").style.opacity = '0';
+          document.getElementById("EnvelopeStamp").style.opacity = '0';
+          document.getElementById("FrontText").style.opacity = '0';
         }, 1600);
-      document.getElementById("EnvelopeSealWrap").style.opacity = '0';
-      document.getElementById("EnvelopeFold").style.opacity = '0';
-      document.getElementById("EnvelopeFront").style.opacity = '0';
-      document.getElementById("EnvelopeStamp").style.opacity = '0';
-      document.getElementById("FrontText").style.opacity = '0';
       }, { once: true });
     }
 
@@ -945,6 +946,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </div>
 </body></html>
+
 
 
 
