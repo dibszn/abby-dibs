@@ -254,8 +254,8 @@ a{outline:none}
   display:flex;
   border:0;
   align-items:center;
-  justify-content:center;
-  padding:2% 3%;
+  justify-content:space-between;
+  gap: 2vmin;
   font-family: 'The Seasons', auto;
 }
 .section.c3
@@ -591,8 +591,8 @@ padding: 3% 3%;
       margin: 0;
       position: relative;
       display: none;
-          max-width:95%;
-          max-height:95%;
+      max-width:95%;
+      max-height:95%;
     }
 
     #EnvelopeFlip {
@@ -853,15 +853,8 @@ padding: 3% 3%;
             <img id="EnvelopeSealNew" class="seal-img hidden" src="images/EnvelopeMaterials/EnvelopeBackFlapOpen.png">
             <p class="text" style="top:20%; left:50%; z-index:3;">You're invited!</p>
           </div>
-
-          <div id="ContentsStack">
-            <div id="EnvelopeContent">
-              <img id="Page1" src="images/PoemBack1.png" class="envContents2">
-            </div>
-          </div>
-
           <img src="images/EnvelopeMaterials/EnvelopeBackBottom.png" id="EnvelopeFold">
-          <img id="ThirdPage" src="images/PoemBack1.png" class="envContents" style="z-index:-1;">
+          <img id="Page1" src="images/PoemBack1.png" class="envContents" style="z-index:-1;">
         </div>
       </div>
     </div>
@@ -914,12 +907,9 @@ document.addEventListener('DOMContentLoaded', function() {
       }, { once: true });
 
       sealWrap.addEventListener('transitionend', function() {
-        document.getElementById("ThirdPage").style.display = 'none';
         document.getElementById("EnvelopeFold").style.zIndex = '1000';
         document.getElementById("EnvelopeSealWrap").style.zIndex = '-1';
-
-        ContentsStack.style.display = "block";
-        document.querySelectorAll('.envContents2').forEach(img => {
+        document.querySelectorAll('.envContents').forEach(img => {
           img.classList.add('slid');
         });
       }, { once: true });
@@ -927,7 +917,7 @@ document.addEventListener('DOMContentLoaded', function() {
       Page1.addEventListener('animationend', function() {
         setTimeout(() => {
           document.getElementById("EnvelopeFold").style.zIndex = '-1';
-          document.querySelectorAll('.envContents2').forEach(img => {
+          document.querySelectorAll('.envContents').forEach(img => {
             img.classList.add('down');
           });
           document.getElementById("EnvelopeSealWrap").classList.add('SealSlide');
@@ -946,7 +936,7 @@ document.addEventListener('DOMContentLoaded', function() {
       revealBtn.classList.remove('visible');
       document.getElementById("EnvelopeContainer").classList.remove('envSlide');
       document.getElementById("EnvelopeContainer").classList.add('envSlideBack');
-      document.querySelectorAll('.envContents2').forEach(img => {
+      document.querySelectorAll('.envContents').forEach(img => {
         img.classList.remove('down');
         img.classList.add('back');
         img.id = 'ReverseCard'
@@ -978,6 +968,3 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </div>
 </body></html>
-
-
-
