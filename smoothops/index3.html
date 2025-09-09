@@ -701,15 +701,6 @@ padding: 3% 3%;
       object-fit: cover;
     }
 
-    #ContentsStack {
-      position: absolute;
-      bottom: 0; 
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: none;
-    }
-
     #EnvelopeContent {
       position: relative;
       width: 100%;
@@ -752,7 +743,20 @@ padding: 3% 3%;
     .closed {
       animation: CloseEnv 1500ms ease-in-out;
     }
+    .scaleUp {
+      animation: scaleUp 1500ms ease-in-out;
+    }      
+          
+    @keyframes scaleUp {
+      from {
+        transform: translateY(0) rotate(-3.7deg) scale(1.1);
+      }
+      to {
+        transform: translateY(0) rotate(0) scale(2.5);
+      }
+    }
 
+          
     @keyframes slideUp {
       from {
         transform: translateY(0);
@@ -834,7 +838,7 @@ padding: 3% 3%;
         <div id="EnvelopeFrontWrap">
           <img id="FrontPage" src="images/PoemFront1.png" class="envContents" style="z-index: -1;">
           <img src="images/EnvelopeMaterials/EnvelopeFront.png" style="width:100%; height:100%; display:block; z-index:2;" alt="Envelope Front" id="EnvelopeFront"> 
-          <p class="text" style="top:50%; left:50%; z-index:3;">To our favourite people;</p>
+          <p id="FrontText" class="text" style="top:50%; left:50%; z-index:3;">To our favourite people;</p>
           <img id="EnvelopeStamp" src="images/stamp.png" style="width:20%; height:auto; display:block; z-index:4;position: absolute; top:3%; right: 4%;">
         </div>
 
@@ -930,16 +934,19 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById("EnvelopeFold").style.opacity = '0';
       document.getElementById("EnvelopeFront").style.opacity = '0';
       document.getElementById("EnvelopeStamp").style.opacity = '0';
+      document.getElementById("FrontText").style.opacity = '0';
       document.getElementById("FrontPage").classList.replace('slid','slidReverse');
       document.getElementById("FrontPage").classList.remove('down');
       document.getElementById("FrontPage").src = 'images/PoemFront2.png';
       setTimeout(() => {
         envelopeFlip.classList.remove('flip');
       }, 600);
+      document.getElementById("FrontPage").classList.add('scaleUp');
       }, { once: true });
   }
 });
 </script>
 </div>
 </body></html>
+
 
