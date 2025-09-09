@@ -728,11 +728,9 @@ padding: 3% 3%;
 
     .slid {
       animation: slideUp 1000ms forwards ease-out;
-      animation-delay: calc((var(--n, 1) - 1) * 0.4s);
     }
     .slidReverse {
       animation: slideUpReverse 1000ms forwards ease-in-out;
-      animation-delay: calc((var(--n, 1) - 1) * 0.4s);
     }
     .envSlide {
       animation: EnvelopeSlide 1650ms forwards ease-out;
@@ -745,11 +743,9 @@ padding: 3% 3%;
     }
     .down {
       animation: slideDown 1500ms forwards ease-in-out;
-      animation-delay: calc((var(--n, 1) - 1) * 0.5s);
     }
     .back {
       animation: slideBack 1500ms forwards ease-in-out;
-      animation-delay: calc((var(--n, 1) - 1) * 0.5s);
     }
 
     @keyframes slideUp {
@@ -774,7 +770,7 @@ padding: 3% 3%;
         transform: translateY(-100%);
       }
       to {
-        transform: translateY(-100%) * -0.2)) rotate(-3.7deg) scale(1.1);
+        transform: translateY(-30%) rotate(-3.7deg) scale(1.1);
       }
     }
     @keyframes EnvelopeSlide {
@@ -796,7 +792,7 @@ padding: 3% 3%;
 
     @keyframes slideBack {
       from {
-        transform: translateY(-100%) * -0.2)) rotate(-3.7deg) scale(1.1);
+        transform: translateY(-30%) rotate(-3.7deg) scale(1.1);
       }
       to {
         transform: translateY(-100%);
@@ -943,5 +939,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </div>
 </body></html>
+
 
 
