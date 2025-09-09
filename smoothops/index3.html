@@ -812,7 +812,7 @@ padding: 3% 3%;
 
     @keyframes EnvelopeSlideBack {
       from {
-        transform: translateY(-120%);
+        transform: translateY(-200%);
       }
       to {
         transform: translateY(0);
@@ -918,17 +918,8 @@ document.addEventListener('DOMContentLoaded', function() {
       revealBtn.classList.remove('visible');
       document.getElementById("EnvelopeSealWrap").classList.replace('SealSlide' , 'SealSlideBack');
       document.getElementById("EnvelopeFold").classList.replace('envSlide','envSlideBack');
-      document.querySelectorAll('.envContents').forEach(img => {
-        img.classList.remove('down');
-        img.classList.add('back');
-        img.id = 'ReverseCard'
-      });
-      setTimeout(() => {
-        document.getElementById("EnvelopeFold").style.zIndex = '1000';
-        document.getElementById("ReverseCard").classList.remove('slid');
-        document.getElementById("ReverseCard").classList.remove('back');
-        document.getElementById("ReverseCard").classList.add('slidReverse');
-      }, 1500);
+      Page1.classList.replace('down', 'back');
+      Page1.id = 'ReverseCard';
       
       document.getElementById("ReverseCard").addEventListener('animationend', function() {
             sealWrap.style.zIndex = '1001';
@@ -938,8 +929,8 @@ document.addEventListener('DOMContentLoaded', function() {
       }, { once: true });
 
       sealWrap.addEventListener('transitionend', function() {
-      setTimeout(() => {
         document.getElementById("FrontPage").src = 'images/PoemFront2.png';
+        setTimeout(() => {
         envelopeFlip.classList.remove('flip');
       }, 600);
       }, { once: true });
@@ -950,6 +941,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </div>
 </body></html>
+
 
 
 
