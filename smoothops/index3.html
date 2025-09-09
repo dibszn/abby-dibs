@@ -913,7 +913,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }, { once: true });
 
       Page1.addEventListener('animationend', function() {
-        document.getElementById("EnvelopeFlip").classList.add('envSlide');
+        document.getElementById("EnvelopeContainer").classList.add('envSlide');
         setTimeout(() => {
           document.getElementById("EnvelopeFold").style.zIndex = '-1';
           document.querySelectorAll('.envContents2').forEach(img => {
@@ -931,6 +931,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
     revealBtn.addEventListener('click', function() {
       revealBtn.classList.remove('visible');
+      document.getElementById("EnvelopeContainer").classList.remove('envSlide');
+      document.getElementById("EnvelopeContainer").classList.add('envSlideBack');
+      document.querySelectorAll('.envContents2').forEach(img => {
+        img.classList.remove('down');
+        img.classList.add('back');
+        img.id = 'ReverseCard'
+      });
+      setTimeout(() => {
+        document.getElementById("EnvelopeFold").style.zIndex = '1000';
+        document.getElementById("ReverseCard").classList.remove('slid');
+        document.getElementById("ReverseCard").classList.remove('back');
+        document.getElementById("ReverseCard").classList.add('slidReverse');
+      }, 1500);
+      
+      document.getElementById("ReverseCard").addEventListener('animationend', function() {
+            sealWrap.style.zIndex = '1001';
+            sealWrap.classList.remove('opened');
+            sealOldImg.classList.remove('hidden');
+            sealNewImg.classList.add('hidden');
+      }, { once: true });
+
+      sealWrap.addEventListener('transitionend', function() {
+      setTimeout(() => {
+        document.getElementById("FrontPage").src = 'images/PoemFront2.png';
+        envelopeFlip.classList.remove('flip');
+      }, 700);
+      }, { once: true });
     });
   }
 });
