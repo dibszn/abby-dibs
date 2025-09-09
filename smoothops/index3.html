@@ -651,9 +651,6 @@ padding: 3% 3%;
     #EnvelopeSealWrap.opened {
       transform: rotateX(-180deg);
     }
-    #EnvelopeSealWrap.closed {
-      transform: rotateX(-180deg);
-    }
     .seal-img, .flap-img {
       position: absolute;
       top: 0;
@@ -752,6 +749,9 @@ padding: 3% 3%;
     .back {
       animation: slideBack 1500ms forwards ease-in-out;
     }
+    .closed {
+      animation: CloseEnv 1500ms ease-in-out;
+    }
 
     @keyframes slideUp {
       from {
@@ -800,6 +800,14 @@ padding: 3% 3%;
       }
       to {
         transform: rotateX(-180deg) translateY(0);
+      }
+    }
+    @keyframes CloseEnv {
+      from {
+        transform: rotateX(-180deg);
+      }
+      to {
+        transform: rotateX(0);
       }
     }
 
@@ -953,10 +961,3 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </div>
 </body></html>
-
-
-
-
-
-
-
