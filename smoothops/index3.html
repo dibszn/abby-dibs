@@ -802,7 +802,7 @@ padding: 3% 3%;
         transform: scale(0.85) translateY(0);
       }
       to {
-        transform: scale(0.85) translateY(-300%);
+        transform: scale(0.85) translateY(-200%);
       }
     }
 
@@ -817,7 +817,7 @@ padding: 3% 3%;
 
     @keyframes EnvelopeSlideBack {
       from {
-        transform: scale(0.85) translateY(-300%);
+        transform: scale(0.85) translateY(-200%);
       }
       to {
         transform: scale(0.85) translateY(0);
@@ -913,7 +913,9 @@ document.addEventListener('DOMContentLoaded', function() {
       }, { once: true });
 
       Page1.addEventListener('animationend', function() {
-        document.getElementById("EnvelopeContainer").classList.add('envSlide');
+        document.getElementById("EnvelopeFrontWrap").classList.add('envSlide');
+        document.getElementById("EnvelopeBack").classList.add('envSlide');
+        document.getElementById("EnvelopeFold").classList.add('envSlide');
         setTimeout(() => {
           document.getElementById("EnvelopeFold").style.zIndex = '-1';
           document.querySelectorAll('.envContents2').forEach(img => {
