@@ -730,7 +730,7 @@ padding: 3% 3%;
       animation: slideUp 1000ms forwards ease-out;
     }
     .slidReverse {
-      animation: slideUpReverse 1000ms forwards ease-in-out;
+      animation: ReverseSlideUp 1000ms forwards ease-in-out;
     }
     .envSlide {
       animation: EnvelopeSlide 1800ms forwards ease-out;
@@ -759,8 +759,7 @@ padding: 3% 3%;
         transform: translateY(-100%);
       }
     }
-
-     @keyframes slideUpReverse {
+    @keyframes ReverseSlideUp {
       from {
         transform: translateY(-100%);
       }
@@ -768,6 +767,7 @@ padding: 3% 3%;
         transform: translateY(0);
       }
     }
+
     @keyframes slideDown {
       from {
         transform: translateY(-100%);
@@ -919,6 +919,7 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById("EnvelopeSealWrap").classList.replace('SealSlide' , 'SealSlideBack');
       document.getElementById("EnvelopeFold").classList.replace('envSlide','envSlideBack');
       Page1.classList.replace('down', 'back');
+      Page1.classList.replace('slid', 'slidReverse');
       Page1.id = 'ReverseCard';
       
       document.getElementById("ReverseCard").addEventListener('animationend', function() {
@@ -941,6 +942,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </div>
 </body></html>
+
 
 
 
