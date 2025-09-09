@@ -725,7 +725,7 @@ padding: 3% 3%;
     }
     .envContents2:nth-child(1) {
       --n: 1;
-      --top-pos: -180%;
+      --top-pos: -100%;
       z-index: 5;
     }
     .envContents2:nth-child(2) {
@@ -794,7 +794,7 @@ padding: 3% 3%;
         transform: translateY(var(--top-pos));
       }
       to {
-        transform: translateY(calc((var(--top-pos)) * -0.2)) rotate(-3.7deg) scale(1.1);
+        transform: translateY(calc((var(--top-pos)) * -0.8)) rotate(-3.7deg) scale(1.1);
       }
     }
     @keyframes EnvelopeSlide {
@@ -808,7 +808,7 @@ padding: 3% 3%;
 
     @keyframes slideBack {
       from {
-        transform: translateY(calc((var(--top-pos)) * -0.2)) rotate(-3.7deg) scale(1.1);
+        transform: translateY(calc((var(--top-pos)) * -0.8)) rotate(-3.7deg) scale(1.1);
       }
       to {
         transform: translateY(var(--top-pos));
