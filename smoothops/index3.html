@@ -254,7 +254,7 @@ a{outline:none}
   display:flex;
   border:0;
   align-items:center;
-  justify-content:space-between;
+  justify-content:center;
   gap: 2vmin;
   font-family: 'The Seasons', auto;
 }
@@ -796,10 +796,10 @@ padding: 3% 3%;
     }
     @keyframes slideDown {
       from {
-        transform: translateY(var(--top-pos));
+        transform: translateY(-100%);
       }
       to {
-        transform: translateY(calc((var(--top-pos)) * -0.2)) rotate(-3.7deg) scale(1.1);
+        transform: translateY(-100%) * -0.2)) rotate(-3.7deg) scale(1.1);
       }
     }
     @keyframes EnvelopeSlide {
@@ -968,3 +968,4 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </div>
 </body></html>
+
