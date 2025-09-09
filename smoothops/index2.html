@@ -945,7 +945,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById("ReverseCard").classList.add('slidReverse');
       }, 1500);
       
-        Page1.addEventListener('animationend', function() {
+      document.getElementById("ReverseCard").addEventListener('animationend', function() {
             sealWrap.style.zIndex = '1001';
             sealWrap.classList.remove('opened');
             sealOldImg.classList.remove('hidden');
