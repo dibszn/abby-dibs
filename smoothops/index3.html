@@ -919,8 +919,12 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById("EnvelopeSealWrap").classList.replace('SealSlide' , 'SealSlideBack');
       document.getElementById("EnvelopeFold").classList.replace('envSlide','envSlideBack');
       Page1.classList.replace('down', 'back');
-      Page1.classList.replace('slid', 'slidReverse');
-      Page1.id = 'ReverseCard';
+
+      Page1.addEventListener('animationend', function() {
+        Page1.classList.remove('back');
+        Page1.classList.replace('slid', 'slidReverse');
+        Page1.id = 'ReverseCard';
+      }, { once: true });
       
       document.getElementById("ReverseCard").addEventListener('animationend', function() {
             sealWrap.style.zIndex = '1001';
@@ -938,15 +942,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
-
 </script>
 </div>
 </body></html>
-
-
-
-
-
-
-
 
