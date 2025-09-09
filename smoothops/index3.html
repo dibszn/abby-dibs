@@ -770,29 +770,29 @@ padding: 3% 3%;
         transform: translateY(-100%);
       }
       to {
-        transform: translateY(-30%) rotate(-3.7deg) scale(1.1);
+        transform: translateY(0) rotate(-3.7deg) scale(1.1);
       }
     }
     @keyframes EnvelopeSlide {
       from {
-        transform: scale(0.85) translateY(0);
+        transform: translateY(0);
       }
       to {
-        transform: scale(0.85) translateY(-120%);
+        transform: translateY(-200%);
       }
     }
     @keyframes SealSlide {
       from {
-        transform: rotateX(-180deg) scale(0.85) translateY(0);
+        transform: rotateX(-180deg) translateY(0);
       }
       to {
-        transform: rotateX(-180deg) scale(0.85) translateY(120%);
+        transform: rotateX(-180deg) translateY(200%);
       }
     }
 
     @keyframes slideBack {
       from {
-        transform: translateY(-30%) rotate(-3.7deg) scale(1.1);
+        transform: translateY(0) rotate(-3.7deg) scale(1.1);
       }
       to {
         transform: translateY(-100%);
@@ -801,10 +801,10 @@ padding: 3% 3%;
 
     @keyframes EnvelopeSlideBack {
       from {
-        transform: scale(0.85) translateY(-120%);
+        transform: translateY(-120%);
       }
       to {
-        transform: scale(0.85) translateY(0);
+        transform: translateY(0);
       }
     }
       </style>
@@ -939,6 +939,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </div>
 </body></html>
+
 
 
 
