@@ -733,13 +733,16 @@ padding: 3% 3%;
       animation: slideUpReverse 1000ms forwards ease-in-out;
     }
     .envSlide {
-      animation: EnvelopeSlide 2000ms forwards ease-out;
+      animation: EnvelopeSlide 1800ms forwards ease-out;
     }
     .SealSlide {
-      animation: SealSlide 2000ms forwards ease-out;
+      animation: SealSlide 1800ms forwards ease-out;
+    }
+    .SealSlideBack {
+      animation: SealSlideBack 1800ms forwards ease-out;
     }
     .envSlideBack {
-      animation: EnvelopeSlideBack 2000ms forwards ease-out;
+      animation: EnvelopeSlideBack 1800ms forwards ease-out;
     }
     .down {
       animation: slideDown 1500ms forwards ease-in-out;
@@ -787,6 +790,14 @@ padding: 3% 3%;
       }
       to {
         transform: rotateX(-180deg) translateY(200%);
+      }
+    }
+    @keyframes SealSlideBack {
+      from {
+        transform: rotateX(-180deg) translateY(200%);
+      }
+      to {
+        transform: rotateX(-180deg) translateY(0);
       }
     }
 
@@ -905,8 +916,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     revealBtn.addEventListener('click', function() {
       revealBtn.classList.remove('visible');
-      document.getElementById("EnvelopeContainer").classList.remove('envSlide');
-      document.getElementById("EnvelopeContainer").classList.add('envSlideBack');
+      document.getElementById("EnvelopeSealWrap").classList.replace('SealSlide' , 'SealSlideBack');
+      document.getElementById("EnvelopeFold").classList.replace('envSlide','envSlideBack');
       document.querySelectorAll('.envContents').forEach(img => {
         img.classList.remove('down');
         img.classList.add('back');
@@ -930,7 +941,7 @@ document.addEventListener('DOMContentLoaded', function() {
       setTimeout(() => {
         document.getElementById("FrontPage").src = 'images/PoemFront2.png';
         envelopeFlip.classList.remove('flip');
-      }, 700);
+      }, 600);
       }, { once: true });
     });
   }
@@ -939,6 +950,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </div>
 </body></html>
+
 
 
 
