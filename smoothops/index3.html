@@ -938,6 +938,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       sealWrap.addEventListener('transitionend', function() {
         document.getElementById("FrontPage").src = 'images/PoemFront2.png';
+        document.getElementById("FrontPage").classList.replace('slid','slidReverse');
         setTimeout(() => {
         envelopeFlip.classList.remove('flip');
       }, 600);
@@ -948,5 +949,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </div>
 </body></html>
+
 
 
