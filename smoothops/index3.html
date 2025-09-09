@@ -577,9 +577,7 @@ padding: 3% 3%;
 </head>
   <body>
 
-
-
-<div class="section full-height c2">
+<div class="section c2">
         <style>
         #EnvelopeContainer {
     -moz-transform:scale(0.85);
@@ -587,7 +585,6 @@ padding: 3% 3%;
     -o-transform:scale(0.85);
     -webkit-transform:scale(0.85);
     transform:scale(0.85);
-      perspective: 1000px;
       margin: 0;
       position: relative;
       display: none;
@@ -923,6 +920,11 @@ document.addEventListener('DOMContentLoaded', function() {
           revealBtn.classList.add('visible');
         }, 1600);
       }, { once: true });
+      document.getElementById("EnvelopeSealWrap").style.opacity = '0';
+      document.getElementById("EnvelopeFold").style.opacity = '0';
+      document.getElementById("EnvelopeFront").style.opacity = '0';
+      document.getElementById("EnvelopeStamp").style.opacity = '0';
+      document.getElementById("FrontText").style.opacity = '0';
     }
 
     envelopeFlip.addEventListener('click', animateEnvelope);
@@ -930,23 +932,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     revealBtn.addEventListener('click', function() {
       revealBtn.classList.remove('visible');
-      document.getElementById("EnvelopeSealWrap").style.opacity = '0';
-      document.getElementById("EnvelopeFold").style.opacity = '0';
-      document.getElementById("EnvelopeFront").style.opacity = '0';
-      document.getElementById("EnvelopeStamp").style.opacity = '0';
-      document.getElementById("FrontText").style.opacity = '0';
       document.getElementById("FrontPage").classList.replace('slid','slidReverse');
       document.getElementById("FrontPage").classList.remove('down');
       document.getElementById("FrontPage").src = 'images/PoemFront2.png';
       setTimeout(() => {
         envelopeFlip.classList.remove('flip');
       }, 600);
-      document.getElementById("FrontPage").classList.add('scaleUp');
+      document.getElementById("FrontPage").style.transform = 'scale(3)';
       }, { once: true });
   }
 });
 </script>
 </div>
 </body></html>
+
 
 
