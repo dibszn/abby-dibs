@@ -255,7 +255,7 @@ a{outline:none}
   border:0;
   align-items:center;
   justify-content:center;
-  padding:2% 3%;
+  gap: 2vmin;
   font-family: 'The Seasons', auto;
 }
 .section.c3
@@ -591,6 +591,8 @@ padding: 3% 3%;
       margin: 0;
       position: relative;
       display: none;
+      max-width:95%;
+      max-height:95%;
     }
 
     #EnvelopeFlip {
@@ -649,7 +651,6 @@ padding: 3% 3%;
     #EnvelopeSealWrap.opened {
       transform: rotateX(-180deg);
     }
-
     .seal-img, .flap-img {
       position: absolute;
       top: 0;
@@ -723,53 +724,33 @@ padding: 3% 3%;
       bottom: 0;
       object-fit: cover;
     }
-    .envContents2:nth-child(1) {
-      --n: 1;
-      --top-pos: -100%;
-      z-index: 5;
-    }
-    .envContents2:nth-child(2) {
-      --n: 2;
-      --top-pos: -100%;
-      z-index: 4;
-    }
-    .envContents2:nth-child(3) {
-      --n: 3;
-      --top-pos: -20%;
-      z-index: 3;
-    }
-    .envContents2:nth-child(4) {
-      --n: 4;
-      --top-pos: -25%;
-      z-index: 2;
-    }
-    .envContents2:nth-child(5) {
-      --n: 5;
-      --top-pos: -30%;
-      z-index: 1;
-    }
 
     .slid {
       animation: slideUp 1000ms forwards ease-out;
-      animation-delay: calc((var(--n, 1) - 1) * 0.4s);
     }
     .slidReverse {
-      animation: slideUpReverse 1000ms forwards ease-in-out;
-      animation-delay: calc((var(--n, 1) - 1) * 0.4s);
+      animation: ReverseSlideUp 1000ms forwards ease-in-out;
     }
     .envSlide {
-      animation: EnvelopeSlide 1650ms forwards ease-out;
+      animation: EnvelopeSlide 1800ms forwards ease-out;
+    }
+    .SealSlide {
+      animation: SealSlide 1800ms forwards ease-out;
+    }
+    .SealSlideBack {
+      animation: SealSlideBack 1800ms forwards ease-out;
     }
     .envSlideBack {
-      animation: EnvelopeSlideBack 1650ms forwards ease-out;
+      animation: EnvelopeSlideBack 1800ms forwards ease-out;
     }
     .down {
       animation: slideDown 1500ms forwards ease-in-out;
-      animation-delay: calc((var(--n, 1) - 1) * 0.5s);
     }
     .back {
       animation: slideBack 1500ms forwards ease-in-out;
-      animation-delay: calc((var(--n, 1) - 1) * 0.5s);
+    }
+    .closed {
+      animation: CloseEnv 1500ms ease-in-out;
     }
 
     @keyframes slideUp {
@@ -777,50 +758,74 @@ padding: 3% 3%;
         transform: translateY(0);
       }
       to {
-        transform: translateY(var(--top-pos));
+        transform: translateY(-100%);
       }
     }
-
-     @keyframes slideUpReverse {
+    @keyframes ReverseSlideUp {
       from {
-        transform: translateY(var(--top-pos));
+        transform: translateY(-100%);
       }
       to {
         transform: translateY(0);
       }
     }
+
     @keyframes slideDown {
       from {
-        transform: translateY(var(--top-pos));
+        transform: translateY(-100%);
       }
       to {
-        transform: translateY(calc((var(--top-pos)) * -0.2)) rotate(-3.7deg) scale(1.1);
+        transform: translateY(0) rotate(-3.7deg) scale(1.1);
       }
     }
     @keyframes EnvelopeSlide {
       from {
-        transform: scale(0.85) translateY(0);
+        transform: translateY(0);
       }
       to {
-        transform: scale(0.85) translateY(-10%);
+        transform: translateY(-200%);
+      }
+    }
+    @keyframes SealSlide {
+      from {
+        transform: rotateX(-180deg) translateY(0);
+      }
+      to {
+        transform: rotateX(-180deg) translateY(200%);
+      }
+    }
+    @keyframes SealSlideBack {
+      from {
+        transform: rotateX(-180deg) translateY(200%);
+      }
+      to {
+        transform: rotateX(-180deg) translateY(0);
+      }
+    }
+    @keyframes CloseEnv {
+      from {
+        transform: rotateX(-180deg);
+      }
+      to {
+        transform: rotateX(0);
       }
     }
 
     @keyframes slideBack {
       from {
-        transform: translateY(calc((var(--top-pos)) * -0.2)) rotate(-3.7deg) scale(1.1);
+        transform: translateY(0) rotate(-3.7deg) scale(1.1);
       }
       to {
-        transform: translateY(var(--top-pos));
+        transform: translateY(-100%);
       }
     }
 
     @keyframes EnvelopeSlideBack {
       from {
-        transform: scale(0.85) translateY(-10%);
+        transform: translateY(-200%);
       }
       to {
-        transform: scale(0.85) translateY(0);
+        transform: translateY(0);
       }
     }
       </style>
@@ -840,15 +845,8 @@ padding: 3% 3%;
             <img id="EnvelopeSealNew" class="seal-img hidden" src="images/EnvelopeMaterials/EnvelopeBackFlapOpen.png">
             <p class="text" style="top:20%; left:50%; z-index:3;">You're invited!</p>
           </div>
-
-          <div id="ContentsStack">
-            <div id="EnvelopeContent">
-              <img id="Page1" src="images/PoemBack1.png" class="envContents2">
-            </div>
-          </div>
-
           <img src="images/EnvelopeMaterials/EnvelopeBackBottom.png" id="EnvelopeFold">
-          <img id="ThirdPage" src="images/PoemBack1.png" class="envContents" style="z-index:-1;">
+          <img id="Page1" src="images/PoemBack1.png" class="envContents" style="z-index:-1;">
         </div>
       </div>
     </div>
@@ -859,7 +857,6 @@ padding: 3% 3%;
 document.addEventListener('DOMContentLoaded', function() {
   const images = document.querySelectorAll('.section.c2 img');
   let loadedImages = 0;
-  const revealBtn = document.getElementById('revealBtn'); // Fix undefined variable
 
   function checkImagesLoaded() {
     loadedImages++;
@@ -902,24 +899,22 @@ document.addEventListener('DOMContentLoaded', function() {
       }, { once: true });
 
       sealWrap.addEventListener('transitionend', function() {
-        document.getElementById("ThirdPage").style.display = 'none';
         document.getElementById("EnvelopeFold").style.zIndex = '1000';
         document.getElementById("EnvelopeSealWrap").style.zIndex = '-1';
-
-        ContentsStack.style.display = "block";
-        document.querySelectorAll('.envContents2').forEach(img => {
+        document.querySelectorAll('.envContents').forEach(img => {
           img.classList.add('slid');
         });
       }, { once: true });
 
       Page1.addEventListener('animationend', function() {
-        document.getElementById("EnvelopeContainer").classList.add('envSlide');
         setTimeout(() => {
           document.getElementById("EnvelopeFold").style.zIndex = '-1';
-          document.querySelectorAll('.envContents2').forEach(img => {
+          document.querySelectorAll('.envContents').forEach(img => {
             img.classList.add('down');
           });
-        }, 150);
+          document.getElementById("EnvelopeSealWrap").classList.add('SealSlide');
+          document.getElementById("EnvelopeFold").classList.add('envSlide');
+        }, 200);
         setTimeout(() => {
           revealBtn.classList.add('visible');
         }, 1600);
@@ -931,37 +926,38 @@ document.addEventListener('DOMContentLoaded', function() {
 
     revealBtn.addEventListener('click', function() {
       revealBtn.classList.remove('visible');
-      document.getElementById("EnvelopeContainer").classList.remove('envSlide');
-      document.getElementById("EnvelopeContainer").classList.add('envSlideBack');
-      document.querySelectorAll('.envContents2').forEach(img => {
-        img.classList.remove('down');
-        img.classList.add('back');
-        img.id = 'ReverseCard'
-      });
-      setTimeout(() => {
-        document.getElementById("EnvelopeFold").style.zIndex = '1000';
-        document.getElementById("ReverseCard").classList.remove('slid');
-        document.getElementById("ReverseCard").classList.remove('back');
-        document.getElementById("ReverseCard").classList.add('slidReverse');
-      }, 1500);
-      
-      document.getElementById("ReverseCard").addEventListener('animationend', function() {
+      document.getElementById("EnvelopeSealWrap").classList.replace('SealSlide','SealSlideBack');
+      document.getElementById("EnvelopeFold").classList.replace('envSlide','envSlideBack');
+      Page1.classList.replace('down', 'back');
+
+      Page1.addEventListener('animationend', function() {
+        setTimeout(() => {
+          Page1.id = 'ReverseCard';
+          document.getElementById("ReverseCard").classList.remove('back');
+          document.getElementById("ReverseCard").classList.replace('slid', 'slidReverse');
+          document.getElementById("EnvelopeFold").style.zIndex = '1000';
+
+          document.getElementById("ReverseCard").addEventListener('animationend', function() {
             sealWrap.style.zIndex = '1001';
-            sealWrap.classList.remove('opened');
+            sealWrap.classList.remove('SealSlideBack');
+            sealWrap.classList.replace('opened', 'closed');
             sealOldImg.classList.remove('hidden');
             sealNewImg.classList.add('hidden');
+          }, { once: true });
+        }, 200);
       }, { once: true });
 
       sealWrap.addEventListener('transitionend', function() {
-      setTimeout(() => {
+        document.getElementById("FrontPage").classList.replace('slid','slidReverse');
+        document.getElementById("FrontPage").classList.remove('down');
         document.getElementById("FrontPage").src = 'images/PoemFront2.png';
+        setTimeout(() => {
         envelopeFlip.classList.remove('flip');
-      }, 700);
+      }, 600);
       }, { once: true });
     });
   }
 });
-
 </script>
 </div>
 </body></html>
