@@ -914,10 +914,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
       Page1.addEventListener('animationend', function() {
         document.getElementById("EnvelopeFrontWrap").classList.add('envSlide');
-        document.getElementById("EnvelopeBack").classList.add('envSlide');
+        document.getElementById("EnvelopeSealWrap").classList.add('envSlide');
         document.getElementById("EnvelopeFold").classList.add('envSlide');
         setTimeout(() => {
-          document.getElementById("EnvelopeFold").style.zIndex = '-1';
           document.querySelectorAll('.envContents2').forEach(img => {
             img.classList.add('down');
           });
