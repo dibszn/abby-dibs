@@ -922,14 +922,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
       Page1.addEventListener('animationend', function() {
         setTimeout(() => {
-          Page1.classList.remove('back');
-          Page1.classList.replace('slid', 'slidReverse');
-          document.getElementById("EnvelopeFold").style.zIndex = '1000'
           Page1.id = 'ReverseCard';
+          document.getElementById("ReverseCard").classList.remove('back');
+          document.getElementById("ReverseCard").classList.replace('slid', 'slidReverse');
+          document.getElementById("EnvelopeFold").style.zIndex = '1000'
         }, 200);
       }, { once: true });
         
-      document.getElementById("Page1").addEventListener('animationend', function() {
+      document.getElementById("ReverseCard").addEventListener('animationend', function() {
             sealWrap.style.zIndex = '1001';
             sealWrap.classList.remove('opened');
             sealOldImg.classList.remove('hidden');
@@ -948,6 +948,4 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </div>
 </body></html>
-
-
 
