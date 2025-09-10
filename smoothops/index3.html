@@ -743,7 +743,10 @@ padding: 3% 3%;
     }
     .scaleUp {
       animation: scaleUp 1500ms ease-in-out;
-    }      
+    } 
+    .PageReturn {
+      animation: Page1Return 1500ms ease-in-out;
+    }  
           
     @keyframes scaleUp {
       from {
@@ -819,6 +822,15 @@ padding: 3% 3%;
       }
       to {
         transform: translateY(-100%);
+      }
+    }
+
+    @keyframes Page1Return {
+      from {
+        transform: translateY(0) rotate(-3.7deg) scale(1.1);
+      }
+      to {
+        transform: translateY(0) rotate(0deg) scale(0);
       }
     }
 
@@ -935,9 +947,7 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById("FrontPage").classList.replace('slid','slidReverse');
       document.getElementById("FrontPage").classList.remove('down');
       document.getElementById("FrontPage").src = 'images/PoemFront2.png';
-      setTimeout(() => {
-        Page1.style.transform = 'rotate(0)';
-      }, 100);
+      Page1.classList.add('PageReturn');
       setTimeout(() => {
         envelopeFlip.classList.remove('flip');
       }, 700);
@@ -947,5 +957,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </div>
 </body></html>
+
 
 
