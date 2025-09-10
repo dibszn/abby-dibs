@@ -240,7 +240,6 @@ a{outline:none}
 }
 .section.i1
 {
-  display:flex;
   border:0;
   align-items:center;
   justify-content:center;
@@ -248,7 +247,6 @@ a{outline:none}
 }
 .section.i2
 {
-  display: flex; 
   border: 0; 
   width: 100%; 
   align-items: center; 
@@ -258,7 +256,6 @@ a{outline:none}
 }
 .section.c2
 {
-  display:flex;
   border:0;
   align-items:center;
   justify-content:center;
@@ -267,7 +264,6 @@ a{outline:none}
 }
 .section.c3
 {
-display: flex; 
 flex-direction: column;
 align-items: center;
 font-size: 2vmin; 
@@ -279,7 +275,6 @@ padding: 3% 3%;
 .section.c5
 {
   padding:5vmin 2vmin; 
-  display:flex; 
   flex-direction:column; 
   align-items:center; 
   gap:5vmin;
@@ -989,7 +984,6 @@ padding: 3% 3%;
 
       setTimeout(() => {
         document.querySelector('.section.c2').classList.add('final');
-
         sections.forEach(function(section) {
           if (section !== document.querySelector('section.c2')) {
             section.classList.remove('hidden');
@@ -1045,7 +1039,3 @@ padding: 3% 3%;
 </script>
 </body>
 </html>
-
-
-
-
