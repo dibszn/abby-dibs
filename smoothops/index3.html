@@ -978,11 +978,8 @@ padding: 3% 3%;
       if (envelopeFlip.classList.contains('flip')) {
         console.log('First Run (Animation Forward)');
       } else {
-        console.log('Reversed Animation');
         document.querySelector('.section.c2').classList.add('hidden');
-      }
-
-      setTimeout(() => {
+              setTimeout(() => {
         document.querySelector('.section.c2').classList.add('final');
         sections.forEach(function(section) {
           if (section !== document.querySelector('section.c2')) {
@@ -991,8 +988,8 @@ padding: 3% 3%;
           }
         });
       }, 900);
+      }
     });
-
   });
 </script>
 
@@ -1039,3 +1036,4 @@ padding: 3% 3%;
 </script>
 </body>
 </html>
+
