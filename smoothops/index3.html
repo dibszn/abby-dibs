@@ -976,15 +976,13 @@ padding: 3% 3%;
     const sections = document.querySelectorAll('section');
 
     document.querySelector('.section.c2').addEventListener('animationend', function() {
-      if (envelopeFlip.classList.contains('flip')) {
-        console.log('First Run (Animation Forward)');
-      } else {
+      if (envelopeFlip.classList.contains('normal')) {
         console.log('Reverse');
         document.querySelector('.section.c2').classList.add('hidden');
         setTimeout(() => {
         document.querySelector('.section.c2').classList.add('final');
         sections.forEach(function(section) {
-          if (section !== document.querySelector('section.c2')) {
+        if (section !== document.querySelector('section.c2')) {
             section.classList.remove('hidden');
             section.classList.remove('final');
           }
@@ -1038,6 +1036,7 @@ padding: 3% 3%;
 </script>
 </body>
 </html>
+
 
 
 
