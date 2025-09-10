@@ -962,6 +962,7 @@ padding: 3% 3%;
         document.getElementById('endEnvelopeFlip').classList.remove('flip');
       }, 600);
        }, { once: true });
+  });
   }
 });
 </script>
@@ -977,11 +978,11 @@ padding: 3% 3%;
 <script>
   document.addEventListener('DOMContentLoaded', function() {
 
-  document.getElementById('endEnvelopeFlip').addEventListener('animationend', function() { 
+  document.getElementById('EnvelopeContainer').addEventListener('animationend', function() { 
   document.querySelector('section.c2').classList.add('hidden');
   setTimeout(() => {
         document.querySelector('section.c2').classList.add('final');
-      }, 600); 
+      }, 900); 
   sections.forEach(function(section) { 
       if (section !== document.querySelector('section.c2')) {
         section.classList.remove('hidden');
@@ -1034,4 +1035,5 @@ padding: 3% 3%;
 </script>
 </body>
 </html>
+
 
