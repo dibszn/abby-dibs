@@ -830,7 +830,7 @@ padding: 3% 3%;
         transform: translateY(0) rotate(-3.7deg) scale(1.1);
       }
       to {
-        transform: translateY(0) rotate(0deg) scale(0);
+        transform: translateY(0);
       }
     }
 
@@ -948,15 +948,18 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById("FrontPage").classList.remove('down');
       document.getElementById("FrontPage").src = 'images/PoemFront2.png';
       Page1.classList.add('PageReturn');
+      Page1.addEventListener('animationend', function() {
       setTimeout(() => {
         envelopeFlip.classList.remove('flip');
-      }, 700);
+      }, 600);
+       });
       }, { once: true });
   }
 });
 </script>
 </div>
 </body></html>
+
 
 
 
