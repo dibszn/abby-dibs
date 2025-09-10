@@ -966,8 +966,6 @@ padding: 3% 3%;
         envelopeFlip.classList.remove('flip');
         envelopeFlip.id = 'FlippedNewFront';
       }, 600);
-       }, { once: true });
-
       document.getElementById("FlippedNewFront").addEventListener('animationend', function() {
         document.querySelector('.section.c2').remove();
         sections.forEach(function(section) {
@@ -977,6 +975,9 @@ padding: 3% 3%;
           }
         });
        }, { once: true });
+       }, { once: true });
+
+
        }, { once: true });      
   }
   });
@@ -1024,6 +1025,7 @@ padding: 3% 3%;
 </script>
 </body>
 </html>
+
 
 
 
