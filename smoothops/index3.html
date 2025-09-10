@@ -963,8 +963,8 @@ padding: 3% 3%;
       
       document.getElementById("newPage1").addEventListener('animationend', function() {
       setTimeout(() => {
-        envelopeFlip.classList.remove('flip');
         envelopeFlip.id = 'FlippedNewFront';
+        document.getElementById("FlippedNewFront").classList.remove('flip');
       }, 600);
       document.getElementById("FlippedNewFront").addEventListener('animationend', function() {
         document.querySelector('.section.c2').remove();
@@ -1025,6 +1025,7 @@ padding: 3% 3%;
 </script>
 </body>
 </html>
+
 
 
 
