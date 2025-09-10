@@ -219,6 +219,7 @@ a{outline:none}
 .section {
       transition: opacity 900ms ease-in-out;
       opacity: 1;
+  display: flex;
 }
 .section.hidden {
       opacity: 0;
@@ -236,7 +237,7 @@ a{outline:none}
 {
   background-attachment: fixed;
   background-size: cover;
-  background-position: center 50%;
+  background-position: center center;
   
 }
 .section.i1
@@ -587,18 +588,18 @@ padding: 3% 3%;
 
 <div class="section full-height c2">
         <style>
-        #EnvelopeContainer {
+    #EnvelopeContainer {
     -moz-transform:scale(0.85);
     -ms-transform:scale(0.85);
     -o-transform:scale(0.85);
     -webkit-transform:scale(0.85);
     transform:scale(0.85);
-      margin: 0;
-      position: relative;
-      display: none;
-      max-width:95%;
-      max-height:95%;
-        perspective: 1000px;
+    margin: 0;
+    position: relative;
+    display: none;
+    max-width:95%;
+    max-height:95%;
+    perspective: 1000px;
     }
 
     #EnvelopeFlip {
@@ -876,7 +877,7 @@ padding: 3% 3%;
   <button id="revealBtn" class="revealBtn">Reveal now</button>
 
   <script>
-document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function() {
   const images = document.querySelectorAll('.section.c2 img');
   let loadedImages = 0;
 
@@ -901,6 +902,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const foldImg = document.getElementById('EnvelopeFold');
     const Page1 = document.getElementById('Page1');
     const revealBtn = document.getElementById('revealBtn');
+    const secc2 = document.getElementById('section.c2');
+    const seci1 = document.getElementById('section.i1');
 
     const foldHeight = foldImg.offsetHeight;
     const sealHeight = sealOldImg.offsetHeight;
@@ -960,7 +963,11 @@ document.addEventListener('DOMContentLoaded', function() {
       setTimeout(() => {
         envelopeFlip.classList.remove('flip');
       }, 600);
-       });
+      setTimeout(() => {
+          secc2.style.display = 'none';
+          seci1.style.display = 'flex';
+        }, 900);
+       }, { once: true });
       }, { once: true });
   }
 });
@@ -976,18 +983,18 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-  const sections = document.querySelectorAll('.section');
+  const sections = document.querySelectorAll('section');
   sections.forEach(function(section) {
     section.style.display = 'none';
   });
   window.addEventListener('load', function() {
     sections.forEach(function(section) {
-      section.style.display = 'block';
+      section.style.display = 'flex';
     });
   });
 
-  document.querySelector('.section.c2').addEventListener('animationend', function() { 
-    document.querySelector('.section.c2').classList.add('hidden');  
+  document.querySelector('section.c2').addEventListener('animationend', function() { 
+    document.querySelector('section.c2').classList.add('hidden');  
     
     sections.forEach(function(section) { 
       if (section !== document.querySelector('section.c2')) {
@@ -1040,5 +1047,3 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
-
-
