@@ -882,7 +882,7 @@ padding: 3% 3%;
   const sections = document.querySelectorAll('section');
   const images = document.querySelectorAll('.section.c2 img');
   let loadedImages = 0;
-
+  
   function checkImagesLoaded() {
     loadedImages++;
     if (loadedImages === images.length) {
@@ -890,7 +890,7 @@ padding: 3% 3%;
       initAnimation();
     }
   }
-
+  console.log(sections);
   images.forEach(function(img) {
     img.addEventListener('load', checkImagesLoaded);
     if (img.complete) checkImagesLoaded();
@@ -963,22 +963,20 @@ padding: 3% 3%;
       
       document.getElementById("newPage1").addEventListener('animationend', function() {
       setTimeout(() => {
-        envelopeFlip.classList.replace('flip', 'normal');
+        envelopeFlip.classList.remve('flip');
+        envelopeFlip.id = 'FlippedNewFront'
       }, 600);
        }, { once: true });
 
-      setTimeout(() => {
-        document.querySelector('.section.c2').classList.add('hidden');
-      }, 600);
-      setTimeout(() => {
-        document.querySelector('.section.c2').classList.add('final');
+      document.getElementById("FlippedNewFront").addEventListener('transitionend', function() {
+        document.querySelector('.section.c2').remove();
         sections.forEach(function(section) {
         if (section !== document.querySelector('section.c2')) {
             section.classList.remove('hidden');
             section.classList.remove('final');
           }
         });
-      }, 900);
+       }, { once: true });
        }, { once: true });      
   }
   });
@@ -1026,5 +1024,6 @@ padding: 3% 3%;
 </script>
 </body>
 </html>
+
 
 
