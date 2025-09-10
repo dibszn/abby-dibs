@@ -966,9 +966,11 @@ padding: 3% 3%;
         envelopeFlip.classList.replace('flip', 'normal');
       }, 600);
        }, { once: true });
-      
+
+      setTimeout(() => {
         document.querySelector('.section.c2').classList.add('hidden');
-        setTimeout(() => {
+      }, 600);
+      setTimeout(() => {
         document.querySelector('.section.c2').classList.add('final');
         sections.forEach(function(section) {
         if (section !== document.querySelector('section.c2')) {
@@ -977,7 +979,7 @@ padding: 3% 3%;
           }
         });
       }, 900);
-      }, { once: true });
+       }, { once: true });      
   }
   });
 </script>
@@ -1024,4 +1026,5 @@ padding: 3% 3%;
 </script>
 </body>
 </html>
+
 
