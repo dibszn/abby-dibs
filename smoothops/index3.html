@@ -932,18 +932,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     revealBtn.addEventListener('click', function() {
       revealBtn.classList.remove('visible');
-      document.getElementById("Page1").style.transform = 'rotate(3.7deg)';
-      document.getElementById("FrontPage").classList.replace('slid','slidReverse');
       document.getElementById("FrontPage").classList.replace('slid','slidReverse');
       document.getElementById("FrontPage").classList.remove('down');
       document.getElementById("FrontPage").src = 'images/PoemFront2.png';
       setTimeout(() => {
+        Page1.style.transform = 'rotate(0)';
+      }, 100);
+      setTimeout(() => {
         envelopeFlip.classList.remove('flip');
-      }, 600);
+      }, 700);
       }, { once: true });
   }
 });
 </script>
 </div>
 </body></html>
+
 
