@@ -217,8 +217,9 @@ a{outline:none}
 .clearboth { display: block; clear: both; }
 
 .section {
-      transition: opacity 900ms ease-in-out;
-      opacity: 1;
+  transition: opacity 900ms ease-in-out;
+  opacity: 1;
+  height: inherit;
 }
 .section.hidden { opacity: 0; }
 .section.final { display: none; }
@@ -228,14 +229,13 @@ a{outline:none}
 .section.c4 { background-color: #E39B7D; }
 .section.c5 { background-color: #E6E4DD; }
 
-.section.i1,
 .section.i2,
 .section.i3,
 .section.i4
 {
   background-attachment: fixed;
   background-size: cover;
-  background-position: center center;
+  background-position: center 50%;
   
 }
 .section.i1
@@ -280,7 +280,7 @@ padding: 3% 3%;
   gap:5vmin;
 }
   
-.section.i1 { background-image: url(images/BG11.jpg); }
+.section.i1 { background-image: url(images/BG11.jpg); background-position: center center; }
 .section.i2 { background-image: url(images/BG62.jpg); }
 .section.i3 { background-image: url(images/BG7.jpg); }
 .section.i4 { background-image: url(images/ZK-164.jpg); }
@@ -1034,8 +1034,3 @@ padding: 3% 3%;
 </script>
 </body>
 </html>
-
-
-
-
-
