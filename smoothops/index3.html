@@ -876,7 +876,7 @@ padding: 3% 3%;
   <button id="revealBtn" class="revealBtn">Reveal now</button>
 
   <script>
-document.addEventListener('load', function() {
+document.addEventListener('DOMContentLoaded', function() {
   const images = document.querySelectorAll('.section.c2 img');
   let loadedImages = 0;
 
@@ -975,7 +975,8 @@ document.addEventListener('load', function() {
   </div>
 </div>
 <script>
-  const sections = document.querySelectorAll('section');
+  document.addEventListener('DOMContentLoaded', function() {
+  const sections = document.querySelectorAll('.section');
   sections.forEach(function(section) {
     section.style.display = 'none';
   });
@@ -985,8 +986,8 @@ document.addEventListener('load', function() {
     });
   });
 
-  document.querySelector('section.c2').addEventListener('animationend', function() { 
-    document.querySelector('section.c2').classList.remove('hidden');  
+  document.querySelector('.section.c2').addEventListener('animationend', function() { 
+    document.querySelector('.section.c2').classList.add('hidden');  
     
     sections.forEach(function(section) { 
       if (section !== document.querySelector('section.c2')) {
@@ -994,6 +995,7 @@ document.addEventListener('load', function() {
       }
     });
   });
+  }
 </script>
   
 <script>
@@ -1038,3 +1040,4 @@ document.addEventListener('load', function() {
 </script>
 </body>
 </html>
+
