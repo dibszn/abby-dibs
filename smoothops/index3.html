@@ -953,7 +953,8 @@ padding: 3% 3%;
       Page1.classList.add('PageReturn');
       Page1.addEventListener('animationend', function() {
       setTimeout(() => {
-        envelopeFlip.classList.remove('flip');
+        envelopeFlip.classList.replace('flip', 'normal');
+        
       }, 600);
        }, { once: true });
   });
@@ -1037,5 +1038,6 @@ padding: 3% 3%;
 </script>
 </body>
 </html>
+
 
 
