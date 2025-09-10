@@ -579,7 +579,7 @@ padding: 3% 3%;
 </head>
   <body>
 
-<div class="section full-height c2">
+<div class="section c2">
         <style>
     #EnvelopeContainer {
     -moz-transform:scale(0.85);
@@ -974,12 +974,13 @@ padding: 3% 3%;
     const envelopeFlip = document.getElementById('EnvelopeFlip');
     const sections = document.querySelectorAll('section');
 
-    envelopeFlip.addEventListener('animationend', function() {
+    document.querySelector('.section.c2').addEventListener('animationend', function() {
       if (envelopeFlip.classList.contains('flip')) {
         console.log('First Run (Animation Forward)');
       } else {
+        console.log('Reverse');
         document.querySelector('.section.c2').classList.add('hidden');
-              setTimeout(() => {
+        setTimeout(() => {
         document.querySelector('.section.c2').classList.add('final');
         sections.forEach(function(section) {
           if (section !== document.querySelector('section.c2')) {
@@ -1036,4 +1037,5 @@ padding: 3% 3%;
 </script>
 </body>
 </html>
+
 
