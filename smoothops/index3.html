@@ -956,10 +956,9 @@ padding: 3% 3%;
       document.getElementById("FrontPage").classList.remove('down');
       document.getElementById("FrontPage").src = 'images/PoemFront2.png';
       Page1.classList.add('PageReturn');
-      envelopeFlip.id = 'endEnvelopeFlip';
       Page1.addEventListener('animationend', function() {
       setTimeout(() => {
-        document.getElementById('endEnvelopeFlip').classList.remove('flip');
+        document.getElementById('envelopeFlip').classList.remove('flip');
       }, 600);
        }, { once: true });
   });
@@ -977,21 +976,32 @@ padding: 3% 3%;
 </div>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    const envelopeFlip = document.getElementById('EnvelopeFlip');
+    const sections = document.querySelectorAll('section');
 
-  document.getElementById('EnvelopeContainer').addEventListener('animationend', function() { 
-  document.querySelector('section.c2').classList.add('hidden');
-  setTimeout(() => {
-        document.querySelector('section.c2').classList.add('final');
-      }, 900); 
-  sections.forEach(function(section) { 
-      if (section !== document.querySelector('section.c2')) {
-        section.classList.remove('hidden');
-        section.classList.remove('final');
+    envelopeFlip.addEventListener('animationend', function() {
+      if (envelopeFlip.classList.contains('flip')) {
+        console.log('First Run (Animation Forward)');
+      } else {
+        console.log('Reversed Animation');
+        document.querySelector('.section.c2').classList.add('hidden');
       }
+
+      setTimeout(() => {
+        document.querySelector('.section.c2').classList.add('final');
+
+        sections.forEach(function(section) {
+          if (section !== document.querySelector('section.c2')) {
+            section.classList.remove('hidden');
+            section.classList.remove('final');
+          }
+        });
+      }, 900);
     });
-  });
+
   });
 </script>
+
   
 <script>
 (function(p,r,l,x){
@@ -1035,5 +1045,6 @@ padding: 3% 3%;
 </script>
 </body>
 </html>
+
 
 
