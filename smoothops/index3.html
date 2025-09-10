@@ -219,13 +219,11 @@ a{outline:none}
 .section {
       transition: opacity 900ms ease-in-out;
       opacity: 1;
-  display: flex;
 }
-.section.hidden {
-      opacity: 0;
-}
+.section.hidden { opacity: 0; }
+.section.final { display: none; }
 
-.section.c2 { background-color: #383838; }
+.section.c2 { display: flex; background-color: #383838; }
 .section.c3 { background-color: #F7F7F7; }
 .section.c4 { background-color: #E39B7D; }
 .section.c5 { background-color: #E6E4DD; }
@@ -866,7 +864,6 @@ padding: 3% 3%;
             <img id="EnvelopeSealOld" class="seal-img" src="images/EnvelopeMaterials/EnvelopeBackPlain.png">
             <img src="images/EnvelopeMaterials/EnvelopeBackFlapMask.png" style="z-index:0;" class="flap-img">          
             <img id="EnvelopeSealNew" class="seal-img hidden" src="images/EnvelopeMaterials/EnvelopeBackFlapOpen.png">
-            <p class="text" style="top:20%; left:50%; z-index:3;">You're invited!</p>
           </div>
           <img src="images/EnvelopeMaterials/EnvelopeBackBottom.png" id="EnvelopeFold">
           <img id="Page1" src="images/PoemBack1.png" class="envContents" style="z-index:-1;">
@@ -959,21 +956,17 @@ padding: 3% 3%;
       document.getElementById("FrontPage").classList.remove('down');
       document.getElementById("FrontPage").src = 'images/PoemFront2.png';
       Page1.classList.add('PageReturn');
+      envelopeFlip.id = 'endEnvelopeFlip';
       Page1.addEventListener('animationend', function() {
       setTimeout(() => {
-        envelopeFlip.classList.remove('flip');
+        document.getElementById('endEnvelopeFlip').classList.remove('flip');
       }, 600);
-      setTimeout(() => {
-          secc2.style.display = 'none';
-          seci1.style.display = 'flex';
-        }, 900);
        }, { once: true });
-      }, { once: true });
   }
 });
 </script>
 </div>
-    <div class="section i1 parallax full-height hidden">
+    <div class="section i1 parallax full-height hidden final">
   <div id="LogoContainer">
     <img src="images/logo trs.png" alt="Logo" crossorigin="anonymous" draggable="false" style="width:100%;height:100%;object-fit:contain;display:block;">
   </div>
@@ -983,22 +976,16 @@ padding: 3% 3%;
 </div>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-  const sections = document.querySelectorAll('section');
-  sections.forEach(function(section) {
-    section.style.display = 'none';
-  });
-  window.addEventListener('load', function() {
-    sections.forEach(function(section) {
-      section.style.display = 'flex';
-    });
-  });
 
-  document.querySelector('section.c2').addEventListener('animationend', function() { 
-    document.querySelector('section.c2').classList.add('hidden');  
-    
-    sections.forEach(function(section) { 
+  document.getElementById('endEnvelopeFlip').addEventListener('animationend', function() { 
+  document.querySelector('section.c2').classList.add('hidden');
+  setTimeout(() => {
+        document.querySelector('section.c2').classList.add('final');
+      }, 600); 
+  sections.forEach(function(section) { 
       if (section !== document.querySelector('section.c2')) {
         section.classList.remove('hidden');
+        section.classList.remove('final');
       }
     });
   });
@@ -1047,3 +1034,4 @@ padding: 3% 3%;
 </script>
 </body>
 </html>
+
