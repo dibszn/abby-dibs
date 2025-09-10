@@ -967,12 +967,12 @@ padding: 3% 3%;
       setTimeout(() => {
         document.querySelector('.section.c2').remove();
         sections.forEach(function(section) {
-        if (section !== document.querySelector('section.c2')) {
+        if (section !== document.querySelector('.section.c2')) {
             section.classList.remove('hidden');
             section.classList.remove('final');
           }
         });
-      }, 4000);
+      }, 3500);
         }, 600);
        }, { once: true });
        }, { once: true });      
@@ -1022,5 +1022,6 @@ padding: 3% 3%;
 </script>
 </body>
 </html>
+
 
 
