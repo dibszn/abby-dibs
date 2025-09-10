@@ -968,7 +968,7 @@ padding: 3% 3%;
       }, 600);
        }, { once: true });
 
-      document.getElementById("FlippedNewFront").addEventListener('transitionend', function() {
+      document.getElementById("FlippedNewFront").addEventListener('animationend', function() {
         document.querySelector('.section.c2').remove();
         sections.forEach(function(section) {
         if (section !== document.querySelector('section.c2')) {
@@ -1024,6 +1024,7 @@ padding: 3% 3%;
 </script>
 </body>
 </html>
+
 
 
 
