@@ -975,7 +975,6 @@ padding: 3% 3%;
     const envelopeFlip = document.getElementById('EnvelopeFlip');
     const sections = document.querySelectorAll('section');
 
-    document.querySelector('.section.c2').addEventListener('animationend', function() {
       if (envelopeFlip.classList.contains('normal')) {
         console.log('Reverse');
         document.querySelector('.section.c2').classList.add('hidden');
@@ -990,7 +989,6 @@ padding: 3% 3%;
       }, 900);
       }
     });
-  });
 </script>
 
   
@@ -1036,6 +1034,7 @@ padding: 3% 3%;
 </script>
 </body>
 </html>
+
 
 
 
