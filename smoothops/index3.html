@@ -879,7 +879,7 @@ padding: 3% 3%;
 </div>
   <script>
   document.addEventListener('DOMContentLoaded', function() {
-  const sections = document.querySelectorAll('section');
+  const sections = document.querySelectorAll('.section');
   const images = document.querySelectorAll('.section.c2 img');
   let loadedImages = 0;
   
@@ -966,10 +966,11 @@ padding: 3% 3%;
         envelopeFlip.classList.remove('flip');
       setTimeout(() => {
         document.querySelector('.section.c2').remove();
-        sections.forEach(function(section) {
-if (!section.classList.contains('c2')) {
-  section.classList.remove('hidden');
-  section.classList.remove('final');
+        sections.forEach(function(currentsection) {
+          console.log(currentsection);
+if (!currentsection.classList.contains('c2')) {
+  currentsection.classList.remove('hidden');
+  currentsection.classList.remove('final');
 }
         });
       }, 3500);
@@ -1022,6 +1023,7 @@ if (!section.classList.contains('c2')) {
 </script>
 </body>
 </html>
+
 
 
 
