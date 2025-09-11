@@ -878,6 +878,461 @@ padding: 3% 3%;
     <iframe src="plyr/index.html" allow="autoplay" style="width:100%;height:100%;border:0;"></iframe>
   </div>
 </div>
+    <div class="section i2 parallax">
+  <div id="note-parent">
+    <div id="note-container" style="width: 81px;">
+      <p style="width:85%;font-size:2em;margin:0;color:rgb(17,60,37);">YOUR PRESENCE &amp; WELL-WISHES AT OUR CELEBRATION IS THE BEST GIFT OF ALL!</p>
+      <p style="width:85%;font-size:1.7em;font-style:italic;margin:0;color:rgb(17,60,37);">But if you would like to contribute to our new life together, a monetary gift is a delightful blessing.</p>
+      <div style="width:80%;text-align:center;color:rgb(17,60,37);">
+        <img src="images/duitnowqr.png" alt="DuitNow QR" crossorigin="anonymous" draggable="false" style="width:40%;height:auto;object-fit:contain;" id="qr">
+        <p style="margin:0;padding:0; font-size:1.2em;">Bride's DuitNow QR</p>
+      </div>
+      <div style="width:90%;display:flex;flex-direction:column;align-items:center;text-align:center; gap:0.5em; font-size:1.7em;font-style:italic;color:rgb(17,60,37);">
+        <p style="margin:0.6vh;">Alternatively, you could also view our gift registry here:</p>
+        <a href="https://dibszn.github.io/abby-dibs/giftregistry/index.html" target="_blank" style="display:flex;align-items:center;justify-content:center;border-radius:25px;width:auto; padding: 0.6% 2.5%; font-size:0.65em;color:white;background-color:#113c25;text-decoration:none;">GIFT REGISTRY</a>
+      </div>
+    </div>
+    <img id="note-image" src="images/blanknote.png" alt="Note" crossorigin="anonymous" draggable="false" style="width:100%;object-fit:contain;opacity:0.85;">
+  </div>
+<script>
+  function updateNoteContainerWidth() {
+    const Noteimg = document.getElementById('note-image');
+    const noteContainer = document.getElementById('note-container');
+    
+    noteContainer.style.width = `${Noteimg.clientWidth * 0.9}px`;
+  }
+
+  window.addEventListener('load', updateNoteContainerWidth);
+  window.addEventListener('resize', updateNoteContainerWidth);
+</script>
+</div>
+    <div class="section i3 parallax full-height">
+    <div class="box2">
+      <div class="textbox-1">
+        And He placed in between you mercy &amp; affection <br> Ar-Rum: 21
+      </div>
+    </div>
+</div>
+    <div class="section c3 full-height">
+      <style>    
+      #NameData, #AttendanceData, #Headcount, #MessageData { 
+        width: 100%; 
+        min-height:10%; 
+        border:none; 
+        margin: 0;
+      }
+      .Name_fieldContainer {
+      position: relative;
+      height: 100%;
+      width: 45%;
+    }
+    .msg_fieldContainer, .Headcount_fieldContainer {
+      position: relative;
+      height: 100%;
+      width: 100%;
+    }
+    .form__input {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      background: #FFFFFF;
+      border: 0.5px solid #fff;
+      border-radius: 0.5em;
+      font-size:1.2em;
+      color: #113c25;
+      padding-left: 10px;
+      font-family: 'The Seasons', auto;
+    }
+    namelabel, selectlabel, msglabel, headcountlabel {
+      position: absolute;
+      background: transparent;
+      color: #113c25;
+      pointer-events: none;
+      font-size: 1.2em;
+      transition: top 350ms ease;
+      left:10px;
+    }
+    headcountlabel, namelabel {
+        top: 35%;  }
+    msglabel {
+        top:42%;  }
+    selectlabel {
+      top: 30%;  }
+    .form__input:hover {
+      border: 0.5px solid #383838;  }
+    .form__input:focus {
+      border: 0.5px solid #113c25;  }
+    input[id="headcount"]:focus ~ headcountlabel,
+    .form__input:not(:placeholder-shown) ~ headcountlabel, input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel, .form__input:not(:placeholder-shown) ~ namelabel, input[id="message"]:focus ~ msglabel, .form__input:not(:placeholder-shown) ~ msglabel, .custom_select:focus ~ selectlabel  {
+      top: -1.3em;  }
+
+    #thanksModal {
+        position: fixed;
+        left: 0; top: 0;
+        width: 100%; height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+    .modal-content {
+        color: #113c25;
+        background-color: white;
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        max-width: 400px;
+        margin: 0 auto;
+        position: relative;
+    }
+    #Headcount {
+      display: none;
+    }
+    .error {
+      width: 100%;
+      font-size: 80%;
+      color: #113c25;
+      background-color: #ffffff;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+.custom-select {
+  position: relative;
+  border-radius: 10px;
+  width: 100%; height:100%;
+}
+
+.custom-select select {
+  display: none;
+}
+
+#attendanceDisplay {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      background: #FFFFFF;
+      border: 0.5px solid #fff;
+      border-radius: 0.5em;
+      font-size:1.2em;
+      color: #113c25;
+      padding-left: 10px;
+}
+
+#attendanceDisplay::after {
+  position: absolute;
+  content: "";
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-color: #113c25 transparent transparent transparent;
+}
+
+#attendanceDisplay.select-arrow-active::after {
+  border-color: transparent transparent #113c25 transparent;
+  top: 45%;
+}
+
+#attendanceOptions {
+  position: absolute;
+  margin-top: 5px;
+  background-color: #ffffff;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  border-radius: 20px; border: 1px solid transparent;
+  border-color: #113c25;
+}
+
+#attendanceOptions div {
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content:center;
+  color: #113c25;
+}
+
+#attendanceOptions div:hover,
+#attendanceOptions .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+    </style>
+  <div style="font-family: 'Pinyon Script', auto; font-size: 5vmin; letter-spacing: 2px; color: #113c25; margin-bottom: 1vh;">Kindly RSVP by 7th December</div>
+  <form novalidate="" style="width:90%; height:90%; display: flex; flex-direction: column; align-items: center; justify-content: space-between; object-fit: contain" id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec">    
+    <div id="NameData" style="display: flex; justify-content: space-between;">
+      <div class="Name_fieldContainer">
+        <input type="text" id="firstname" name="firstname" autocomplete="off" placeholder=" " class="form__input" required="">
+        <namelabel for="firstname">First Name</namelabel>
+      </div>
+      <div class="Name_fieldContainer">
+        <input type="text" id="lastname" name="lastname" autocomplete="off" placeholder=" " class="form__input" required="">
+        <namelabel for="lastname">Last Name</namelabel>
+      </div>
+    </div>
+    <div id="AttendanceData">
+      <div class="custom-select">
+        <div class="select__input" id="attendanceDisplay" style="line-height: 43px;"> </div>
+        <select id="attendance" name="attendance" style="display:none;">
+          <option value="" disabled="" selected=""></option>
+          <option value="Yes">Yes, I will be!</option>
+          <option value="No">No, I won't be attending.</option>
+        </select>
+
+        <div class="select__input-items" id="attendanceOptions" required="" style="display:none;">
+          <div data-value="Yes">Yes, I will be!</div>
+          <div data-value="No">No, I won't be attending.</div>
+          
+        </div>
+                <selectlabel for="attendance">Will you be attending?</selectlabel>
+      </div>
+    </div>
+    <div id="Headcount" style="display: none;">
+      <div class="Headcount_fieldContainer">
+        <input type="number" id="headcount" name="headcount" min="1" autocomplete="off" placeholder=" " class="form__input">
+        <headcountlabel for="headcount">Number of Guests</headcountlabel>
+      </div>
+    </div>
+  <div id="MessageData" style="height: 30%">
+      <div class="msg_fieldContainer">
+        <input type="text" id="message" name="message" autocomplete="off" placeholder=" " class="form__input">
+        <msglabel for="message">Any wishes/messages for the newlyweds?</msglabel>
+    </div>
+  </div>
+  <input class="btn btn-primary" type="submit" value="Submit" style="font-family: 'The Seasons',auto; margin-top:0.7vmin; padding: 1% 5%; font-size: 1.3em; color:white; background-color: #113c25; border-radius:10px; border:none;">
+</form>
+
+  <div id="thanksModal" style="display: none;">
+      <div class="modal-content">
+        <h2 id="modalTitle" style="font-size: 1.7em;">Thanks for the confirmation!</h2>
+        <p id="modalMessage" style="font-size: 1.2em;">See you on 21st December 🥳</p>
+      </div>
+  </div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("bootstrapForm");
+    const selectElement = document.getElementById("attendance");
+    const labelElement = document.querySelector("selectlabel");
+    const GuestField = document.getElementById("Headcount");
+    const modal = document.getElementById("thanksModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalMessage = document.getElementById("modalMessage");
+
+    const firstname = document.getElementById("firstname");
+    const lastname = document.getElementById("lastname");
+    const headcount = document.getElementById("headcount");
+    
+    function showError(input, message) {
+      let target = input.id === "attendance" 
+        ? document.getElementById("attendanceDisplay") 
+        : input;
+      
+      const oldTooltip = target.parentElement.querySelector(".html5tooltip-box");
+      if (oldTooltip) oldTooltip.remove();
+
+      const tooltip = document.createElement("div");
+      tooltip.className = "html5tooltip-box scalein-to";
+      tooltip.style.position = "absolute";
+      tooltip.style.zIndex = "9999";
+
+      const arrow = document.createElement("div");
+      arrow.className = "html5tooltip-arrow";
+
+      const text = document.createElement("div");
+      text.className = "html5tooltip-text";
+      text.textContent = message;
+
+      tooltip.appendChild(arrow);
+      tooltip.appendChild(text);
+      target.parentElement.appendChild(tooltip);
+
+      function updateTooltipPosition() {
+        const rect = target.getBoundingClientRect();
+        const parentRect = target.parentElement.getBoundingClientRect();
+
+        tooltip.style.top = rect.bottom - parentRect.top + 6 + "px";
+        tooltip.style.left = rect.left - parentRect.left + "px";
+      }
+
+      updateTooltipPosition();
+      window.addEventListener("resize", updateTooltipPosition);
+      window.addEventListener("scroll", updateTooltipPosition, true);
+
+      const removeTooltip = () => {
+        tooltip.remove();
+        window.removeEventListener("resize", updateTooltipPosition);
+        window.removeEventListener("scroll", updateTooltipPosition, true);
+      };
+      const TooltipParent = input.id === "attendance" ? document.querySelector(".custom-select") : input;
+      TooltipParent.addEventListener("input", removeTooltip);
+      TooltipParent.addEventListener("change", removeTooltip);
+    }
+
+    selectElement.addEventListener("change", () => {
+    selectElement.parentElement.querySelector('.html5tooltip-box')?.remove();
+      
+      if (selectElement.value === "Yes") {
+        labelElement.style.top = "-1.3em"; 
+        GuestField.style.display = "block";
+        document.getElementById("headcount").setAttribute("required", "");
+        modalTitle.textContent = "Thanks for the confirmation!";
+        modalMessage.textContent = "See you on 21st December 🥳";
+      } 
+      else if (selectElement.value === "No") {
+        labelElement.style.top = "-1.3em";
+        GuestField.style.display = "none";
+        document.getElementById("headcount").removeAttribute("required");
+        modalTitle.textContent = "Aw shucks 🥲";
+        modalMessage.textContent = "See you when I see you";
+      }
+    });
+
+    const customSelect = document.querySelector(".custom-select");
+    const selectDisplay = document.getElementById("attendanceDisplay");
+    const selectHidden = document.getElementById("attendance");
+    const optionsBox = document.getElementById("attendanceOptions");
+
+    function centerSelectDisplay() {
+      const height = selectDisplay.offsetHeight;
+      selectDisplay.style.lineHeight = height + "px";
+    }
+    centerSelectDisplay();
+    window.addEventListener("resize", centerSelectDisplay);
+
+    selectDisplay.addEventListener("click", () => {
+      const isOpen = optionsBox.style.display === "block";
+      optionsBox.style.display = isOpen ? "none" : "block";
+      selectDisplay.classList.toggle("select-arrow-active", !isOpen);
+    });
+
+    optionsBox.querySelectorAll("div").forEach(option => {
+      option.addEventListener("click", () => {
+        selectDisplay.textContent = option.textContent;
+        selectHidden.value = option.dataset.value;
+
+        selectHidden.dispatchEvent(new Event("change"));
+
+        optionsBox.style.display = "none";
+        selectDisplay.classList.remove("select-arrow-active");
+        centerSelectDisplay();
+      });
+    });
+
+    window.addEventListener("click", e => {
+      if (!customSelect.contains(e.target)) {
+        optionsBox.style.display = "none";
+      }
+    });
+    
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+
+      let valid = true;
+
+      if (!firstname.value.trim()) {
+        showError(firstname, "Please enter your first name");
+        valid = false;
+      }
+
+      if (!lastname.value.trim()) {
+        showError(lastname, "Please enter your last name");
+        valid = false;
+      }
+
+      if (!attendance.value.trim()) {
+        showError(attendance, "Please select your attendance");
+        valid = false;
+      }
+
+      if (attendance.value === "Yes" && (!headcount.value.trim() || Number(headcount.value) < 1)) {
+        showError(headcount, "Please enter a valid number of guests");
+        valid = false;
+      }
+
+      if (!valid) return;
+
+      const formData = new FormData(form);  
+      
+      fetch(form.action, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors"
+      });
+
+      form.reset();
+      GuestField.style.display = "none";
+      modal.style.display = "flex";
+
+      const closeHandler = () => {
+        modal.style.display = "none";
+        window.removeEventListener("click", closeHandler);
+        window.removeEventListener("touchstart", closeHandler);
+        window.removeEventListener("touchmove", closeHandler);
+        window.removeEventListener("scroll", closeHandler);
+      };
+
+      window.addEventListener("click", closeHandler, { once: true });
+      window.addEventListener("touchstart", closeHandler, { once: true });
+      window.addEventListener("touchmove", closeHandler, { once: true });
+      window.addEventListener("scroll", closeHandler, { once: true });
+    });
+  });
+</script>
+</div>
+    <div class="section c5">
+  <div id="end-page-container">
+    <div id="countdown-container">
+      <div style="font-size:2em; color:#113C25; font-weight:200; margin-bottom:2vmin;">days till our forever</div>
+      <div class="countdownBox">
+        <div class="SpaceDays">
+          <span id="SpanDays">100</span>
+          <p class="LabelDays">days</p>
+        </div>
+        
+        <div class="SpaceHours">
+          <span id="SpanHours">11</span>
+          <p class="LabelHours">hours</p>
+        </div>
+
+        <div class="SpaceMinutes">
+          <span id="SpanMinutes">28</span>
+          <p class="LabelMinutes">minutes</p>
+        </div>
+
+        <div class="SpaceSeconds">
+          <span id="SpanSeconds">09</span>
+          <p class="LabelSeconds">seconds</p>
+        </div>
+      </div>
+      <div class="D-Day"> 🎉 It's D-day! 🎉 </div>
+    </div>
+    <img src="images/BG6.jpg" alt="polaroids" crossorigin="anonymous" draggable="false" style="width:80%; max-height:40%; object-fit:contain; display:block;">
+    <div id="EndNoteText">
+        <p class="ThanksText">Thank you!</p>
+        <p class="ShoutoutText">We can’t wait to celebrate our marriage with you on 21 December 2025!<br> We hope you all bless us with your well-wishes &amp; good prayers as we move on this new chapter of our lives.</p>
+        <p class="WithLove">With love,<br>Adibah &amp; Abby</p>
+    </div>
+  </div>
+  <script>
+  const targetDate = new Date('2025-12-21T09:00:00+08:00').getTime();
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    document.getElementById('SpanDays').textContent = days.toString().padStart(2, '0');
+    document.getElementById('SpanHours').textContent = hours.toString().padStart(2, '0');
+    document.getElementById('SpanMinutes').textContent = minutes.toString().padStart(2, '0');
+    document.getElementById('SpanSeconds').textContent = seconds.toString().padStart(2, '0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+</div>
   <script>
   document.addEventListener('DOMContentLoaded', function() {
   const sections = document.querySelectorAll('.section');
@@ -1037,6 +1492,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
 
 
