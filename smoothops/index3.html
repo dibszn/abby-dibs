@@ -972,10 +972,11 @@ padding: 3% 3%;
 if (!currentsection.classList.contains('c2')) {
   currentsection.classList.remove('final');
   currentsection.style.display = 'flex';
+  currentsection.style.transition = 'opacity 900ms ease-in-out';
   currentsection.classList.remove('hidden');
 }
         });
-      }, 3500);
+      }, 5000);
         }, 600);
        }, { once: true });
        }, { once: true });      
@@ -1025,4 +1026,5 @@ if (!currentsection.classList.contains('c2')) {
 </script>
 </body>
 </html>
+
 
