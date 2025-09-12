@@ -217,21 +217,12 @@ a{outline:none}
 .clearboth { display: block; clear: both; }
 
 .section {
-  transition: opacity 900ms ease-in-out, visibility 0s 900ms; /* Add delay for visibility */
+  transition: opacity 900ms ease-in-out;
   opacity: 1;
   height: inherit;
 }
-
-.section.hidden {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.section.final {
-  visibility: hidden;
-  opacity: 0;
-}
-
+.section.hidden { opacity: 0; }
+.section.final { display: none; }
 
 .section.c2 { display: flex; flex-direction: column; background-color: #383838; }
 .section.c3 { background-color: #F7F7F7; }
@@ -906,7 +897,7 @@ padding: 3% 3%;
     <img id="note-image" src="images/blanknote.png" alt="Note" crossorigin="anonymous" draggable="false" style="width:100%;object-fit:contain;opacity:0.85;">
   </div>
 <script>
-    const Noteimg = document.getElementById('note-image');
+      const Noteimg = document.getElementById('note-image');
     const noteContainer = document.getElementById('note-container');
   function updateNoteContainerWidth() {
     noteContainer.style.width = `${Noteimg.clientWidth * 0.9}px`;
@@ -1445,7 +1436,6 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
                 currentsection.classList.remove("final");
                 currentsection.style.display = "flex";
                 currentsection.style.transition = "opacity 900ms ease-in-out";
-                currentsection.style.opacity = "1"; // fade in
                 currentsection.classList.remove("hidden");
               }
             });
@@ -1503,6 +1493,4 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
-
-
 
