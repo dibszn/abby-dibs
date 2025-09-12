@@ -221,7 +221,7 @@ a{outline:none}
   opacity: 1;
   height: inherit;
 }
-.section.hidden { opacity: 0; transition: opacity 900ms ease-in-out; }
+.section.hidden { opacity: 0; }
 .section.final { display: none; }
 
 .section.c2 { display: flex; flex-direction: column; background-color: #383838; }
@@ -672,23 +672,22 @@ padding: 3% 3%;
       transform: rotateY(180deg);
     }
 
-.revealBtn {
-  text-align: center;
-  font-size: initial;
-  border: 0; 
-  border-radius: 15px;
-  width: fit-content;
-  max-width: 80vw;
-  padding: .5% 2%; 
-  color: #113c25;
-  font-family: 'Baskerville Display PT', auto;
-  font-style: italic;
-  background-color: #F7F7F7;
-  text-decoration: none;
-  opacity: 0;
-  transition: opacity 1.5s ease;
-  white-space: nowrap;
-}
+    .revealBtn {
+      text-align:center;
+      border:0; 
+      border-radius:15px;
+      max-width:60%;
+      width: fit-content;
+      padding: .5% 2%;
+      font-size:initial;
+      color:#113c25;
+      font-family: 'Baskerville Display PT',auto;
+      font-style: italic;
+      background-color:#F7F7F7;
+      text-decoration:none;
+      opacity: 0;
+      transition: opacity 1.5s ease;
+    }
     #revealBtn.visible {
       opacity: 1;
     }
@@ -896,7 +895,6 @@ padding: 3% 3%;
     <img id="note-image" src="images/blanknote.png" alt="Note" crossorigin="anonymous" draggable="false" style="width:100%;object-fit:contain;opacity:0.85;">
   </div>
 <script>
-  window.addEventListener('DOMContentLoaded',function() {
   function updateNoteContainerWidth() {
     const Noteimg = document.getElementById('note-image');
     const noteContainer = document.getElementById('note-container');
@@ -904,9 +902,8 @@ padding: 3% 3%;
     noteContainer.style.width = `${Noteimg.clientWidth * 0.9}px`;
   }
 
-  window.addEventListener('load', updateNoteContainerWidth);
-  window.addEventListener('resize', updateNoteContainerWidth);
-  });
+  document.addEventListener('load', updateNoteContainerWidth);
+  document.addEventListener('resize', updateNoteContainerWidth);
 </script>
 </div>
     <div class="section i3 parallax full-height hidden final">
@@ -1445,7 +1442,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
           { once: true }
         );
       }
-    }, 3000); // delay before fade out starts
+    }, 3000);
   }, 600);
 }, { once: true });
        }, { once: true });      
@@ -1495,5 +1492,3 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
-
-
