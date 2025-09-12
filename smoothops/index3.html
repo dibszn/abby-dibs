@@ -221,7 +221,7 @@ a{outline:none}
   opacity: 1;
   height: inherit;
 }
-.section.hidden { opacity: 0; }
+.section.hidden { opacity: 0; transition: opacity 900ms ease-in-out; }
 .section.final { display: none; }
 
 .section.c2 { display: flex; flex-direction: column; background-color: #383838; }
@@ -672,20 +672,23 @@ padding: 3% 3%;
       transform: rotateY(180deg);
     }
 
-    .revealBtn {
-      text-align:center;
-      border:0; 
-      border-radius:15px;
-      width:auto; padding: .5% 2%;
-      font-size:15%;
-      color:#113c25;
-      font-family: 'Baskerville Display PT',auto;
-      font-style: italic;
-      background-color:#F7F7F7;
-      text-decoration:none;
-      opacity: 0;
-      transition: opacity 1.5s ease;
-    }
+.revealBtn {
+  text-align: center;
+  font-size: initial;
+  border: 0; 
+  border-radius: 15px;
+  width: fit-content;
+  max-width: 80vw;
+  padding: .5% 2%; 
+  color: #113c25;
+  font-family: 'Baskerville Display PT', auto;
+  font-style: italic;
+  background-color: #F7F7F7;
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+  white-space: nowrap;
+}
     #revealBtn.visible {
       opacity: 1;
     }
@@ -893,6 +896,7 @@ padding: 3% 3%;
     <img id="note-image" src="images/blanknote.png" alt="Note" crossorigin="anonymous" draggable="false" style="width:100%;object-fit:contain;opacity:0.85;">
   </div>
 <script>
+  window.addEventListener('DOMContentLoaded',function() {
   function updateNoteContainerWidth() {
     const Noteimg = document.getElementById('note-image');
     const noteContainer = document.getElementById('note-container');
@@ -902,6 +906,7 @@ padding: 3% 3%;
 
   window.addEventListener('load', updateNoteContainerWidth);
   window.addEventListener('resize', updateNoteContainerWidth);
+  });
 </script>
 </div>
     <div class="section i3 parallax full-height hidden final">
@@ -1490,4 +1495,5 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
