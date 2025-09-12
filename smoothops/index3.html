@@ -902,8 +902,8 @@ padding: 3% 3%;
     noteContainer.style.width = `${Noteimg.clientWidth * 0.9}px`;
   }
 
-  document.addEventListener('load', updateNoteContainerWidth);
-  document.addEventListener('resize', updateNoteContainerWidth);
+  window.addEventListener('load', updateNoteContainerWidth);
+  window.addEventListener('resize', updateNoteContainerWidth);
 </script>
 </div>
     <div class="section i3 parallax full-height hidden final">
@@ -1492,3 +1492,4 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
