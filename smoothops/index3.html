@@ -204,7 +204,7 @@
 body, html { height: 100%; }
 body
 {
-  background-color:#E6E4DD;
+  background-color:#383838;
   color: white;
   font-family: '4', Arial, sans-serif;
   margin: 0;
@@ -268,7 +268,8 @@ a{outline:none}
 flex-direction: column;
 align-items: center;
 font-size: 2vmin; 
-font-family: 'The Seasons', auto; 
+font-family: 'Baskerville Display PT', auto; 
+font-style: italic;
 gap: 5vmin;
 justify-content: space-between; 
 padding: 3% 3%;
@@ -673,6 +674,7 @@ padding: 3% 3%;
     }
 
     .revealBtn {
+      display:flex;
       text-align:center;
       border:0; 
       border-radius:15px;
@@ -902,8 +904,8 @@ padding: 3% 3%;
     noteContainer.style.width = `${Noteimg.clientWidth * 0.9}px`;
   }
 
-  window.addEventListener('load', updateNoteContainerWidth);
-  window.addEventListener('resize', updateNoteContainerWidth);
+  Noteimg.addEventListener('load', updateNoteContainerWidth);
+  Noteimg.addEventListener('resize', updateNoteContainerWidth);
 </script>
 </div>
     <div class="section i3 parallax full-height hidden final">
@@ -941,7 +943,8 @@ padding: 3% 3%;
       font-size:1.2em;
       color: #113c25;
       padding-left: 10px;
-      font-family: 'The Seasons', auto;
+      font-family: 'Baskerville Display PT', auto; 
+      font-style: italic;
     }
     namelabel, selectlabel, msglabel, headcountlabel {
       position: absolute;
@@ -1492,4 +1495,5 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
