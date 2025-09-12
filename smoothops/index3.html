@@ -1348,7 +1348,6 @@ padding: 3% 3%;
       initAnimation();
     }
   }
-  console.log(sections);
   images.forEach(function(img) {
     img.addEventListener('load', checkImagesLoaded);
     if (img.complete) checkImagesLoaded();
@@ -1435,7 +1434,6 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
               if (!currentsection.classList.contains("c2")) {
                 currentsection.classList.remove("final");
                 currentsection.style.display = "flex";
-                currentsection.style.transition = "opacity 1500ms ease-in-out";
                 currentsection.classList.remove("hidden");
               }
             });
@@ -1493,5 +1491,6 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
 
