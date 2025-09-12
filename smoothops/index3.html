@@ -217,7 +217,6 @@ a{outline:none}
 .clearboth { display: block; clear: both; }
 
 .section {
-  transition: opacity 2000ms ease-in-out;
   opacity: 1;
   height: inherit;
 }
@@ -1103,7 +1102,7 @@ padding: 3% 3%;
         <msglabel for="message">Any wishes/messages for the newlyweds?</msglabel>
     </div>
   </div>
-  <input class="btn btn-primary" type="submit" value="Submit" style="font-family: 'The Seasons',auto; margin-top:0.7vmin; padding: 1% 5%; font-size: 1.3em; color:white; background-color: #113c25; border-radius:10px; border:none;">
+  <input class="btn btn-primary" type="submit" value="Submit" style="font-family: 'Baskerville Display PT',auto; margin-top:0.7vmin; padding: 1% 5%; font-size: 1.3em; color:white; background-color: #113c25; border-radius:10px; border:none;">
 </form>
 
   <div id="thanksModal" style="display: none;">
@@ -1427,6 +1426,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
       if (c2) {
         c2.style.transition = "opacity 900ms ease-in-out";
         c2.style.opacity = "0";
+        const bgimgs= document.querySelectorAll('.section background-image');
 
         c2.addEventListener("transitionend",() => {
             c2.remove();
@@ -1435,6 +1435,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
                 currentsection.classList.remove("final");
                 currentsection.style.display = "flex";
                 currentsection.classList.remove("hidden");
+                currentsection.style.transition = "opacity 900ms ease-in-out";
               }
             });
           },
@@ -1491,6 +1492,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
 
 
