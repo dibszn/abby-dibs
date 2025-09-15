@@ -593,7 +593,6 @@ padding: 3% 3%;
     display: none;
     max-width:95%;
     max-height:95%;
-    perspective: 1000px;
     }
 
     #EnvelopeFlip {
@@ -677,7 +676,7 @@ padding: 3% 3%;
       text-align:center;
       border:0; 
       border-radius:15px;
-      max-width:60%;
+      max-width:70%;
       width: fit-content;
       padding: .5% 2%;
       font-size:initial;
@@ -868,7 +867,7 @@ padding: 3% 3%;
       </div>
     </div>
 
-  <button id="revealBtn" class="revealBtn">Reveal now</button>
+  <button id="revealBtn" class="revealBtn">Step into the celebration</button>
 
 </div>
     <div class="section i1 parallax full-height hidden final">
@@ -1289,7 +1288,7 @@ padding: 3% 3%;
   });
 </script>
 </div>
-    <div class="section c5 hide final">
+    <div class="section c5 height-80 hide final">
   <div id="end-page-container">
     <div id="countdown-container">
       <div style="font-size:2em; color:#113C25; font-weight:200; margin-bottom:2vmin;">days till our forever</div>
@@ -1409,6 +1408,7 @@ padding: 3% 3%;
           document.getElementById("EnvelopeFront").style.opacity = '0';
           document.getElementById("EnvelopeStamp").style.opacity = '0';
           document.getElementById("FrontText").style.opacity = '0';
+          document.getElementById("FrontPage").src = 'images/PoemFront2.png';
         }, 1600);
       }, { once: true });
     }
@@ -1420,7 +1420,6 @@ padding: 3% 3%;
       revealBtn.classList.remove('visible');
       document.getElementById("FrontPage").classList.replace('slid','slidReverse');
       document.getElementById("FrontPage").classList.remove('down');
-      document.getElementById("FrontPage").src = 'images/PoemFront2.png';
       Page1.classList.add('PageReturn');
       Page1.id = 'newPage1';
       
@@ -1442,7 +1441,6 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
                 currentsection.classList.remove("final");
                 currentsection.style.display = "flex";
                 currentsection.style.transition = "opacity 900ms ease-in-out";
-                currentsection.style.height = "";
                 currentsection.classList.remove("hide");
               }
             });
@@ -1501,6 +1499,3 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
-
-
-
