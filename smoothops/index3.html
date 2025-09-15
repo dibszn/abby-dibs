@@ -895,16 +895,23 @@ padding: 3% 3%;
     </div>
     <img id="note-image" src="images/blanknote.png" alt="Note" crossorigin="anonymous" draggable="false" style="width:100%;object-fit:contain;opacity:0.85;">
   </div>
-<script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
       const Noteimg = document.getElementById('note-image');
-    const noteContainer = document.getElementById('note-container');
-  function updateNoteContainerWidth() {
-    noteContainer.style.width = `${Noteimg.clientWidth * 0.9}px`;
-  }
+      const noteContainer = document.getElementById('note-container');
 
-  Noteimg.addEventListener('load', updateNoteContainerWidth);
-  Noteimg.addEventListener('resize', updateNoteContainerWidth);
-</script>
+      function updateNoteContainerWidth() {
+        noteContainer.style.width = `${Noteimg.clientWidth * 0.9}px`;
+      }
+
+      if (Noteimg.complete) {
+      updateNoteContainerWidth();
+      }
+
+      Noteimg.addEventListener('load', updateNoteContainerWidth);
+      window.addEventListener('resize', updateNoteContainerWidth);
+    });
+  </script>
 </div>
     <div class="section i3 parallax full-height hide final">
     <div class="box2">
@@ -965,7 +972,7 @@ padding: 3% 3%;
       border: 0.5px solid #113c25;  }
     input[id="headcount"]:focus ~ headcountlabel,
     .form__input:not(:placeholder-shown) ~ headcountlabel, input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel, .form__input:not(:placeholder-shown) ~ namelabel, input[id="message"]:focus ~ msglabel, .form__input:not(:placeholder-shown) ~ msglabel, .custom_select:focus ~ selectlabel  {
-      top: -1.3em;  }
+      top: -1.5em;  }
 
     #thanksModal {
         position: fixed;
@@ -1493,4 +1500,5 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
