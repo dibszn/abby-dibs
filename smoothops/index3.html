@@ -909,7 +909,7 @@ padding: 3% 3%;
       }
 
       Noteimg.addEventListener('load', updateNoteContainerWidth);
-      window.addEventListener('resize', updateNoteContainerWidth);
+      document.addEventListener('LandingPageEnds', updateNoteContainerWidth);
     });
   </script>
 </div>
@@ -1109,7 +1109,7 @@ padding: 3% 3%;
         <msglabel for="message">Any wishes/messages for the newlyweds?</msglabel>
     </div>
   </div>
-  <input class="btn btn-primary" type="submit" value="Submit" style="font-family: 'Baskerville Display PT',auto; margin-top:0.7vmin; padding: 1% 5%; font-size: 1.3em; color:white; background-color: #113c25; border-radius:10px; border:none;">
+  <input class="btn btn-primary" type="submit" value="Submit" style="font-family: 'Baskerville Display PT',auto; font-style: italic; margin-top:0.7vmin; padding: 1% 5%; font-size: 1.1em; color:white; background-color: #113c25; border-radius:20px; border:none;">
 </form>
 
   <div id="thanksModal" style="display: none;">
@@ -1442,10 +1442,11 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
                 currentsection.classList.remove("final");
                 currentsection.style.display = "flex";
                 currentsection.style.transition = "opacity 900ms ease-in-out";
+                currentsection.style.height = "";
                 currentsection.classList.remove("hide");
-                
               }
             });
+          document.dispatchEvent(new Event('LandingPageEnds'));
           },
           { once: true }
         );
@@ -1500,5 +1501,6 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
 
