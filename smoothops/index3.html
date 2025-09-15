@@ -592,7 +592,11 @@ padding: 3% 3%;
     display: none;
     max-width:95%;
     max-height:95%;
-      perspective: 500px;
+    -moz-perspective:900px;
+    -ms-perspective:900px;
+    -o-perspective:900px;
+    -webkit-perspective:900px;
+    perspective:900px
     }
 
     #EnvelopeFlip {
@@ -1499,6 +1503,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
 
 
