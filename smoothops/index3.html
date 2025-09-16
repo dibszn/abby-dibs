@@ -219,8 +219,6 @@ a{outline:none}
 .section {
   opacity: 1;
   height: inherit;
-  display: flex;
-  align-items:center; align-content:center; justify-content:center;
 }
 .section.hide { opacity: 0; }
 .section.final { display: none; }
@@ -229,7 +227,6 @@ a{outline:none}
 .section.c3 { background-color: #F7F7F7; }
 .section.c4 { background-color: #E39B7D; }
 .section.c5 { background-color: #E6E4DD; }
-.section.c6 { background-color: #93AD9D; }
 
 .section.i1,
 .section.i2,
@@ -875,128 +872,9 @@ padding: 3% 3%;
     </div>
 
   <button id="revealBtn" class="revealBtn">Step into the celebration</button>
-  <script>
-  document.addEventListener('DOMContentLoaded', function() {
-  const sections = document.querySelectorAll('.section');
-  const images = document.querySelectorAll('.section.c2 img');
-  let loadedImages = 0;
-  
-  function checkImagesLoaded() {
-    loadedImages++;
-    if (loadedImages === images.length) {
-      document.getElementById('EnvelopeContainer').style.display = 'block';
-      initAnimation();
-    }
-  }
-  images.forEach(function(img) {
-    img.addEventListener('load', checkImagesLoaded);
-    if (img.complete) checkImagesLoaded();
-  });
 
-  function initAnimation() {
-    const envelopeFlip = document.getElementById('EnvelopeFlip');
-    const sealWrap = document.getElementById('EnvelopeSealWrap');
-    const sealOldImg = document.getElementById('EnvelopeSealOld');
-    const sealNewImg = document.getElementById('EnvelopeSealNew');
-    const foldImg = document.getElementById('EnvelopeFold');
-    const Page1 = document.getElementById('Page1');
-    const revealBtn = document.getElementById('revealBtn');
-
-    const foldHeight = foldImg.offsetHeight;
-    const sealHeight = sealOldImg.offsetHeight;
-    const newSealImgHeight = foldHeight + sealHeight + 'px';
-
-    function animateEnvelope() {
-      envelopeFlip.removeEventListener('click', animateEnvelope);
-      envelopeFlip.removeEventListener('touchstart', animateEnvelope);
-      envelopeFlip.classList.add('flip');
-
-      envelopeFlip.addEventListener('transitionend', function() {
-        sealWrap.classList.add('opened');
-        sealNewImg.style.height = "newSealImgHeight";
-        sealOldImg.style.height = "newSealImgHeight";
-        sealOldImg.classList.add('hidden');
-        sealNewImg.classList.remove('hidden');
-      }, { once: true });
-
-      sealWrap.addEventListener('transitionend', function() {
-        document.getElementById("EnvelopeFold").style.zIndex = '1000';
-        document.getElementById("EnvelopeSealWrap").style.zIndex = '-1';
-        document.querySelectorAll('.envContents').forEach(img => {
-          img.classList.add('slid');
-        });
-      }, { once: true });
-
-      Page1.addEventListener('animationend', function() {
-        setTimeout(() => {
-          document.getElementById("EnvelopeFold").style.zIndex = '-1';
-          document.querySelectorAll('.envContents').forEach(img => {
-            img.classList.add('down');
-          });
-          document.getElementById("EnvelopeSealWrap").classList.add('SealSlide');
-          document.getElementById("EnvelopeFold").classList.add('envSlide');
-        }, 200);
-        setTimeout(() => {
-          revealBtn.classList.add('visible');
-          document.getElementById("EnvelopeSealWrap").style.opacity = '0';
-          document.getElementById("EnvelopeFold").style.opacity = '0';
-          document.getElementById("EnvelopeFront").style.opacity = '0';
-          document.getElementById("EnvelopeStamp").style.opacity = '0';
-          document.getElementById("FrontText").style.opacity = '0';
-        }, 1600);
-      }, { once: true });
-    }
-
-    envelopeFlip.addEventListener('click', animateEnvelope);
-    envelopeFlip.addEventListener('touchstart', animateEnvelope);
-
-    revealBtn.addEventListener('click', function() {
-      revealBtn.classList.remove('visible');
-       document.getElementById("FrontPage").src = 'images/PoemFront2.png';
-      document.getElementById("FrontPage").classList.replace('slid','slidReverse');
-      document.getElementById("FrontPage").classList.remove('down');
-      document.dispatchEvent(new Event('Page1Changed'));
-      Page1.classList.add('PageReturn');
-      Page1.id = 'newPage1';
-      
-document.getElementById("newPage1").addEventListener('Page1Changed', function () {
-  setTimeout(() => {
-    envelopeFlip.classList.remove("flip");
-  }, 600);
-  setTimeout(() => {
-      const c2 = document.querySelector(".section.c2");
-      if (c2) {
-        c2.style.transition = "opacity 900ms ease-in-out";
-        c2.style.opacity = "0";
-
-        c2.addEventListener("transitionend",() => {
-            c2.remove();
-          document.querySelector(".section.c6").classList.remove('final');
-          document.querySelector(".section.c6").style.display = 'flex';
-          document.querySelector(".section.c6").classList.remove('hide');
-          document.dispatchEvent(new Event('LandingPageEnds'));
-          },
-          { once: true }
-        );
-      }
-    }, 3000);
-}, { once: true });
-       }, { once: true });      
-  }
-  });
-</script>
 </div>
-
-<div class="section c6 full-height hide final">
-  <div class="textbox3" style="position: relative; height:100%; width: 97%; background-color: #fff; align-items: center; align-content: center; text-align: center;">
-    <p style="text-align:center; font-size:5vw;margin:0;color:rgb(17,60,37); font-family: 'Pinyon Script', auto;">You're invited!</p>
-  </div>
-  <img src="images/bottomlily.png" crossorigin="anonymous" draggable="false" style="height:100%;object-fit:contain;display:block; position: absolute; left: 1.5%; bottom:-3%;overflow:hidden;">
-</div>
-
-
-    
-    <div class="section i1 parallax full-height hide final">
+    <div class="section i1 parallax full-height hidden final">
   <div id="LogoContainer">
     <img src="images/logo trs.png" alt="Logo" crossorigin="anonymous" draggable="false" style="width:100%;height:100%;object-fit:contain;display:block;">
   </div>
@@ -1466,6 +1344,122 @@ document.getElementById("newPage1").addEventListener('Page1Changed', function ()
   setInterval(updateCountdown, 1000);
 </script>
 </div>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+  const sections = document.querySelectorAll('.section');
+  const images = document.querySelectorAll('.section.c2 img');
+  let loadedImages = 0;
+  
+  function checkImagesLoaded() {
+    loadedImages++;
+    if (loadedImages === images.length) {
+      document.getElementById('EnvelopeContainer').style.display = 'block';
+      initAnimation();
+    }
+  }
+  images.forEach(function(img) {
+    img.addEventListener('load', checkImagesLoaded);
+    if (img.complete) checkImagesLoaded();
+  });
+
+  function initAnimation() {
+    const envelopeFlip = document.getElementById('EnvelopeFlip');
+    const sealWrap = document.getElementById('EnvelopeSealWrap');
+    const sealOldImg = document.getElementById('EnvelopeSealOld');
+    const sealNewImg = document.getElementById('EnvelopeSealNew');
+    const foldImg = document.getElementById('EnvelopeFold');
+    const Page1 = document.getElementById('Page1');
+    const revealBtn = document.getElementById('revealBtn');
+
+    const foldHeight = foldImg.offsetHeight;
+    const sealHeight = sealOldImg.offsetHeight;
+    const newSealImgHeight = foldHeight + sealHeight + 'px';
+
+    function animateEnvelope() {
+      envelopeFlip.removeEventListener('click', animateEnvelope);
+      envelopeFlip.removeEventListener('touchstart', animateEnvelope);
+      envelopeFlip.classList.add('flip');
+
+      envelopeFlip.addEventListener('transitionend', function() {
+        sealWrap.classList.add('opened');
+        sealNewImg.style.height = "newSealImgHeight";
+        sealOldImg.style.height = "newSealImgHeight";
+        sealOldImg.classList.add('hidden');
+        sealNewImg.classList.remove('hidden');
+      }, { once: true });
+
+      sealWrap.addEventListener('transitionend', function() {
+        document.getElementById("EnvelopeFold").style.zIndex = '1000';
+        document.getElementById("EnvelopeSealWrap").style.zIndex = '-1';
+        document.querySelectorAll('.envContents').forEach(img => {
+          img.classList.add('slid');
+        });
+      }, { once: true });
+
+      Page1.addEventListener('animationend', function() {
+        setTimeout(() => {
+          document.getElementById("EnvelopeFold").style.zIndex = '-1';
+          document.querySelectorAll('.envContents').forEach(img => {
+            img.classList.add('down');
+          });
+          document.getElementById("EnvelopeSealWrap").classList.add('SealSlide');
+          document.getElementById("EnvelopeFold").classList.add('envSlide');
+        }, 200);
+        setTimeout(() => {
+          revealBtn.classList.add('visible');
+          document.getElementById("EnvelopeSealWrap").style.opacity = '0';
+          document.getElementById("EnvelopeFold").style.opacity = '0';
+          document.getElementById("EnvelopeFront").style.opacity = '0';
+          document.getElementById("EnvelopeStamp").style.opacity = '0';
+          document.getElementById("FrontText").style.opacity = '0';
+          document.getElementById("FrontPage").src = 'images/PoemFront2.png';
+        }, 1600);
+      }, { once: true });
+    }
+
+    envelopeFlip.addEventListener('click', animateEnvelope);
+    envelopeFlip.addEventListener('touchstart', animateEnvelope);
+
+    revealBtn.addEventListener('click', function() {
+      revealBtn.classList.remove('visible');
+      document.getElementById("FrontPage").classList.replace('slid','slidReverse');
+      document.getElementById("FrontPage").classList.remove('down');
+      Page1.classList.add('PageReturn');
+      Page1.id = 'newPage1';
+      
+document.getElementById("newPage1").addEventListener("animationend", function () {
+  setTimeout(() => {
+    envelopeFlip.classList.remove("flip");
+
+    setTimeout(() => {
+      const c2 = document.querySelector(".section.c2");
+      if (c2) {
+        c2.style.transition = "opacity 900ms ease-in-out";
+        c2.style.opacity = "0";
+        const bgimgs= document.querySelectorAll('.section background-image');
+
+        c2.addEventListener("transitionend",() => {
+            c2.remove();
+            sections.forEach(function (currentsection) {
+              if (!currentsection.classList.contains("c2")) {
+                currentsection.classList.remove("final");
+                currentsection.style.display = "flex";
+                currentsection.style.transition = "opacity 900ms ease-in-out";
+                currentsection.classList.remove("hide");
+              }
+            });
+          document.dispatchEvent(new Event('LandingPageEnds'));
+          },
+          { once: true }
+        );
+      }
+    }, 3000);
+  }, 600);
+}, { once: true });
+       }, { once: true });      
+  }
+  });
+</script>
   
 <script>
 (function(p,r,l,x){
@@ -1509,7 +1503,3 @@ document.getElementById("newPage1").addEventListener('Page1Changed', function ()
 </script>
 </body>
 </html>
-
-
-
-
