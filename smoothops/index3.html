@@ -331,7 +331,7 @@ input {
   position: relative;
   aspect-ratio: 0.717;
   max-width: 85%;
-  max-height: 80%;
+  height: 70%;
 }
 #plyrContainer
 {
@@ -1187,6 +1187,7 @@ input {
       const TooltipParent = input.id === "attendance" ? document.querySelector(".custom-select") : input;
       TooltipParent.addEventListener("input", removeTooltip);
       TooltipParent.addEventListener("change", removeTooltip);
+      TooltipParent.addEventListener("shown", removeTooltip);
     }
 
     selectElement.addEventListener("change", () => {
@@ -1217,6 +1218,8 @@ input {
       const isOpen = optionsBox.style.display === "block";
       optionsBox.style.display = isOpen ? "none" : "block";
       selectDisplay.classList.toggle("select-arrow-active", !isOpen);
+
+      optionsBox.dispatchEvent(new Event("shown"));
     });
 
     optionsBox.querySelectorAll("div").forEach(option => {
@@ -1499,3 +1502,4 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
