@@ -974,7 +974,7 @@ input {
       top: 20%;  }
     input[id="headcount"]:focus ~ headcountlabel, input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel, input[id="message"]:focus ~ msglabel,
     input[id="headcount"]:not(:placeholder-shown) ~ headcountlabel, input[id="firstname"]:not(:placeholder-shown) ~ namelabel, input[id="lastname"]:not(:placeholder-shown) ~ namelabel,
-    input[id="message"]:not(:placeholder-shown) ~ msglabel, .custom_select:focus ~ selectlabel  {
+    input[id="message"]:not(:placeholder-shown) ~ msglabel, .custom_select:focus ~ selectlabel, #attendanceDisplay.select-arrow-active ~ selectlabel {
       top: -1.5em;  }
 
     #thanksModal {
@@ -1219,7 +1219,9 @@ input {
       optionsBox.style.display = isOpen ? "none" : "block";
       selectDisplay.classList.toggle("select-arrow-active", !isOpen);
 
+      if (!isOpen) {
       optionsBox.dispatchEvent(new Event("shown"));
+      }
     });
 
     optionsBox.querySelectorAll("div").forEach(option => {
@@ -1502,4 +1504,5 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
