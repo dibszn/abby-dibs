@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<html><head>
 <title>Gift Registry</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="content-security-policy" content="default-src 'none'; connect-src 'self' https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; media-src 'self' data:; script-src 'unsafe-inline' data:; object-src 'self' data:; frame-src 'self' data:;">
@@ -33,7 +31,15 @@ a {
     font-style: italic;
     outline: none;
   }
-  
+  p {
+        font-family: 'Baskerville Display PT', auto;
+    font-style: italic;
+    font-size: 1.2em;
+    text-align: center;
+    white-space: pre-wrap;
+    margin: 0;
+    padding: 0;
+  }
 .section {
   opacity: 1;
   display: flex;
@@ -166,6 +172,11 @@ a {
 
 <div class="section c2">
   <style>
+    #textContainer {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    }
   .wrapper {
   margin-top: 2vh;
   padding-bottom: 3vh;
@@ -214,16 +225,17 @@ a {
 }
     
 </style>
- <img src="giftimgs/favicon.png" crossorigin="anonymous" draggable="false" style="position: absolute;top: 2vh;width: 6%; filter: invert(1);">
-  <div style="display: flex; flex-direction: column;align-items: center;gap: 1vmin;">
-  <div style="font-family: 'Baskerville Display PT', auto; font-style: italic; text-align: center; font-size: 1.5em; color: #113c25; margin:0; padding:0; width: 80%;">We know how stressful it is to pick a gift for newlyweds, the worry of it being duplicates, the aesthetics, etc. Hence why we curated this gift registry as a guide for you to decide what to get us (should you choose to!)</div>
-  <div style="font-family: 'Baskerville Display PT', auto; font-style: italic; text-align: center; font-size: 1em; color: #113c25; margin:0; padding:0; width: 60%;">P.S: You don't need to get us the exact item we linked here, we are absolutely happy with whatever you wish to gift us. Do contact us should you decide to ship the item direcly to us rather than bringing it to the ceremony.</div>
-  </div>
+    <div id="textContainer">
+ <img src="giftimgs/favicon.png" crossorigin="anonymous" draggable="false" style="/* position: absolute; */top: 2vh;width: 6%;filter: invert(1);">
+<p style="width:80%">We know how stressful it is to pick a gift for newlyweds, the worry of it being duplicates, the aesthetics, etc. Hence why we curated this gift registry as a guide for you to decide what to get us (should you choose to!)</p>
+  <p style="font-size: 0.8em; width:60%">P.S: You don't need to get us the exact item we linked here, we are absolutely happy with whatever you wish to gift us. Do contact us should you decide to ship the item direcly to us rather than bringing it to the ceremony.</p>
     
 <div style="display:flex; flex-direction: row; justify-content: space-around; align-items: center; width:30%;">
   <a href="https://wa.me/+60193821659" target="_blank">Text Dibs on WhatsApp!</a>
   <a href="https://wa.me/+60106582212" target="_blank">Text Abby on WhatsApp!</a>
   </div>
+    </div>
+  
   <div class="wrapper">
   <div class="card" style="--i:1">
     <img src="giftimgs/toaster.png" crossorigin="anonymous" draggable="false" style="object-fit:contain;display:block;">
