@@ -920,6 +920,21 @@ a{outline:none}
 </div>
     <div class="section c3 hide final">
       <style>    
+      .btn-primary {
+        display:flex;
+        text-align:center;
+        border:0; 
+        border-radius:25px;
+        max-width:70%;
+        width: fit-content;
+        padding: .5% 1%;
+        font-size: larger;
+        color:#113c25;
+        font-family: 'Baskerville Display PT',auto;
+        font-style: italic;
+        background-color:#F7F7F7;
+        text-decoration:none;
+    }
       #NameData, #AttendanceData, #Headcount, #MessageData { 
         width: 100%; 
         min-height:10%; 
@@ -1066,7 +1081,10 @@ a{outline:none}
   background-color: rgba(0, 0, 0, 0.1);
 }
     </style>
-  <div style="font-family: 'Pinyon Script'; font-style: normal; font-size: 5vmin; letter-spacing: 2px; margin-bottom: 1vh;">Kindly RSVP by 7th December</div>
+  <div>
+    <div style="font-family: 'Pinyon Script'; font-style: normal; font-size: 5em; letter-spacing: 2px; margin-bottom: 1vh;text-align: center">Please RSVP</div>
+    <p style="text-align:center;white-space:pre-wrap; font-size: 1.5em;"> Please let us know if you will be able to join in the joy and celebration by <strong>7th December 2025</strong></p>
+  </div>
   <form novalidate="" style="width:90%; height:90%; display: flex; flex-direction: column; align-items: center; justify-content: space-between; object-fit: contain" id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec">    
     <div id="NameData" style="display: flex; justify-content: space-between;">
       <div class="Name_fieldContainer">
@@ -1107,7 +1125,7 @@ a{outline:none}
         <msglabel for="message">Any wishes/messages for the newlyweds?</msglabel>
     </div>
   </div>
-  <input class="btn btn-primary" type="submit" value="Submit" style="text-align:center; border:0; border-radius:25px; max-width:70%;width: fit-content;padding: .5% 1%;font-size: larger;color:#113c25;font-family: 'Baskerville Display PT',auto;font-style: italic;background-color:#F7F7F7; text-decoration:none;">
+  <input class="btn btn-primary" type="submit" value="Submit">
 </form>
 
   <div id="thanksModal" style="display: none;">
@@ -1494,4 +1512,5 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
