@@ -877,7 +877,7 @@ padding: 2% 2%;
   <button id="revealBtn" class="revealBtn">Step into the celebration</button>
 
 </div>
-    <div class="section i1 parallax full-height hidden final">
+    <div class="section i1 parallax full-height hide final">
   <div id="LogoContainer">
     <img src="images/logo trs.png" alt="Logo" crossorigin="anonymous" draggable="false" style="width:100%;height:100%;object-fit:contain;display:block;">
   </div>
@@ -1446,8 +1446,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
             sections.forEach(function (currentsection) {
               if (!currentsection.classList.contains("c2")) {
                 currentsection.classList.remove("final");
-                currentsection.style.display.replace('none','flex')
-                currentsection.style.transition = "opacity 900ms ease-in-out";
+                currentsection.style.display.replace('none','flex');
                 currentsection.classList.remove("hide");
               }
             });
@@ -1506,6 +1505,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
 
 
