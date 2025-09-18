@@ -965,13 +965,9 @@ input {
       font-size: 1.2em;
       transition: top 350ms ease;
       left:10px;
+      top: 0.5em
     }
-    headcountlabel, namelabel {
-        top: 37%;  }
-    msglabel {
-        top:35%;  }
-    selectlabel {
-      top: 20%;  }
+
     input[id="headcount"]:focus ~ headcountlabel, input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel, input[id="message"]:focus ~ msglabel,
     input[id="headcount"]:not(:placeholder-shown) ~ headcountlabel, input[id="firstname"]:not(:placeholder-shown) ~ namelabel, input[id="lastname"]:not(:placeholder-shown) ~ namelabel,
     input[id="message"]:not(:placeholder-shown) ~ msglabel, .custom_select:focus ~ selectlabel, #attendanceDisplay.select-arrow-active ~ selectlabel {
@@ -1027,7 +1023,7 @@ input {
     color: #113c25;
     border-style: none none solid none;
     border-color: transparent transparent #113c25 transparent;
-    padding: 1.5% 0.5%;
+    padding: 1.8% 0.5%;
     font-family: 'Baskerville Display PT', auto;
     font-style: italic;
 }
@@ -1504,5 +1500,6 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
 
