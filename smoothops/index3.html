@@ -969,9 +969,9 @@ input {
     headcountlabel, namelabel {
         top: 37%;  }
     msglabel {
-        top:15%;  }
+        top:35%;  }
     selectlabel {
-      top: 32%;  }
+      top: 20%;  }
     input[id="headcount"]:focus ~ headcountlabel, input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel, input[id="message"]:focus ~ msglabel,
     input[id="headcount"]:not(:placeholder-shown) ~ headcountlabel, input[id="firstname"]:not(:placeholder-shown) ~ namelabel, input[id="lastname"]:not(:placeholder-shown) ~ namelabel,
     input[id="message"]:not(:placeholder-shown) ~ msglabel, .custom_select:focus ~ selectlabel  {
@@ -1213,6 +1213,7 @@ input {
     const optionsBox = document.getElementById("attendanceOptions");
 
     selectDisplay.addEventListener("click", () => {
+      document.getElementById('selectlabel).style.top = '-1.5em';
       const isOpen = optionsBox.style.display === "block";
       optionsBox.style.display = isOpen ? "none" : "block";
       selectDisplay.classList.toggle("select-arrow-active", !isOpen);
@@ -1498,6 +1499,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
 
 
