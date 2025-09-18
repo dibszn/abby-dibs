@@ -248,6 +248,7 @@ a{outline:none}
   align-items:center;
   justify-content:center;
   overflow:hidden;
+  background-position: center;
 }
 .section.i2
 {
@@ -667,24 +668,7 @@ a{outline:none}
 
     .flip, #EnvelopeBack {
       transform: rotateY(180deg);
-    }
-
-    #submitBtn {
-      display:flex;
-      text-align:center;
-      border:0; 
-      border-radius:25px;
-      max-width:70%;
-      width: fit-content;
-      padding: .5% 1%;
-      font-size: larger;
-      color:#113c25;
-      font-family: 'Baskerville Display PT',auto;
-      font-style: italic;
-      background-color:#F7F7F7;
-      text-decoration:none;
-    }
-          
+    }  
     .revealBtn {
       display:flex;
       text-align:center;
@@ -860,7 +844,7 @@ a{outline:none}
       }
     }
       </style>
-      <div id="EnvelopeContainer" style="display: block;">
+      <div id="EnvelopeContainer" style="display: block; user-select: none;">
       <div id="EnvelopeFlip">
         <div id="EnvelopeFrontWrap">
           <img id="FrontPage" src="images/PoemFront1.png" class="envContents" style="z-index: -1;">
@@ -884,7 +868,7 @@ a{outline:none}
   <button id="revealBtn" class="revealBtn">Step into the celebration</button>
 
 </div>
-    <div class="section i1 parallax full-height hide final">
+    <div class="section i1 full-height hide final">
   <div id="LogoContainer">
     <img src="images/logo trs.png" alt="Logo" crossorigin="anonymous" draggable="false" style="width:100%;height:100%;object-fit:contain;display:block;">
   </div>
@@ -1123,7 +1107,7 @@ a{outline:none}
         <msglabel for="message">Any wishes/messages for the newlyweds?</msglabel>
     </div>
   </div>
-  <input class="btn btn-primary" type="submit" value="Submit" id="submitBtn">
+  <input class="btn btn-primary" type="submit" value="Submit" style="text-align:center; border:0; border-radius:25px; max-width:70%;width: fit-content;padding: .5% 1%;font-size: larger;color:#113c25;font-family: 'Baskerville Display PT',auto;font-style: italic;background-color:#F7F7F7; text-decoration:none;">
 </form>
 
   <div id="thanksModal" style="display: none;">
@@ -1510,7 +1494,4 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
-
-
-
 
