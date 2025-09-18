@@ -951,18 +951,19 @@ a{outline:none}
       height: 100%;
       width: 100%;
     }
-    .form__input {
+    .input, {
       position: relative;
       height: 100%;
       width: 100%;
       background: #383838;
       border: 0.5px solid #fff;
       border-radius: 0.5em;
-      font-size:1.2em;
+      font-size:1em;
       color: #113c25;
       padding-left: 10px;
       font-family: 'Baskerville Display PT', auto; 
       font-style: italic;
+      padding;1.8%;
     }
     namelabel, selectlabel, msglabel, headcountlabel {
       position: absolute;
@@ -979,12 +980,12 @@ a{outline:none}
         top:42%;  }
     selectlabel {
       top: 32%;  }
-    .form__input:hover {
+    .input:hover {
       border: 0.5px solid #383838;  }
-    .form__input:focus {
+    .input:focus {
       border: 0.5px solid #113c25;  }
     input[id="headcount"]:focus ~ headcountlabel,
-    .form__input:not(:placeholder-shown) ~ headcountlabel, input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel, .form__input:not(:placeholder-shown) ~ namelabel, input[id="message"]:focus ~ msglabel, .form__input:not(:placeholder-shown) ~ msglabel, .custom_select:focus ~ selectlabel  {
+    .input:not(:placeholder-shown) ~ headcountlabel, input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel, .input:not(:placeholder-shown) ~ namelabel, input[id="message"]:focus ~ msglabel, .input:not(:placeholder-shown) ~ msglabel, .custom_select:focus ~ selectlabel  {
       top: -1.5em;  }
 
     #thanksModal {
@@ -1085,14 +1086,14 @@ a{outline:none}
     <div style="font-family: 'Pinyon Script'; font-style: normal; font-size: 2.5em; letter-spacing: 2px; margin-bottom: 1vh;text-align: center">Please RSVP</div>
     <p style="text-align:center;white-space:pre-wrap; font-size: 1.8em;"> Please let us know if you will be able to join in the joy and celebration by <strong>7th December 2025</strong></p>
   </div>
-  <form novalidate="" style="width:90%; height:90%; display: flex; flex-direction: column; align-items: center; justify-content: space-between; object-fit: contain; background-color: rgb(255,255,255,0.8); " id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec">    
+  <form novalidate="" style="width:90%; height:90%; display: flex; flex-direction: column; align-items: center; justify-content: space-between; object-fit: contain; background-color: rgb(255,255,255,0.6); " id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec">    
     <div id="NameData" style="display: flex; justify-content: space-between;">
       <div class="Name_fieldContainer">
-        <input type="text" id="firstname" name="firstname" autocomplete="off" placeholder=" " class="form__input" required="">
+        <input type="text" id="firstname" name="firstname" autocomplete="off" placeholder=" "  required="">
         <namelabel for="firstname">First Name</namelabel>
       </div>
       <div class="Name_fieldContainer">
-        <input type="text" id="lastname" name="lastname" autocomplete="off" placeholder=" " class="form__input" required="">
+        <input type="text" id="lastname" name="lastname" autocomplete="off" placeholder=" "  required="">
         <namelabel for="lastname">Last Name</namelabel>
       </div>
     </div>
@@ -1115,13 +1116,13 @@ a{outline:none}
     </div>
     <div id="Headcount" style="display: none;">
       <div class="Headcount_fieldContainer">
-        <input type="number" id="headcount" name="headcount" min="1" autocomplete="off" placeholder=" " class="form__input">
+        <input type="number" id="headcount" name="headcount" min="1" autocomplete="off" placeholder=" " >
         <headcountlabel for="headcount">Number of Guests</headcountlabel>
       </div>
     </div>
   <div id="MessageData" style="height: 30%">
       <div class="msg_fieldContainer">
-        <input type="text" id="message" name="message" autocomplete="off" placeholder=" " class="form__input">
+        <input type="text" id="message" name="message" autocomplete="off" placeholder=" " >
         <msglabel for="message">Any wishes/messages for the newlyweds?</msglabel>
     </div>
   </div>
@@ -1512,6 +1513,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
 
 
