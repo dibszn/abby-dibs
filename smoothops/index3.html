@@ -211,7 +211,7 @@ body
 }
 a{outline:none}
 input {
-    font-size: 2vmin
+    font-size: 2vmin;
     position: relative;
     height: 100%;
     width: 100%;
@@ -957,20 +957,7 @@ input {
       height: 100%;
       width: 100%;
     }
-    .form__input {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    background: transparent;
-    border-width: 0 0 0.5px 0;
-    border-style: none none solid none;
-    border-color: transparent transparent #113c25 transparent;
-    font-size: 1.2em;
-    color: #113c25;
-    padding: 1.3% 0.5%;
-    font-family: 'Baskerville Display PT', auto;
-    font-style: italic;
-    }
+
     namelabel, selectlabel, msglabel, headcountlabel {
       position: absolute;
       background: transparent;
@@ -1031,15 +1018,16 @@ input {
 }
 
 #attendanceDisplay {
-      position: relative;
-      height: 100%;
-      width: 100%;
-      background: transparent;
-      border: 0.5px solid #fff;
-      border-radius: 0.5em;
-      font-size:1.2em;
-      color: #113c25;
-      padding-left: 10px;
+    position: relative;
+    height: fit-content;
+    width: 100%;
+    background: transparent;
+    border-width: 0 0 0.5px 0;
+    font-size: 1.2em;
+    color: #113c25;
+    border-style: none none solid none;
+    border-color: transparent transparent #113c25 transparent;
+    padding: 1.5% 0.5%;
 }
 
 #attendanceDisplay::after {
@@ -1058,14 +1046,15 @@ input {
 }
 
 #attendanceOptions {
-  position: absolute;
-  margin-top: 5px;
-  background-color: #F7F7F7;
-  left: 0;
-  right: 0;
-  z-index: 99;
-  border-radius: 20px; border: 1px solid transparent;
-  border-color: #113c25;
+    position: relative;
+    background-color: rgb(247, 247, 247, 0.9);
+    left: 0;
+    right: 0;
+    z-index: 99;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    border-color: #113c25;
+    margin: 1% 0;
 }
 
 #attendanceOptions div {
@@ -1091,17 +1080,17 @@ input {
   <form novalidate="" style="width:90%;height:auto;display: flex;flex-direction: column;align-items: center;justify-content: space-between;object-fit: contain;background-color: rgb(255,255,255,0.6);border-radius: 45px;padding: 1.5% 1%;" id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec">    
     <div id="NameData" style="display: flex; justify-content: space-between;">
       <div class="Name_fieldContainer">
-        <input type="text" id="firstname" name="firstname" autocomplete="off" placeholder=" " class="form__input" required="">
+        <input type="text" id="firstname" name="firstname" autocomplete="off" placeholder=" "  required="">
         <namelabel for="firstname">First Name</namelabel>
       </div>
       <div class="Name_fieldContainer">
-        <input type="text" id="lastname" name="lastname" autocomplete="off" placeholder=" " class="form__input" required="">
+        <input type="text" id="lastname" name="lastname" autocomplete="off" placeholder=" "  required="">
         <namelabel for="lastname">Last Name</namelabel>
       </div>
     </div>
     <div id="AttendanceData">
       <div class="custom-select">
-        <div class="select__input" id="attendanceDisplay" style="line-height: 43px;"> </div>
+        <div class="select__input" id="attendanceDisplay"> </div>
         <select id="attendance" name="attendance" style="display:none;">
           <option value="" disabled="" selected=""></option>
           <option value="Yes">Yes, I will be!</option>
@@ -1118,13 +1107,13 @@ input {
     </div>
     <div id="Headcount" style="display: none;">
       <div class="Headcount_fieldContainer">
-        <input type="number" id="headcount" name="headcount" min="1" autocomplete="off" placeholder=" " class="form__input">
+        <input type="number" id="headcount" name="headcount" min="1" autocomplete="off" placeholder=" " >
         <headcountlabel for="headcount">Number of Guests</headcountlabel>
       </div>
     </div>
   <div id="MessageData" style="height: 30%">
       <div class="msg_fieldContainer">
-        <input type="text" id="message" name="message" autocomplete="off" placeholder=" " class="form__input">
+        <input type="text" id="message" name="message" autocomplete="off" placeholder=" " >
         <msglabel for="message">Any wishes/messages for the newlyweds?</msglabel>
     </div>
   </div>
@@ -1221,13 +1210,6 @@ input {
     const selectHidden = document.getElementById("attendance");
     const optionsBox = document.getElementById("attendanceOptions");
 
-    function centerSelectDisplay() {
-      const height = selectDisplay.offsetHeight;
-      selectDisplay.style.lineHeight = height + "px";
-    }
-    centerSelectDisplay();
-    window.addEventListener("resize", centerSelectDisplay);
-
     selectDisplay.addEventListener("click", () => {
       const isOpen = optionsBox.style.display === "block";
       optionsBox.style.display = isOpen ? "none" : "block";
@@ -1243,7 +1225,6 @@ input {
 
         optionsBox.style.display = "none";
         selectDisplay.classList.remove("select-arrow-active");
-        centerSelectDisplay();
       });
     });
 
@@ -1515,5 +1496,6 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
 
