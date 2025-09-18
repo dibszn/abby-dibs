@@ -283,7 +283,7 @@ input {
 .section.c5
 {
   padding:3% 2%; 
-  flex-direction:column; 
+  height: auto;
   align-items:center; 
   gap:5vmin;
 }
@@ -331,7 +331,7 @@ input {
   position: relative;
   aspect-ratio: 0.717;
   max-width: 85%;
-  max-height: 70%;
+  max-height: 80%;
 }
 #plyrContainer
 {
@@ -973,8 +973,9 @@ input {
         top:42%;  }
     selectlabel {
       top: 32%;  }
-    input[id="headcount"]:focus ~ headcountlabel,
-    .form__input:not(:placeholder-shown) ~ headcountlabel, input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel, .form__input:not(:placeholder-shown) ~ namelabel, input[id="message"]:focus ~ msglabel, .form__input:not(:placeholder-shown) ~ msglabel, .custom_select:focus ~ selectlabel  {
+    input[id="headcount"]:focus ~ headcountlabel, input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel, input[id="message"]:focus ~ msglabel,
+    input[id="headcount"]:not(:placeholder-shown) ~ headcountlabel, input[id="firstname"]:not(:placeholder-shown) ~ namelabel, input[id="lastname"]:not(:placeholder-shown) ~ namelabel,
+    input[id="message"]:not(:placeholder-shown) ~ msglabel, .custom_select:focus ~ selectlabel  {
       top: -1.5em;  }
 
     #thanksModal {
@@ -1496,6 +1497,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
 
 
