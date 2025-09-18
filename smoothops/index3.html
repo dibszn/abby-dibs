@@ -221,6 +221,7 @@ a{outline:none}
   height: inherit;
   display: flex;
   flex-direction: column; 
+  transition: opacity 900ms ease-in-out;
 }
 .section.hide { opacity: 0; }
 .section.final { display: none; }
@@ -257,7 +258,7 @@ a{outline:none}
   position: relative; 
   overflow: hidden;
 }
-.section.c2
+.section.c2, .section.c3
 {
   border:0;
   align-items:center;
@@ -265,19 +266,7 @@ a{outline:none}
   gap: 2vh;
   font-family: 'The Seasons', auto;
 }
-.section.c3
-{
-flex-direction: column;
-font-size: 2vmin; 
-font-family: 'Baskerville Display PT', auto; 
-font-style: italic;
-justify-content: space-between; 
-padding: 2% 2%;
-  border:0;
-  align-items:center;
-  justify-content:center;
-  gap: 1.2vh;
-}
+
 .section.c5
 {
   padding:3% 2%; 
@@ -1410,9 +1399,9 @@ padding: 2% 2%;
           });
           document.getElementById("EnvelopeSealWrap").classList.add('SealSlide');
           document.getElementById("EnvelopeFold").classList.add('envSlide');
+        }, 200);
           document.getElementById("FrontPage").src = 'images/PoemFront2.png';
           document.dispatchEvent(new Event('Page1Changed'));
-        }, 200);
         document.addEventListener('Page1Changed', function () {
           revealBtn.classList.add('visible');
           document.getElementById("EnvelopeSealWrap").style.opacity = '0';
@@ -1441,9 +1430,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
     setTimeout(() => {
       const c2 = document.querySelector(".section.c2");
       if (c2) {
-        c2.style.transition = "opacity 900ms ease-in-out";
         c2.style.opacity = "0";
-        const bgimgs= document.querySelectorAll('.section background-image');
 
         c2.addEventListener("transitionend",() => {
             c2.remove();
@@ -1508,4 +1495,3 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
-
