@@ -933,10 +933,9 @@ input {
         max-width:70%;
         width: fit-content;
         padding: .5% 1%;
-        font-size: larger;
+        font-size: 1.1em;
         color:#113c25;
-        font-family: 'Baskerville Display PT',auto;
-        font-style: italic;
+        font-family: 'The Seasons',auto;
         background-color:#F7F7F7;
         text-decoration:none;
     }
@@ -1029,6 +1028,8 @@ input {
     border-style: none none solid none;
     border-color: transparent transparent #113c25 transparent;
     padding: 1.5% 0.5%;
+    font-family: 'Baskerville Display PT', auto;
+    font-style: italic;
 }
 
 #attendanceDisplay::after {
@@ -1074,11 +1075,11 @@ input {
   background-color: rgba(0, 0, 0, 0.1);
 }
     </style>
-    <div>
+    <div style="padding-bottom: 2.5vh;">
     <div style="font-family: 'Pinyon Script'; font-style: normal; font-size: 3em; letter-spacing: 2px; margin-bottom: .5vh;text-align: center">Please RSVP</div>
     <p style="text-align:center;white-space:pre-wrap;margin-bottom: 0.5vh;font-size: 1.3em;margin-top: 0;"> Please let us know if you will be able to join in the joy and celebration by <strong>7th December 2025</strong></p>
   </div>
-  <form novalidate="" style="width:90%;height:auto;display: flex;flex-direction: column;align-items: center;justify-content: space-between;object-fit: contain;background-color: rgb(255,255,255,0.6);border-radius: 45px;padding: 1.5% 1%;" id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec">    
+  <form novalidate="" style="width: 90%; height: auto; display: flex;flex-direction: column;align-items: center;justify-content: space-between;object-fit: contain;background-color: rgb(255,255,255,0.6);border-radius: 45px;padding: 3% 1% 1.5% 1%;gap: 2.2em;" id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec">    
     <div id="NameData" style="display: flex; justify-content: space-between;">
       <div class="Name_fieldContainer">
         <input type="text" id="firstname" name="firstname" autocomplete="off" placeholder=" "  required="">
@@ -1497,6 +1498,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
 
 
