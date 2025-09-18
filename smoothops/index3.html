@@ -219,6 +219,7 @@ a{outline:none}
 .section {
   opacity: 1;
   height: inherit;
+  display: flex;
 }
 .section.hide { opacity: 0; }
 .section.final { display: none; }
@@ -1446,7 +1447,6 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
             sections.forEach(function (currentsection) {
               if (!currentsection.classList.contains("c2")) {
                 currentsection.classList.remove("final");
-                currentsection.style.display.replace('none','flex');
                 currentsection.classList.remove("hide");
               }
             });
@@ -1505,11 +1505,3 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
