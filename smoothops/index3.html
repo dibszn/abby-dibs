@@ -227,7 +227,7 @@ a{outline:none}
 .section.final { display: none; }
 
 .section.c2 { background-color: #383838; background-image: url(images/songketbg2.png); background-size: cover; background-position: center 50%; padding-bottom: 1.5vh}
-.section.c3 { background-color: #F7F7F7; background-image: url(images/songketbg2.png); background-size: cover; background-position: center 50%; padding: 2% 3%;}
+.section.c3 { background-color: #F7F7F7; background-image: url(images/songketbg2.png); background-size: cover; background-position: center 50%; padding: 2% 3%; font-size: 2vmin;}
 .section.c4 { background-color: #E39B7D; }
 .section.c5 { background-color: #E6E4DD; }
 .section.c6 { display: flex; flex-direction: column; background-color: #383838; background-image: url(images/batikbg.png); background-attachment: fixed; background-size: cover; background-position: center 50%;}
@@ -248,7 +248,7 @@ a{outline:none}
   align-items:center;
   justify-content:center;
   overflow:hidden;
-  background-position-y: 22%;
+  background-position-y: -345px;
 }
 .section.i2
 {
@@ -911,13 +911,6 @@ a{outline:none}
     });
   </script>
 </div>
-    <div class="section i3 parallax full-height hide final">
-    <div class="box2">
-      <div class="textbox-1">
-        And He placed in between you mercy &amp; affection <br> Ar-Rum: 21
-      </div>
-    </div>
-</div>
     <div class="section c3 hide final">
       <style>    
       .btn-primary {
@@ -937,9 +930,10 @@ a{outline:none}
     }
       #NameData, #AttendanceData, #Headcount, #MessageData { 
         width: 100%; 
-        min-height:10%; 
+        height:max-content; 
         border:none; 
         margin: 0;
+        padding: 1.5%;
       }
       .Name_fieldContainer {
       position: relative;
@@ -951,19 +945,18 @@ a{outline:none}
       height: 100%;
       width: 100%;
     }
-    .input, {
+    .form__input {
       position: relative;
       height: 100%;
       width: 100%;
-      background: #383838;
+      background: #F7F7F7;
       border: 0.5px solid #fff;
       border-radius: 0.5em;
-      font-size:1em;
+      font-size:1.2em;
       color: #113c25;
       padding-left: 10px;
       font-family: 'Baskerville Display PT', auto; 
       font-style: italic;
-      padding;1.8%;
     }
     namelabel, selectlabel, msglabel, headcountlabel {
       position: absolute;
@@ -980,12 +973,12 @@ a{outline:none}
         top:42%;  }
     selectlabel {
       top: 32%;  }
-    .input:hover {
+    .form__input:hover {
       border: 0.5px solid #383838;  }
-    .input:focus {
+    .form__input:focus {
       border: 0.5px solid #113c25;  }
     input[id="headcount"]:focus ~ headcountlabel,
-    .input:not(:placeholder-shown) ~ headcountlabel, input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel, .input:not(:placeholder-shown) ~ namelabel, input[id="message"]:focus ~ msglabel, .input:not(:placeholder-shown) ~ msglabel, .custom_select:focus ~ selectlabel  {
+    .form__input:not(:placeholder-shown) ~ headcountlabel, input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel, .form__input:not(:placeholder-shown) ~ namelabel, input[id="message"]:focus ~ msglabel, .form__input:not(:placeholder-shown) ~ msglabel, .custom_select:focus ~ selectlabel  {
       top: -1.5em;  }
 
     #thanksModal {
@@ -1032,7 +1025,7 @@ a{outline:none}
       position: relative;
       height: 100%;
       width: 100%;
-      background: #FFFFFF;
+      background: #F7F7F7
       border: 0.5px solid #fff;
       border-radius: 0.5em;
       font-size:1.2em;
@@ -1058,7 +1051,7 @@ a{outline:none}
 #attendanceOptions {
   position: absolute;
   margin-top: 5px;
-  background-color: #ffffff;
+  background-color: #F7F7F7;
   left: 0;
   right: 0;
   z-index: 99;
@@ -1083,17 +1076,17 @@ a{outline:none}
 }
     </style>
   <div>
-    <div style="font-family: 'Pinyon Script'; font-style: normal; font-size: 2.5em; letter-spacing: 2px; margin-bottom: 1vh;text-align: center">Please RSVP</div>
-    <p style="text-align:center;white-space:pre-wrap; font-size: 1.8em;"> Please let us know if you will be able to join in the joy and celebration by <strong>7th December 2025</strong></p>
+    <div style="font-family: 'Pinyon Script'; font-style: normal; font-size: 3em; letter-spacing: 2px; margin-bottom: 1vh;text-align: center">Please RSVP</div>
+    <p style="text-align:center;white-space:pre-wrap; font-size: 1.3em;"> Please let us know if you will be able to join in the joy and celebration by <strong>7th December 2025</strong></p>
   </div>
-  <form novalidate="" style="width:90%; height:90%; display: flex; flex-direction: column; align-items: center; justify-content: space-between; object-fit: contain; background-color: rgb(255,255,255,0.6); " id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec">    
+  <form novalidate="" style="width:90%; height:90%; display: flex; flex-direction: column; align-items: center; justify-content: space-between; object-fit: contain; background-color: rgb(255,255,255,0.6); padding:1.8%" id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec">    
     <div id="NameData" style="display: flex; justify-content: space-between;">
       <div class="Name_fieldContainer">
-        <input type="text" id="firstname" name="firstname" autocomplete="off" placeholder=" "  required="">
+        <input type="text" id="firstname" name="firstname" autocomplete="off" placeholder=" " class="form__input" required="">
         <namelabel for="firstname">First Name</namelabel>
       </div>
       <div class="Name_fieldContainer">
-        <input type="text" id="lastname" name="lastname" autocomplete="off" placeholder=" "  required="">
+        <input type="text" id="lastname" name="lastname" autocomplete="off" placeholder=" " class="form__input" required="">
         <namelabel for="lastname">Last Name</namelabel>
       </div>
     </div>
@@ -1116,13 +1109,13 @@ a{outline:none}
     </div>
     <div id="Headcount" style="display: none;">
       <div class="Headcount_fieldContainer">
-        <input type="number" id="headcount" name="headcount" min="1" autocomplete="off" placeholder=" " >
+        <input type="number" id="headcount" name="headcount" min="1" autocomplete="off" placeholder=" " class="form__input">
         <headcountlabel for="headcount">Number of Guests</headcountlabel>
       </div>
     </div>
   <div id="MessageData" style="height: 30%">
       <div class="msg_fieldContainer">
-        <input type="text" id="message" name="message" autocomplete="off" placeholder=" " >
+        <input type="text" id="message" name="message" autocomplete="off" placeholder=" " class="form__input">
         <msglabel for="message">Any wishes/messages for the newlyweds?</msglabel>
     </div>
   </div>
@@ -1513,7 +1506,3 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
-
-
-
-
