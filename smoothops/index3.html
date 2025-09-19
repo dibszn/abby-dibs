@@ -1437,13 +1437,22 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 
     setTimeout(() => {
       const c2 = document.querySelector(".section.c2");
-        sections.forEach(function (currentsection) {
-        if (!currentsection.classList.contains("c2")) {
-          currentsection.classList.remove("final");
-          currentsection.classList.remove("hide");
-              } else {currentsection.classList.add("hide"); currentsection.classList.add("final"); currentsection.remove();}
+      if (c2) {
+        c2.classList.add("hide");
+        c2.addEventListener("transitionend",() => {
+            c2.classList.add("final");
+            sections.forEach(function (currentsection) {
+              if (!currentsection.classList.contains("c2")) {
+                currentsection.classList.remove("final");
+                currentsection.classList.remove("hide");
+              }
             });
+          c2.remove();
           document.dispatchEvent(new Event('LandingPageEnds'));
+          },
+          { once: true }
+        );
+      }
     }, 3000);
   }, 600);
 }, { once: true });
@@ -1494,6 +1503,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
 
 
