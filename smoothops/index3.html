@@ -614,7 +614,7 @@ input {
     -o-perspective:900px;
     -webkit-perspective:900px;
     perspective:900px;
-      flex-direction: column; gap: 5vh; align-items:center; user-select: none;
+      flex-direction: column; gap: 5.5vh; align-items:center; user-select: none;
     }
 
     #EnvelopeFlip {
@@ -950,6 +950,9 @@ input {
         background-color:#F7F7F7;
         text-decoration:none;
     }
+      input:focus-visible {
+        outline: none;
+      }
       #NameData, #AttendanceData, #Headcount, #MessageData { 
         width: 100%; 
         height:fit-content; 
@@ -1511,26 +1514,3 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
