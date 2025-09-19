@@ -986,16 +986,15 @@ input {
         margin: 0;
         padding: 1.5%;
       }
-      .Name_fieldContainer {
+      .Name_fieldContainer, .msg_fieldContainer, .Headcount_fieldContainer {
       position: relative;
       height: 100%;
-      width: 45%;
+      display: flex;
+      flex-direction: column;
+      column-gap: 0.5vh;
     }
-    .msg_fieldContainer, .Headcount_fieldContainer {
-      position: relative;
-      height: 100%;
-      width: 100%;
-    }
+    .msg_fieldContainer, .Headcount_fieldContainer { width: 100%; }
+    .Name_fieldContainer { width: 45%; }
 
     namelabel, selectlabel, msglabel, headcountlabel {
       position: absolute;
@@ -1005,14 +1004,13 @@ input {
       font-size: 1.2em !important;
       transition: top 350ms ease;
       left:10px;
-      top: 0.5vh;
       font-family: 'The Seasons', auto;
     }
 
     input[id="headcount"]:focus ~ headcountlabel, input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel, input[id="message"]:focus ~ msglabel,
     input[id="headcount"]:not(:placeholder-shown) ~ headcountlabel, input[id="firstname"]:not(:placeholder-shown) ~ namelabel, input[id="lastname"]:not(:placeholder-shown) ~ namelabel,
     input[id="message"]:not(:placeholder-shown) ~ msglabel, .custom_select:focus ~ selectlabel, #attendanceDisplay.select-arrow-active ~ selectlabel {
-      top: -1.5em;  }
+      top: -1em;  }
 
     #thanksModal {
         position: fixed;
@@ -1048,6 +1046,9 @@ input {
   position: relative;
   border-radius: 10px;
   width: 100%; height:fit-content;
+  display: flex;
+  flex-direction: column;
+  column-gap: 0.5vh;
 }
 
 .custom-select select {
@@ -1541,6 +1542,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
 
 
