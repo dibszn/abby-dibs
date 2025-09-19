@@ -1438,8 +1438,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
     setTimeout(() => {
       const c2 = document.querySelector(".section.c2");
       if (c2) {
-        c2.style.opacity = "0";
-        c2.style.transition = "opacity 450ms ease-in-out";
+        c2.classList.add("hide");
         c2.addEventListener("transitionend",() => {
             c2.remove();
             sections.forEach(function (currentsection) {
@@ -1503,6 +1502,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
 
 
