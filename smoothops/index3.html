@@ -1005,8 +1005,9 @@ input {
       font-size: 1.2em;
       transition: top 350ms ease;
       left:10px;
+      top: 0.5vh;
+      font-family: 'The Seasons', auto;
     }
-    namelabel, msglabel, headcountlabel { top: 0.5em; }
 
     input[id="headcount"]:focus ~ headcountlabel, input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel, input[id="message"]:focus ~ msglabel,
     input[id="headcount"]:not(:placeholder-shown) ~ headcountlabel, input[id="firstname"]:not(:placeholder-shown) ~ namelabel, input[id="lastname"]:not(:placeholder-shown) ~ namelabel,
@@ -1177,8 +1178,6 @@ input {
     const firstname = document.getElementById("firstname");
     const lastname = document.getElementById("lastname");
     const headcount = document.getElementById("headcount");
-
-    labelElement.style.top = calc
     
     function showError(input, message) {
       let target = input.id === "attendance" 
@@ -1277,6 +1276,7 @@ input {
     window.addEventListener("click", e => {
       if (!customSelect.contains(e.target)) {
         optionsBox.style.display = "none";
+        selectDisplay.classList.remove("select-arrow-active");
       }
     });
     
@@ -1541,6 +1541,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
 
 
