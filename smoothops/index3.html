@@ -989,15 +989,12 @@ input {
       .Name_fieldContainer, .msg_fieldContainer, .Headcount_fieldContainer {
       position: relative;
       height: 100%;
-      display: flex;
-      flex-direction: column;
-      column-gap: 0.5vh;
     }
     .msg_fieldContainer, .Headcount_fieldContainer { width: 100%; }
     .Name_fieldContainer { width: 45%; }
 
     namelabel, selectlabel, msglabel, headcountlabel {
-      position: absolute;
+      position: relative;
       background: transparent;
       color: #113c25;
       pointer-events: none;
@@ -1046,9 +1043,6 @@ input {
   position: relative;
   border-radius: 10px;
   width: 100%; height:fit-content;
-  display: flex;
-  flex-direction: column;
-  column-gap: 0.5vh;
 }
 
 .custom-select select {
@@ -1542,6 +1536,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
 
 
