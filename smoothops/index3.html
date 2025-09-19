@@ -613,7 +613,8 @@ input {
     -ms-perspective:900px;
     -o-perspective:900px;
     -webkit-perspective:900px;
-    perspective:900px
+    perspective:900px;
+      flex-direction: column; gap: 5vh; align-items:center; user-select: none;
     }
 
     #EnvelopeFlip {
@@ -865,7 +866,7 @@ input {
       }
     }
       </style>
-      <div id="EnvelopeContainer" style="display: flex; flex-direction: column; gap: 5vh; align-items:center; user-select: none;">
+      <div id="EnvelopeContainer">
       <div id="EnvelopeFlip">
         <div id="EnvelopeFrontWrap">
           <img id="FrontPage" src="images/PoemFront1.png" class="envContents" style="z-index: -1;">
@@ -1363,7 +1364,7 @@ input {
   function checkImagesLoaded() {
     loadedImages++;
     if (loadedImages === images.length) {
-      document.getElementById('EnvelopeContainer').style.display = 'block';
+      document.getElementById('EnvelopeContainer').style.display = 'flex';
       initAnimation();
     }
   }
@@ -1508,6 +1509,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
 
 
