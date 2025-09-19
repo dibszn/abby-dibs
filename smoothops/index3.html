@@ -1002,7 +1002,7 @@ input {
       background: transparent;
       color: #113c25;
       pointer-events: none;
-      font-size: 1.2em;
+      font-size: 1.2em !important;
       transition: top 350ms ease;
       left:10px;
       top: 0.5vh;
@@ -1129,8 +1129,8 @@ input {
     </div>
     <div id="AttendanceData">
       <div class="custom-select">
-        <div class="select__input" id="attendanceDisplay"> <selectlabel for="attendance">Will you be attending?</selectlabel> </div>
-        <select id="attendance" name="attendance" style="display:none;">
+        <div class="select__input" id="attendanceDisplay">  </div>
+        <select id="attendance" name="attendance" style="dsplay:none;">
           <option value="" disabled="" selected=""></option>
           <option value="Yes">Yes, I will be!</option>
           <option value="No">No, I won't be attending.</option>
@@ -1139,7 +1139,7 @@ input {
         <div class="select__input-items" id="attendanceOptions" required="" style="display:none;">
           <div data-value="Yes">Yes, I will be!</div>
           <div data-value="No">No, I won't be attending.</div>
-          
+        <selectlabel for="attendance">Will you be attending?</selectlabel>
         </div>
                 
       </div>
@@ -1541,6 +1541,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
 
 
