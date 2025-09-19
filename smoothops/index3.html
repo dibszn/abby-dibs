@@ -1440,14 +1440,13 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
       if (c2) {
         c2.classList.add("hide");
         c2.addEventListener("transitionend",() => {
-            c2.classList.add("final");
+            c2.remove();
             sections.forEach(function (currentsection) {
               if (!currentsection.classList.contains("c2")) {
                 currentsection.classList.remove("final");
                 currentsection.classList.remove("hide");
               }
             });
-          c2.remove();
           document.dispatchEvent(new Event('LandingPageEnds'));
           },
           { once: true }
@@ -1503,6 +1502,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
 
 
