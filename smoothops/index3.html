@@ -298,36 +298,6 @@ input {
 
 .full-height { height: 100%; }
 .height-80 { height: 90%; }
-.box
-{
-  height: 100%;
-  padding: 1px 0;
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-}
-.box2
-{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  padding: 1px 0;
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-}
-
-/* Text box */
-.textbox-1
-{
-  position: relative;
-  text-align: center;
-  width: 90%;
-  font-family: 'Six Hands Chalk', auto;
-  color: #113c25;
-  font-size: 7vmin;
-}
 
 #LogoContainer
 {
@@ -725,7 +695,7 @@ input {
       display:flex;
       text-align:center;
       border:0; 
-      border-radius:25px;
+      border-radius:20px;
       max-width:70%;
       width: fit-content;
       padding: .5% 1%;
@@ -915,9 +885,10 @@ input {
           <img id="Page1" src="images/PoemBack1.png" class="envContents" style="z-index:-1;">
         </div>
       </div>
+        <button id="revealBtn" class="revealBtn">Step into the celebration</button>
     </div>
 
-  <button id="revealBtn" class="revealBtn">Step into the celebration</button>
+  
 
 </div>
     <div class="section i1 full-height hide final">
@@ -1003,11 +974,13 @@ input {
       left:10px;
       font-family: 'The Seasons', auto;
     }
+    selectlabel { top: -0.6em; }
 
     input[id="headcount"]:focus ~ headcountlabel, input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel, input[id="message"]:focus ~ msglabel,
     input[id="headcount"]:not(:placeholder-shown) ~ headcountlabel, input[id="firstname"]:not(:placeholder-shown) ~ namelabel, input[id="lastname"]:not(:placeholder-shown) ~ namelabel,
-    input[id="message"]:not(:placeholder-shown) ~ msglabel, .custom_select:focus ~ selectlabel, #attendanceDisplay.select-arrow-active ~ selectlabel {
+    input[id="message"]:not(:placeholder-shown) ~ msglabel {
       top: -1em;  }
+    .custom_select:focus ~ selectlabel, #attendanceDisplay.select-arrow-active ~ selectlabel { top: -1.6em;  }
 
     #thanksModal {
         position: fixed;
@@ -1536,6 +1509,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
 
 
