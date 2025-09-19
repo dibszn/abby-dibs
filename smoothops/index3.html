@@ -1437,17 +1437,13 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 
     setTimeout(() => {
       const c2 = document.querySelector(".section.c2");
-      if (c2) {
-        c2.classList.add("hide");
-        c2.remove();
         sections.forEach(function (currentsection) {
         if (!currentsection.classList.contains("c2")) {
           currentsection.classList.remove("final");
           currentsection.classList.remove("hide");
-              }
+              } else {currentsection.classList.add("hide"); currentsection.classList.add("final"); currentsection.remove();}
             });
           document.dispatchEvent(new Event('LandingPageEnds'));
-      }
     }, 3000);
   }, 600);
 }, { once: true });
@@ -1498,6 +1494,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
 
 
