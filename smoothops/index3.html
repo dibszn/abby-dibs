@@ -1130,7 +1130,8 @@ input {
     <div id="AttendanceData">
       <div class="custom-select">
         <div class="select__input" id="attendanceDisplay">  </div>
-        <select id="attendance" name="attendance" style="dsplay:none;">
+        <selectlabel for="attendance">Will you be attending?</selectlabel>
+        <select id="attendance" name="attendance" style="display:none;">
           <option value="" disabled="" selected=""></option>
           <option value="Yes">Yes, I will be!</option>
           <option value="No">No, I won't be attending.</option>
@@ -1139,7 +1140,6 @@ input {
         <div class="select__input-items" id="attendanceOptions" required="" style="display:none;">
           <div data-value="Yes">Yes, I will be!</div>
           <div data-value="No">No, I won't be attending.</div>
-        <selectlabel for="attendance">Will you be attending?</selectlabel>
         </div>
                 
       </div>
@@ -1541,6 +1541,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
 
 
