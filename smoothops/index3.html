@@ -457,7 +457,7 @@ input {
       font-family: 'Pinyon Script', cursive;
       color: #113c25;
       text-align: center;
-      font-size: 5vmin;
+      font-size: 250%;
       margin: 0;
     }
 
@@ -588,6 +588,15 @@ input {
     .PageReturn {
       animation: Page1Return 1500ms ease-in-out;
     }  
+    .PulsingText {
+      opacity: 1;
+      animation-name: PulsingText;
+      animation-duration: 1.1s;
+      animation-delay: 0s;
+      animation-iteration-count: infinite;
+      animation-direction: normal;
+      animation-fill-mode: none;
+    }  
           
     @keyframes scaleUp {
       from {
@@ -683,6 +692,21 @@ input {
         transform: translateY(0);
       }
     }
+    @keyframes PulsingText {
+      0% {
+        offset-distance: 0px;
+        animation-timing-function: ease-in-out;
+      }
+
+      45.4545% {
+          offset-distance: 17px;
+          animation-timing-function: ease-in-out;
+      }
+      
+      100% {
+          offset-distance: 34px;
+      }
+    }
       </style>
       <div id="EnvelopeContainer">
       <div id="EnvelopeFlip">
@@ -691,6 +715,7 @@ input {
           <img src="images/EnvelopeMaterials/EnvelopeFront.png" style="width:100%; height:100%; display:block; z-index:2;" alt="Envelope Front" id="EnvelopeFront"> 
           <p id="FrontText" class="text" style="top:50%; left:50%; z-index:3;">To our favourite people;</p>
           <img id="EnvelopeStamp" src="images/stamp.png" style="width:20%; height:auto; display:block; z-index:4;position: absolute; top:3%; right: 4%;">
+          <p id="pulsetxt" class="pulsetxt" style="bottom:8%; place-self: center; opacity:0; font-size: 150%; font-family: 'Baskerville Display PT', auto;">CLICK TO START</p>
         </div>
 
         <div id="EnvelopeBack">
@@ -727,8 +752,8 @@ input {
         <p style="margin:0;padding:0; font-size:1.2em;">Bride's DuitNow QR</p>
       </div>
       <div style="width:90%;display:flex;flex-direction:column;align-items:center;text-align:center; gap:0.5em; font-size:1.7em;font-style:italic;color:rgb(17,60,37);">
-        <p style="margin:0.6vh;">Alternatively, you could also view our gift registry here:</p>
-        <a href="https://dibszn.github.io/abby-dibs/giftregistry/index.html" target="_blank" style="display:flex;align-items:center;justify-content:center;border-radius:25px;width:auto; padding: 0.6% 2.5%; font-size:0.65em;color:white;background-color:#113c25;text-decoration:none;">GIFT REGISTRY</a>
+        <p style="margin:0.6vh;">Should you wish to honour us with a gift, a contribution to our wishing well would be warmly received</p>
+        <a href="https://dibszn.github.io/abby-dibs/giftregistry/index.html" target="_blank" style="display:flex;align-items:center;justify-content:center;border-radius:25px;width:auto; padding: 0.6% 2.5%; font-size:0.65em;color:white;background-color:#113c25;text-decoration:none;">Wishing Well</a>
       </div>
     </div>
     <img id="note-image" src="images/blanknote.png" alt="Note" crossorigin="anonymous" draggable="false" style="width:100%;object-fit:contain;opacity:0.85;">
@@ -1185,11 +1210,20 @@ input {
   let loadedImages = 0;
   
   function checkImagesLoaded() {
-    loadedImages++;
-    if (loadedImages === images.length) {
-      document.getElementById('EnvelopeContainer').style.display = 'flex';
-      initAnimation();
+    const interactionTimeout = setTimeout(() => {
+      const pulseElement = document.querySelector('.pulsetxt');
+      if (pulseElement) pulseElement.classList.add('PulsingText');
+    }, 3000);
+
+    function resetInteractionTimer() {
+      clearTimeout(interactionTimeout);
     }
+
+    window.addEventListener('click', resetInteractionTimer);
+    window.addEventListener('mousemove', resetInteractionTimer);
+    window.addEventListener('keydown', resetInteractionTimer);
+
+    initAnimation();
   }
   images.forEach(function(img) {
     img.addEventListener('load', checkImagesLoaded);
@@ -1332,3 +1366,4 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
