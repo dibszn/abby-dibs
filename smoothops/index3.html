@@ -697,7 +697,7 @@ input {
       }
 
       45.4545% {
-          transform: translateY(-5%);
+          transform: translateY(-15%);
           animation-timing-function: ease-in-out;
       }
       
@@ -725,7 +725,7 @@ input {
           <img id="Page1" src="images/PoemBack1.png" class="envContents" style="z-index:-1;">
         </div>
       </div>
-        <p id="pulsetxt" class="pulsetxt" style="position: absolute; bottom:2%; place-self: center; opacity:0; font-size: 150%; font-family: 'Baskerville Display PT', auto; margin: 0;">CLICK TO START</p>
+        <p id="pulsetxt" class="pulsetxt" style="position: absolute; bottom:2%; place-self: center; opacity:0; font-size: 150%; font-family: 'Baskerville Display PT', auto; margin: 0; transition: opacity 500ms ease-in-out;">CLICK TO START</p>
         <button id="revealBtn" class="revealBtn">Step into the day</button>
     </div>
 
@@ -1213,7 +1213,9 @@ input {
       document.getElementById('EnvelopeContainer').style.display = 'flex';
       const interactionTimeout = setTimeout(() => {
         const pulseElement = document.querySelector('.pulsetxt');
-        if (pulseElement) pulseElement.style.opacity = "1"; pulseElement.classList.add('PulsingText');
+        if (pulseElement) 
+          pulseElement.style.opacity = "1"; 
+          setTimeout(() => { pulseElement.classList.add('PulsingText');}, 500);
       }, 3000);
   
       function resetInteractionTimer() {
@@ -1368,6 +1370,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
 
 
