@@ -1205,6 +1205,7 @@ input {
   document.addEventListener('DOMContentLoaded', function() {
   const sections = document.querySelectorAll('.section');
   const images = document.querySelectorAll('.section.c2 img');
+  const pulseElement = document.querySelector('.pulsetxt');
   let loadedImages = 0;
   
   function checkImagesLoaded() {
@@ -1212,7 +1213,6 @@ input {
     if (loadedImages === images.length) {
       document.getElementById('EnvelopeContainer').style.display = 'flex';
       const interactionTimeout = setTimeout(() => {
-        const pulseElement = document.querySelector('.pulsetxt');
         if (pulseElement) 
           pulseElement.style.opacity = "1"; 
           setTimeout(() => { pulseElement.classList.add('PulsingText');}, 500);
@@ -1250,6 +1250,7 @@ input {
     function animateEnvelope() {
       envelopeFlip.removeEventListener('click', animateEnvelope);
       envelopeFlip.removeEventListener('touchstart', animateEnvelope);
+      pulseElement.remove();
       envelopeFlip.classList.add('flip');
 
       envelopeFlip.addEventListener('transitionend', function() {
@@ -1370,6 +1371,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
 
 
