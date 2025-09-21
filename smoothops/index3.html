@@ -589,7 +589,6 @@ input {
       animation: Page1Return 1500ms ease-in-out;
     }  
     .PulsingText {
-      opacity: 1; background-color: red;
       animation-name: PulsingText;
       animation-duration: 1.1s;
       animation-delay: 0s;
@@ -693,17 +692,17 @@ input {
     }
     @keyframes PulsingText {
       0% {
-        offset-distance: 0px;
+        transform: translateY(0);
         animation-timing-function: ease-in-out;
       }
 
       45.4545% {
-          offset-distance: 17px;
+          transform: translateY(-5%);
           animation-timing-function: ease-in-out;
       }
       
       100% {
-          offset-distance: 34px;
+          transform: translateY(0);
       }
     }
       </style>
@@ -726,7 +725,7 @@ input {
           <img id="Page1" src="images/PoemBack1.png" class="envContents" style="z-index:-1;">
         </div>
       </div>
-        <p id="pulsetxt" class="pulsetxt" style="position: absolute; bottom:2%; place-self: center; opacity:0; font-size: 150%; font-family: 'Baskerville Display PT', auto; padding: 1% 3%;">CLICK TO START</p>
+        <p id="pulsetxt" class="pulsetxt" style="position: absolute; bottom:2%; place-self: center; opacity:0; font-size: 150%; font-family: 'Baskerville Display PT', auto; margin: 0;">CLICK TO START</p>
         <button id="revealBtn" class="revealBtn">Step into the day</button>
     </div>
 
@@ -1369,6 +1368,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
 
 
