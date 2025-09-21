@@ -1210,20 +1210,24 @@ input {
   let loadedImages = 0;
   
   function checkImagesLoaded() {
-    const interactionTimeout = setTimeout(() => {
-      const pulseElement = document.querySelector('.pulsetxt');
-      if (pulseElement) pulseElement.classList.add('PulsingText');
-    }, 3000);
-
-    function resetInteractionTimer() {
-      clearTimeout(interactionTimeout);
+    loadedImages++;
+    if (loadedImages === images.length) {
+      document.getElementById('EnvelopeContainer').style.display = 'flex';
+      const interactionTimeout = setTimeout(() => {
+        const pulseElement = document.querySelector('.pulsetxt');
+        if (pulseElement) pulseElement.classList.add('PulsingText');
+      }, 3000);
+  
+      function resetInteractionTimer() {
+        clearTimeout(interactionTimeout);
+      }
+  
+      window.addEventListener('click', resetInteractionTimer);
+      window.addEventListener('mousemove', resetInteractionTimer);
+      window.addEventListener('keydown', resetInteractionTimer);
+  
+      initAnimation();
     }
-
-    window.addEventListener('click', resetInteractionTimer);
-    window.addEventListener('mousemove', resetInteractionTimer);
-    window.addEventListener('keydown', resetInteractionTimer);
-
-    initAnimation();
   }
   images.forEach(function(img) {
     img.addEventListener('load', checkImagesLoaded);
@@ -1366,4 +1370,5 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </script>
 </body>
 </html>
+
 
