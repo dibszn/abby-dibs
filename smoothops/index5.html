@@ -671,6 +671,7 @@ input {
       z-index: -1;
 		opacity:0;
 		transition: opacity 1000ms ease-in-out;
+		transform: rotate(90deg);
     }
       </style>
       <div id="EnvelopeContainer" style="display: flex;">
@@ -698,77 +699,6 @@ input {
     </div>
 </div>
 
-<div class="section c31">
-  <style>
-    #InviteContainer {
-      position:relative; 
-      transform: scale(0.8);
-      -ms-transform: scale(0.8);
-      -moz-transform: scale(0.8);
-      -webkit-transform: scale(0.8);
-      align-items:center;
-      max-width:85%;
-      display:flex;
-      opacity: 0; 
-      transition: opacity 1500ms ease-in-out;
-      justify-content: space-between;
-      flex-direction: column;
-      align-self:center;
-    }
-    #DetailsContainer {
-      padding: 2%;
-      top:20%;
-      position: absolute;
-      display:flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      background: transparent;
-      z-index: 1;
-    }
-    .InvText {
-      font-family: 'The Seasons', auto;
-      color: #113c25;
-      text-align: center;
-      font-size: 150%;
-      margin: 0;
-    }
-    .invite {
-      object-fit:contain; 
-      width: 65%;
-      z-index: -1;
-    }
-    .visible { opacity: 1; }
-  </style>
-
-<div id="InviteContainer" style="opacity: 1;">
-    <img id="paper" src="images/blankpaperportrait.png" class="invite">
-    <img src="images/favicon.png" style="position: absolute; width:8%; top: 3%; filter: invert(.3);">
-    <div id="DetailsContainer">
-      <p class="InvText" style="font-family: 'Symphony', auto;font-size: 320%;">You are invited</p>
-      <p class="InvText"><br>TO CELEBRATE THE WEDDING OF<br>ADIBAH &amp; ABBY</p>
-    <p class="InvText"><br><br>AT<br>RUMAH ABANG JAMIL SHAH ALAM</p><p class="InvText"><br><br>ON<br>21ST DECEMBER 2025<br>11:00AM TO 4:00PM</p></div>
-  <img src="images/RAJSA.png" style="position: absolute;width: 65%;bottom: 0%;"></div>
-  
-  <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const images = document.querySelectorAll('.section.c31 background-image, .section.c31 img');
-        let loadedImages = 0;
-    
-        function checkImagesLoaded() {
-          loadedImages++;
-          if (loadedImages === images.length) {
-            document.getElementById('InviteContainer').style.opacity = "1";
-          }
-        }
-        
-        images.forEach(function(img) {
-          img.addEventListener('load', checkImagesLoaded);
-          if (img.complete) checkImagesLoaded(); 
-        });
-      });
-    </script>
-</div>
     <div class="section i1 full-height parallax hide final" style="background-position: 50% 0px; background-attachment: scroll;">
   <div id="LogoContainer">
     <img src="images/logo trs.png" alt="Logo" crossorigin="anonymous" draggable="false" style="width:100%;height:100%;object-fit:contain;display:block;">
@@ -808,7 +738,6 @@ input {
 
       Noteimg.addEventListener('load', updateNoteContainerWidth);
       Noteimg.addEventListener('resize', updateNoteContainerWidth);
-      document.addEventListener('LandingPageEnds', updateNoteContainerWidth);
     });
   </script>
 </div>
@@ -1343,8 +1272,13 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 	setTimeout(() => {
 	document.getElementById("FrontPage").style.transition = 'opacity 500ms ease-in-out';
 	document.getElementById("FrontPage").style.opacity = '0';
-	EnvelopeFlip.remove();
-	document.getElementById("paper").style.opacity = '0';
+		document.dispatchEvent(new Event('FrontPageDeleted'));
+	document.addEventListener("FrontPageDeleted",() => {
+			EnvelopeFlip.remove();
+			document.getElementById("paper").style.opacity = '1';
+
+          },{ once: true });
+
     }, 3000);
 
     /*setTimeout(() => {
