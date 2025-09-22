@@ -810,7 +810,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 	document.getElementById("EnvelopeFlip").remove();
 	document.getElementById("revealBtn").remove();
 	container.appendChild(PaperImg);
-	document.getElementById("Paper").style.opacity = '1';
+	setTimeout(() => { document.getElementById("Paper").style.opacity = '1'; }, 500);
     }, 3000);
   }, 600);
 }, { once: true });
