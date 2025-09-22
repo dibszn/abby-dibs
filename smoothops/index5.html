@@ -565,6 +565,9 @@ input {
     .PageReturn {
       animation: Page1Return 1500ms ease-in-out;
     }  
+	.paperSlid {
+      animation: paperSlid 1000ms ease-in-out;
+    }  		
     .PulsingText {
       animation-name: PulsingText;
       animation-duration: 1.1s;
@@ -654,6 +657,21 @@ input {
           transform: translateY(0);
       }
     }
+	@keyframes paperSlid {
+      from {
+        transform: translateY(-200%);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+	.invite {
+      object-fit:contain; 
+      width: 65%;
+      z-index: -1;
+		opacity:0;
+		transition: opacity 1000ms ease-in-out;
+    }
       </style>
       <div id="EnvelopeContainer" style="display: flex;">
       <div id="EnvelopeFlip">
@@ -674,8 +692,9 @@ input {
           <img id="Page1" src="images/PoemBack1.png" class="envContents" style="z-index:-1;">
         </div>
       </div>
-        <p id="pulsetxt" class="pulsetxt" style="position: absolute; bottom:2%; place-self: center; opacity:0; font-size: 150%; font-family: 'Inter', auto; margin: 0; transition: opacity 500ms ease-in-out;">CLICK TO START</p>
+        <p id="pulsetxt" class="pulsetxt" style="position: absolute; bottom:2%; place-self: center; opacity:0; font-size: 120%; font-family: 'Inter', auto; margin: 0; transition: opacity 500ms ease-in-out;">CLICK TO START</p>
         <button id="revealBtn" class="revealBtn">Step into the day</button>
+		<img id="paper" src="images/blankpaperportrait.png" class="invite">
     </div>
 </div>
 
@@ -952,7 +971,7 @@ input {
     <div id="NameData" style="display: flex; justify-content: space-between;">
       <div class="Name_fieldContainer">
         <input type="text" id="firstname" name="firstname" autocomplete="off" placeholder=" " required="">
-        <namelabel for="firstname">First Name</namelabel>
+        <namelabel for="firstname">First Name<p style=vertical-align:baseline;position:relative;top:-0.4em;font-size:smaller">*</p></namelabel>
       </div>
       <div class="Name_fieldContainer">
         <input type="text" id="lastname" name="lastname" autocomplete="off" placeholder=" " required="">
@@ -1321,8 +1340,14 @@ input {
 document.getElementById("newPage1").addEventListener("animationend", function () {
   setTimeout(() => {
     envelopeFlip.classList.remove("flip");
+	setTimeout(() => {
+	document.getElementById("FrontPage").style.transition = 'opacity 500ms ease-in-out';
+	document.getElementById("FrontPage").style.opacity = '0';
+	EnvelopeFlip.remove();
+	document.getElementById("paper").style.opacity = '0';
+    }, 3000);
 
-    setTimeout(() => {
+    /*setTimeout(() => {
       const c2 = document.querySelector(".section.c2");
       if (c2) {
         c2.classList.add("hide");
@@ -1339,7 +1364,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
           { once: true }
         );
       }
-    }, 3000);
+    }, 3000);*/
   }, 600);
 }, { once: true });
        }, { once: true });      
