@@ -1273,8 +1273,8 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 	document.getElementById("FrontPage").style.opacity = '0';
 	const PaperImg = document.createElement('img');
 	PaperImg.id = 'Paper';
-	document.getElementById("Paper").src = 'images/blankpaperportrait.png';
-	document.getElementById("Paper").classList = 'invite';
+	PaperImg.src = 'images/blankpaperportrait.png';
+	PaperImg.classList = 'invite';
 	container.appendChild(PaperImg);
 	document.getElementById("EnvelopeFlip").remove();
 	setTimeout(() => {
