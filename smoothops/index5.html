@@ -102,7 +102,7 @@ input {
 .section.hide { opacity: 0; }
 .section.final { display: none; }
 
-.section.c2 { background-color: #383838; background-image: url(images/songketbg2.png); background-size: cover; background-position: center 50%; padding-bottom: 1.5vh}
+.section.c2 { background-color: #383838; background-image: url(images/songketbg2.png); background-size: cover; background-position: center 50%; padding-bottom: 1.5vh; position: relative; overflow: hidden; }
 .section.c3, .section.c31  { background-color: #F7F7F7; background-image: url(images/songketbg2.png); background-size: cover; background-position: center 50%; padding: 2% 3%; font-size: 2vmin;}
 .section.c4 { background-color: #E39B7D; }
 .section.c5 { background-color: #E6E4DD; }
@@ -695,7 +695,6 @@ input {
       </div>
         <p id="pulsetxt" class="pulsetxt" style="position: absolute; bottom:2%; place-self: center; opacity:0; font-size: 120%; font-family: 'Inter', auto; margin: 0; transition: opacity 500ms ease-in-out;">CLICK TO START</p>
         <button id="revealBtn" class="revealBtn">Step into the day</button>
-		<img id="paper" src="images/blankpaperportrait.png" class="invite">
     </div>
 </div>
 
@@ -900,17 +899,17 @@ input {
     <div id="NameData" style="display: flex; justify-content: space-between;">
       <div class="Name_fieldContainer">
         <input type="text" id="firstname" name="firstname" autocomplete="off" placeholder=" " required="">
-        <namelabel for="firstname">First Name<p style=vertical-align:baseline;position:relative;top:-0.4em;font-size:smaller">*</p></namelabel>
+        <namelabel for="firstname">First Name   *</namelabel>
       </div>
       <div class="Name_fieldContainer">
         <input type="text" id="lastname" name="lastname" autocomplete="off" placeholder=" " required="">
-        <namelabel for="lastname">Last Name</namelabel>
+        <namelabel for="lastname">Last Name  *</namelabel>
       </div>
     </div>
     <div id="AttendanceData">
       <div class="custom-select">
         <div class="select__input" id="attendanceDisplay">  </div>
-        <selectlabel for="attendance">Will you be attending?</selectlabel>
+        <selectlabel for="attendance">Will you be attending? *</selectlabel>
         <select id="attendance" name="attendance" style="display:none;">
           <option value="" disabled="" selected=""></option>
           <option value="Yes">Yes, I will be!</option>
@@ -927,7 +926,7 @@ input {
     <div id="Headcount" style="display: none;">
       <div class="Headcount_fieldContainer">
         <input type="number" id="headcount" name="headcount" min="1" autocomplete="off" placeholder=" ">
-        <headcountlabel for="headcount">Number of Guests</headcountlabel>
+        <headcountlabel for="headcount">Number of Guests*</headcountlabel>
       </div>
     </div>
   <div id="MessageData" style="height: 30%">
@@ -1250,8 +1249,8 @@ input {
           document.getElementById("EnvelopeSealWrap").style.opacity = '0';
           document.getElementById("EnvelopeFold").style.opacity = '0';
           document.getElementById("EnvelopeFront").style.opacity = '0';
-          document.getElementById("EnvelopeStamp").style.opacity = '0';
-          document.getElementById("FrontText").style.opacity = '0';
+          document.getElementById("EnvelopeStamp").remove();
+          document.getElementById("FrontText").remove();
         }, 1600);
         }, { once: true });
     }
@@ -1272,33 +1271,13 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 	setTimeout(() => {
 	document.getElementById("FrontPage").style.transition = 'opacity 500ms ease-in-out';
 	document.getElementById("FrontPage").style.opacity = '0';
-		document.dispatchEvent(new Event('FrontPageDeleted'));
-	document.addEventListener("FrontPageDeleted",() => {
-			EnvelopeFlip.remove();
-			document.getElementById("paper").style.opacity = '1';
-
-          },{ once: true });
-
+	document.getElementById("FrontPage").id = 'Paper';
+	setTimeout(() => {
+		document.getElementById("Paper").classList.replace('envContents','invite');
+		document.getElementById("Paper").src = 'images/blankpaperportrait.png';
+		document.getElementById("Paper").style.opacity = '1';
+	}, 800);
     }, 3000);
-
-    /*setTimeout(() => {
-      const c2 = document.querySelector(".section.c2");
-      if (c2) {
-        c2.classList.add("hide");
-        c2.addEventListener("transitionend",() => {
-            c2.remove();
-            sections.forEach(function (currentsection) {
-              if (!currentsection.classList.contains("c2")) {
-                currentsection.classList.remove("final");
-                currentsection.classList.remove("hide");
-              }
-            });
-          document.dispatchEvent(new Event('LandingPageEnds'));
-          },
-          { once: true }
-        );
-      }
-    }, 3000);*/
   }, 600);
 }, { once: true });
        }, { once: true });      
