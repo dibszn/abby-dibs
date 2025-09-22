@@ -1276,8 +1276,11 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 	PaperImg.src = 'images/blankpaperportrait.png';
 	PaperImg.classList = 'invite';
 	container.appendChild(PaperImg);
-	document.getElementById("EnvelopeFlip").remove();
+	document.getElementById("EnvelopeFlip").style.transition = 'opacity 500ms ease-in-out';
+	document.getElementById("EnvelopeFlip").style.opacity = '0';
 	setTimeout(() => {
+		document.getElementById("EnvelopeFlip").remove();
+		document.getElementById("revealBtn").remove();
 		document.getElementById("Paper").style.opacity = '1';
 	}, 800);
     }, 3000);
