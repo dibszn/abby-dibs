@@ -1167,6 +1167,7 @@ input {
 </div>
   <script>
   document.addEventListener('DOMContentLoaded', function() {
+	const container = document.getElementById('EnvelopeContainer') 
   const sections = document.querySelectorAll('.section');
   const images = document.querySelectorAll('.section.c2 img');
   const pulseElement = document.querySelector('.pulsetxt');
@@ -1274,6 +1275,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 	PaperImg.id = 'Paper';
 	document.getElementById("Paper").src = 'images/blankpaperportrait.png';
 	document.getElementById("Paper").classList = 'invite';
+	container.appendChild(PaperImg);
 	document.getElementById("EnvelopeFlip").remove();
 	setTimeout(() => {
 		document.getElementById("Paper").style.opacity = '1';
