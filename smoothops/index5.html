@@ -794,6 +794,7 @@ input {
       document.getElementById("FrontPage").classList.remove('down');
       Page1.classList.add('PageReturn');
       Page1.id = 'newPage1';
+		 document.getElementById("revealBtn").remove();
       
 document.getElementById("newPage1").addEventListener("animationend", function () {
   setTimeout(() => {
@@ -807,7 +808,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 	PaperImg.classList = 'invite';
 	document.getElementById("EnvelopeFlip").style.transition = 'opacity 500ms ease-in-out';
 	document.getElementById("EnvelopeFlip").style.opacity = '0';
-	setTimeout(() => { document.getElementById("EnvelopeFlip").remove(); document.getElementById("revealBtn").remove(); }, 600);
+	setTimeout(() => { document.getElementById("EnvelopeFlip").remove(); }, 600);
 	container.appendChild(PaperImg);
 	setTimeout(() => { document.getElementById("Paper").style.opacity = '1'; }, 500);
     }, 3000);
