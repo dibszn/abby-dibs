@@ -666,12 +666,11 @@ input {
       }
     }
 	.invite {
-      object-fit:contain; 
-      width: 65%;
-      z-index: -1;
+	    object-fit:contain; 
+	    width: 100%;
+	    z-index: -1;
 		opacity:0;
 		transition: opacity 1000ms ease-in-out;
-		transform: rotate(90deg);
     }
       </style>
       <div id="EnvelopeContainer" style="display: flex;">
@@ -1279,7 +1278,6 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 		document.getElementById("Paper").classList = 'invite';
 		document.getElementById("Paper").src = 'images/blankpaperportrait.png';
 		document.getElementById("Paper").style.zIndex = '100';
-		document.getElementById("Paper").style.transform = 'rotate(90deg)';
 		document.getElementById("Paper").style.opacity = '1';
 	}, 800);
     }, 3000);
