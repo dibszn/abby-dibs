@@ -1272,9 +1272,14 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 	document.getElementById("FrontPage").style.transition = 'opacity 500ms ease-in-out';
 	document.getElementById("FrontPage").style.opacity = '0';
 	document.getElementById("FrontPage").id = 'Paper';
+	document.getElementById("EnvelopeBack").remove();
+	document.getElementById("EnvelopeFront").remove();
+	document.getElementById("revealBtn").remove();
 	setTimeout(() => {
-		document.getElementById("Paper").classList.replace('envContents','invite');
+		document.getElementById("Paper").classList.replace('envContents slidReverse','invite');
 		document.getElementById("Paper").src = 'images/blankpaperportrait.png';
+		document.getElementById("Paper").style.zIndex = '100';
+		document.getElementById("Paper").style.transform = 'rotate(90deg)';
 		document.getElementById("Paper").style.opacity = '1';
 	}, 800);
     }, 3000);
