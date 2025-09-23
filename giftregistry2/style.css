@@ -13,7 +13,7 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #8c52ff;
+  background: #383838;
 }
 
 section{
@@ -60,7 +60,7 @@ section .card .image{
   width: 140px;
   border-radius: 20%;
   padding: 3px;
-  background: #7d2ae8;
+  background: #fff;
   margin-top: 30px;
 }
 
@@ -82,7 +82,7 @@ section .card .image img{
 }
 
 .card .media-icons i{
-  color: #7d2ae8;
+  color: #383838;
   opacity: 0.6;
   margin-top: 10px;
   transition: all 0.3s ease;
@@ -121,7 +121,7 @@ section .card .image img{
 .card .rating i{
   font-size: 18px;
   margin: 0 2px;
-  color: #7d2ae8;
+  color: #383838;
 }
 
 .card .button{
@@ -132,7 +132,7 @@ section .card .image img{
 }
 
 .card .button button{
-  background: #7d2ae8;
+  background: #383838;
   outline: none;
   border: none;
   color: #fff;
