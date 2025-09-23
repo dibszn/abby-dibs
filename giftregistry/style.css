@@ -55,7 +55,7 @@ section{
   z-index: 100;
 }
 
-section .card .image{
+section .card .image, .itemimage {
   height: 140px;
   width: 140px;
   border-radius: 20%;
@@ -64,7 +64,7 @@ section .card .image{
   margin-top: 30px;
 }
 
-section .card .image img{
+section .card .image img, .itemimage img{
   height: 100%;
   width: 100%;
   object-fit: cover;
