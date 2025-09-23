@@ -670,7 +670,7 @@ input {
 	    height: 100%;
 	    z-index: 100;
 		opacity:0;
-		transition: opacity 1000ms ease-in-out;
+		transition: opacity 1000ms ease-in-out 200ms;
     }
       </style>
       <div id="EnvelopeContainer" style="display: flex;">
@@ -809,8 +809,8 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 	document.getElementById("EnvelopeFlip").style.transition = 'opacity 500ms ease-in-out';
 	document.getElementById("EnvelopeFlip").style.opacity = '0';
 	setTimeout(() => { document.getElementById("EnvelopeFlip").remove(); }, 600);
-	setTimeout(() => { container.appendChild(PaperImg); }, 800);
-	document.getElementById("Paper").style.opacity = '1';
+	setTimeout(() => { container.appendChild(PaperImg); }, 200);
+	setTimeout(() => { document.getElementById("Paper").style.opacity = '1'; }, 500);
     }, 3000);
   }, 600);
 }, { once: true });
