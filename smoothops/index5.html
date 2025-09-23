@@ -809,7 +809,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 	document.getElementById("EnvelopeFlip").style.transition = 'opacity 500ms ease-in-out';
 	document.getElementById("EnvelopeFlip").style.opacity = '0';
 	setTimeout(() => { document.getElementById("EnvelopeFlip").remove(); }, 600);
-	setTimeout(() => { container.appendChild(PaperImg); }, 200);
+	setTimeout(() => { container.appendChild(PaperImg); }, 500);
 	setTimeout(() => { document.getElementById("Paper").style.opacity = '1'; }, 500);
     }, 3000);
   }, 600);
