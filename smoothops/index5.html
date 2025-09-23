@@ -2,7 +2,7 @@
 <html><head>
 <title>Invite full</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="content-security-policy" content="default-src 'none'; connect-src 'self' https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; media-src 'self' data:; script-src 'unsafe-inline' data:; object-src 'self' data:; frame-src 'self' data:;">
+<meta http-equiv="content-security-policy" content="default-src 'none'; connect-src 'self' https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; media-src 'self' data:; script-src 'unsafe-inline' https://embed-cdn.spotifycdn.com/_next/static/iframe_api.37f385c045f385eed0c3.js https://open.spotify.com/embed/iframe-api/v1 data:; script-src-elem 'unsafe-inline' https://open.spotify.com/embed/iframe-api/v1 https://embed-cdn.spotifycdn.com/_next/static/iframe_api.37f385c045f385eed0c3.js data:;object-src 'self' data:; frame-src 'self' https://open.spotify.com/embed/track/1QAwKDm1FPgoD2V6lLiKmC data:;">
 <link rel="icon" type="image/png" href="images/favicon.png">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
@@ -794,7 +794,7 @@ input {
       document.getElementById("FrontPage").classList.remove('down');
       Page1.classList.add('PageReturn');
       Page1.id = 'newPage1';
-		 document.getElementById("revealBtn").remove();
+	document.getElementById("revealBtn").remove();
       
 document.getElementById("newPage1").addEventListener("animationend", function () {
   setTimeout(() => {
@@ -809,9 +809,10 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 	document.getElementById("EnvelopeFlip").style.transition = 'opacity 500ms ease-in-out';
 	document.getElementById("EnvelopeFlip").style.opacity = '0';
 	setTimeout(() => { document.getElementById("EnvelopeFlip").remove(); }, 600);
-	container.appendChild(PaperImg);
+	setTimeout(() => { container.appendChild(PaperImg); }, 200);
 	setTimeout(() => { document.getElementById("Paper").style.opacity = '1'; }, 500);
     }, 3000);
+	setTimeout(() => { document.querySelector(".section.i1").classList.remove("final"); document.querySelector(".section.i1").classList.remove("hide");}, 1000); 
   }, 600);
 }, { once: true });
        }, { once: true });      
@@ -825,7 +826,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
     <img src="images/logo trs.png" alt="Logo" crossorigin="anonymous" draggable="false" style="width:100%;height:100%;object-fit:contain;display:block;">
   </div>
   <div id="plyrContainer">
-    <iframe src="plyr/index.html" allow="autoplay" style="width:100%;height:100%;border:0;"></iframe>
+    <iframe data-testid="embed-iframe" style="border-radius:12px; align-self: end;" src="https://open.spotify.com/embed/track/1QAwKDm1FPgoD2V6lLiKmC?utm_source=generator&theme=0&t=70" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="eager"></iframe>
   </div>
 </div>
     <div class="section i2 parallax hide final" style="background-position: 50% 0px; background-attachment: scroll;">
