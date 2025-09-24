@@ -842,23 +842,22 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
     </div>
     <img id="note-image" src="images/blanknote.png" alt="Note" crossorigin="anonymous" draggable="false" style="width:100%;object-fit:contain;opacity:0.85;">
   </div>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const Noteimg = document.getElementById('note-image');
-      const noteContainer = document.getElementById('note-container');
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const Noteimg = document.getElementById('note-image');
+    const noteContainer = document.getElementById('note-container');
 
-      function updateNoteContainerWidth() {
-        noteContainer.style.width = `${Noteimg.clientWidth * 0.9}px`;
-      }
+    function updateWidth() {
+      noteContainer.style.width = `${Noteimg.clientWidth * 0.9}px`;
+    }
 
-      if (Noteimg.complete) {
-      updateNoteContainerWidth();
-      }
+    Noteimg.addEventListener('load', updateWidth);
 
-      Noteimg.addEventListener('load', updateNoteContainerWidth);
-      Noteimg.addEventListener('resize', updateNoteContainerWidth);
-    });
-  </script>
+    window.addEventListener('resize', updateWidth);
+
+    if (Noteimg.complete) updateWidth();
+  });
+</script>
 </div>
     <div class="section c3 hide final">
       <style>    
