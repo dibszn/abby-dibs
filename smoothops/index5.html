@@ -808,13 +808,11 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
                 currentsection.classList.remove("hide");
               }
             });
-          document.dispatchEvent(new Event('LandingPageEnds'));
-          },
-          { once: true }
-        );
+          },{ once: true });
       }
     }, 3000);
        }, { once: true });      
+  });
   }
   });
 </script>
@@ -822,7 +820,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 
 <div class="section c21 hide final">
 	<p id="MainEntrance">Adibah & Abby<br>are getting hitched!</p>
-	<img id ="MainImg" src="imgaes/graphic1.png">
+	<img id ="MainImg" src="images/graphic1.png">
 </div>
 	  
 <div class="section i2 hide final">
