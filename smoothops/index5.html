@@ -97,12 +97,12 @@ input {
   height: inherit;
   display: flex;
   flex-direction: column; 
-  transition: opacity 900ms ease-in-out;
+  transition: opacity 900ms ease-in-out 200ms;
 }
 .section.hide { opacity: 0; }
 .section.final { display: none; }
 
-.section.c2 { background-color: #383838; background-image: url(images/songketbg2.png); background-size: cover; background-position: center 50%; padding-bottom: 1.5vh; position: relative; overflow: hidden; }
+.section.c2, .section.c21 { background-color: #383838; background-image: url(images/songketbg2.png); background-size: cover; background-position: center 50%; padding-bottom: 1.5vh; position: relative; overflow: hidden; }
 .section.c3, .section.c31  { background-color: #F7F7F7; background-image: url(images/songketbg2.png); background-size: cover; background-position: center 50%; padding: 2% 3%; font-size: 2vmin;}
 .section.c4 { background-color: #E39B7D; }
 .section.c5 { background-color: #E6E4DD; }
@@ -133,7 +133,7 @@ input {
   position: relative; 
   overflow: hidden;
 }
-.section.c2, .section.c3
+.section.c2, .section.c21, .section.c3
 {
   border:0;
   align-items:center;
@@ -252,6 +252,7 @@ input {
 
 .WithLove { align-items:flex-start; font-family:'New Icon Script',auto; margin:0; margin-top:2vmin; font-size:1.1em; font-weight:400; font-style:normal; text-align:center; }
 #MainEntrance { font-family: 'New Icon Script',auto; margin: 0; font-size: 200%; text-align: center; transition: opacity 1000ms ease-in-out 200ms; opacity: 0; }
+#MainImg { object-fit:contain; width: 65%; z-index: 100; opacity:0; transition: opacity 1000ms ease-in-out 200ms; }
 
 @media (max-width: 1200px) {
   #note-container {
@@ -666,13 +667,6 @@ input {
         transform: translateY(0);
       }
     }
-	.invite {
-	    object-fit:contain; 
-	    width: 65%;
-	    z-index: 100;
-		opacity:0;
-		transition: opacity 1000ms ease-in-out 200ms;
-    }
       </style>
       <div id="EnvelopeContainer" style="display: flex;">
       <div id="EnvelopeFlip">
@@ -738,7 +732,6 @@ input {
     const foldImg = document.getElementById('EnvelopeFold');
     const Page1 = document.getElementById('Page1');
     const revealBtn = document.getElementById('revealBtn');
-	const secc2 = document.getElementById('section.c2');
 
     const foldHeight = foldImg.offsetHeight;
     const sealHeight = sealOldImg.offsetHeight;
@@ -799,37 +792,37 @@ input {
 	document.getElementById("revealBtn").remove();
       
 document.getElementById("newPage1").addEventListener("animationend", function () {
-  setTimeout(() => {
-    envelopeFlip.classList.remove("flip");
-	setTimeout(() => {
-	document.getElementById("FrontPage").style.transition = 'opacity 500ms ease-in-out';
-	document.getElementById("FrontPage").style.opacity = '0';
-	const PaperImg = document.createElement('img');
-	const MainInv = document.createElement('p');
-	PaperImg.id = 'Paper';
-	PaperImg.src = 'images/framedpic.png';
-	PaperImg.classList = 'invite';
-	MainInv.id = "MainEntrance";
-	MainInv.dataText = "Adibah & Abby <br> are getting hitched!"
-	document.getElementById("EnvelopeFlip").style.transition = 'opacity 500ms ease-in-out';
-	document.getElementById("EnvelopeFlip").style.opacity = '0';
-	setTimeout(() => { secc2.appendChild(MainInv); secc2.appendChild(PaperImg); }, 500);
-	setTimeout(() => { document.getElementById("EnvelopeContainer").remove(); }, 600);
-	setTimeout(() => { document.getElementById("Paper").style.opacity = '1'; document.getElementById("MainInv").style.opacity = '1';}, 1500);
+    setTimeout(() => {
+      const c2 = document.querySelector(".section.c2");
+      if (c2) {
+        c2.style.transition = "opacity 900ms ease-in-out";
+        c2.style.opacity = "0";
+
+        c2.addEventListener("transitionend",() => {
+            c2.remove();
+            sections.forEach(function (currentsection) {
+              if (!currentsection.classList.contains("c2")) {
+                currentsection.classList.remove("final");
+                currentsection.style.display = "flex";
+                currentsection.style.transition = "opacity 900ms ease-in-out";
+                currentsection.classList.remove("hide");
+              }
+            });
+          document.dispatchEvent(new Event('LandingPageEnds'));
+          },
+          { once: true }
+        );
+      }
     }, 3000);
-  }, 600);
-}, { once: true });
        }, { once: true });      
   }
   });
 </script>
 </div>
 
-    <div class="section i1 full-height parallax hide final" style="background-position: 50% 0px; background-attachment: scroll;">
-  <div id="LogoContainer">
-    <img src="images/logo trs.png" alt="Logo" crossorigin="anonymous" draggable="false" style="width:100%;height:100%;object-fit:contain;display:block;">
-  </div>
-<iframe data-testid="embed-iframe" style="border-radius:12px; width: 30%; align-self: end;" src="https://open.spotify.com/embed/track/1QAwKDm1FPgoD2V6lLiKmC?utm_source=generator&amp;theme=0amp;t=70" width="100%" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" loading="eager"></iframe>
+<div class="section c21 hide final">
+	<p id="MainEntrance">Adibah & Abby<br>are getting hitched!</p>
+	<img id ="MainImg" src="imgaes/graphic1.png">
 </div>
 	  
 <div class="section i2 hide final">
