@@ -813,8 +813,8 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 	MainInv.dataText = "Adibah & Abby <br> are getting hitched!"
 	document.getElementById("EnvelopeFlip").style.transition = 'opacity 500ms ease-in-out';
 	document.getElementById("EnvelopeFlip").style.opacity = '0';
+	setTimeout(() => { secc2.appendChild(MainInv); secc2.appendChild(PaperImg); }, 500);
 	setTimeout(() => { document.getElementById("EnvelopeContainer").remove(); }, 600);
-	setTimeout(() => { secc2.appendChild(PaperImg); secc2.appendChild(MainInv); }, 500);
 	setTimeout(() => { document.getElementById("Paper").style.opacity = '1'; document.getElementById("MainInv").style.opacity = '1';}, 1500);
     }, 3000);
   }, 600);
