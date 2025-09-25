@@ -668,7 +668,7 @@ input {
     }
 	.invite {
 	    object-fit:contain; 
-	    height: 100%;
+	    width: 65%;
 	    z-index: 100;
 		opacity:0;
 		transition: opacity 1000ms ease-in-out 200ms;
@@ -738,6 +738,7 @@ input {
     const foldImg = document.getElementById('EnvelopeFold');
     const Page1 = document.getElementById('Page1');
     const revealBtn = document.getElementById('revealBtn');
+	const secc2 = document.getElementById('section.c2');
 
     const foldHeight = foldImg.offsetHeight;
     const sealHeight = sealOldImg.offsetHeight;
@@ -813,7 +814,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 	document.getElementById("EnvelopeFlip").style.transition = 'opacity 500ms ease-in-out';
 	document.getElementById("EnvelopeFlip").style.opacity = '0';
 	setTimeout(() => { document.getElementById("EnvelopeContainer").remove(); }, 600);
-	setTimeout(() => { container.appendChild(PaperImg); container.appendChild(MainInv); }, 500);
+	setTimeout(() => { secc2.appendChild(PaperImg); secc2.appendChild(MainInv); }, 500);
 	setTimeout(() => { document.getElementById("Paper").style.opacity = '1'; document.getElementById("MainInv").style.opacity = '1';}, 1500);
     }, 3000);
   }, 600);
