@@ -252,7 +252,7 @@ input {
 
 .WithLove { align-items:flex-start; font-family:'New Icon Script',auto; margin:0; margin-top:2vmin; font-size:1.1em; font-weight:400; font-style:normal; text-align:center; }
 #MainEntrance { font-family: 'New Icon Script',auto; margin: 0; font-size: 200%; text-align: center; transition: opacity 1000ms ease-in-out 200ms; }
-#MainImg { object-fit:contain; width: 65%; z-index: 100; transition: opacity 1000ms ease-in-out 200ms; }
+#MainImg { object-fit:contain; height: 50%; z-index: 100; transition: opacity 1000ms ease-in-out 200ms; }
 
 @media (max-width: 1200px) {
   #note-container {
@@ -800,14 +800,15 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 
         c2.addEventListener("transitionend",() => {
             c2.remove();
+			setTimeout (() => {
             sections.forEach(function (currentsection) {
               if (!currentsection.classList.contains("c2")) {
                 currentsection.classList.remove("final");
                 currentsection.style.display = "flex";
-                currentsection.style.transition = "opacity 900ms ease-in-out";
                 currentsection.classList.remove("hide");
               }
             });
+			},200);
           },{ once: true });
       }
     }, 3000);
