@@ -791,6 +791,7 @@ const container = document.getElementById('EnvelopeContainer')
       Page1.id = 'newPage1';
       
 document.getElementById("newPage1").addEventListener("animationend", function () {
+	envelopeFlip.classList.remove('flip');
     setTimeout(() => {
       const c2 = document.querySelector(".section.c2");
       if (c2) {
