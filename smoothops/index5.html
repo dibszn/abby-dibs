@@ -921,6 +921,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
       </div>
     </div>
 <script>
+const c21 = document.querySelector(".section.c21");
   const typedText = "You’ve opened the invitation... now step into the celebration.";
   const typedElement = document.getElementById('typed-intro');
   const invitationContent = document.getElementById('invitation-content');
@@ -964,7 +965,7 @@ function typeWriter() {
     }
   }
 
-  window.addEventListener('load', () => {
+  c21.addEventListener('load', () => {
 	  typedElement.classList.add("typed-text");
     typeWriter();
   });
@@ -990,6 +991,7 @@ function typeWriter() {
   </div>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+	  const i1 = document.querySelector(".section.i1");
     const Noteimg = document.getElementById('note-image');
     const noteContainer = document.getElementById('note-container');
 
@@ -997,8 +999,8 @@ function typeWriter() {
       noteContainer.style.width = `${Noteimg.clientWidth * 0.9}px`;
     }
 
-    window.addEventListener('load', updateWidth);
-    window.addEventListener('resize', updateWidth);
+    i1.addEventListener('load', updateWidth);
+    i1.addEventListener('resize', updateWidth);
 
     if (Noteimg.complete) updateWidth();
   });
