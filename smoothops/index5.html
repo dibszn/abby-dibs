@@ -690,9 +690,8 @@ input {
         <p id="pulsetxt" class="pulsetxt" style="position: absolute; bottom:2%; place-self: center; opacity:0; font-size: 120%; font-family: 'Inter', auto; margin: 0; transition: opacity 500ms ease-in-out;">CLICK TO START</p>
         <button id="revealBtn" class="revealBtn">Join Us in Forever</button>
     </div>
-	  <script>
+  <script>
   document.addEventListener('DOMContentLoaded', function() {
-const container = document.getElementById('EnvelopeContainer') 
   const sections = document.querySelectorAll('.section');
   const images = document.querySelectorAll('.section.c2 img');
   const pulseElement = document.querySelector('.pulsetxt');
@@ -774,8 +773,8 @@ const container = document.getElementById('EnvelopeContainer')
           document.getElementById("EnvelopeSealWrap").style.opacity = '0';
           document.getElementById("EnvelopeFold").style.opacity = '0';
           document.getElementById("EnvelopeFront").style.opacity = '0';
-          document.getElementById("EnvelopeStamp").remove();
-          document.getElementById("FrontText").remove();
+          document.getElementById("EnvelopeStamp").style.opacity = '0';
+          document.getElementById("FrontText").style.opacity = '0';
         }, 1600);
         }, { once: true });
     }
@@ -791,30 +790,30 @@ const container = document.getElementById('EnvelopeContainer')
       Page1.id = 'newPage1';
       
 document.getElementById("newPage1").addEventListener("animationend", function () {
+  setTimeout(() => {
+    envelopeFlip.classList.remove("flip");
+
     setTimeout(() => {
       const c2 = document.querySelector(".section.c2");
       if (c2) {
-        c2.style.transition = "opacity 600ms ease-in-out";
-        c2.style.opacity = "0";
-
+        c2.classList.add("hide");
         c2.addEventListener("transitionend",() => {
             c2.remove();
-			setTimeout (() => {
             sections.forEach(function (currentsection) {
               if (!currentsection.classList.contains("c2")) {
                 currentsection.classList.remove("final");
-                currentsection.style.display = "flex";
-				currentsection.style.transition = "opacity 600ms ease-in-out";
-				currentsection.style.opacity = "1";
                 currentsection.classList.remove("hide");
               }
             });
-			},200);
-          },{ once: true });
+          document.dispatchEvent(new Event('LandingPageEnds'));
+          },
+          { once: true }
+        );
       }
     }, 3000);
+  }, 600);
+}, { once: true });
        }, { once: true });      
-  });
   }
   });
 </script>
@@ -844,11 +843,11 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 
     .typed-cursor {
       display: inline-block;
-      width: 0.15em;
-      height: 1.2em;
+      width: 0.05em;
+      height: 0.7em;
       background-color: #fff;
       animation: blink 0.75s step-end infinite;
-      vertical-align: bottom;
+      vertical-align: middle;
     }
 
     @keyframes blink {
