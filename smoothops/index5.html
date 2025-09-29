@@ -688,7 +688,7 @@ input {
         </div>
       </div>
         <p id="pulsetxt" class="pulsetxt" style="position: absolute; bottom:2%; place-self: center; opacity:0; font-size: 120%; font-family: 'Inter', auto; margin: 0; transition: opacity 500ms ease-in-out;">CLICK TO START</p>
-        <button id="revealBtn" class="revealBtn">Step into the day</button>
+        <button id="revealBtn" class="revealBtn">Join Us in Forever</button>
     </div>
 	  <script>
   document.addEventListener('DOMContentLoaded', function() {
@@ -822,8 +822,148 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </div>
 
 <div class="section c21 hide final">
-	<p id="MainEntrance">Adibah & Abby<br>are getting hitched!</p>
-	<img id ="MainImg" src="images/graphic1.png">
+	<style>
+	.details-container {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .typed-wrapper {
+      display: inline-block;
+      font-size: 200%;
+      color: #5e4b45;
+      font-family: 'Pinyon Script', auto;
+      margin-bottom: 0.5vh;
+    }
+
+    .typed-text {
+      display: inline;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .typed-cursor {
+      display: inline-block;
+      width: 0.15em;
+      height: 1.2em;
+      background-color: #5e4b45;
+      animation: blink 0.75s step-end infinite;
+      vertical-align: bottom;
+    }
+
+    @keyframes blink {
+      0%, 100% { background: transparent; }
+      50% { background: #5e4b45; }
+    }
+
+    .invitation-content {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1.2s ease;
+      pointer-events: none;
+    }
+
+    .invitation-content.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .invitation-line {
+      font-style: italic;
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      color: #3b302a;
+    }
+
+    .wedding-info {
+      font-size: 1.1rem;
+      color: #2e1f18;
+    }
+
+    .wedding-info p {
+      margin: 10px 0;
+    }
+
+    @media (max-width: 600px) {
+      .typed-wrapper {
+        font-size: 1.4rem;
+      }
+
+      .invitation-line,
+      .wedding-info {
+        font-size: 1rem;
+      }
+    }
+  </style>
+	<div class="details-container">
+
+      <div class="typed-wrapper">
+        <span id="typed-intro" class="typed-text"></span><span class="typed-cursor"></span>
+      </div>
+
+      <div class="invitation-content" id="invitation-content">
+        <p class="invitation-line">
+          Join us as we vow forever beneath winter skies,<br>
+          surrounded by the people we love most.
+        </p>
+		  <img id ="MainImg" src="images/graphic1.png">
+
+        <div class="wedding-info">
+          <p><strong>🗓 Date:</strong> December 15th, 2025</p>
+          <p><strong>📍 Venue:</strong> Rosewood Estate, Vermont</p>
+          <p><strong>🕰 Time:</strong> Ceremony at 3:30 PM | Reception to follow</p>
+          <p><strong>🎩 Dress Code:</strong> Formal Attire Requested</p>
+        </div>
+      </div>
+    </div>
+	<script>
+  const typedText = "You’ve opened the invitation... now step into the celebration.";
+  const typedElement = document.getElementById('typed-intro');
+  const invitationContent = document.getElementById('invitation-content');
+  let index = 0;
+  let typingDone = false;
+
+  // Typewriter effect
+  function typeWriter() {
+    if (index < typedText.length) {
+      typedElement.textContent += typedText.charAt(index);
+      index++;
+      setTimeout(typeWriter, 60);
+    } else {
+      typingDone = true;
+      checkAndReveal();
+      observer.observe(invitationContent);
+    }
+  }
+
+  // IntersectionObserver callback
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && typingDone) {
+        invitationContent.classList.add('visible');
+        observer.unobserve(invitationContent); // Stop observing once revealed
+      }
+    });
+  }, {
+    threshold: 0.3
+  });
+
+  function checkAndReveal() {
+    const rect = invitationContent.getBoundingClientRect();
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    if (rect.top <= windowHeight * 0.7 && rect.bottom >= 0) {
+      invitationContent.classList.add('visible');
+      observer.unobserve(invitationContent);
+    }
+  }
+
+  window.addEventListener('load', () => {
+    typeWriter();
+  });
+</script>
+	
 </div>
 	  
 <div class="section i2 hide final">
