@@ -789,6 +789,7 @@ const container = document.getElementById('EnvelopeContainer')
       document.getElementById("FrontPage").classList.remove('down');
       Page1.classList.add('PageReturn');
       Page1.id = 'newPage1';
+	document.getElementById("revealBtn").remove();
       
 document.getElementById("newPage1").addEventListener("animationend", function () {
 	envelopeFlip.classList.remove('flip');
@@ -846,10 +847,10 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
     .typed-cursor {
       display: inline-block;
       width: 0.05em;
-      height: 0.8em;
+      height: 0.9em;
       background-color: #fff;
       animation: blink 0.75s step-end infinite;
-      vertical-align: middle;
+      vertical-align: bottom;
     }
 
     @keyframes blink {
@@ -862,10 +863,10 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
       transform: translateY(30px);
       transition: all 1.2s ease;
       pointer-events: none;
-	display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+		display: flex;
+		flex-direction: column; 
+		align-items: center;
+		justify-content: center;
     }
 
     .invitation-content.visible {
@@ -877,12 +878,12 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
     .invitation-line {
       font-style: italic;
       font-size: 90%;
-      margin-bottom: 2.3vh;
+      margin-bottom: 30px;
       color: #fff;
     }
 
     .wedding-info {
-      font-size: 90%;
+      font-size:90%;
       color: #fff;
     }
 
@@ -892,12 +893,12 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 
     @media (max-width: 600px) {
       .typed-wrapper {
-        font-size: 200%;
+        font-size: 180%;
       }
 
       .invitation-line,
       .wedding-info {
-        font-size: 80%;
+        font-size:80%;
       }
     }
   </style>
@@ -914,14 +915,14 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 		  <img id ="MainImg" src="images/graphic1.png">
 
         <div class="wedding-info">
-          <p><strong>Date:</strong> December 15th, 2025</p>
-          <p><strong>Venue:</strong> Rosewood Estate, Vermont</p>
-          <p><strong>Time:</strong> Ceremony at 3:30 PM | Reception to follow</p>
-          <p><strong>Dress Code:</strong> Formal Attire Requested</p>
+          <p><strong>🗓 Date:</strong> December 15th, 2025</p>
+          <p><strong>📍 Venue:</strong> Rosewood Estate, Vermont</p>
+          <p><strong>🕰 Time:</strong> Ceremony at 3:30 PM | Reception to follow</p>
+          <p><strong>🎩 Dress Code:</strong> Formal Attire Requested</p>
         </div>
       </div>
     </div>
-<script>
+	<script>
   const typedText = "You’ve opened the invitation... now step into the celebration.";
   const typedElement = document.getElementById('typed-intro');
   const invitationContent = document.getElementById('invitation-content');
@@ -936,9 +937,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
       setTimeout(typeWriter, 60);
     } else {
       typingDone = true;
-      // After typing done, check if invitation content is in view immediately
       checkAndReveal();
-      // Then observe for future scrolls
       observer.observe(invitationContent);
     }
   }
@@ -955,7 +954,6 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
     threshold: 0.3
   });
 
-  // Check if element is currently visible in viewport
   function checkAndReveal() {
     const rect = invitationContent.getBoundingClientRect();
     const windowHeight = window.innerHeight || document.documentElement.clientHeight;
