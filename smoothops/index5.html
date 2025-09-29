@@ -921,7 +921,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
         </div>
       </div>
     </div>
-	<script>
+<script>
   const typedText = "You’ve opened the invitation... now step into the celebration.";
   const typedElement = document.getElementById('typed-intro');
   const invitationContent = document.getElementById('invitation-content');
@@ -936,7 +936,9 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
       setTimeout(typeWriter, 60);
     } else {
       typingDone = true;
+      // After typing done, check if invitation content is in view immediately
       checkAndReveal();
+      // Then observe for future scrolls
       observer.observe(invitationContent);
     }
   }
@@ -953,6 +955,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
     threshold: 0.3
   });
 
+  // Check if element is currently visible in viewport
   function checkAndReveal() {
     const rect = invitationContent.getBoundingClientRect();
     const windowHeight = window.innerHeight || document.documentElement.clientHeight;
