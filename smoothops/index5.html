@@ -712,9 +712,7 @@ const container = document.getElementById('EnvelopeContainer')
         clearTimeout(interactionTimeout);
       }
   
-      window.addEventListener('click', resetInteractionTimer);
-      window.addEventListener('mousemove', resetInteractionTimer);
-      window.addEventListener('keydown', resetInteractionTimer);
+      EnvelopeContainer.addEventListener('click', resetInteractionTimer);
   
       initAnimation();
     }
@@ -789,7 +787,6 @@ const container = document.getElementById('EnvelopeContainer')
       document.getElementById("FrontPage").classList.remove('down');
       Page1.classList.add('PageReturn');
       Page1.id = 'newPage1';
-	document.getElementById("revealBtn").remove();
       
 document.getElementById("newPage1").addEventListener("animationend", function () {
 	envelopeFlip.classList.remove('flip');
@@ -842,15 +839,16 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
       display: inline;
       white-space: pre-wrap;
       word-break: break-word;
+		letter-spacing: 1.5px;
     }
 
     .typed-cursor {
       display: inline-block;
       width: 0.05em;
-      height: 0.9em;
+      height: 0.8em;
       background-color: #fff;
       animation: blink 0.75s step-end infinite;
-      vertical-align: bottom;
+      vertical-align: middle;
     }
 
     @keyframes blink {
@@ -863,10 +861,10 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
       transform: translateY(30px);
       transition: all 1.2s ease;
       pointer-events: none;
-		display: flex;
-		flex-direction: column; 
-		align-items: center;
-		justify-content: center;
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     }
 
     .invitation-content.visible {
@@ -878,12 +876,12 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
     .invitation-line {
       font-style: italic;
       font-size: 90%;
-      margin-bottom: 30px;
+      margin-bottom: 2.3vh;
       color: #fff;
     }
 
     .wedding-info {
-      font-size:90%;
+      font-size: 90%;
       color: #fff;
     }
 
@@ -893,12 +891,12 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 
     @media (max-width: 600px) {
       .typed-wrapper {
-        font-size: 180%;
+        font-size: 200%;
       }
 
       .invitation-line,
       .wedding-info {
-        font-size:80%;
+        font-size: 80%;
       }
     }
   </style>
@@ -915,14 +913,14 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 		  <img id ="MainImg" src="images/graphic1.png">
 
         <div class="wedding-info">
-          <p><strong>🗓 Date:</strong> December 15th, 2025</p>
-          <p><strong>📍 Venue:</strong> Rosewood Estate, Vermont</p>
-          <p><strong>🕰 Time:</strong> Ceremony at 3:30 PM | Reception to follow</p>
-          <p><strong>🎩 Dress Code:</strong> Formal Attire Requested</p>
+          <p><strong>Date:</strong> December 15th, 2025</p>
+          <p><strong>Venue:</strong> Rosewood Estate, Vermont</p>
+          <p><strong>Time:</strong> Ceremony at 3:30 PM | Reception to follow</p>
+          <p><strong>Dress Code:</strong> Formal Attire Requested</p>
         </div>
       </div>
     </div>
-	<script>
+<script>
   const typedText = "You’ve opened the invitation... now step into the celebration.";
   const typedElement = document.getElementById('typed-intro');
   const invitationContent = document.getElementById('invitation-content');
@@ -930,17 +928,19 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
   let typingDone = false;
 
   // Typewriter effect
-  function typeWriter() {
-    if (index < typedText.length) {
-      typedElement.textContent += typedText.charAt(index);
-      index++;
-      setTimeout(typeWriter, 60);
-    } else {
-      typingDone = true;
-      checkAndReveal();
-      observer.observe(invitationContent);
-    }
+function typeWriter() {
+  if (index === 0) typedElement.textContent = ''; // Reset on first run
+
+  if (index < typedText.length) {
+    typedElement.textContent += typedText.charAt(index);
+    index++;
+    setTimeout(typeWriter, 60);
+  } else {
+    typingDone = true;
+    checkAndReveal();
+    observer.observe(invitationContent);
   }
+}
 
   // IntersectionObserver callback
   const observer = new IntersectionObserver((entries) => {
@@ -954,6 +954,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
     threshold: 0.3
   });
 
+  // Check if element is currently visible in viewport
   function checkAndReveal() {
     const rect = invitationContent.getBoundingClientRect();
     const windowHeight = window.innerHeight || document.documentElement.clientHeight;
