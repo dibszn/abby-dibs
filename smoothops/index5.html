@@ -903,12 +903,12 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 	<div class="details-container">
 
       <div class="typed-wrapper">
-        <span id="typed-intro"></span><span class="typed-cursor"></span>
+        <span id="typed-intro"></span>
       </div>
 
       <div class="invitation-content" id="invitation-content">
         <p class="invitation-line">
-          Join us as we vow forever beneath winter skies, surrounded by the people we love most.
+          Join us as we vow to forever beneath the stars and skies, surrounded by the people we love most.
         </p>
 		  <img id ="MainImg" src="images/graphic1.png">
 
@@ -937,7 +937,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (index < typedText.length) {
       typedElement.textContent += typedText.charAt(index);
       index++;
-      setTimeout(typeWriter, 60);
+      setTimeout(typeWriter, 80);
     } else {
       typingDone = true;
 	setTimeout(() => {
@@ -1033,7 +1033,7 @@ document.addEventListener('DOMContentLoaded', () => {
           obs.unobserve(entry.target); // only trigger once
         }
       });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.9 });
 
     observer.observe(sectionI2);
   }
