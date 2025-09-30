@@ -561,15 +561,9 @@ input {
     .down {
       animation: slideDown 1500ms forwards ease-in-out;
     }
-    .scaleUp {
-      animation: scaleUp 1500ms ease-in-out;
-    } 
     .PageReturn {
       animation: Page1Return 2000ms ease-in-out;
-    }  
-	.paperSlid {
-      animation: paperSlid 1000ms ease-in-out;
-    }  		
+    }  	
     .PulsingText {
       animation-name: PulsingText;
       animation-duration: 1.1s;
@@ -577,15 +571,7 @@ input {
       animation-iteration-count: infinite;
       animation-direction: normal;
     }  
-          
-    @keyframes scaleUp {
-      from {
-        transform: translateY(0) rotate(-3.7deg) scale(1.2);
-      }
-      to {
-        transform: translateY(0) rotate(0) scale(2.5);
-      }
-    }
+
     @keyframes slideUp {
       from {
         transform: translateY(0);
@@ -657,14 +643,6 @@ input {
       
       100% {
           transform: translateY(0);
-      }
-    }
-	@keyframes paperSlid {
-      from {
-        transform: translateY(-200%);
-      }
-      to {
-        transform: translateY(0);
       }
     }
       </style>
@@ -792,7 +770,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
     setTimeout(() => {
       const c2 = document.querySelector(".section.c2");
       if (c2) {
-        c2.style.transition = "opacity 600ms ease-in-out";
+        c2.style.transition = "opacity 300ms ease-in-out";
         c2.style.opacity = "0";
 
         c2.addEventListener("transitionend",() => {
@@ -802,7 +780,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
               if (!currentsection.classList.contains("c2")) {
                 currentsection.classList.remove("final");
                 currentsection.style.display = "flex";
-				currentsection.style.transition = "opacity 600ms ease-in-out";
+				currentsection.style.transition = "opacity 300ms ease-in-out";
 				currentsection.style.opacity = "1";
                 currentsection.classList.remove("hide");
               }
@@ -917,10 +895,10 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 		  <img id ="MainImg" src="images/graphic1.png">
 
         <div class="wedding-info">
-          <p><strong>Date:</strong> December 21st, 2025</p>
-          <p><strong>Venue:</strong> Rumah Abang Jamil Shah Alam</p>
-          <p><strong>Time:</strong> Reception at 11:30 AM</p>
-          <p><strong>Dress Code:</strong> Formal Attire Requested</p>
+          <p><strong>Date:	</strong> December 21st, 2025</p>
+          <p><strong>Venue:	</strong> Rumah Abang Jamil Shah Alam</p>
+          <p><strong>Time:	</strong> Reception at 11:30 AM</p>
+          <p><strong>Dress Code:	</strong> Formal Attire Requested</p>
         </div>
       </div>
     </div>
