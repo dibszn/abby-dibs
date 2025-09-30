@@ -923,7 +923,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const section21 = document.querySelector(".section.c21");
-  const typedText = "You’ve opened the invitation... now step into the celebration.";
+  const typedText = "You’re invited to the wedding of Adibah & Abby!";
   const typedElement = document.getElementById('typed-intro');
   const invitationContent = document.getElementById('invitation-content');
   
@@ -1002,21 +1002,40 @@ document.addEventListener("DOMContentLoaded", () => {
     <img id="note-image" src="images/blanknote.png" alt="Note" crossorigin="anonymous" draggable="false" style="width:100%;object-fit:contain;opacity:0.85;">
   </div>
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-	  const i1 = document.querySelector(".section.i1");
-    const Noteimg = document.getElementById('note-image');
-    const noteContainer = document.getElementById('note-container');
+document.addEventListener("DOMContentLoaded", () => {
+  const sectionI1 = document.querySelector(".section.i1");
+  const Noteimg = document.getElementById('note-image');
+  const noteContainer = document.getElementById('note-container');
 
-    function updateWidth() {
+  function updateNoteContainerWidth() {
+    if (Noteimg && noteContainer) {
       noteContainer.style.width = `${Noteimg.clientWidth * 0.9}px`;
     }
+  }
 
-    window.addEventListener('load', updateWidth);
-    window.addEventListener('resize', updateWidth);
+  if (sectionI1) {
+    const i1Observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          sectionI1.classList.add("visible"); // fade in
+          updateNoteContainerWidth();         // initial width
+          window.addEventListener("resize", updateNoteContainerWidth);
+          obs.unobserve(entry.target);        // run once
+        }
+      });
+    }, { threshold: 0.5 });
 
-    if (Noteimg.complete) updateWidth();
-  });
+    i1Observer.observe(sectionI1);
+  }
+
+  if (Noteimg && Noteimg.complete) {
+    updateNoteContainerWidth();
+  } else if (Noteimg) {
+    Noteimg.addEventListener("load", updateNoteContainerWidth);
+  }
+});
 </script>
+
 </div>
 </div>
     <div class="section c3 hide final">
