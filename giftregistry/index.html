@@ -113,6 +113,8 @@ body
   font-size: 14px;
   transition: all 0.3s ease;
   cursor: pointer;
+  text-align: center;
+  text-anchor: middle;
 }
 
 .button button:hover{
@@ -140,6 +142,12 @@ body
   opacity: 1;
   color: white;
 }
+
+  @media (max-width: 600px) {
+    .swiper{
+      transform: scale(0.8);
+    }
+  }
 </style>
 <style>
     @font-face {
