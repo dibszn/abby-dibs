@@ -687,7 +687,7 @@ input {
           <img id="Page1" src="images/PoemBack1.png" class="envContents" style="z-index:-1;">
         </div>
       </div>
-        <p id="pulsetxt" class="pulsetxt" style="position: absolute; bottom:2%; place-self: center; opacity:0; font-size: 120%; font-family: 'Inter', auto; margin: 0; transition: opacity 500ms ease-in-out;">Click to open the envelope</p>
+        <p id="pulsetxt" class="pulsetxt" style="position: absolute; bottom:2%; place-self: center; opacity:0; font-size: 120%; font-family: 'Inter', auto; margin: 0; transition: opacity 500ms ease-in-out;">CLICK THE ENVELOPE TO OPEN</p>
         <button id="revealBtn" class="revealBtn">Join Us in Forever</button>
     </div>
 	  <script>
@@ -1005,7 +1005,7 @@ document.addEventListener("DOMContentLoaded", () => {
   </div>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const sectionI1 = document.querySelector(".section.i1");
+  const sectionI2 = document.querySelector(".section.i2");
   const Noteimg = document.getElementById('note-image');
   const noteContainer = document.getElementById('note-container');
 
@@ -1015,7 +1015,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  if (sectionI1) {
+  if (sectionI2) {
     const observer = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1033,9 +1033,9 @@ document.addEventListener('DOMContentLoaded', () => {
           obs.unobserve(entry.target); // only trigger once
         }
       });
-    }, { threshold: 0.8 });
+    }, { threshold: 0.3 });
 
-    observer.observe(sectionI1);
+    observer.observe(sectionI2);
   }
 });
 </script>
