@@ -687,7 +687,7 @@ input {
           <img id="Page1" src="images/PoemBack1.png" class="envContents" style="z-index:-1;">
         </div>
       </div>
-        <p id="pulsetxt" class="pulsetxt" style="position: absolute; bottom:2%; place-self: center; opacity:0; font-size: 120%; font-family: 'Inter', auto; margin: 0; transition: opacity 500ms ease-in-out;">CLICK TO BREAK THE SEAL</p>
+        <p id="pulsetxt" class="pulsetxt" style="position: absolute; bottom:2%; place-self: center; opacity:0; font-size: 120%; font-family: 'Inter', auto; margin: 0; transition: opacity 500ms ease-in-out;">TAP THE ENVELOPE TO BEGIN</p>
         <button id="revealBtn" class="revealBtn">Join Us in Forever</button>
     </div>
 	  <script>
@@ -789,7 +789,6 @@ const container = document.getElementById('EnvelopeContainer')
       Page1.id = 'newPage1';
       
 document.getElementById("newPage1").addEventListener("animationend", function () {
-	envelopeFlip.classList.remove('flip');
     setTimeout(() => {
       const c2 = document.querySelector(".section.c2");
       if (c2) {
@@ -991,62 +990,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	
 </div>
 	  
-<div class="section i2 hide final">
-  <div id="note-parent">
-    <div id="note-container">
-      <p style="width:85%;font-size: 150%;margin:0;color:rgb(17,60,37);">YOUR PRESENCE &amp; WELL-WISHES AT OUR CELEBRATION IS THE BEST GIFT OF ALL!</p>
-      <p style="width:85%;font-size: 140%;font-style:italic;margin:0;color:rgb(17,60,37);">But if you would like to contribute to our new life together, a monetary gift is a delightful blessing.</p>
-      <div style="width:80%;text-align:center;color:rgb(17,60,37);">
-        <img src="images/duitnowqr.png" alt="DuitNow QR" crossorigin="anonymous" draggable="false" style="width: 35%;height:auto;object-fit:contain;" id="qr">
-        <p style="margin:0;padding:0;font-size: 99%;">Bride's DuitNow QR</p>
-      </div>
-      <div style="width:90%;display:flex;flex-direction:column;align-items:center;text-align:center;gap:0.5em;font-size: 140%;font-style:italic;color:rgb(17,60,37);">
-        <p style="margin:0.6vh;">Should you wish to honour us with a gift, a contribution to our wishing well would be warmly received</p>
-        <a href="https://gifts.abbygotthedibs.com" target="_blank" style="display:flex;align-items:center;justify-content:center;border-radius:25px;width:auto; padding: 0.6% 2.5%; font-size:0.65em;color:white;background-color:#113c25;text-decoration:none;">Wishing Well</a>
-      </div>
-    </div>
-    <img id="note-image" src="images/blanknote.png" alt="Note" crossorigin="anonymous" draggable="false" style="width:100%;object-fit:contain;opacity:0.85;">
-  </div>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const sectionI2 = document.querySelector(".section.i2");
-  const Noteimg = document.getElementById('note-image');
-  const noteContainer = document.getElementById('note-container');
-
-  function updateWidth() {
-    if (Noteimg && noteContainer) {
-      noteContainer.style.width = `${Noteimg.clientWidth * 0.9}px`;
-    }
-  }
-
-  if (sectionI2) {
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // run width adjustment once section i1 is in view
-          updateWidth();
-
-          // keep updating on resize
-          window.addEventListener('resize', updateWidth);
-
-          // also handle when the image finishes loading
-          if (Noteimg && !Noteimg.complete) {
-            Noteimg.addEventListener('load', updateWidth, { once: true });
-          }
-
-          obs.unobserve(entry.target); // only trigger once
-        }
-      });
-    }, { threshold: 0.9 });
-
-    observer.observe(sectionI2);
-  }
-});
-</script>
-
-
-</div>
-</div>
     <div class="section c3 hide final">
       <style>    
       .btn-primary {
@@ -1420,6 +1363,62 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 </script>
+</div>
+	  <div class="section i2 hide final">
+  <div id="note-parent">
+    <div id="note-container">
+      <p style="width:85%;font-size: 150%;margin:0;color:rgb(17,60,37);">YOUR PRESENCE &amp; WELL-WISHES AT OUR CELEBRATION IS THE BEST GIFT OF ALL!</p>
+      <p style="width:85%;font-size: 140%;font-style:italic;margin:0;color:rgb(17,60,37);">But if you would like to contribute to our new life together, a monetary gift is a delightful blessing.</p>
+      <div style="width:80%;text-align:center;color:rgb(17,60,37);">
+        <img src="images/duitnowqr.png" alt="DuitNow QR" crossorigin="anonymous" draggable="false" style="width: 35%;height:auto;object-fit:contain;" id="qr">
+        <p style="margin:0;padding:0;font-size: 99%;">Bride's DuitNow QR</p>
+      </div>
+      <div style="width:90%;display:flex;flex-direction:column;align-items:center;text-align:center;gap:0.5em;font-size: 140%;font-style:italic;color:rgb(17,60,37);">
+        <p style="margin:0.6vh;">Should you wish to honour us with a gift, a contribution to our wishing well would be warmly received</p>
+        <a href="https://gifts.abbygotthedibs.com" target="_blank" style="display:flex;align-items:center;justify-content:center;border-radius:25px;width:auto; padding: 0.6% 2.5%; font-size:0.65em;color:white;background-color:#113c25;text-decoration:none;">Wishing Well</a>
+      </div>
+    </div>
+    <img id="note-image" src="images/blanknote.png" alt="Note" crossorigin="anonymous" draggable="false" style="width:100%;object-fit:contain;opacity:0.85;">
+  </div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const sectionI2 = document.querySelector(".section.i2");
+  const Noteimg = document.getElementById('note-image');
+  const noteContainer = document.getElementById('note-container');
+
+  function updateWidth() {
+    if (Noteimg && noteContainer) {
+      noteContainer.style.width = `${Noteimg.clientWidth * 0.9}px`;
+    }
+  }
+
+  if (sectionI2) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // run width adjustment once section i1 is in view
+          updateWidth();
+
+          // keep updating on resize
+          window.addEventListener('resize', updateWidth);
+
+          // also handle when the image finishes loading
+          if (Noteimg && !Noteimg.complete) {
+            Noteimg.addEventListener('load', updateWidth, { once: true });
+          }
+
+          obs.unobserve(entry.target); // only trigger once
+        }
+      });
+    }, { threshold: 0.1 });
+
+    observer.observe(sectionI2);
+  }
+});
+</script>
+
+
+</div>
 </div>
     <div class="section c5 full-height hide final">
   <div id="end-page-container">
