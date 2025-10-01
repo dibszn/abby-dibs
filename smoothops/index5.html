@@ -821,6 +821,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
       word-break: break-word;
 		letter-spacing: 1.5px;
 		text-align: center;
+		transition: all 1.2s ease;
 
     }
 
@@ -918,8 +919,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Animate in
     requestAnimationFrame(() => {
       container.appendChild(invitationDiv);
-	setTimeout(() => { document.getElementById('typed-intro').style.transition = 'all 1.2s ease';}, 50);
-	setTimeout(() => { invitationDiv.classList.add("visible");}, 20);
+	setTimeout(() => { invitationDiv.classList.add("visible");}, 80);
     });
   }
 
