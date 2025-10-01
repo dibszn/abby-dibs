@@ -208,7 +208,8 @@ button:hover::before {
   
   </style>
 </head>
-<body> <div class="player" id="player">
+<body> 
+  <div class="player" id="player">
     <button id="playPause" aria-label="Play/Pause" class=""></button>
     <div class="volume-container" id="volumeContainer">
       <button id="mute" aria-label="Mute/Unmute" class="low"></button>
@@ -220,10 +221,11 @@ button:hover::before {
     <button id="close" aria-label="Close player"></button>
     <audio id="audio" src="Menamakanmu Cinta.mp3?" autoplay loop preload="auto"></audio>
   </div>
-  <script>
+ <script>
   const audio = document.getElementById('audio');
+
   audio.addEventListener('loadedmetadata', () => {
-    audio.currentTime = 71; // jump to 71 seconds
+    audio.currentTime = 70; // jump to 71 seconds
   });
 
   const playPauseBtn = document.getElementById('playPause');
@@ -236,9 +238,32 @@ button:hover::before {
 
   let dragging = false;
   let volume = 0.5;
+  let fadeInIntervalId = null;
 
-  audio.volume = volume;
+  audio.volume = 0; // start from 0 for fade-in
   audio.muted = false;
+
+  // --- Fade In Function ---
+  function fadeInAudio(audioElement, targetVolume = 0.5, duration = 1000) {
+    if (fadeInIntervalId) {
+      clearInterval(fadeInIntervalId);
+    }
+
+    const step = 0.01;
+    const intervalTime = (duration * step) / targetVolume;
+
+    audioElement.volume = 0;
+    audioElement.muted = false;
+
+    fadeInIntervalId = setInterval(() => {
+      if (audioElement.volume < targetVolume) {
+        audioElement.volume = Math.min(audioElement.volume + step, targetVolume);
+      } else {
+        clearInterval(fadeInIntervalId);
+        fadeInIntervalId = null;
+      }
+    }, intervalTime);
+  }
 
   function updateMuteIcon() {
     muteBtn.classList.remove('muted', 'low', 'high');
@@ -257,7 +282,6 @@ button:hover::before {
 
     const sliderHeight = volumeSlider.clientHeight;
     const thumbHeight = thumb.clientHeight;
-
     const top = sliderHeight - (heightPercent / 100) * sliderHeight - thumbHeight / 2;
     thumb.style.top = top + 'px';
 
@@ -294,7 +318,9 @@ button:hover::before {
 
   playPauseBtn.addEventListener('click', () => {
     if (audio.paused) {
-      audio.play();
+      audio.play().then(() => {
+        fadeInAudio(audio, volume, 1000); // Fade in to set volume
+      }).catch(() => {});
       playPauseBtn.classList.add('playing');
     } else {
       audio.pause();
@@ -395,10 +421,12 @@ button:hover::before {
 
   updateUI();
 
-  // Autoplay on first interaction
+  // Autoplay on first interaction with fade-in
   document.body.addEventListener('click', () => {
     if (audio.paused) {
-      audio.play().catch(() => {});
+      audio.play().then(() => {
+        fadeInAudio(audio, volume, 1000);
+      }).catch(() => {});
     }
   }, { once: true });
 
@@ -411,7 +439,8 @@ button:hover::before {
     if (document.hidden) {
       audio.pause();
       playPauseBtn.classList.remove('playing');
-    } 
+    }
   });
 </script>
+
 </body></html>
