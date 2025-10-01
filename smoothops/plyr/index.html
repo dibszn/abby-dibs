@@ -244,7 +244,7 @@ button:hover::before {
   audio.muted = false;
 
   // --- Fade In Function ---
-  function fadeInAudio(audioElement, targetVolume = 0.5, duration = 1000) {
+  function fadeInAudio(audioElement, targetVolume = 0.5, duration = 1500) {
     if (fadeInIntervalId) {
       clearInterval(fadeInIntervalId);
     }
@@ -319,7 +319,7 @@ button:hover::before {
   playPauseBtn.addEventListener('click', () => {
     if (audio.paused) {
       audio.play().then(() => {
-        fadeInAudio(audio, volume, 1000); // Fade in to set volume
+        fadeInAudio(audio, volume, 1500); // Fade in to set volume
       }).catch(() => {});
       playPauseBtn.classList.add('playing');
     } else {
@@ -425,7 +425,7 @@ button:hover::before {
   document.body.addEventListener('click', () => {
     if (audio.paused) {
       audio.play().then(() => {
-        fadeInAudio(audio, volume, 1000);
+        fadeInAudio(audio, volume, 1500);
       }).catch(() => {});
     }
   }, { once: true });
@@ -445,7 +445,7 @@ button:hover::before {
   if (event.data && event.data.action === "playAudio") {
     if (audio.paused) {
       audio.play().then(() => {
-        fadeInAudio(audio, volume, 1000);
+        fadeInAudio(audio, volume, 1500);
         playPauseBtn.classList.add('playing');
       }).catch(err => {
         console.warn("Autoplay failed:", err);
