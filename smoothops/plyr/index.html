@@ -218,9 +218,14 @@ button:hover::before {
       </div>
     </div>
     <button id="close" aria-label="Close player"></button>
-    <audio id="audio" src="Menamakanmu Cinta.mp3?t=71?autoplay=1?loop=1" preload="auto"></audio>
-  </div><script>
+    <audio id="audio" src="Menamakanmu Cinta.mp3?" autoplay loop preload="auto"></audio>
+  </div>
+  <script>
   const audio = document.getElementById('audio');
+  audio.addEventListener('loadedmetadata', () => {
+    audio.currentTime = 71; // jump to 71 seconds
+  });
+
   const playPauseBtn = document.getElementById('playPause');
   const muteBtn = document.getElementById('mute');
   const closeBtn = document.getElementById('close');
