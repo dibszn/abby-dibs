@@ -811,6 +811,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
       margin-bottom: 0.5vh;
 		text-align: center;
 		align-self: center;
+		transition: all 1.2s ease;
 		
 	
     }
@@ -821,7 +822,6 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
       word-break: break-word;
 		letter-spacing: 1.5px;
 		text-align: center;
-		transition: all 1.2s ease;
 
     }
 
@@ -901,27 +901,28 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // --- Create invitation content dynamically ---
-  function createInvitationContent() {
-    const container = document.querySelector(".details-container");
+function createInvitationContent() {
+  const container = document.querySelector(".details-container");
+  const wrapper = document.querySelector(".typed-wrapper");
 
-    // Create wrapper
-    const invitationDiv = document.createElement("div");
-    invitationDiv.classList.add("invitation-content");
+  const invitationDiv = document.createElement("div");
+  invitationDiv.classList.add("invitation-content");
 
-    // Add content
-    invitationDiv.innerHTML = `
-      <p class="invitation-line">
-        Join us as we vow to forever beneath the skies, surrounded by the people we love most.
-      </p>
-      <img id="MainImg" src="images/banner.png">
-    `;
+  invitationDiv.innerHTML = `
+    <p class="invitation-line">
+      Join us as we vow to forever beneath the skies, surrounded by the people we love most.
+    </p>
+    <img id="MainImg" src="images/banner.png">
+  `;
 
-    // Animate in
-    requestAnimationFrame(() => {
-      container.appendChild(invitationDiv);
-	setTimeout(() => { invitationDiv.classList.add("visible");}, 5000);
-    });
-  }
+  container.appendChild(invitationDiv);
+
+  // Run both animations together
+  requestAnimationFrame(() => {
+    wrapper.style.transition = "all 1.2s ease"; // animate natural shift
+    invitationDiv.classList.add("visible");     // fade/slide in
+  });
+}
 
   // --- Observer for section 21 ---
   if (section21) {
