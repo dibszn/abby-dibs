@@ -768,8 +768,8 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
           },{ once: true });
       }
     }, 3000);}, { once: true });
-					const iframe = document.getElementById("plyr");
-			iframe.contentWindow.postMessage({ action: "playAudio" }, "*");
+	const iframe = document.getElementById("plyr");
+	iframe.contentWindow.postMessage({ action: "playAudio" }, "*");
   });
   }
   });
@@ -777,8 +777,8 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </div>
 
 <div class="section c21 hide final">
-	<div id="plyr" style="position: fixed;width: 20%;aspect-ratio: 1;bottom: 2%;right: 0.5%;z-index:10000;">
-		<iframe src="plyr/index.html" allow="autoplay" style="width:100%;height:100%;border:0;"></iframe>
+	<div style="position: fixed;width: 20%;aspect-ratio: 1;bottom: 2%;right: 0.5%;z-index:10000;">
+		<iframe id="plyr" src="plyr/index.html" allow="autoplay" style="width:100%;height:100%;border:0;"></iframe>
 	</div>
 	<style>
 	.details-container {
