@@ -770,7 +770,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
     setTimeout(() => {
       const c2 = document.querySelector(".section.c2");
       if (c2) {
-        c2.style.transition = "opacity 180ms ease-in-out";
+        c2.style.transition = "opacity 100ms ease-in-out";
         c2.style.opacity = "0";
 
         c2.addEventListener("transitionend",() => {
@@ -780,7 +780,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
               if (!currentsection.classList.contains("c2")) {
                 currentsection.classList.remove("final");
                 currentsection.style.display = "flex";
-				currentsection.style.transition = "opacity 180ms ease-in-out";
+				currentsection.style.transition = "opacity 100ms ease-in-out";
 				currentsection.style.opacity = "1";
                 currentsection.classList.remove("hide");
               }
@@ -811,7 +811,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
       margin-bottom: 0.5vh;
 		text-align: center;
 		align-self: center;
-		transition: all 1.2s ease;
+		transition: all 1.8s ease;
     }
 
     .typed-text {
@@ -825,7 +825,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
     .invitation-content {
       opacity: 0;
       transform: translateY(30px);
-      transition: all 1.2s ease;
+      transition: all 1.8s ease;
       pointer-events: none;
 	display: flex;
     flex-direction: column;
@@ -916,7 +916,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Animate in
     requestAnimationFrame(() => {
       container.appendChild(invitationDiv);
-	setTimeout(() => { invitationDiv.classList.add("visible");}, 30);
+	setTimeout(() => { invitationDiv.classList.add("visible");}, 50);
     });
   }
 
