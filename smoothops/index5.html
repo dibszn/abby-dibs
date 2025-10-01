@@ -754,8 +754,6 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 
         c2.addEventListener("transitionend",() => {
             c2.remove();
-			const iframe = document.getElementById("plyr");
-			iframe.contentWindow.postMessage({ action: "playAudio" }, "*");
 			setTimeout (() => {
             sections.forEach(function (currentsection) {
               if (!currentsection.classList.contains("c2")) {
@@ -769,8 +767,9 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 			}, 200);
           },{ once: true });
       }
-    }, 3000);
-       }, { once: true });      
+    }, 3000);}, { once: true });
+					const iframe = document.getElementById("plyr");
+			iframe.contentWindow.postMessage({ action: "playAudio" }, "*");
   });
   }
   });
