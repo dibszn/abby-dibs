@@ -888,32 +888,14 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
         <span id="typed-intro"></span>
       </div>
 
-      <div class="invitation-content" id="invitation-content">
-        <p class="invitation-line">
-          Join us as we vow to forever beneath the stars and skies, surrounded by the people we love most.
-        </p>
-		  <img id ="MainImg" src="images/graphic1.png">
-
-        <div class="wedding-info">
-          <p><strong>Date:	</strong> December 21st, 2025</p>
-          <p><strong>Venue:	</strong> Rumah Abang Jamil Shah Alam</p>
-          <p><strong>Time:	</strong> Reception at 11:30 AM</p>
-          <p><strong>Dress Code:	</strong> Formal Attire Requested</p>
-        </div>
-      </div>
     </div>
-	<div style="position: fixed; bottom: 3%; right: 2%;"
-	<iframe width="30%" height="15%" src="https://www.youtube.com/embed/t-o4_twGmuU?si=ZIYZyLZa5nK7c_iJ&amp;controls=0&amp;start=71"frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-	</div>
-		<script>
+<script>
 document.addEventListener("DOMContentLoaded", () => {
   const section21 = document.querySelector(".section.c21");
   const typedText = "You’re invited to the wedding of Adibah & Abby!";
   const typedElement = document.getElementById('typed-intro');
-  const invitationContent = document.getElementById('invitation-content');
   
   let index = 0;
-  let typingDone = false;
 
   // --- Typewriter effect ---
   function typeWriter() {
@@ -924,12 +906,32 @@ document.addEventListener("DOMContentLoaded", () => {
       index++;
       setTimeout(typeWriter, 80);
     } else {
-      typingDone = true;
-	setTimeout(() => {
-      checkAndReveal();
-      contentObserver.observe(invitationContent);
-        }, 500);
+      // After typing finishes → create invitation content
+      setTimeout(createInvitationContent, 500);
     }
+  }
+
+  // --- Create invitation content dynamically ---
+  function createInvitationContent() {
+    const container = document.querySelector(".details-container");
+
+    // Create wrapper
+    const invitationDiv = document.createElement("div");
+    invitationDiv.classList.add("invitation-content");
+
+    // Add content
+    invitationDiv.innerHTML = `
+      <p class="invitation-line">
+        Join us as we vow to forever beneath the stars and skies, surrounded by the people we love most.
+      </p>
+      <img id="MainImg" src="images/banner.png">
+    `;
+
+    // Animate in
+    requestAnimationFrame(() => {
+      container.appendChild(invitationDiv);
+      setTimeout(() => invitationDiv.classList.add("visible"), 50);
+    });
   }
 
   // --- Observer for section 21 ---
@@ -946,30 +948,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     sectionObserver.observe(section21);
   }
-
-  // --- Observer for invitationContent ---
-  const contentObserver = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && typingDone) {
-        invitationContent.classList.add('visible');
-        obs.unobserve(invitationContent);
-      }
-    });
-  }, { threshold: 0.3 });
-
-  // --- Fallback: reveal if already visible ---
-  function checkAndReveal() {
-    const rect = invitationContent.getBoundingClientRect();
-    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-    if (rect.top <= windowHeight * 0.7 && rect.bottom >= 0) {
-      invitationContent.classList.add('visible');
-      contentObserver.unobserve(invitationContent);
-    }
-  }
 });
 </script>
-
-	
 </div>
 	  
     <div class="section c3 hide final">
@@ -1125,7 +1105,7 @@ document.addEventListener("DOMContentLoaded", () => {
     </style>
     <div style="font-family: 'Pinyon Script'; font-style: normal; font-size: 200%; letter-spacing: 2px; margin-bottom: .5vh;text-align: center; letter-spacing: 1.5px;">Will you be there?</div>
     <p style="text-align:center;white-space:pre-wrap;margin-bottom: 0.5vh;font-size: 90%;margin-top: 0; padding-bottom: 1vh;">We’d love to have you there. Kindly let us know if you’ll be able to join us in the joy and celebration by <strong>7th December 2025</strong></p>
-  <form novalidate="" style="width: 90%; height: auto; display: flex;flex-direction: column;align-items: center;justify-content: space-between;object-fit: contain;background-color: rgb(255,255,255,0.6);border-radius: 45px;padding: 3% 1% 1.5% 1%;gap: 2.2em;" id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec">    
+  <form novalidate="" style="width: 90%; height: auto; display: flex;flex-direction: column;align-items: center;justify-content: space-between;background-color: rgb(255,255,255,0.6);padding: 2% 1% 1.5% 1%;gap: 2.2em;" id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec">    
     <div id="NameData" style="display: flex; justify-content: space-between;">
       <div class="Name_fieldContainer">
         <input type="text" id="firstname" name="firstname" autocomplete="off" placeholder=" " required="">
