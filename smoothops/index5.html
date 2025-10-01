@@ -811,6 +811,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
       margin-bottom: 0.5vh;
 		text-align: center;
 		align-self: center;
+		transition: all 1.2s ease;
 	
     }
 
@@ -821,20 +822,6 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 		letter-spacing: 1.5px;
 		text-align: center;
 
-    }
-
-    .typed-cursor {
-      display: inline-block;
-      width: 0.05em;
-      height: 0.8em;
-      background-color: #fff;
-      animation: blink 0.75s step-end infinite;
-      vertical-align: middle;
-    }
-
-    @keyframes blink {
-      0%, 100% { background: transparent; }
-      50% { background: #fff; }
     }
 
     .invitation-content {
@@ -996,8 +983,8 @@ document.addEventListener("DOMContentLoaded", () => {
       font-family: 'The Seasons', auto;
     }
 
-    namelabel, msglabel, headcountlabel { top: 0; }
-    selectlabel { top: -0.6em; }
+    namelabel, msglabel, headcountlabel { top: 10px; }
+    selectlabel { top: -10px; }
 
     input[id="headcount"]:focus ~ headcountlabel, input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel, input[id="message"]:focus ~ msglabel,
     input[id="headcount"]:not(:placeholder-shown) ~ headcountlabel, input[id="firstname"]:not(:placeholder-shown) ~ namelabel, input[id="lastname"]:not(:placeholder-shown) ~ namelabel,
@@ -1106,7 +1093,7 @@ document.addEventListener("DOMContentLoaded", () => {
     </style>
     <div style="font-family: 'Pinyon Script'; font-style: normal; font-size: 200%; letter-spacing: 2px; margin-bottom: .5vh;text-align: center; letter-spacing: 1.5px;">Will you be there?</div>
     <p style="text-align:center;white-space:pre-wrap;margin-bottom: 0.5vh;font-size: 90%;margin-top: 0; padding-bottom: 1vh;">We’d love to have you there. Kindly let us know if you’ll be able to join us in the joy and celebration by <strong>7th December 2025</strong></p>
-  <form novalidate="" style="width: 90%; height: auto; display: flex;flex-direction: column;align-items: center;justify-content: space-between;background-color: rgb(255,255,255,0.6);padding: 2% 1% 1.5% 1%;gap: 2.2em;" id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec">    
+  <form novalidate="" style="width: 90%; height: auto; display: flex;flex-direction: column;align-items: center;justify-content: space-between;background-color: rgb(255,255,255,0.6);padding: 2% 1% 1.5% 1%;gap: 2.2em; border-radius:15px;" id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec">    
     <div id="NameData" style="display: flex; justify-content: space-between;">
       <div class="Name_fieldContainer">
         <input type="text" id="firstname" name="firstname" autocomplete="off" placeholder=" " required="">
