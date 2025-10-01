@@ -754,6 +754,8 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 
         c2.addEventListener("transitionend",() => {
             c2.remove();
+			const iframe = document.getElementById("plyr");
+			iframe.contentWindow.postMessage({ action: "playAudio" }, "*");
 			setTimeout (() => {
             sections.forEach(function (currentsection) {
               if (!currentsection.classList.contains("c2")) {
@@ -762,8 +764,6 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 				currentsection.style.transition = "opacity 100ms ease-in-out";
 				currentsection.style.opacity = "1";
                 currentsection.classList.remove("hide");
-				const iframe = document.getElementById("plyr");
-			    iframe.contentWindow.postMessage({ action: "playAudio" }, "*");
               }
             });
 			}, 200);
