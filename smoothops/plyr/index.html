@@ -441,6 +441,18 @@ button:hover::before {
       playPauseBtn.classList.remove('playing');
     }
   });
+	 window.addEventListener("message", (event) => {
+  if (event.data && event.data.action === "playAudio") {
+    if (audio.paused) {
+      audio.play().then(() => {
+        fadeInAudio(audio, volume, 1000);
+        playPauseBtn.classList.add('playing');
+      }).catch(err => {
+        console.warn("Autoplay failed:", err);
+      });
+    }
+  }
+});
 </script>
 
 </body></html>
