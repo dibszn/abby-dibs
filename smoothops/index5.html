@@ -770,7 +770,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
     setTimeout(() => {
       const c2 = document.querySelector(".section.c2");
       if (c2) {
-        c2.style.transition = "opacity 300ms ease-in-out";
+        c2.style.transition = "opacity 180ms ease-in-out";
         c2.style.opacity = "0";
 
         c2.addEventListener("transitionend",() => {
@@ -780,7 +780,7 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
               if (!currentsection.classList.contains("c2")) {
                 currentsection.classList.remove("final");
                 currentsection.style.display = "flex";
-				currentsection.style.transition = "opacity 300ms ease-in-out";
+				currentsection.style.transition = "opacity 180ms ease-in-out";
 				currentsection.style.opacity = "1";
                 currentsection.classList.remove("hide");
               }
@@ -857,9 +857,10 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
     .invitation-line {
       font-style: italic;
       font-size: 90%;
-      margin-bottom: 2.3vh;
+      margin-bottom: 3vh;
       color: #fff;
 		text-align: center;
+		margin-top: 1vh;
     }
 
     .wedding-info {
@@ -922,7 +923,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Add content
     invitationDiv.innerHTML = `
       <p class="invitation-line">
-        Join us as we vow to forever beneath the stars and skies, surrounded by the people we love most.
+        Join us as we vow to forever beneath the skies, surrounded by the people we love most.
       </p>
       <img id="MainImg" src="images/banner.png">
     `;
@@ -930,7 +931,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Animate in
     requestAnimationFrame(() => {
       container.appendChild(invitationDiv);
-      setTimeout(() => invitationDiv.classList.add("visible"), 50);
+      setTimeout(() => invitationDiv.classList.add("visible"), 80);
     });
   }
 
