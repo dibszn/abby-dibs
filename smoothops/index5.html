@@ -797,11 +797,14 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </div>
 
 <div class="section c21 hide final">
-	<style>
-	.details-container {
+  <style>
+    .details-container {
       max-width: 1500px;
       margin: 0 auto;
       padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .typed-wrapper {
@@ -809,33 +812,35 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
       color: #fff;
       font-family: 'Pinyon Script', auto;
       margin-bottom: 0.5vh;
-		text-align: center;
-		align-self: center;
-		transition: all 1.2s ease;
-	
+      text-align: center;
+      align-self: center;
+      transition: all 1.2s ease;
     }
 
     .typed-text {
       display: inline;
       white-space: pre-wrap;
       word-break: break-word;
-		letter-spacing: 1.5px;
-		text-align: center;
-
+      letter-spacing: 1.5px;
+      text-align: center;
     }
 
     .invitation-content {
+      max-height: 0;
       opacity: 0;
-      transform: translateY(30px);
-      transition: all 1.2s ease;
+      overflow: hidden;
+      transform: translateY(20px);
+      transition: max-height 1.2s ease, opacity 1.2s ease, transform 1.2s ease;
       pointer-events: none;
-	display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     .invitation-content.visible {
+      max-height: 800px; /* big enough to fit content */
       opacity: 1;
       transform: translateY(0);
       pointer-events: auto;
@@ -846,8 +851,8 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
       font-size: 90%;
       margin-bottom: 3vh;
       color: #fff;
-		text-align: center;
-		margin-top: 1vh;
+      text-align: center;
+      margin-top: 1vh;
     }
 
     .wedding-info {
@@ -870,75 +875,75 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
       }
     }
   </style>
-	<div class="details-container">
 
-      <div class="typed-wrapper">
-        <span id="typed-intro"></span>
-      </div>
-
+  <div class="details-container">
+    <div class="typed-wrapper">
+      <span id="typed-intro"></span>
     </div>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const section21 = document.querySelector(".section.c21");
-  const typedText = "You’re invited to the wedding of Adibah & Abby!";
-  const typedElement = document.getElementById('typed-intro');
-  
-  let index = 0;
+  </div>
 
-  // --- Typewriter effect ---
-  function typeWriter() {
-    if (index === 0) typedElement.textContent = ''; // Reset on first run
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const section21 = document.querySelector(".section.c21");
+      const typedText = "You’re invited to the wedding of Adibah & Abby!";
+      const typedElement = document.getElementById('typed-intro');
 
-    if (index < typedText.length) {
-      typedElement.textContent += typedText.charAt(index);
-      index++;
-      setTimeout(typeWriter, 80);
-    } else {
-      // After typing finishes → create invitation content
-      setTimeout(createInvitationContent, 500);
-    }
-  }
+      let index = 0;
 
-  // --- Create invitation content dynamically ---
-  function createInvitationContent() {
-    const container = document.querySelector(".details-container");
+      // --- Typewriter effect ---
+      function typeWriter() {
+        if (index === 0) typedElement.textContent = ''; // Reset on first run
 
-    // Create wrapper
-    const invitationDiv = document.createElement("div");
-    invitationDiv.classList.add("invitation-content");
-
-    // Add content
-    invitationDiv.innerHTML = `
-      <p class="invitation-line">
-        Join us as we vow to forever beneath the skies, surrounded by the people we love most.
-      </p>
-      <img id="MainImg" src="images/banner.png">
-    `;
-
-    // Animate in
-    requestAnimationFrame(() => {
-      container.appendChild(invitationDiv);
-      setTimeout(() => invitationDiv.classList.add("visible"), 80);
-    });
-  }
-
-  // --- Observer for section 21 ---
-  if (section21) {
-    const sectionObserver = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          typedElement.classList.add("typed-text");
-          typeWriter();   // start typing
-          obs.unobserve(entry.target); // run once
+        if (index < typedText.length) {
+          typedElement.textContent += typedText.charAt(index);
+          index++;
+          setTimeout(typeWriter, 80);
+        } else {
+          // After typing finishes → create invitation content
+          setTimeout(createInvitationContent, 500);
         }
-      });
-    }, { threshold: 0.5 });
+      }
 
-    sectionObserver.observe(section21);
-  }
-});
-</script>
+      // --- Create invitation content dynamically ---
+      function createInvitationContent() {
+        const container = document.querySelector(".details-container");
+
+        const invitationDiv = document.createElement("div");
+        invitationDiv.classList.add("invitation-content");
+
+        invitationDiv.innerHTML = `
+          <p class="invitation-line">
+            Join us as we vow to forever beneath the skies, surrounded by the people we love most.
+          </p>
+          <img id="MainImg" src="images/banner.png">
+        `;
+
+        container.appendChild(invitationDiv);
+
+        // trigger transition
+        requestAnimationFrame(() => {
+          invitationDiv.classList.add("visible");
+        });
+      }
+
+      // --- Observer for section 21 ---
+      if (section21) {
+        const sectionObserver = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              typedElement.classList.add("typed-text");
+              typeWriter();   // start typing
+              obs.unobserve(entry.target); // run once
+            }
+          });
+        }, { threshold: 0.5 });
+
+        sectionObserver.observe(section21);
+      }
+    });
+  </script>
 </div>
+
 	  
     <div class="section c3 hide final">
       <style>    
