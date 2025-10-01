@@ -158,27 +158,6 @@ input {
 .full-height { height: 100%; }
 .height-80 { height: 90%; }
 
-#LogoContainer
-{
-  position: relative;
-  aspect-ratio: 0.717;
-  max-width: 85%;
-  height: 70%;
-}
-#plyrContainer
-{
-  position:fixed;
-  bottom:2.5%;
-  right:2%;
-  max-width: 55%;
-  aspect-ratio:1;
-  display:flex;
-  justify-content:flex-end;
-  border-radius:8px;
-  overflow:visible;
-  background-color:transparent;
-}
-
 #note-parent
 {
   position:relative; 
@@ -783,9 +762,12 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 				currentsection.style.transition = "opacity 100ms ease-in-out";
 				currentsection.style.opacity = "1";
                 currentsection.classList.remove("hide");
+				const iframe = document.getElementById("plyr");
+			    iframe.contentWindow.postMessage({ action: "playAudio" }, "*");
+			  });
               }
             });
-			},200);
+			}, 200);
           },{ once: true });
       }
     }, 3000);
@@ -797,6 +779,9 @@ document.getElementById("newPage1").addEventListener("animationend", function ()
 </div>
 
 <div class="section c21 hide final">
+	<div id="plyr" style="position: fixed;width: 20%;aspect-ratio: 1;bottom: 2%;right: 0.5%;z-index:10000;">
+		<iframe src="plyr/index.html" allow="autoplay" style="width:100%;height:100%;border:0;"></iframe>
+	</div>
 	<style>
 	.details-container {
       max-width: 1500px;
