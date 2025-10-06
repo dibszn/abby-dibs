@@ -300,7 +300,7 @@
 										<div class="sqs-block-content preFade fadeIn" style="transition-timing-function:ease;transition-duration:1.5s;transition-delay:0.494118s">
 											<script type="application/json" id="form-context-6800ba1a7bf9f763fe7a3ebe" class="sqs-form-block-context"></script>
 											<div id="form-submission-html-6800ba1a7bf9f763fe7a3ebe" class="sqs-form-block-submission-html" data-submission-html=""></div>
-											<style> fieldset { border: none; } input { border-width: 0 0 1px 0; background: transparent} .description, .required { font-style:italic; } #thanksModal {position: fixed;left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center; z-index: 1000; }  .modal-content { color: #113c25; background-color: white; padding: 10%; border-radius: 3.5%; text-align: center; max-width: 400px; margin: 0 auto; position: relative; }#block-b787c23d1f345d498871 {box-sizing: border-box;height: 100%; padding: 6% 6% 6% 6%; border-radius: 0px 0px 0px 0px; --tweak-form-block-background-color: hsla(var(--lightAccent-hsl), 0.84); } </style>
+											<style> fieldset { border: none; } input { border-width: 0 0 1px 0; background: transparent} .description, .required { font-style:italic; } #thanksModal {position: fixed;left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center; z-index: 10000; }  .modal-content { color: #113c25; background-color: white; padding: 10%; border-radius: 3.5%; text-align: center; max-width: 400px; margin: 0 auto; position: relative; }#block-b787c23d1f345d498871 {box-sizing: border-box;height: 100%; padding: 6% 6% 6% 6%; border-radius: 0px 0px 0px 0px; --tweak-form-block-background-color: hsla(var(--lightAccent-hsl), 0.84); } </style>
 											<div class="sqs-site-style-form form-wrapper" style="color: #383838; background-image: url(images/blankpaper.png); padding: 3% 2%;">
 												<form autocomplete="on" class="react-form-contents" novalidate id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec">
 													<div tabindex="-1"></div>
@@ -439,11 +439,12 @@
 									      fetch(form.action, {
 									        method: "POST",
 									        body: formData,
-									        mode: "no-cors"
-									      }).then(() => {
-										      form.reset();
-										      paxfield.style.display = "none";
-										      modal.style.display = "flex";
+									      })
+											  
+											modal.style.display = "flex";
+										    form.reset();
+										    paxfield.style.display = "none";
+										      
 										
 										      const closeHandler = () => {
 										        modal.style.display = "none";
@@ -457,7 +458,6 @@
 										      window.addEventListener("touchstart", closeHandler, { once: true });
 										      window.addEventListener("touchmove", closeHandler, { once: true });
 										      window.addEventListener("scroll", closeHandler, { once: true });
-										    });
 										  });
 										});
 									</script>
@@ -1058,3 +1058,4 @@
 	</script>
 </body>
 </html>
+
