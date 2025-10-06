@@ -405,18 +405,61 @@
 										</div>
 									</div>
 									<script>
-										document.addEventListener("DOMContentLoaded", () => {
-										  const attendanceRadios = document.getElementsByName("radio-f0bdb246-a4a0-4c86-a664-29601e70a8a9-field");
-										
-										  attendanceRadios.forEach(radio => {
-										    radio.addEventListener("change", () => {
-										      if (radio.checked) {
-										        console.log("Selected value:", radio.value);
-										      }
-										    });
-										  });
-										});
-
+									  document.addEventListener("DOMContentLoaded", () => {
+									    const paxfield = document.getElementById("paxfield");
+									    const attendanceRadios = document.getElementsByName("radio-f0bdb246-a4a0-4c86-a664-29601e70a8a9-field");
+									    const form = document.getElementById("bootstrapForm");
+									    const modal = document.getElementById("thanksModal");
+									    const modalTitle = document.getElementById("modalTitle");
+									    const modalMessage = document.getElementById("modalMessage");
+									
+									    attendanceRadios.forEach(radio => {
+									      radio.addEventListener("change", () => {
+									        if (radio.checked) {
+									          console.log("Selected value:", radio.value); // 👈 Log the value
+									
+									          if (radio.value === "Yes") {
+									            paxfield.style.display = "block";
+									            modalTitle.textContent = "Thanks for the confirmation!";
+									            modalMessage.textContent = "See you on 21st December 🥳";
+									          } else if (radio.value === "No") {
+									            paxfield.style.display = "none";
+									            modalTitle.textContent = "Aw shucks 🥲";
+									            modalMessage.textContent = "See you when I see you";
+									          }
+									        }
+									      });
+									    });
+									
+									    form.addEventListener("submit", e => {
+									      e.preventDefault();
+									
+									      const formData = new FormData(form);
+									
+									      fetch(form.action, {
+									        method: "POST",
+									        body: formData,
+									        mode: "no-cors",
+									      }).then(() => {
+									        form.reset();
+									        paxfield.style.display = "none";
+									        modal.style.display = "flex";
+									
+									        const closeHandler = () => {
+									          modal.style.display = "none";
+									          window.removeEventListener("click", closeHandler);
+									          window.removeEventListener("touchstart", closeHandler);
+									          window.removeEventListener("touchmove", closeHandler);
+									          window.removeEventListener("scroll", closeHandler);
+									        };
+									
+									        window.addEventListener("click", closeHandler, { once: true });
+									        window.addEventListener("touchstart", closeHandler, { once: true });
+									        window.addEventListener("touchmove", closeHandler, { once: true });
+									        window.addEventListener("scroll", closeHandler, { once: true });
+									      });
+									    });
+									  });
 									</script>
 								</div>
 							</div>
@@ -1015,6 +1058,7 @@
 	</script>
 </body>
 </html>
+
 
 
 
