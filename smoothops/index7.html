@@ -316,7 +316,7 @@
 																	</div>
 																</legend>
 																<div class="field fullname" required data-dynamic-strings="">
-																	<input aria-invalid="false" aria-required="true" autocomplete="given-name" class="ngonnDl0lqs7ZArA" id="name-yui_3_17_2_1_1553888888520_3744-fname-field" name="fname" type="text" value="" style="width: 100%;" required>
+																	<input aria-invalid="false" aria-required="true" autocomplete="given-name" class="ngonnDl0lqs7ZArA" id="name-yui_3_17_2_1_1553888888520_3744-fname-field" name="firstname" type="text" value="" style="width: 100%;" required>
 																	<span class="V60Xg8ZMr2Q9qLks form-input-effects" aria-hidden="true">
 																	<span class="form-input-effects-border">
 																	</span>
@@ -336,7 +336,7 @@
 																</legend>
 																<div class="option">
 																	<label class="Jgutml04ceQGL9y4">
-																	<input class="rGgDKsQQwQshZCTQ" name="radio-f0bdb246-a4a0-4c86-a664-29601e70a8a9-field" type="radio" value="Yes">
+																	<input class="rGgDKsQQwQshZCTQ" name="attendance" type="radio" value="Yes">
 																	<span data-dynamic-strings="true" class="radio-label">Yes, I will be there!</span>
 																	<span class="CzwcrY6PnYkV2_MH radio-mark"></span>
 																	<span class="YOn533mi9w4qUBoY radio-outline"></span>
@@ -344,7 +344,7 @@
 																</div>
 																<div class="option">
 																	<label class="Jgutml04ceQGL9y4">
-																	<input class="rGgDKsQQwQshZCTQ" name="radio-f0bdb246-a4a0-4c86-a664-29601e70a8a9-field" type="radio" value="No">
+																	<input class="rGgDKsQQwQshZCTQ" name="attendance" type="radio" value="No">
 																	<span data-dynamic-strings="true" class="radio-label">No, I won't</span>
 																	<span class="CzwcrY6PnYkV2_MH radio-mark"></span>
 																	<span class="YOn533mi9w4qUBoY radio-outline"></span>
@@ -352,7 +352,7 @@
 																</div>
 															</fieldset>
 														</div>
-														<div id="paxfield" style="display: none; opacity: 0; transition: opacity 300ms ease-in-out">
+														<div id="paxfield" style="display: none; opacity: 0; transition: opacity 400ms ease">
 															<fieldset class="form-item fields Dvz7hGDGST0ttUYu pax" id="pax-yui_3_17_2_1_1553888888520_3744">
 																<legend id="pax-yui_3_17_2_1_1553888888520_3744-field-wrapper">
 																	<div class="title">
@@ -363,7 +363,7 @@
 																	</div>
 																</legend>
 																<div class="field pax" data-dynamic-strings="">
-																	<input aria-invalid="false" aria-required="true" class="ngonnDl0lqs7ZArA" id="pax-yui_3_17_2_1_1553888888520_3744-fname-field" name="pax" type="number" value="" style="width: 100%;">
+																	<input aria-invalid="false" aria-required="true" class="ngonnDl0lqs7ZArA" id="pax-yui_3_17_2_1_1553888888520_3744-fname-field" name="headcount" type="number" value="" style="width: 100%;">
 																	<span class="V60Xg8ZMr2Q9qLks form-input-effects" aria-hidden="true">
 																	<span class="form-input-effects-border">
 																	</span>
@@ -382,7 +382,7 @@
 																	</div>
 																</legend>
 																<div class="field wishes" data-dynamic-strings="">
-																	<input aria-invalid="false" aria-required="true" autocomplete="given-name" class="ngonnDl0lqs7ZArA" id="msg-yui_3_17_2_1_1553888888520_3744-fname-field" name="fname" type="text" value="" style="width: 100%;">
+																	<input aria-invalid="false" aria-required="true" autocomplete="given-name" class="ngonnDl0lqs7ZArA" id="msg-yui_3_17_2_1_1553888888520_3744-fname-field" name="message" type="text" value="" style="width: 100%;">
 																	<span class="V60Xg8ZMr2Q9qLks form-input-effects" aria-hidden="true">
 																	<span class="form-input-effects-border">
 																	</span>
@@ -407,7 +407,7 @@
 									<script>
 									  document.addEventListener("DOMContentLoaded", () => {
 									    const paxfield = document.getElementById("paxfield");
-									    const attendanceRadios = document.getElementsByName("radio-f0bdb246-a4a0-4c86-a664-29601e70a8a9-field");
+									    const attendanceRadios = document.getElementsByName("attendance");
 									    const form = document.getElementById("bootstrapForm");
 									    const modal = document.getElementById("thanksModal");
 									    const modalTitle = document.getElementById("modalTitle");
@@ -416,7 +416,6 @@
 									    attendanceRadios.forEach(radio => {
 									      radio.addEventListener("change", () => {
 									        if (radio.checked) {
-									          console.log("Selected value:", radio.value); // 👈 Log the value
 									
 									          if (radio.value === "Yes") {
 									            paxfield.style.display = "block";
@@ -1058,6 +1057,7 @@
 	</script>
 </body>
 </html>
+
 
 
 
