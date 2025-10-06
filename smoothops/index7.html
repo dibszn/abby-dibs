@@ -352,7 +352,7 @@
 																</div>
 															</fieldset>
 														</div>
-														<div id="paxfield" style="display: none; opacity: 0; transition: opacity 400ms ease 100ms">
+														<div id="paxfield" style="display: none; opacity: 0; transition: opacity 300ms ease-in-out">
 															<fieldset class="form-item fields Dvz7hGDGST0ttUYu pax" id="pax-yui_3_17_2_1_1553888888520_3744">
 																<legend id="pax-yui_3_17_2_1_1553888888520_3744-field-wrapper">
 																	<div class="title">
@@ -420,7 +420,7 @@
 									
 									          if (radio.value === "Yes") {
 									            paxfield.style.display = "block";
-												paxfield.style.opacity = "1";
+												setTimeout(() => { paxfield.style.opacity = "1"; }, 150);
 									            modalTitle.textContent = "Thanks for the confirmation!";
 									            modalMessage.textContent = "See you on 21st December 🥳";
 									          } else if (radio.value === "No") {
@@ -434,31 +434,30 @@
 									
 									    form.addEventListener("submit", e => {
 									      e.preventDefault();
-									
-									      const formData = new FormData(form);
-									
+										const formData = new FormData(form);  
+      
 									      fetch(form.action, {
 									        method: "POST",
 									        body: formData,
-									        mode: "no-cors",
-									      }).then(() => {
-									        form.reset();
-									        paxfield.style.display = "none";
-									        modal.style.display = "flex";
-									
-									        const closeHandler = () => {
-									          modal.style.display = "none";
-									          window.removeEventListener("click", closeHandler);
-									          window.removeEventListener("touchstart", closeHandler);
-									          window.removeEventListener("touchmove", closeHandler);
-									          window.removeEventListener("scroll", closeHandler);
-									        };
-									
-									        window.addEventListener("click", closeHandler, { once: true });
-									        window.addEventListener("touchstart", closeHandler, { once: true });
-									        window.addEventListener("touchmove", closeHandler, { once: true });
-									        window.addEventListener("scroll", closeHandler, { once: true });
+									        mode: "no-cors"
 									      });
+									
+									      form.reset();
+									      GuestField.style.display = "none";
+									      modal.style.display = "flex";
+									
+									      const closeHandler = () => {
+									        modal.style.display = "none";
+									        window.removeEventListener("click", closeHandler);
+									        window.removeEventListener("touchstart", closeHandler);
+									        window.removeEventListener("touchmove", closeHandler);
+									        window.removeEventListener("scroll", closeHandler);
+									      };
+									
+									      window.addEventListener("click", closeHandler, { once: true });
+									      window.addEventListener("touchstart", closeHandler, { once: true });
+									      window.addEventListener("touchmove", closeHandler, { once: true });
+									      window.addEventListener("scroll", closeHandler, { once: true });
 									    });
 									  });
 									</script>
@@ -1059,6 +1058,7 @@
 	</script>
 </body>
 </html>
+
 
 
 
