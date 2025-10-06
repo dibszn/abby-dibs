@@ -300,9 +300,9 @@
 										<div class="sqs-block-content preFade fadeIn" style="transition-timing-function:ease;transition-duration:1.5s;transition-delay:0.494118s">
 											<script type="application/json" id="form-context-6800ba1a7bf9f763fe7a3ebe" class="sqs-form-block-context"></script>
 											<div id="form-submission-html-6800ba1a7bf9f763fe7a3ebe" class="sqs-form-block-submission-html" data-submission-html=""></div>
-											<style> fieldset { border: none; } input { border-width: 0 0 1px 0; background: transparent} .description, .required { font-style:italic; } #block-b787c23d1f345d498871 {box-sizing: border-box;height: 100%; padding: 6% 6% 6% 6%; border-radius: 0px 0px 0px 0px; --tweak-form-block-background-color: hsla(var(--lightAccent-hsl), 0.84); } </style>
+											<style> fieldset { border: none; } input { border-width: 0 0 1px 0; background: transparent} .description, .required { font-style:italic; } #thanksModal {position: fixed;left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center; z-index: 1000; }  .modal-content { color: #113c25; background-color: white; padding: 10%; border-radius: 3.5%; text-align: center; max-width: 400px; margin: 0 auto; position: relative; }#block-b787c23d1f345d498871 {box-sizing: border-box;height: 100%; padding: 6% 6% 6% 6%; border-radius: 0px 0px 0px 0px; --tweak-form-block-background-color: hsla(var(--lightAccent-hsl), 0.84); } </style>
 											<div class="sqs-site-style-form form-wrapper" style="color: #383838; background-image: url(images/blankpaper.png); padding: 3% 2%;">
-												<form autocomplete="on" class="react-form-contents" novalidate="" data-success-redirect="">
+												<form autocomplete="on" class="react-form-contents" novalidate id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec">
 													<div tabindex="-1"></div>
 													<div class="field-list" style="display: flex; gap: 2.5vh; flex-direction: column;">
 														<fieldset class="form-item fields Dvz7hGDGST0ttUYu name" id="name-yui_3_17_2_1_1553888888520_3744">
@@ -315,7 +315,7 @@
 																</div>
 															</legend>
 															<div class="field fullname" data-dynamic-strings="">
-																<input aria-invalid="false" aria-required="true" autocomplete="given-name" class="ngonnDl0lqs7ZArA" id="name-yui_3_17_2_1_1553888888520_3744-fname-field" name="fname" type="text" value="" style="width: 100%;">
+																<input aria-invalid="false" aria-required="true" autocomplete="given-name" class="ngonnDl0lqs7ZArA" id="name-yui_3_17_2_1_1553888888520_3744-fname-field" name="fname" type="text" value="" style="width: 100%;" required>
 																<span class="V60Xg8ZMr2Q9qLks form-input-effects" aria-hidden="true">
 																<span class="form-input-effects-border">
 																</span>
@@ -331,10 +331,10 @@
 																	</div>
 																</div>
 															</legend>
-															<div class="option">
+															<div class="option" required>
 																<label class="Jgutml04ceQGL9y4">
 																<input class="rGgDKsQQwQshZCTQ" name="radio-f0bdb246-a4a0-4c86-a664-29601e70a8a9-field" type="radio" value="Yes">
-																<span data-dynamic-strings="true" class="radio-label">Yes</span>
+																<span data-dynamic-strings="true" class="radio-label">Yes, I will be there!</span>
 																<span class="CzwcrY6PnYkV2_MH radio-mark"></span>
 																<span class="YOn533mi9w4qUBoY radio-outline"></span>
 																</label>
@@ -342,13 +342,13 @@
 															<div class="option">
 																<label class="Jgutml04ceQGL9y4">
 																<input class="rGgDKsQQwQshZCTQ" name="radio-f0bdb246-a4a0-4c86-a664-29601e70a8a9-field" type="radio" value="No">
-																<span data-dynamic-strings="true" class="radio-label">No</span>
+																<span data-dynamic-strings="true" class="radio-label">No, I won't</span>
 																<span class="CzwcrY6PnYkV2_MH radio-mark"></span>
 																<span class="YOn533mi9w4qUBoY radio-outline"></span>
 																</label>
 															</div>
 														</fieldset>
-														<fieldset class="form-item fields Dvz7hGDGST0ttUYu pax" id="pax-yui_3_17_2_1_1553888888520_3744">
+														<fieldset class="form-item fields Dvz7hGDGST0ttUYu pax" id="pax-yui_3_17_2_1_1553888888520_3744" style="display:none">
 															<legend id="pax-yui_3_17_2_1_1553888888520_3744-field-wrapper">
 																<div class="title">
 																	<div class="s9aw5DV2uY72CSBH">
@@ -358,7 +358,7 @@
 																</div>
 															</legend>
 															<div class="field pax" data-dynamic-strings="">
-																<input aria-invalid="false" aria-required="true" class="ngonnDl0lqs7ZArA" id="pax-yui_3_17_2_1_1553888888520_3744-fname-field" name="pax" type="text" value="" style="width: 100%;">
+																<input aria-invalid="false" aria-required="true" class="ngonnDl0lqs7ZArA" id="pax-yui_3_17_2_1_1553888888520_3744-fname-field" name="pax" type="number" value="" style="width: 100%;">
 																<span class="V60Xg8ZMr2Q9qLks form-input-effects" aria-hidden="true">
 																<span class="form-input-effects-border">
 																</span>
@@ -384,14 +384,66 @@
 														</fieldset>
 													</div>
 													<div class="form-button-wrapper form-button-wrapper--align-center" style="display: flex; justify-content: center; margin-top: 1.5vh;">
-														<button type="submit" style="background-color: #383838; color: white;" class="button sqs-system-button sqs-editable-button form-submit-button sqs-button-element--primary none vj3vrvqNhcUOo_Bm" data-sqsp-button="true">
-														<span class="form-submit-button-label">Send</span>
-														</button>
+														<button value="SEND" type="submit" style="background-color: #383838; color: white;" class="button sqs-system-button sqs-editable-button form-submit-button sqs-button-element--primary none vj3vrvqNhcUOo_Bm" data-sqsp-button="true"></button>
 													</div>
 												</form>
+													<div id="thanksModal" style="display: none;">
+												      <div class="modal-content">
+												        <h3 id="modalTitle">wee</h3>
+												        <h4 id="modalMessage">wee</h4>
+												      </div>
+	 											 </div>
 											</div>
 										</div>
 									</div>
+									<script>
+										document.addEventListener("DOMContentLoaded", () => {
+										  const form = document.getElementById("bootstrapForm");
+										  const selectElement = document.getElementById("radio-f0bdb246-a4a0-4c86-a664-29601e70a8a9");
+										  const guestField = document.getElementById("pax-yui_3_17_2_1_1553888888520_3744");
+										  const modal = document.getElementById("thanksModal");
+										  const modalTitle = document.getElementById("modalTitle");
+										  const modalMessage = document.getElementById("modalMessage");
+										
+										  if (selectElement.value === "Yes") {
+										    guestField.style.display = "block";
+										    document.getElementById("headcount").setAttribute("required", "");
+										    modalTitle.textContent = "Thanks for the confirmation!";
+										    modalMessage.textContent = "See you on 21st December 🥳";
+										  } else if (selectElement.value === "No") {
+										    modalTitle.textContent = "Aw shucks 🥲";
+										    modalMessage.textContent = "See you when I see you";
+										  }
+										
+										  form.addEventListener("submit", e => {
+										    e.preventDefault();
+										
+										    const formData = new FormData(form);
+										
+										    fetch(form.action, {
+										      method: "POST",
+										      body: formData,
+										      mode: "no-cors"
+										    })
+										    form.reset();
+										    guestField.style.display = "none";
+										    modal.style.display = "flex";
+										
+										    const closeHandler = () => {
+										      modal.style.display = "none";
+										      window.removeEventListener("click", closeHandler);
+										      window.removeEventListener("touchstart", closeHandler);
+										      window.removeEventListener("touchmove", closeHandler);
+										      window.removeEventListener("scroll", closeHandler);
+										    };
+										
+										    window.addEventListener("click", closeHandler, { once: true });
+										    window.addEventListener("touchstart", closeHandler, { once: true });
+										    window.addEventListener("touchmove", closeHandler, { once: true });
+										    window.addEventListener("scroll", closeHandler, { once: true });
+										  });
+										});
+									</script>
 								</div>
 							</div>
 						</div>
@@ -989,6 +1041,7 @@
 	</script>
 </body>
 </html>
+
 
 
 
