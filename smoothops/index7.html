@@ -406,62 +406,13 @@
 									</div>
 									<script>
 										document.addEventListener("DOMContentLoaded", () => {
-										  const form = document.getElementById("bootstrapForm");
 										  const attendanceRadios = document.getElementsByName("radio-f0bdb246-a4a0-4c86-a664-29601e70a8a9-field");
-										  const guestField = document.getElementById("paxfield");
-										  const modal = document.getElementById("thanksModal");
-										  const modalTitle = document.getElementById("modalTitle");
-										  const modalMessage = document.getElementById("modalMessage");
-										
-										  const handleAttendanceChange = () => {
-										    const selectedValue = [...attendanceRadios].find(radio => radio.checked)?.value;
-										
-										    if (selectedValue === "Yes") {
-										      guestField.style.display.replace("none", "block");
-										      document.getElementById("pax-yui_3_17_2_1_1553888888520_3744-fname-field").setAttribute("required", "");
-										      modalTitle.textContent = "Thanks for the confirmation!";
-										      modalMessage.textContent = "See you on 21st December 🥳";
-										    } else if (selectedValue === "No") {
-										      guestField.style.display = "none";
-										      modalTitle.textContent = "Aw shucks 🥲";
-										      modalMessage.textContent = "See you when I see you";
-										    }
-										  };
 										
 										  attendanceRadios.forEach(radio => {
-										    radio.addEventListener("change", handleAttendanceChange);
-										  });
-										
-										  handleAttendanceChange();
-										
-										  form.addEventListener("submit", e => {
-										    e.preventDefault();
-										
-										    const formData = new FormData(form);
-										
-										    // Send the form data to the server using fetch
-										    fetch(form.action, {
-										      method: "POST",
-										      body: formData,
-										      mode: "no-cors",
-										    }).then(() => {
-										      form.reset();
-										      modal.style.display = "flex"; 
-										
-										      // Close handler function
-										      const closeHandler = () => {
-										        modal.style.display = "none";
-										        window.removeEventListener("click", closeHandler);
-										        window.removeEventListener("touchstart", closeHandler);
-										        window.removeEventListener("touchmove", closeHandler);
-										        window.removeEventListener("scroll", closeHandler);
-										      };
-										
-										      // Close modal on click or touch
-										      window.addEventListener("click", closeHandler, { once: true });
-										      window.addEventListener("touchstart", closeHandler, { once: true });
-										      window.addEventListener("touchmove", closeHandler, { once: true });
-										      window.addEventListener("scroll", closeHandler, { once: true });
+										    radio.addEventListener("change", () => {
+										      if (radio.checked) {
+										        console.log("Selected value:", radio.value);
+										      }
 										    });
 										  });
 										});
@@ -1064,6 +1015,7 @@
 	</script>
 </body>
 </html>
+
 
 
 
