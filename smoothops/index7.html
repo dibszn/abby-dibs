@@ -305,86 +305,94 @@
 												<form autocomplete="on" class="react-form-contents" novalidate id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec">
 													<div tabindex="-1"></div>
 													<div class="field-list" style="display: flex; gap: 2.5vh; flex-direction: column;">
-														<fieldset class="form-item fields Dvz7hGDGST0ttUYu name" id="name-yui_3_17_2_1_1553888888520_3744">
-															<legend id="name-yui_3_17_2_1_1553888888520_3744-field-wrapper">
-																<div class="title">
-																	<div class="s9aw5DV2uY72CSBH">
-																		<span>Name</span>
-																		<span class="description required">(required)</span>
+														<div id="namefield">
+															<fieldset class="form-item fields Dvz7hGDGST0ttUYu name" id="name-yui_3_17_2_1_1553888888520_3744">
+																<legend id="name-yui_3_17_2_1_1553888888520_3744-field-wrapper">
+																	<div class="title">
+																		<div class="s9aw5DV2uY72CSBH">
+																			<span>Name</span>
+																			<span class="description required">(required)</span>
+																		</div>
 																	</div>
+																</legend>
+																<div class="field fullname" required data-dynamic-strings="">
+																	<input aria-invalid="false" aria-required="true" autocomplete="given-name" class="ngonnDl0lqs7ZArA" id="name-yui_3_17_2_1_1553888888520_3744-fname-field" name="fname" type="text" value="" style="width: 100%;" required>
+																	<span class="V60Xg8ZMr2Q9qLks form-input-effects" aria-hidden="true">
+																	<span class="form-input-effects-border">
+																	</span>
+																	</span>
 																</div>
-															</legend>
-															<div class="field fullname" data-dynamic-strings="">
-																<input aria-invalid="false" aria-required="true" autocomplete="given-name" class="ngonnDl0lqs7ZArA" id="name-yui_3_17_2_1_1553888888520_3744-fname-field" name="fname" type="text" value="" style="width: 100%;" required>
-																<span class="V60Xg8ZMr2Q9qLks form-input-effects" aria-hidden="true">
-																<span class="form-input-effects-border">
-																</span>
-																</span>
-															</div>
-														</fieldset>
-														<fieldset class="form-item field radio" id="radio-f0bdb246-a4a0-4c86-a664-29601e70a8a9">
-															<legend id="radio-f0bdb246-a4a0-4c86-a664-29601e70a8a9-field-wrapper">
-																<div class="title">
-																	<div class="s9aw5DV2uY72CSBH">
-																		<span>Will you be attending?</span>
-																		<span class="description required">(required)</span>
+															</fieldset>
+														</div>
+														<div id="attendanceField">
+															<fieldset class="form-item field radio" id="radio-f0bdb246-a4a0-4c86-a664-29601e70a8a9">
+																<legend id="radio-f0bdb246-a4a0-4c86-a664-29601e70a8a9-field-wrapper">
+																	<div class="title">
+																		<div class="s9aw5DV2uY72CSBH">
+																			<span>Will you be attending?</span>
+																			<span class="description required">(required)</span>
+																		</div>
 																	</div>
+																</legend>
+																<div id="attendance" class="option" required>
+																	<label class="Jgutml04ceQGL9y4">
+																	<input class="rGgDKsQQwQshZCTQ" name="radio-f0bdb246-a4a0-4c86-a664-29601e70a8a9-field" type="radio" value="Yes">
+																	<span data-dynamic-strings="true" class="radio-label">Yes, I will be there!</span>
+																	<span class="CzwcrY6PnYkV2_MH radio-mark"></span>
+																	<span class="YOn533mi9w4qUBoY radio-outline"></span>
+																	</label>
 																</div>
-															</legend>
-															<div class="option" required>
-																<label class="Jgutml04ceQGL9y4">
-																<input class="rGgDKsQQwQshZCTQ" name="radio-f0bdb246-a4a0-4c86-a664-29601e70a8a9-field" type="radio" value="Yes">
-																<span data-dynamic-strings="true" class="radio-label">Yes, I will be there!</span>
-																<span class="CzwcrY6PnYkV2_MH radio-mark"></span>
-																<span class="YOn533mi9w4qUBoY radio-outline"></span>
-																</label>
-															</div>
-															<div class="option">
-																<label class="Jgutml04ceQGL9y4">
-																<input class="rGgDKsQQwQshZCTQ" name="radio-f0bdb246-a4a0-4c86-a664-29601e70a8a9-field" type="radio" value="No">
-																<span data-dynamic-strings="true" class="radio-label">No, I won't</span>
-																<span class="CzwcrY6PnYkV2_MH radio-mark"></span>
-																<span class="YOn533mi9w4qUBoY radio-outline"></span>
-																</label>
-															</div>
-														</fieldset>
-														<fieldset class="form-item fields Dvz7hGDGST0ttUYu pax" id="pax-yui_3_17_2_1_1553888888520_3744" style="display:none">
-															<legend id="pax-yui_3_17_2_1_1553888888520_3744-field-wrapper">
-																<div class="title">
-																	<div class="s9aw5DV2uY72CSBH">
-																		<span>Number of guests</span>
-																		<span class="description required">(required)</span>
+																<div class="option">
+																	<label class="Jgutml04ceQGL9y4">
+																	<input class="rGgDKsQQwQshZCTQ" name="radio-f0bdb246-a4a0-4c86-a664-29601e70a8a9-field" type="radio" value="No">
+																	<span data-dynamic-strings="true" class="radio-label">No, I won't</span>
+																	<span class="CzwcrY6PnYkV2_MH radio-mark"></span>
+																	<span class="YOn533mi9w4qUBoY radio-outline"></span>
+																	</label>
+																</div>
+															</fieldset>
+														</div>
+														<div id="paxfield" style="display: none">
+															<fieldset class="form-item fields Dvz7hGDGST0ttUYu pax" id="pax-yui_3_17_2_1_1553888888520_3744" style="display:none">
+																<legend id="pax-yui_3_17_2_1_1553888888520_3744-field-wrapper">
+																	<div class="title">
+																		<div class="s9aw5DV2uY72CSBH">
+																			<span>Number of guests</span>
+																			<span class="description required">(required)</span>
+																		</div>
 																	</div>
+																</legend>
+																<div class="field pax" data-dynamic-strings="">
+																	<input aria-invalid="false" aria-required="true" class="ngonnDl0lqs7ZArA" id="pax-yui_3_17_2_1_1553888888520_3744-fname-field" name="pax" type="number" value="" style="width: 100%;">
+																	<span class="V60Xg8ZMr2Q9qLks form-input-effects" aria-hidden="true">
+																	<span class="form-input-effects-border">
+																	</span>
+																	</span>
 																</div>
-															</legend>
-															<div class="field pax" data-dynamic-strings="">
-																<input aria-invalid="false" aria-required="true" class="ngonnDl0lqs7ZArA" id="pax-yui_3_17_2_1_1553888888520_3744-fname-field" name="pax" type="number" value="" style="width: 100%;">
-																<span class="V60Xg8ZMr2Q9qLks form-input-effects" aria-hidden="true">
-																<span class="form-input-effects-border">
-																</span>
-																</span>
-															</div>
-														</fieldset>
-														<fieldset class="form-item fields Dvz7hGDGST0ttUYu message" id="msg-yui_3_17_2_1_1553888888520_3744">
-															<legend id="message-yui_3_17_2_1_1553888888520_3744-field-wrapper">
-																<div class="title">
-																	<div class="s9aw5DV2uY72CSBH">
-																		<span>Wishes</span>
-																		<span class="description required">(optional)</span>
+															</fieldset>
+														</div>
+														<div id="msgField">
+															<fieldset class="form-item fields Dvz7hGDGST0ttUYu message" id="msg-yui_3_17_2_1_1553888888520_3744">
+																<legend id="message-yui_3_17_2_1_1553888888520_3744-field-wrapper">
+																	<div class="title">
+																		<div class="s9aw5DV2uY72CSBH">
+																			<span>Wishes</span>
+																			<span class="description required">(optional)</span>
+																		</div>
 																	</div>
+																</legend>
+																<div class="field wishes" data-dynamic-strings="">
+																	<input aria-invalid="false" aria-required="true" autocomplete="given-name" class="ngonnDl0lqs7ZArA" id="msg-yui_3_17_2_1_1553888888520_3744-fname-field" name="fname" type="text" value="" style="width: 100%;">
+																	<span class="V60Xg8ZMr2Q9qLks form-input-effects" aria-hidden="true">
+																	<span class="form-input-effects-border">
+																	</span>
+																	</span>
 																</div>
-															</legend>
-															<div class="field wishes" data-dynamic-strings="">
-																<input aria-invalid="false" aria-required="true" autocomplete="given-name" class="ngonnDl0lqs7ZArA" id="msg-yui_3_17_2_1_1553888888520_3744-fname-field" name="fname" type="text" value="" style="width: 100%;">
-																<span class="V60Xg8ZMr2Q9qLks form-input-effects" aria-hidden="true">
-																<span class="form-input-effects-border">
-																</span>
-																</span>
-															</div>
-														</fieldset>
+															</fieldset>
+														</div>
 													</div>
 													<div class="form-button-wrapper form-button-wrapper--align-center" style="display: flex; justify-content: center; margin-top: 1.5vh;">
-														<button value="SEND" type="submit" style="background-color: #383838; color: white;" class="button sqs-system-button sqs-editable-button form-submit-button sqs-button-element--primary none vj3vrvqNhcUOo_Bm" data-sqsp-button="true"></button>
+														<input value="SEND" type="submit" style="background-color: #383838; color: white;" class="button sqs-system-button sqs-editable-button form-submit-button sqs-button-element--primary none vj3vrvqNhcUOo_Bm" data-sqsp-button="true">
 													</div>
 												</form>
 													<div id="thanksModal" style="display: none;">
@@ -399,8 +407,8 @@
 									<script>
 										document.addEventListener("DOMContentLoaded", () => {
 										  const form = document.getElementById("bootstrapForm");
-										  const selectElement = document.getElementById("radio-f0bdb246-a4a0-4c86-a664-29601e70a8a9");
-										  const guestField = document.getElementById("pax-yui_3_17_2_1_1553888888520_3744");
+										  const selectElement = document.getElementById("attendance");
+										  const guestField = document.getElementById("paxField");
 										  const modal = document.getElementById("thanksModal");
 										  const modalTitle = document.getElementById("modalTitle");
 										  const modalMessage = document.getElementById("modalMessage");
@@ -1041,6 +1049,7 @@
 	</script>
 </body>
 </html>
+
 
 
 
