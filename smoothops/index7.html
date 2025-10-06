@@ -951,7 +951,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="fe-block fe-block-yui_3_17_2_1_1753128400483_4905" id="yui_3_17_2_1_1759544183241_294">
+									<div class="fe-block fe-block-yui_3_17_2_1_1753128400483_4905 fadeIn" id="yui_3_17_2_1_1759544183241_294">
 										<a href="#page" style="background: white; padding: 6.5%;place-self: center !important;text-align: center;color: #113c25;">Back to top</a>
 									</div>
 									<div class="fe-block fe-block-yui_3_17_2_1_1753208706017_5749" style="mix-blend-mode:normal">
@@ -971,8 +971,21 @@
 			</footer>
 		</main>
 	</div>
+	<script>
+		document.addEventListener("DOMContentLoaded", () => {
+		  const fadeEls = document.querySelectorAll('.fadeIn');
+		
+		  const observer = new IntersectionObserver(entries => {
+		    entries.forEach(entry => {
+		      if (entry.isIntersecting) {
+		        entry.target.classList.add('visible');
+		        observer.unobserve(entry.target); // run once per element
+		      }
+		    });
+		  }, { threshold: 0.2 });
+		
+		  fadeEls.forEach(el => observer.observe(el));
+		});
+	</script>
 </body>
 </html>
-
-
-
