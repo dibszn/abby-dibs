@@ -25,27 +25,56 @@
 	</head>
 	<body id="collection-687e563e712e7a29d17846b7" tabindex="-1" data-animation-state="booted">
 		<div id="siteWrapper" class="clearfix site-wrapper">
-		<div id="floatingCart" class="floating-cart hidden sf-hidden">
-		</div>
 		<header data-test="header" id="header" class="header theme-col--primary white-bold" data-section-theme="white-bold" data-controller="Header" data-section-id="header" data-header-style="dynamic" data-first-focusable-element="" tabindex="-1" style="--headerBorderColor:hsla(var(--black-hsl),1);--solidHeaderBackgroundColor:hsla(var(--accent-hsl),1);--solidHeaderNavigationColor:hsla(var(--white-hsl),1);--gradientHeaderBackgroundColor:hsla(var(--white-hsl),1);--gradientHeaderNavigationColor:hsla(var(--black-hsl),1); background: transparent" data-controllers-bound="Header">
+			<div class="sqs-announcement-bar-dropzone"></div>
 			<div class="header-announcement-bar-wrapper">
 				<style class="sf-hidden">@supports (-webkit-backdrop-filter:none) or (backdrop-filter:none){.header-blur-background{}}</style>
 				<div class="header-border" data-header-style="dynamic" data-header-border="false" data-test="header-border"></div>
+				<div class="header-dropshadow" data-header-style="dynamic" data-header-dropshadow="false" data-test="header-dropshadow"></div>
 				<div class="header-inner container--fluid header-mobile-layout-logo-center-nav-right header-layout-branding-center-nav-center" data-test="header-inner">
 					<div class="header-background theme-bg--primary"></div>
+					<div class="header-display-desktop sf-hidden" data-content-field="site-title">
+						<div class="header-title-nav-wrapper sf-hidden">
+							<div class="header-title header-title--use-mobile-logo preFade sf-hidden" data-animation-role="header-element" style="transition-timing-function:ease;transition-duration:1.5s;transition-delay:0s">
+								<div class="header-title-logo sf-hidden">
+									<a href="https://dibszn.github.io/abby-dibs/smoothops/index5.html" data-animation-role="header-element" class="preFade sf-hidden" style="transition-timing-function:ease;transition-duration:1.5s;transition-delay:0.00504202s">
+										<picture class="sf-hidden">
+											<source media="only screen and (pointer: coarse) and (max-width: 1024px), screen and (max-width: 799px)" srcset="">
+											<source media="only screen and (pointer: coarse) and (min-width: 1025px), screen and (min-width: 800px)" srcset="">
+										</picture>
+									</a>
+								</div>
+								<div class="header-mobile-logo sf-hidden">
+									<a href="https://dibszn.github.io/abby-dibs/smoothops/index5.html" data-animation-role="header-element" class="preFade sf-hidden" style="transition-timing-function:ease;transition-duration:1.5s;transition-delay:0.010084s">
+										<picture class="sf-hidden">
+											<source media="only screen and (pointer: coarse) and (max-width: 1024px), screen and (max-width: 799px)" srcset="">
+											<source media="only screen and (pointer: coarse) and (min-width: 1025px), screen and (min-width: 800px)" srcset="">
+										</picture>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
 					<div class="header-display-mobile" data-content-field="site-title">
 						<div class="header-title-nav-wrapper">
 							<div class="header-title header-title--use-mobile-logo preFade fadeIn" data-animation-role="header-element" style="transition-timing-function:ease;transition-duration:1.5s;transition-delay:0.0453782s">
 								<div class="header-title-logo">
-									<picture><img elementtiming="nbf-header-logo-desktop" src="images/favicon.png" style="display:block;filter: invert(1);" fetchpriority="high" loading="eager" decoding="async" data-loader="raw" srcset="" sizes=""></picture>
-								</div>
-								<div class="header-mobile-logo">
-										<picture class="sf-hidden">
+									<a href="https://dibszn.github.io/abby-dibs/smoothops/index5.html" data-animation-role="header-element" class="preFade fadeIn" style="transition-timing-function:ease;transition-duration:1.5s;transition-delay:0.0504202s">
+										<picture>
 											<img elementtiming="nbf-header-logo-desktop" src="images/favicon.png" style="display:block;filter: invert(1);" fetchpriority="high" loading="eager" decoding="async" data-loader="raw" srcset="" sizes="">
+										</picture>
+									</a>
+								</div>
+								<div class="header-mobile-logo sf-hidden">
+									<a href="https://dibszn.github.io/abby-dibs/smoothops/index5.html" data-animation-role="header-element" class="preFade sf-hidden" style="transition-timing-function:ease;transition-duration:1.5s;transition-delay:0.0554622s">
+										<picture class="sf-hidden">
 											<source media="only screen and (pointer: coarse) and (max-width: 1024px), screen and (max-width: 799px)" srcset="">
 											<source media="only screen and (pointer: coarse) and (min-width: 1025px), screen and (min-width: 800px)" srcset="">
 										</picture>
+									</a>
 								</div>
+							</div>
+							<div class="header-nav sf-hidden">
 							</div>
 						</div>
 					</div>
@@ -949,7 +978,6 @@
 	<script>
 		document.addEventListener("DOMContentLoaded", () => {
 		  const fadeEls = document.querySelectorAll('.fadeIn');
-		
 		  const observer = new IntersectionObserver(entries => {
 		    entries.forEach(entry => {
 		      if (entry.isIntersecting) {
@@ -964,5 +992,3 @@
 	</script>
 </body>
 </html>
-
-
