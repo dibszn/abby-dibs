@@ -395,12 +395,12 @@
 														<input value="SEND" type="submit" style="background-color: #383838; color: white;" class="button sqs-system-button sqs-editable-button form-submit-button sqs-button-element--primary none vj3vrvqNhcUOo_Bm" data-sqsp-button="true">
 													</div>
 												</form>
-													<div id="thanksModal" style="display: none;">
-												      <div class="modal-content">
-												        <h3 id="modalTitle">wee</h3>
-												        <h4 id="modalMessage">wee</h4>
-												      </div>
-	 											 </div>
+												<div id="thanksModal" style="display: none;">
+													<div class="modal-content">
+													    <h3 id="modalTitle">wee</h3>
+													    <h4 id="modalMessage" style="color: #113c25">wee</h4>
+												    </div>
+	 											</div>
 											</div>
 										</div>
 									</div>
@@ -433,32 +433,33 @@
 									
 									    form.addEventListener("submit", e => {
 									      e.preventDefault();
+											
 										const formData = new FormData(form);  
       
 									      fetch(form.action, {
 									        method: "POST",
 									        body: formData,
 									        mode: "no-cors"
-									      });
-									
-									      form.reset();
-									      GuestField.style.display = "none";
-									      modal.style.display = "flex";
-									
-									      const closeHandler = () => {
-									        modal.style.display = "none";
-									        window.removeEventListener("click", closeHandler);
-									        window.removeEventListener("touchstart", closeHandler);
-									        window.removeEventListener("touchmove", closeHandler);
-									        window.removeEventListener("scroll", closeHandler);
-									      };
-									
-									      window.addEventListener("click", closeHandler, { once: true });
-									      window.addEventListener("touchstart", closeHandler, { once: true });
-									      window.addEventListener("touchmove", closeHandler, { once: true });
-									      window.addEventListener("scroll", closeHandler, { once: true });
-									    });
-									  });
+									      }).then(() => {
+										      form.reset();
+										      paxfield.style.display = "none";
+										      modal.style.display = "flex";
+										
+										      const closeHandler = () => {
+										        modal.style.display = "none";
+										        window.removeEventListener("click", closeHandler);
+										        window.removeEventListener("touchstart", closeHandler);
+										        window.removeEventListener("touchmove", closeHandler);
+										        window.removeEventListener("scroll", closeHandler);
+										      };
+										
+										      window.addEventListener("click", closeHandler, { once: true });
+										      window.addEventListener("touchstart", closeHandler, { once: true });
+										      window.addEventListener("touchmove", closeHandler, { once: true });
+										      window.addEventListener("scroll", closeHandler, { once: true });
+										    });
+										  });
+										});
 									</script>
 								</div>
 							</div>
@@ -1057,17 +1058,3 @@
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
