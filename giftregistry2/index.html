@@ -3,18 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Floral Testimonials — Carousel (fixed next button)</title>
+  <title>Wishing Well: AbbyGotTheDibs</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <style>
-    :root { --arrow-bg: transparent; --arrow-size: 44px; --arrow-size-mobile: 36px; --numofCard: 3; }
-    body { margin:0; font-family: system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif; color:#222; background-image:url(giftimgs/songketbg2.png); background-size: cover; }
+    :root { --arrow-bg: transparent; --arrow-size: 44px; --arrow-size-mobile: 36px; }
+    body { margin:0; font-family: system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif; color:#222; background-image:url(giftimgs/songketbg2.png); }
     main.container { max-width:1400px; margin:0 auto; padding:0 3vw; }
     section.page-section { padding:6.6vmax 0; }
-    .list-section-title p { font-size:2rem; text-align:center; margin-bottom:55px; font-weight:600; }
 
     .floralSwiper { 
       width:100%; 
-      padding-bottom:7vh; 
+      padding-bottom:5vh; 
       position:relative; 
       overflow: visible; 
     }
@@ -30,14 +29,13 @@
       width:100%;
       padding:1rem;
       box-sizing:border-box;
-	background-color: #fff;
-		border-radius: 15px;
+	background-color: #fff; border-radius: 15px;
     }
 
     .carousel-card img {
       width:100%;
-      height:100%;
-      object-fit:contain;
+      aspect-ratio:1/1;
+      object-fit:cover;
       border-radius:10px;
       flex-shrink:0;
       display:block;
@@ -75,19 +73,17 @@
       width:18px; height:18px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
       pointer-events: none;
     }
-    .swiper-pagination-bullet { opacity:.8; background:#fff; }
+    .swiper-pagination-bullet { opacity:.5; background:#999; }
     .swiper-pagination-bullet-active { opacity:1; background:#111; }
 
     @media (max-width: 768px) {
-		:root {
-    		--numofCard: 1;
-  		}
       .carousel-card {
         flex-direction:column;
         align-items:center;
         text-align:center;
         padding:1rem;
       }
+      .carousel-card img { width:80%; margin:0 auto; }
       .carousel-text { max-width:90%; }
       .carousel-text h2 { margin-top:1rem; }
 =
@@ -101,10 +97,8 @@
     }
 
     @media (min-width: 768px) {
-		:root {
-    --numofCard: 3;
-  }
       .carousel-card { flex-direction:row; text-align:left; }
+      .carousel-card img { width:27%; }
       .carousel-text { max-width:60%; }
     }
   </style>
@@ -117,8 +111,7 @@
           <div class="content">
             <div class="user-items-list" style="min-height:100px;">
               <div class="list-section-title" data-section-title-alignment="center">
-                <h1 style="color: white; text-align: center; font-family: -apple-system">Wishing Well</h1>
-				<h2 style="color: white; text-align: center; font-family: -apple-system; padding-bottom: 3vh">We know how confusing it is to pick a gift,<br> hence whhy we curated this list for your convenience</h2>
+                <p>Floral Testimonials</p>
               </div>
 
               <!-- Swiper carousel -->
@@ -203,7 +196,7 @@
     const swiper = new Swiper('.floralSwiper', {
       loop: true,
       spaceBetween: 30,
-      slidesPerView: cssVar('--numofCard'),
+      slidesPerView: 1,
       autoplay: { delay: 4000, disableOnInteraction: false },
       pagination: { el: '.swiper-pagination', clickable: true },
       navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
