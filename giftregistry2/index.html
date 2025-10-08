@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Wishing Well: AbbyGotTheDibs</title>
+  <title>Wishing Well - AbbyGotTheDibs</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <style>
     :root { --arrow-bg: transparent; --arrow-size: 44px; --arrow-size-mobile: 36px; }
-    body { margin:0; font-family: system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif; color:#222; background-image:url(giftimgs/songketbg2.png); }
+    body { margin:0; font-family: system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif; color:#222; background-image:url(giftimgs/songketbg2.png); background-size: cover;}
     main.container { max-width:1400px; margin:0 auto; padding:0 3vw; }
-    section.page-section { padding:6.6vmax 0; }
+    section.page-section { padding:3vh 0; }
 
     .floralSwiper { 
       width:100%; 
@@ -23,7 +23,8 @@
 
     .carousel-card {
       display:flex;
-      align-items:flex-start;
+		flex-direction: column;
+      align-items:center;
       gap:2rem;
       max-width:1000px;
       width:100%;
@@ -78,7 +79,6 @@
 
     @media (max-width: 768px) {
       .carousel-card {
-        flex-direction:column;
         align-items:center;
         text-align:center;
         padding:1rem;
@@ -97,7 +97,7 @@
     }
 
     @media (min-width: 768px) {
-      .carousel-card { flex-direction:row; text-align:left; }
+      .carousel-card { text-align:center; }
       .carousel-card img { width:27%; }
       .carousel-text { max-width:60%; }
     }
@@ -109,9 +109,13 @@
       <section class="page-section white" data-section-theme="white" aria-label="Floral testimonials section">
         <div class="content-wrapper">
           <div class="content">
-            <div class="user-items-list" style="min-height:100px;">
-              <div class="list-section-title" data-section-title-alignment="center">
-                <p>Floral Testimonials</p>
+			<div style="display:flex; align-items: center; justify-content: center">
+				<img src="giftimgs/favicon.png" crossorigin="anonymous" draggable="false" style="padding-bottom: 5vh;max-width: 10%;filter: invert(1);">
+			</div>
+            <div class="user-items-list">
+              <div class="list-section-title" data-section-title-alignment="center" style="display: flex; flex-direction: column; justify-content: space-between; padding-bottom: 1.5vh;">
+                <h2 style="color: white;font-family: -apple-system;text-align: center;font-weight: 400;"">Wishing Well</h2>
+				<h3 style="color: white;font-family: -apple-system;text-align: center;font-weight: 200;">We know how stressful it is to pick a gift for newlyweds, the worry of it being duplicates, the aesthetics, etc.<br>Hence why we curated this gift registry as a guide for you to decide what to get us (should you choose to!)</h3>
               </div>
 
               <!-- Swiper carousel -->
