@@ -6,9 +6,9 @@
   <title>Wishing Well - AbbyGotTheDibs</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <style>
-    :root { --arrow-bg: transparent; --arrow-size: 44px; --arrow-size-mobile: 36px; }
+    :root { --arrow-bg: transparent; --arrow-size: 44px; --arrow-size-mobile: 36px; --heading-1-size: 3.5rem;--heading-1-size-value: 3.5;--heading-2-size: 3rem;--heading-2-size-value: 3;--heading-3-size: 2.1rem;--heading-3-size-value: 2.1; --heading-4-size: 1.7rem; --heading-4-size-value: 1.7; }
     body { margin:0; font-family: system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif; color:#222; background-image:url(giftimgs/songketbg2.png); background-size: cover;}
-    main.container { max-width:1400px; margin:0 auto; padding:0 3vw; }
+    main.container { max-width:1400px; margin:0 auto; padding:0 3vw; height: fit-content;}
     section.page-section { padding:3vh 0; }
 
     .floralSwiper { 
@@ -79,6 +79,7 @@
 
     @media (max-width: 768px) {
       .carousel-card {
+		font-size: 
         align-items:center;
         text-align:center;
         padding:1rem;
@@ -102,20 +103,21 @@
       .carousel-text { max-width:60%; }
     }
   </style>
+  <style> @media screen and (min-width: 1980px) {} h1 { line-height: calc(var(--heading-font-line-height)*(1 + (1 - var(--heading-1-size-value))/25)) } @media screen and (max-width: 767px) and (orientation:portrait) { h1 {font-size:calc((var(--heading-1-size-value) - 1)*calc(.012*min(100vh,900px)) + 1rem) }} @media screen and (min-width: 768px),screen and (max-width:calc(1980px - 1px)) and (orientation:landscape) {h1 {font-size:calc((var(--heading-1-size-value) - 1)*1.2vw + 1rem)}}  @media screen and (min-width: 1980px) { h1 { font-size:calc(var(--heading-1-size-value)*1rem) }} h2 { line-height: calc(var(--heading-font-line-height)*(1 + (1 - var(--heading-2-size-value))/25))} @media screen and (max-width: 767px) and (orientation:portrait) { h2 {font-size:calc((var(--heading-2-size-value) - 1)*calc(.012*min(100vh,900px)) + 1rem) } } @media screen and (min-width: 768px),screen and (max-width:calc(1980px - 1px)) and (orientation:landscape) {h2 { font-size:calc((var(--heading-2-size-value) - 1)*1.2vw + 1rem)}  } @media screen and (min-width: 1980px) { h2 {font-size:calc(var(--heading-2-size-value)*1rem)  } } h3 { line-height: calc(var(--heading-font-line-height)*(1 + (1 - var(--heading-3-size-value))/25)) } @media screen and (max-width: 767px) and (orientation:portrait) { h3 { font-size:calc((var(--heading-3-size-value) - 1)*calc(.012*min(100vh,900px)) + 1rem) }  } @media screen and (min-width: 768px),screen and (max-width:calc(1980px - 1px)) and (orientation:landscape) { h3 { font-size:calc((var(--heading-3-size-value) - 1)*1.2vw + 1rem) }  } @media screen and (min-width: 1980px) { h3 { font-size:calc(var(--heading-3-size-value)*1rem) } } h4 {line-height: calc(var(--heading-font-line-height)*(1 + (1 - var(--heading-4-size-value))/25))} @media screen and (max-width: 767px) and (orientation:portrait) {h4 {font-size:calc((var(--heading-4-size-value) - 1)*calc(.012*min(100vh,900px)) + 1rem) }  } @media screen and (min-width: 768px),screen and (max-width:calc(1980px - 1px)) and (orientation:landscape) { h4 { font-size:calc((var(--heading-4-size-value) - 1)*1.2vw + 1rem) } } @media screen and (min-width: 1980px) { h4 { font-size:calc(var(--heading-4-size-value)*1rem) }</style>
 </head>
 <body>
   <main id="page" class="container" role="main">
     <article class="sections" id="sections">
       <section class="page-section white" data-section-theme="white" aria-label="Floral testimonials section">
         <div class="content-wrapper">
-          <div class="content">
+          <div class="content" style="align-content: center">
 			<div style="display:flex; align-items: center; justify-content: center">
 				<img src="giftimgs/favicon.png" crossorigin="anonymous" draggable="false" style="padding-bottom: 5vh;max-width: 10%;filter: invert(1);">
 			</div>
             <div class="user-items-list">
               <div class="list-section-title" data-section-title-alignment="center" style="display: flex; flex-direction: column; justify-content: space-between; padding-bottom: 1.5vh;">
-                <h2 style="color: white;font-family: -apple-system;text-align: center;font-weight: 400;"">Wishing Well</h2>
-				<h3 style="color: white;font-family: -apple-system;text-align: center;font-weight: 200;">We know how stressful it is to pick a gift for newlyweds, the worry of it being duplicates, the aesthetics, etc.<br>Hence why we curated this gift registry as a guide for you to decide what to get us (should you choose to!)</h3>
+                <h3 style="color: white;font-family: -apple-system;text-align: center;font-weight: 400;"">Wishing Well</h3>
+				<h4 style="color: white;font-family: -apple-system;text-align: center;font-weight: 200;">We know how stressful it is to pick a gift for newlyweds, the worry of it being duplicates, the aesthetics, etc.<br>Hence why we curated this gift registry as a guide for you to decide what to get us (should you choose to!)</h4>
               </div>
 
               <!-- Swiper carousel -->
@@ -126,7 +128,7 @@
                     <div class="carousel-card">
                       <img src="giftimgs/blender.png" alt="Donna & Matthew Photography" />
                       <div class="carousel-text">
-                        <h2>Donna &amp; Matthew Photography</h2>
+                        <h4>Donna &amp; Matthew Photography</h4>
                         <p>Jess at Koller Design Studio is an absolute gem and an incredibly skilled florist! We've had the delightful opportunity to collaborate with her on multiple occasions as photographers, and she consistently exceeds our expectations with her stunning floral creations.</p>
                       </div>
                     </div>
@@ -137,7 +139,7 @@
                     <div class="carousel-card">
                       <img src="giftimgs/toaster.png" alt="Alyssa Carpenter" />
                       <div class="carousel-text">
-                        <h2>Alyssa Carpenter</h2>
+                        <h4>Alyssa Carpenter</h4>
                         <p>Jess is a DREAM! My wedding was 5/17 at the Sea Ranch Lodge and I cannot get over our wedding florals. She turned our wedding into a literal fairytale straight out of a magazine!</p>
                       </div>
                     </div>
@@ -148,7 +150,7 @@
                     <div class="carousel-card">
                       <img src="giftimgs/airfryer.png" alt="Allison Cho" />
                       <div class="carousel-text">
-                        <h2>Allison Cho</h2>
+                        <h4>Allison Cho</h4>
                         <p>Jess and her team made all our floral visions come to life! It truly elevated our wedding and far exceeded anything we could have ever imagined.</p>
                       </div>
                     </div>
@@ -159,7 +161,7 @@
                     <div class="carousel-card">
                       <img src="giftimgs/vacuum.png" alt="Jill McMillen" />
                       <div class="carousel-text">
-                        <h2>Jill McMillen</h2>
+                        <h4>Jill McMillen</h4>
                         <p>Jess gave us the wedding of our dreams! She followed through on every detail — from bouquet flowers to ceremony arches — with pure perfection.</p>
                       </div>
                     </div>
@@ -170,7 +172,7 @@
                     <div class="carousel-card">
                       <img src="giftimgs/ricecooker.JPG" alt="Paige Fisher" />
                       <div class="carousel-text">
-                        <h2>Paige Fisher</h2>
+                        <h4>Paige Fisher</h4>
                         <p>Jessica is amazing! She is so passionate about her work, and it shows! The flowers were in pristine condition and looked amazing all day and night.</p>
                       </div>
                     </div>
