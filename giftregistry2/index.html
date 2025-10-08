@@ -349,140 +349,115 @@
                 </article>
             </main>
         </div>
-        <script>
+	      <script>
 			document.addEventListener("DOMContentLoaded", () => {
-			  /** 🔹 Wait until Squarespace carousel controller initializes **/
-			  const initObserver = new MutationObserver(() => {
-			    document.querySelectorAll('.user-items-list-carousel__slides').forEach(track => {
-			      if (!track.dataset.enhanced) {
-			        new CarouselEnhancer(track.closest('.user-items-list-carousel'));
-			        track.dataset.enhanced = "true";
-			      }
+			  const carousels = document.querySelectorAll('[data-controller="UserItemsListCarousel"]');
+			
+			  carousels.forEach(carousel => {
+			    const slidesContainer = carousel.querySelector('.user-items-list-carousel__slides');
+			    const slides = Array.from(slidesContainer.querySelectorAll('.user-items-list-carousel__slide'));
+			    const prevBtn = carousel.querySelector('.user-items-list-carousel__arrow-button--left');
+			    const nextBtn = carousel.querySelector('.user-items-list-carousel__arrow-button--right');
+			
+			    // Read data attributes
+			    const maxColumns = parseInt(carousel.dataset.maxColumns) || 3;
+			    const gap = parseInt(carousel.dataset.spaceBetweenSlidesValue) || 20;
+			    const infinite = carousel.dataset.isInfiniteEnabled === "true";
+			    const autoplay = carousel.dataset.autoplay === "true";
+			    const autoplayInterval = parseInt(carousel.dataset.autoplayInterval) || 4000;
+			
+			    let currentIndex = 0;
+			    let autoplayTimer;
+			
+			    // --- SETUP STYLES ---
+			    slidesContainer.style.display = "flex";
+			    slidesContainer.style.gap = `${gap}px`;
+			    slidesContainer.style.scrollSnapType = "x mandatory";
+			    slidesContainer.style.overflowX = "auto";
+			    slidesContainer.style.scrollBehavior = "smooth";
+			    slidesContainer.style.scrollbarWidth = "none";
+			    slidesContainer.style.msOverflowStyle = "none";
+			    slidesContainer.style.paddingBottom = "20px";
+			    slidesContainer.querySelectorAll('::-webkit-scrollbar').forEach(s => s.style.display = 'none');
+			
+			    slides.forEach(slide => {
+			      slide.style.flex = `0 0 calc(${100 / maxColumns}% - ${gap}px)`;
+			      slide.style.scrollSnapAlign = "center";
 			    });
-			  });
 			
-			  initObserver.observe(document.body, { childList: true, subtree: true });
+			    // --- NAVIGATION FUNCTIONS ---
+			    function scrollToSlide(index) {
+			      if (infinite) {
+			        if (index < 0) index = slides.length - 1;
+			        if (index >= slides.length) index = 0;
+			      } else {
+			        index = Math.max(0, Math.min(index, slides.length - maxColumns));
+			      }
 			
-			  /** 🔹 Enhancement Class **/
-			  class CarouselEnhancer {
-			    constructor(container) {
-			      this.container = container;
-			      this.track = container.querySelector('.user-items-list-carousel__slides');
-			      this.slides = Array.from(container.querySelectorAll('.user-items-list-carousel__slide'));
-			      this.prevBtn = container.querySelector('.user-items-list-carousel__arrow-button--left, .mobile-arrow-button--left');
-			      this.nextBtn = container.querySelector('.user-items-list-carousel__arrow-button--right, .mobile-arrow-button--right');
-			      this.currentIndex = 0;
-			      this.startX = 0;
-			      this.currentX = 0;
-			      this.dragging = false;
-			
-			      this.addSwipeSupport();
-			      this.cloneForInfiniteLoop();
-			    }
-			
-			    /** Swipe gestures **/
-			    addSwipeSupport() {
-			      const track = this.track;
-			
-			      track.addEventListener('touchstart', e => this.onStart(e.touches[0].clientX));
-			      track.addEventListener('touchmove', e => this.onMove(e.touches[0].clientX));
-			      track.addEventListener('touchend', () => this.onEnd());
-			      track.addEventListener('mousedown', e => this.onStart(e.clientX));
-			      track.addEventListener('mousemove', e => this.dragging && this.onMove(e.clientX));
-			      track.addEventListener('mouseup', () => this.onEnd());
-			      track.addEventListener('mouseleave', () => this.dragging && this.onEnd());
-			    }
-			
-			    onStart(x) {
-			      this.dragging = true;
-			      this.startX = x;
-			      this.track.style.transition = 'none';
-			    }
-			
-			    onMove(x) {
-			      if (!this.dragging) return;
-			      const diff = x - this.startX;
-			      this.track.style.transform = `translateX(calc(${this.getCurrentOffset()}px + ${diff}px))`;
-			      this.currentX = x;
-			    }
-			
-			    onEnd() {
-			      if (!this.dragging) return;
-			      const diff = this.currentX - this.startX;
-			      const threshold = this.container.offsetWidth * 0.1;
-			      this.dragging = false;
-			      this.track.style.transition = '';
-			
-			      if (diff < -threshold) this.nextSlide();
-			      else if (diff > threshold) this.prevSlide();
-			      else this.snapToCurrent();
-			    }
-			
-			    getCurrentOffset() {
-			      const transform = getComputedStyle(this.track).transform;
-			      if (transform === 'none') return 0;
-			      const matrix = new DOMMatrixReadOnly(transform);
-			      return matrix.m41;
-			    }
-			
-			    /** Hook into Squarespace's layout and create loop clones **/
-			    cloneForInfiniteLoop() {
-			      const first = this.slides[0];
-			      const last = this.slides[this.slides.length - 1];
-			      if (!first || !last) return;
-			
-			      const firstClone = first.cloneNode(true);
-			      const lastClone = last.cloneNode(true);
-			      firstClone.classList.add('clone');
-			      lastClone.classList.add('clone');
-			
-			      this.track.insertBefore(lastClone, first);
-			      this.track.appendChild(firstClone);
-			
-			      // Observe for transitions and loop reset
-			      this.track.addEventListener('transitionend', () => {
-			        const slides = this.container.querySelectorAll('.user-items-list-carousel__slide');
-			        if (slides[this.currentIndex].classList.contains('clone')) {
-			          this.track.style.transition = 'none';
-			          if (this.currentIndex === 0) {
-			            this.currentIndex = slides.length - 2;
-			          } else if (this.currentIndex === slides.length - 1) {
-			            this.currentIndex = 1;
-			          }
-			          this.snapToCurrent();
-			          requestAnimationFrame(() => {
-			            this.track.style.transition = '';
-			          });
-			        }
+			      const slideWidth = slides[0].offsetWidth + gap;
+			      slidesContainer.scrollTo({
+			        left: slideWidth * index,
+			        behavior: "smooth"
 			      });
+			
+			      currentIndex = index;
 			    }
 			
-			    /** Basic slide change handlers **/
-			    nextSlide() {
-			      this.currentIndex++;
-			      this.snapToCurrent();
+			    function nextSlide() {
+			      scrollToSlide(currentIndex + 1);
 			    }
-			    prevSlide() {
-			      this.currentIndex--;
-			      this.snapToCurrent();
-			    }
-			    snapToCurrent() {
-			      const slideWidth = this.slides[0].offsetWidth;
-			      this.track.style.transform = `translateX(-${this.currentIndex * slideWidth}px)`;
-			    }
-			  }
 			
-			  /** 🔹 Fade-in observer (unchanged) **/
-			  const fadeEls = document.querySelectorAll('.fadeIn');
-			  const fadeObs = new IntersectionObserver(entries => {
-			    entries.forEach(entry => {
-			      if (entry.isIntersecting) {
-			        entry.target.classList.add('visible');
-			        fadeObs.unobserve(entry.target);
-			      }
+			    function prevSlide() {
+			      scrollToSlide(currentIndex - 1);
+			    }
+			
+			    // --- BUTTON EVENTS ---
+			    nextBtn?.addEventListener('click', nextSlide);
+			    prevBtn?.addEventListener('click', prevSlide);
+			
+			    // --- TOUCH/DRAG SUPPORT ---
+			    let startX = 0;
+			    slidesContainer.addEventListener('touchstart', e => {
+			      startX = e.touches[0].clientX;
 			    });
-			  }, { threshold: 0.25 });
-			  fadeEls.forEach(el => fadeObs.observe(el));
+			
+			    slidesContainer.addEventListener('touchend', e => {
+			      const diff = e.changedTouches[0].clientX - startX;
+			      if (diff > 50) prevSlide();
+			      if (diff < -50) nextSlide();
+			    });
+			
+			    // --- AUTOPLAY ---
+			    function startAutoplay() {
+			      if (autoplay) {
+			        autoplayTimer = setInterval(nextSlide, autoplayInterval);
+			        carousel.addEventListener("mouseenter", () => clearInterval(autoplayTimer));
+			        carousel.addEventListener("mouseleave", () => startAutoplay());
+			      }
+			    }
+			    startAutoplay();
+			
+			    // --- LAZY LOAD IMAGES ---
+			    const lazyImages = carousel.querySelectorAll('img[data-src]');
+			    if ("IntersectionObserver" in window) {
+			      const io = new IntersectionObserver(entries => {
+			        entries.forEach(entry => {
+			          if (entry.isIntersecting) {
+			            const img = entry.target;
+			            img.src = img.dataset.src;
+			            img.removeAttribute("data-src");
+			            io.unobserve(img);
+			          }
+			        });
+			      });
+			      lazyImages.forEach(img => io.observe(img));
+			    }
+			
+			    // --- RESIZE HANDLING ---
+			    new ResizeObserver(() => {
+			      scrollToSlide(currentIndex);
+			    }).observe(slidesContainer);
+			  });
 			});
 		</script>
     </body>
