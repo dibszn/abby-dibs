@@ -265,7 +265,7 @@
                                                                 width: 27%;
                                                                 ">
                                                                 <div class="user-items-list-carousel__media-inner" data-media-aspect-ratio="1:1" data-animation-role="image" style="">
-                                                                    <img data-image-focal-point=","  src="giftimgs/toaster.png" data-image-dimensions="911x1098" class="user-items-list-carousel__media" data-load="false" data-mode="cover" data-use-advanced-positioning="true" elementtiming="nbf-list-carousel">
+                                                                    <img data-image-focal-point=","  src="giftimgs/toadter.png" data-image-dimensions="911x1098" class="user-items-list-carousel__media" data-load="false" data-mode="cover" data-use-advanced-positioning="true" elementtiming="nbf-list-carousel">
                                                                 </div>
                                                             </div>
                                                             <div class="list-item-content">
@@ -350,115 +350,110 @@
                 </article>
             </main>
         </div>
-	      <script>
+        <script>
 			document.addEventListener("DOMContentLoaded", () => {
-			  const carousels = document.querySelectorAll('[data-controller="UserItemsListCarousel"]');
 			
-			  carousels.forEach(carousel => {
-			    const slidesContainer = carousel.querySelector('.user-items-list-carousel__slides');
-			    const slides = Array.from(slidesContainer.querySelectorAll('.user-items-list-carousel__slide'));
-			    const prevBtn = carousel.querySelector('.user-items-list-carousel__arrow-button--left');
-			    const nextBtn = carousel.querySelector('.user-items-list-carousel__arrow-button--right');
-			
-			    // Read data attributes
-			    const maxColumns = parseInt(carousel.dataset.maxColumns) || 3;
-			    const gap = parseInt(carousel.dataset.spaceBetweenSlidesValue) || 20;
-			    const infinite = carousel.dataset.isInfiniteEnabled === "true";
-			    const autoplay = carousel.dataset.autoplay === "true";
-			    const autoplayInterval = parseInt(carousel.dataset.autoplayInterval) || 4000;
-			
-			    let currentIndex = 0;
-			    let autoplayTimer;
-			
-			    // --- SETUP STYLES ---
-			    slidesContainer.style.display = "flex";
-			    slidesContainer.style.gap = `${gap}px`;
-			    slidesContainer.style.scrollSnapType = "x mandatory";
-			    slidesContainer.style.overflowX = "auto";
-			    slidesContainer.style.scrollBehavior = "smooth";
-			    slidesContainer.style.scrollbarWidth = "none";
-			    slidesContainer.style.msOverflowStyle = "none";
-			    slidesContainer.style.paddingBottom = "20px";
-			    slidesContainer.querySelectorAll('::-webkit-scrollbar').forEach(s => s.style.display = 'none');
-			
-			    slides.forEach(slide => {
-			      slide.style.flex = `0 0 calc(${100 / maxColumns}% - ${gap}px)`;
-			      slide.style.scrollSnapAlign = "center";
-			    });
-			
-			    // --- NAVIGATION FUNCTIONS ---
-			    function scrollToSlide(index) {
-			      if (infinite) {
-			        if (index < 0) index = slides.length - 1;
-			        if (index >= slides.length) index = 0;
-			      } else {
-			        index = Math.max(0, Math.min(index, slides.length - maxColumns));
+			  /** 🔹 Fade-in on scroll **/
+			  const fadeEls = document.querySelectorAll('.fadeIn');
+			  const observer = new IntersectionObserver(entries => {
+			    entries.forEach(entry => {
+			      if (entry.isIntersecting) {
+			        entry.target.classList.add('visible');
+			        observer.unobserve(entry.target);
 			      }
-			
-			      const slideWidth = slides[0].offsetWidth + gap;
-			      slidesContainer.scrollTo({
-			        left: slideWidth * index,
-			        behavior: "smooth"
-			      });
-			
-			      currentIndex = index;
-			    }
-			
-			    function nextSlide() {
-			      scrollToSlide(currentIndex + 1);
-			    }
-			
-			    function prevSlide() {
-			      scrollToSlide(currentIndex - 1);
-			    }
-			
-			    // --- BUTTON EVENTS ---
-			    nextBtn?.addEventListener('click', nextSlide);
-			    prevBtn?.addEventListener('click', prevSlide);
-			
-			    // --- TOUCH/DRAG SUPPORT ---
-			    let startX = 0;
-			    slidesContainer.addEventListener('touchstart', e => {
-			      startX = e.touches[0].clientX;
 			    });
+			  }, { threshold: 0.25 });
+			  fadeEls.forEach(el => observer.observe(el));
 			
-			    slidesContainer.addEventListener('touchend', e => {
-			      const diff = e.changedTouches[0].clientX - startX;
-			      if (diff > 50) prevSlide();
-			      if (diff < -50) nextSlide();
-			    });
 			
-			    // --- AUTOPLAY ---
-			    function startAutoplay() {
-			      if (autoplay) {
-			        autoplayTimer = setInterval(nextSlide, autoplayInterval);
-			        carousel.addEventListener("mouseenter", () => clearInterval(autoplayTimer));
-			        carousel.addEventListener("mouseleave", () => startAutoplay());
-			      }
-			    }
-			    startAutoplay();
+			  /** 🔹 Squarespace Carousel Swipe **/
+			  class SquarespaceCarousel {
+			    constructor(container) {
+			      this.container = container;
+			      this.track = container.querySelector('.user-items-list-carousel__slides');
+			      this.slides = container.querySelectorAll('.user-items-list-carousel__slide');
+			      this.prevBtn = container.querySelector('.user-items-list-carousel__arrow-button--left, .mobile-arrow-button--left');
+			      this.nextBtn = container.querySelector('.user-items-list-carousel__arrow-button--right, .mobile-arrow-button--right');
+			      this.current = 0;
+			      this.isDragging = false;
+			      this.startX = 0;
+			      this.currentTranslate = 0;
+			      this.prevTranslate = 0;
+			      this.animationID = 0;
 			
-			    // --- LAZY LOAD IMAGES ---
-			    const lazyImages = carousel.querySelectorAll('img[data-src]');
-			    if ("IntersectionObserver" in window) {
-			      const io = new IntersectionObserver(entries => {
-			        entries.forEach(entry => {
-			          if (entry.isIntersecting) {
-			            const img = entry.target;
-			            img.src = img.dataset.src;
-			            img.removeAttribute("data-src");
-			            io.unobserve(img);
-			          }
-			        });
-			      });
-			      lazyImages.forEach(img => io.observe(img));
+			      this.addEventListeners();
 			    }
 			
-			    // --- RESIZE HANDLING ---
-			    new ResizeObserver(() => {
-			      scrollToSlide(currentIndex);
-			    }).observe(slidesContainer);
+			    addEventListeners() {
+			      // Touch + Mouse swipe
+			      this.track.addEventListener('touchstart', this.touchStart.bind(this));
+			      this.track.addEventListener('touchmove', this.touchMove.bind(this));
+			      this.track.addEventListener('touchend', this.touchEnd.bind(this));
+			      this.track.addEventListener('mousedown', this.touchStart.bind(this));
+			      this.track.addEventListener('mousemove', this.touchMove.bind(this));
+			      this.track.addEventListener('mouseup', this.touchEnd.bind(this));
+			      this.track.addEventListener('mouseleave', this.touchEnd.bind(this));
+			
+			      // Arrow buttons
+			      if (this.prevBtn) this.prevBtn.addEventListener('click', () => this.changeSlide(-1));
+			      if (this.nextBtn) this.nextBtn.addEventListener('click', () => this.changeSlide(1));
+			    }
+			
+			    getPositionX(e) {
+			      return e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+			    }
+			
+			    touchStart(e) {
+			      this.isDragging = true;
+			      this.startX = this.getPositionX(e);
+			      this.animationID = requestAnimationFrame(this.animation.bind(this));
+			    }
+			
+			    touchMove(e) {
+			      if (!this.isDragging) return;
+			      const currentPosition = this.getPositionX(e);
+			      this.currentTranslate = this.prevTranslate + currentPosition - this.startX;
+			    }
+			
+			    touchEnd() {
+			      cancelAnimationFrame(this.animationID);
+			      this.isDragging = false;
+			      const movedBy = this.currentTranslate - this.prevTranslate;
+			      const threshold = this.track.offsetWidth * 0.1; // 10% drag threshold
+			
+			      if (movedBy < -threshold && this.current < this.slides.length - 1) this.current++;
+			      if (movedBy > threshold && this.current > 0) this.current--;
+			      this.setPositionByIndex();
+			    }
+			
+			    animation() {
+			      this.setSliderPosition();
+			      if (this.isDragging) requestAnimationFrame(this.animation.bind(this));
+			    }
+			
+			    setSliderPosition() {
+			      this.track.style.transform = `translateX(${this.currentTranslate}px)`;
+			    }
+			
+			    setPositionByIndex() {
+			      this.currentTranslate = this.current * -this.slides[0].offsetWidth;
+			      this.prevTranslate = this.currentTranslate;
+			      this.setSliderPosition();
+			    }
+			
+			    changeSlide(direction) {
+			      this.current += direction;
+			      if (this.current < 0) this.current = 0;
+			      if (this.current >= this.slides.length) this.current = this.slides.length - 1;
+			      this.setPositionByIndex();
+			    }
+			  }
+			
+			  /** 🔹 Initialize all carousels **/
+			  document.querySelectorAll('.user-items-list-carousel').forEach(carousel => {
+			    new SquarespaceCarousel(carousel);
 			  });
+			
 			});
 		</script>
     </body>
