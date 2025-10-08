@@ -10,7 +10,7 @@
     body { margin:0; font-family: system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif; color:#222; background-image:url(giftimgs/songketbg2.png); }
     main.container { max-width:1400px; margin:0 auto; padding:0 3vw; }
     section.page-section { padding:6.6vmax 0; }
-    .list-section-title p { font-size:2rem; text-align:center; margin-bottom:55px; font-weight:600; }
+    .list-section-title p { font-size:2rem; text-align:center; margin-bottom:55px; font-weight:600; color: white; font-family: -apple-system; }
 
     .floralSwiper { 
       width:100%; 
@@ -30,13 +30,13 @@
       width:100%;
       padding:1rem;
       box-sizing:border-box;
-	background-color: #fff;
+	background-color: #fff; border-radius: 15px;
     }
 
     .carousel-card img {
-      width:50%;
-      aspect-ratio:1/1;
-      object-fit:cover;
+      width:100%;
+      height:100%
+      object-fit:contain;
       border-radius:10px;
       flex-shrink:0;
       display:block;
@@ -112,7 +112,8 @@
           <div class="content">
             <div class="user-items-list" style="min-height:100px;">
               <div class="list-section-title" data-section-title-alignment="center">
-                <p>Floral Testimonials</p>
+                <h1 style="font-family: -apple-system; color:  white; text-align: center;">Wishing Well</h1>
+				<h2 style="font-family: -apple-system; color:  white; text-align: center;">We know how frustrating it can be to choose a gift for the newlyweds,<br>hence why we curated this list for convenience.</h2>
               </div>
 
               <!-- Swiper carousel -->
@@ -175,11 +176,9 @@
                 </div>
 
                 <button type="button" class="swiper-button-prev" aria-label="Previous testimonial">
-                  <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M15 6 L9 12 L15 18"></path></svg>
                 </button>
 
                 <button type="button" class="swiper-button-next" aria-label="Next testimonial">
-                  <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M9 6 L15 12 L9 18"></path></svg>
                 </button>
 
                 <div class="swiper-pagination" aria-hidden="false"></div>
