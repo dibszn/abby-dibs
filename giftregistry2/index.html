@@ -6,15 +6,15 @@
   <title>Floral Testimonials — Carousel (fixed next button)</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <style>
-    :root { --arrow-bg: rgba(255,255,255,0.96); --arrow-size: 44px; --arrow-size-mobile: 36px; }
-    body { margin:0; font-family: system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif; color:#222; background-image:url(giftimgs/songketbg2.png); }
+    :root { --arrow-bg: transparent; --arrow-size: 44px; --arrow-size-mobile: 36px; --numofCard: 3; }
+    body { margin:0; font-family: system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif; color:#222; background-image:url(giftimgs/songketbg2.png); background-size: cover; }
     main.container { max-width:1400px; margin:0 auto; padding:0 3vw; }
     section.page-section { padding:6.6vmax 0; }
-    .list-section-title p { font-size:2rem; text-align:center; margin-bottom:55px; font-weight:600; color: white; font-family: -apple-system; }
+    .list-section-title p { font-size:2rem; text-align:center; margin-bottom:55px; font-weight:600; }
 
     .floralSwiper { 
       width:100%; 
-      padding-bottom:4vmax; 
+      padding-bottom:7vh; 
       position:relative; 
       overflow: visible; 
     }
@@ -30,12 +30,13 @@
       width:100%;
       padding:1rem;
       box-sizing:border-box;
-	background-color: #fff; border-radius: 15px;
+	background-color: #fff;
+		border-radius: 15px;
     }
 
     .carousel-card img {
       width:100%;
-      height:100%
+      height:100%;
       object-fit:contain;
       border-radius:10px;
       flex-shrink:0;
@@ -74,17 +75,19 @@
       width:18px; height:18px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
       pointer-events: none;
     }
-    .swiper-pagination-bullet { opacity:.5; background:#999; }
+    .swiper-pagination-bullet { opacity:.8; background:#fff; }
     .swiper-pagination-bullet-active { opacity:1; background:#111; }
 
     @media (max-width: 768px) {
+		:root {
+    		--numofCard: 1;
+  		}
       .carousel-card {
         flex-direction:column;
         align-items:center;
         text-align:center;
         padding:1rem;
       }
-      .carousel-card img { width:80%; margin:0 auto; }
       .carousel-text { max-width:90%; }
       .carousel-text h2 { margin-top:1rem; }
 =
@@ -98,8 +101,10 @@
     }
 
     @media (min-width: 768px) {
+		:root {
+    --numofCard: 3;
+  }
       .carousel-card { flex-direction:row; text-align:left; }
-      .carousel-card img { width:27%; }
       .carousel-text { max-width:60%; }
     }
   </style>
@@ -112,8 +117,8 @@
           <div class="content">
             <div class="user-items-list" style="min-height:100px;">
               <div class="list-section-title" data-section-title-alignment="center">
-                <h1 style="font-family: -apple-system; color:  white; text-align: center;">Wishing Well</h1>
-				<h2 style="font-family: -apple-system; color:  white; text-align: center;">We know how frustrating it can be to choose a gift for the newlyweds,<br>hence why we curated this list for convenience.</h2>
+                <h1 style="color: white; text-align: center; font-family: -apple-system">Wishing Well</h1>
+				<h2 style="color: white; text-align: center; font-family: -apple-system; padding-bottom: 3vh">We know how confusing it is to pick a gift,<br> hence whhy we curated this list for your convenience</h2>
               </div>
 
               <!-- Swiper carousel -->
@@ -176,9 +181,11 @@
                 </div>
 
                 <button type="button" class="swiper-button-prev" aria-label="Previous testimonial">
+                  <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M15 6 L9 12 L15 18"></path></svg>
                 </button>
 
                 <button type="button" class="swiper-button-next" aria-label="Next testimonial">
+                  <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M9 6 L15 12 L9 18"></path></svg>
                 </button>
 
                 <div class="swiper-pagination" aria-hidden="false"></div>
@@ -196,7 +203,7 @@
     const swiper = new Swiper('.floralSwiper', {
       loop: true,
       spaceBetween: 30,
-      slidesPerView: 1,
+      slidesPerView: cssVar('--numofCard'),
       autoplay: { delay: 4000, disableOnInteraction: false },
       pagination: { el: '.swiper-pagination', clickable: true },
       navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
