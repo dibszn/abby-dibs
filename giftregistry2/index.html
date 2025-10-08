@@ -351,108 +351,138 @@
         </div>
         <script>
 			document.addEventListener("DOMContentLoaded", () => {
-			
-			  /** 🔹 Fade-in on scroll **/
-			  const fadeEls = document.querySelectorAll('.fadeIn');
-			  const observer = new IntersectionObserver(entries => {
-			    entries.forEach(entry => {
-			      if (entry.isIntersecting) {
-			        entry.target.classList.add('visible');
-			        observer.unobserve(entry.target);
+			  /** 🔹 Wait until Squarespace carousel controller initializes **/
+			  const initObserver = new MutationObserver(() => {
+			    document.querySelectorAll('.user-items-list-carousel__slides').forEach(track => {
+			      if (!track.dataset.enhanced) {
+			        new CarouselEnhancer(track.closest('.user-items-list-carousel'));
+			        track.dataset.enhanced = "true";
 			      }
 			    });
-			  }, { threshold: 0.25 });
-			  fadeEls.forEach(el => observer.observe(el));
+			  });
 			
+			  initObserver.observe(document.body, { childList: true, subtree: true });
 			
-			  /** 🔹 Squarespace Carousel Swipe **/
-			  class SquarespaceCarousel {
+			  /** 🔹 Enhancement Class **/
+			  class CarouselEnhancer {
 			    constructor(container) {
 			      this.container = container;
 			      this.track = container.querySelector('.user-items-list-carousel__slides');
-			      this.slides = container.querySelectorAll('.user-items-list-carousel__slide');
+			      this.slides = Array.from(container.querySelectorAll('.user-items-list-carousel__slide'));
 			      this.prevBtn = container.querySelector('.user-items-list-carousel__arrow-button--left, .mobile-arrow-button--left');
 			      this.nextBtn = container.querySelector('.user-items-list-carousel__arrow-button--right, .mobile-arrow-button--right');
-			      this.current = 0;
-			      this.isDragging = false;
+			      this.currentIndex = 0;
 			      this.startX = 0;
-			      this.currentTranslate = 0;
-			      this.prevTranslate = 0;
-			      this.animationID = 0;
+			      this.currentX = 0;
+			      this.dragging = false;
 			
-			      this.addEventListeners();
+			      this.addSwipeSupport();
+			      this.cloneForInfiniteLoop();
 			    }
 			
-			    addEventListeners() {
-			      // Touch + Mouse swipe
-			      this.track.addEventListener('touchstart', this.touchStart.bind(this));
-			      this.track.addEventListener('touchmove', this.touchMove.bind(this));
-			      this.track.addEventListener('touchend', this.touchEnd.bind(this));
-			      this.track.addEventListener('mousedown', this.touchStart.bind(this));
-			      this.track.addEventListener('mousemove', this.touchMove.bind(this));
-			      this.track.addEventListener('mouseup', this.touchEnd.bind(this));
-			      this.track.addEventListener('mouseleave', this.touchEnd.bind(this));
+			    /** Swipe gestures **/
+			    addSwipeSupport() {
+			      const track = this.track;
 			
-			      // Arrow buttons
-			      if (this.prevBtn) this.prevBtn.addEventListener('click', () => this.changeSlide(-1));
-			      if (this.nextBtn) this.nextBtn.addEventListener('click', () => this.changeSlide(1));
+			      track.addEventListener('touchstart', e => this.onStart(e.touches[0].clientX));
+			      track.addEventListener('touchmove', e => this.onMove(e.touches[0].clientX));
+			      track.addEventListener('touchend', () => this.onEnd());
+			      track.addEventListener('mousedown', e => this.onStart(e.clientX));
+			      track.addEventListener('mousemove', e => this.dragging && this.onMove(e.clientX));
+			      track.addEventListener('mouseup', () => this.onEnd());
+			      track.addEventListener('mouseleave', () => this.dragging && this.onEnd());
 			    }
 			
-			    getPositionX(e) {
-			      return e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+			    onStart(x) {
+			      this.dragging = true;
+			      this.startX = x;
+			      this.track.style.transition = 'none';
 			    }
 			
-			    touchStart(e) {
-			      this.isDragging = true;
-			      this.startX = this.getPositionX(e);
-			      this.animationID = requestAnimationFrame(this.animation.bind(this));
+			    onMove(x) {
+			      if (!this.dragging) return;
+			      const diff = x - this.startX;
+			      this.track.style.transform = `translateX(calc(${this.getCurrentOffset()}px + ${diff}px))`;
+			      this.currentX = x;
 			    }
 			
-			    touchMove(e) {
-			      if (!this.isDragging) return;
-			      const currentPosition = this.getPositionX(e);
-			      this.currentTranslate = this.prevTranslate + currentPosition - this.startX;
+			    onEnd() {
+			      if (!this.dragging) return;
+			      const diff = this.currentX - this.startX;
+			      const threshold = this.container.offsetWidth * 0.1;
+			      this.dragging = false;
+			      this.track.style.transition = '';
+			
+			      if (diff < -threshold) this.nextSlide();
+			      else if (diff > threshold) this.prevSlide();
+			      else this.snapToCurrent();
 			    }
 			
-			    touchEnd() {
-			      cancelAnimationFrame(this.animationID);
-			      this.isDragging = false;
-			      const movedBy = this.currentTranslate - this.prevTranslate;
-			      const threshold = this.track.offsetWidth * 0.1; // 10% drag threshold
-			
-			      if (movedBy < -threshold && this.current < this.slides.length - 1) this.current++;
-			      if (movedBy > threshold && this.current > 0) this.current--;
-			      this.setPositionByIndex();
+			    getCurrentOffset() {
+			      const transform = getComputedStyle(this.track).transform;
+			      if (transform === 'none') return 0;
+			      const matrix = new DOMMatrixReadOnly(transform);
+			      return matrix.m41;
 			    }
 			
-			    animation() {
-			      this.setSliderPosition();
-			      if (this.isDragging) requestAnimationFrame(this.animation.bind(this));
+			    /** Hook into Squarespace's layout and create loop clones **/
+			    cloneForInfiniteLoop() {
+			      const first = this.slides[0];
+			      const last = this.slides[this.slides.length - 1];
+			      if (!first || !last) return;
+			
+			      const firstClone = first.cloneNode(true);
+			      const lastClone = last.cloneNode(true);
+			      firstClone.classList.add('clone');
+			      lastClone.classList.add('clone');
+			
+			      this.track.insertBefore(lastClone, first);
+			      this.track.appendChild(firstClone);
+			
+			      // Observe for transitions and loop reset
+			      this.track.addEventListener('transitionend', () => {
+			        const slides = this.container.querySelectorAll('.user-items-list-carousel__slide');
+			        if (slides[this.currentIndex].classList.contains('clone')) {
+			          this.track.style.transition = 'none';
+			          if (this.currentIndex === 0) {
+			            this.currentIndex = slides.length - 2;
+			          } else if (this.currentIndex === slides.length - 1) {
+			            this.currentIndex = 1;
+			          }
+			          this.snapToCurrent();
+			          requestAnimationFrame(() => {
+			            this.track.style.transition = '';
+			          });
+			        }
+			      });
 			    }
 			
-			    setSliderPosition() {
-			      this.track.style.transform = `translateX(${this.currentTranslate}px)`;
+			    /** Basic slide change handlers **/
+			    nextSlide() {
+			      this.currentIndex++;
+			      this.snapToCurrent();
 			    }
-			
-			    setPositionByIndex() {
-			      this.currentTranslate = this.current * -this.slides[0].offsetWidth;
-			      this.prevTranslate = this.currentTranslate;
-			      this.setSliderPosition();
+			    prevSlide() {
+			      this.currentIndex--;
+			      this.snapToCurrent();
 			    }
-			
-			    changeSlide(direction) {
-			      this.current += direction;
-			      if (this.current < 0) this.current = 0;
-			      if (this.current >= this.slides.length) this.current = this.slides.length - 1;
-			      this.setPositionByIndex();
+			    snapToCurrent() {
+			      const slideWidth = this.slides[0].offsetWidth;
+			      this.track.style.transform = `translateX(-${this.currentIndex * slideWidth}px)`;
 			    }
 			  }
 			
-			  /** 🔹 Initialize all carousels **/
-			  document.querySelectorAll('.user-items-list-carousel').forEach(carousel => {
-			    new SquarespaceCarousel(carousel);
-			  });
-			
+			  /** 🔹 Fade-in observer (unchanged) **/
+			  const fadeEls = document.querySelectorAll('.fadeIn');
+			  const fadeObs = new IntersectionObserver(entries => {
+			    entries.forEach(entry => {
+			      if (entry.isIntersecting) {
+			        entry.target.classList.add('visible');
+			        fadeObs.unobserve(entry.target);
+			      }
+			    });
+			  }, { threshold: 0.25 });
+			  fadeEls.forEach(el => fadeObs.observe(el));
 			});
 		</script>
     </body>
