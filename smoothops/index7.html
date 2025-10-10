@@ -197,7 +197,8 @@
 						<div class="section-background-overlay" style="opacity: 0.15;"></div>
 					</div>
 				</div>
-				<div style="position: fixed;width: 15%;aspect-ratio: 1;bottom: 2%;right: 0.5%;z-index:10000;">
+				<style> @media (min-width: 768px) { .plyr {transform: scale(0.2)}} @media (max-width: 768px) { .plyr {transform: scale(0.45)}} </style>
+				<div class="plyr" style="position: fixed;width: 100%;aspect-ratio: 1;bottom: 2%;right: 0.5%;z-index:10000;-webkit-transform-origin-y: bottom;-webkit-transform-origin-x: right;">
 					<iframe id="plyr" src="plyr/index.html" allow="autoplay" style="width:100%;height:100%;border:0;"></iframe>
 				</div>
 				<div class="content-wrapper" style=" padding-top: calc(0vmax / 10); padding-bottom: calc(0vmax / 10);" id="yui_3_17_2_1_1759603526106_237">
@@ -1173,6 +1174,7 @@
 	</script>
 </body>
 </html>
+
 
 
 
