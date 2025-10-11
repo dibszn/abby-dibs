@@ -20,7 +20,7 @@
   bottom: 5%;
   right: 3%;
   padding: 2%;
-  border-radius: 40px;
+  
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -29,41 +29,17 @@
   overflow: visible;
 }
 
-@media (max-height: 400px) {
+@media (max-width: 768px) {
   .player {
-    transform: scale(0.5);
-    transform-origin: bottom right;
+    border-radius: 20px;
+  }
+}
+@media (min-width: 768px) {
+  .player {
+    border-radius: 40px;
   }
 }
 
-@media (max-height: 250px) {
-  .player {
-    transform: scale(0.6);
-    transform-origin: bottom right;
-  }
-}
-
-
-@media (max-width: 800px){
-  .player {
-    transform: scale(0.8);
-    transform-origin: bottom right;
-  }
-}
-
-@media (max-width: 400px) {
-  .player {
-    transform: scale(0.7);
-    transform-origin: bottom right;
-  }
-}
-
-@media (max-width: 300px) {
-  .player {
-    transform: scale(0.6);
-    transform-origin: bottom right;
-  }
-}
 
 button {
   flex: 1 1 25%;
