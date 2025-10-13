@@ -397,15 +397,6 @@ button:hover::before {
 
   updateUI();
 
-  // Autoplay on first interaction with fade-in
-  document.body.addEventListener('click', () => {
-    if (audio.paused) {
-      audio.play().then(() => {
-        fadeInAudio(audio, volume, 1500);
-      }).catch(() => {});
-    }
-  }, { once: true });
-
   closeBtn.addEventListener('click', () => {
     audio.pause();
     document.getElementById('player').style.display = 'none';
