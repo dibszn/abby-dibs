@@ -156,8 +156,8 @@
 				      Page1.id = 'newPage1';
 				      
 					document.getElementById("newPage1").addEventListener("animationend", function () {
+						document.getElementById("mainInvite32").scrollIntoView({ behavior: "smooth" });
 				    setTimeout(() => {
-						document.getElementById("mainInvite").scrollIntoView({ behavior: "smooth" });
 				      const c2 = document.querySelector(".page-section.c2");
 				      if (c2) {
 				        c2.style.transition = "opacity 100ms ease-in-out";
@@ -192,7 +192,7 @@
 				  });
 				</script>
 			</section>
-			<section id="mainInvite" data-test="page-section" data-section-theme="white" data-section-id="6882675b931dbf6d34103102" data-controller="SectionWrapperController" data-animation="none" data-fluid-engine-section="" data-controllers-bound="SectionWrapperController" id="yui_3_17_2_1_1759603526106_238" data-active="true" class="page-section hide final full-bleed-section layout-engine-section background-width--full-bleed section-height--custom  content-width--wide horizontal-alignment--center vertical-alignment--middle has-background white">
+			<section id="mainInvite32" data-test="page-section" data-section-theme="white" data-section-id="6882675b931dbf6d34103102" data-controller="SectionWrapperController" data-animation="none" data-fluid-engine-section="" data-controllers-bound="SectionWrapperController" id="yui_3_17_2_1_1759603526106_238" data-active="true" class="page-section hide final full-bleed-section layout-engine-section background-width--full-bleed section-height--custom  content-width--wide horizontal-alignment--center vertical-alignment--middle has-background white">
 				<div class="section-border">
 					<div class="section-background">
 						<img alt="" data-image="images/blankpaper.png" data-image-dimensions="2000x1545" data-image-focal-point="0.5,0.5" data-load="false" elementtiming="nbf-background" src="images/blankpaper.png" width="2000" height="1545" sizes="(max-width: 799px) 200vw, 100vw" style="display:block;object-position: 50% 50%" fetchpriority="high" loading="lazy" decoding="async" data-loader="sqs">
@@ -1176,6 +1176,7 @@
 	</script>
 </body>
 </html>
+
 
 
 
