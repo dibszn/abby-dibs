@@ -157,13 +157,13 @@
 				      
 					document.getElementById("newPage1").addEventListener("animationend", function () {
 				    setTimeout(() => {
+						document.getElementById("mainInvite").scrollIntoView({ behavior: "smooth" });
 				      const c2 = document.querySelector(".page-section.c2");
 				      if (c2) {
 				        c2.style.transition = "opacity 100ms ease-in-out";
 				        c2.style.opacity = "0";
 				
 				        c2.addEventListener("transitionend",() => {
-							document.getElementById("mainInvite").scrollIntoView({ behavior: "smooth" });
 				            c2.remove();
 							setTimeout (() => {
 				            sections.forEach(function (currentsection) {
@@ -1176,6 +1176,7 @@
 	</script>
 </body>
 </html>
+
 
 
 
