@@ -156,15 +156,13 @@
 				      Page1.id = 'newPage1';
 				      
 					document.getElementById("newPage1").addEventListener("animationend", function () {
-						document.getElementById("mainInvite32").scrollIntoView({ behavior: "smooth" });
 				    setTimeout(() => {
 				      const c2 = document.querySelector(".page-section.c2");
 				      if (c2) {
-				        c2.style.transition = "opacity 100ms ease-in-out";
+				        c2.style.transition = "opacity 600ms ease-in-out";
 				        c2.style.opacity = "0";
 				
 				        c2.addEventListener("transitionend",() => {
-				            c2.remove();
 							setTimeout (() => {
 				            sections.forEach(function (currentsection) {
 				              if (!currentsection.classList.contains("c2")) {
@@ -180,6 +178,8 @@
 								currentsection.style.backgroundSize = "cover";
 								currentsection.style.backgroundPosition = "center 50%";
 				              }
+								document.getElementById("mainInvite32").scrollIntoView({ behavior: "smooth" });
+								c2.remove();
 				            });
 							}, 200);
 				          },{ once: true });
@@ -1176,6 +1176,7 @@
 	</script>
 </body>
 </html>
+
 
 
 
