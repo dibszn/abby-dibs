@@ -1364,6 +1364,75 @@
 						</div>
 					</div>
 			</section>
+			<section data-test="page-section" data-section-theme="white-bold" class="page-section hide final full-bleed-section layout-engine-section background-width--full-bleed content-width--wide horizontal-alignment--center vertical-alignment--middle has-background white-bold" data-section-id="typewriter" data-controller="SectionWrapperController" data-animation="none" data-fluid-engine-section="" data-controllers-bound="SectionWrapperController" data-active="true">
+				<style>.details-container {max-width: 1500px; margin: 0 auto; padding: 0 20px;}.typed-wrapper {font-size: 200%; color: #fff; font-family: 'Pinyon Script', auto; margin-bottom: 0.5vh;text-align: center;align-self: center;transition: all 1.8s ease; } .typed-text { display: inline; white-space: pre-wrap;word-break: break-word;letter-spacing: 1.5px;text-align: center;} .invitation-content {opacity: 0; transform: translateY(30px); transition: all 1.8s ease; pointer-events: none;display: flex;flex-direction: column; justify-content: center; align-items: center; } .invitation-content.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }.invitation-line { font-style: italic;font-size: 90%; margin-bottom: 3vh; color: #fff;text-align: center;margin-top: 1vh;} .wedding-info { font-size: 90%; color: #fff; } .wedding-info p { margin: 10px 0; } @media (max-width:768px) { .typed-wrapper { font-size: 200%; } .invitation-line, .wedding-info {font-size: 80%;}}  </style>				
+				<div class="details-container">
+					<div class="typed-wrapper">
+						<span id="typed-intro"></span>
+					</div>
+				</div>
+				<script>
+				document.addEventListener("DOMContentLoaded", () => {
+				  const section21 = document.querySelector(".section.c21");
+				  const typedText = "You’re invited to the wedding of Adibah & Abby!";
+				  const typedElement = document.getElementById('typed-intro');
+				  
+				  let index = 0;
+				
+				  // --- Typewriter effect ---
+				  function typeWriter() {
+				    if (index === 0) typedElement.textContent = ''; // Reset on first run
+				
+				    if (index < typedText.length) {
+				      typedElement.textContent += typedText.charAt(index);
+				      index++;
+				      setTimeout(typeWriter, 80);
+				    } else {
+				      // After typing finishes → create invitation content
+				      setTimeout(createInvitationContent, 500);
+				    }
+				  }
+				
+				  // --- Create invitation content dynamically ---
+				  function createInvitationContent() {
+				    const container = document.querySelector(".details-container");
+				
+				    // Create wrapper
+				    const invitationDiv = document.createElement("div");
+				    invitationDiv.classList.add("invitation-content");
+				
+				    // Add content
+				    invitationDiv.innerHTML = `
+				      <p class="invitation-line">
+				        Join us as we vow to forever beneath the skies, surrounded by the people we love most.
+				      </p>
+				      <img id="MainImg" src="images/banner.png">
+				    `;
+				
+				    // Animate in
+				    requestAnimationFrame(() => {
+				      container.appendChild(invitationDiv);
+					setTimeout(() => { invitationDiv.classList.add("visible");}, 50);
+				    });
+				  }
+				
+				  // --- Observer for section 21 ---
+				  if (section21) {
+				    const sectionObserver = new IntersectionObserver((entries, obs) => {
+				      entries.forEach(entry => {
+				        if (entry.isIntersecting) {
+				          typedElement.classList.add("typed-text");
+				          typeWriter();   // start typing
+				          obs.unobserve(entry.target); // run once
+				        }
+				      });
+				    }, { threshold: 0.5 });
+				
+				    sectionObserver.observe(section21);
+				  }
+				});
+				</script>
+			</section>
 		</main>
 	</div>
 	<script>
