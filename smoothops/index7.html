@@ -228,16 +228,12 @@
 					      setTimeout(typeWriter, 80);
 					    } else {
 							typedWrapper.classList.add("slideup2");
-							typedWrapper.addEventListener("transitionend",() => {
 					    		document.getElementById("mainInvite32").scrollIntoView({ behavior: "smooth" });
-							setTimeout(section21.remove(), 80);});
+							setTimeout(section21.remove(), 80)
 														  
 					    }
 					  }
 					
-					 
-					
-					  // --- Observer for section 21 ---
 					  if (section21) {
 					    const sectionObserver = new IntersectionObserver((entries, obs) => {
 					      entries.forEach(entry => {
@@ -1448,5 +1444,6 @@
 	</script>
 </body>
 </html>
+
 
 
