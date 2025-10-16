@@ -179,7 +179,7 @@
 								currentsection.style.backgroundSize = "cover";
 								currentsection.style.backgroundPosition = "center 50%";
 				              }
-								document.getElementById("mainInvite32").scrollIntoView({ behavior: "smooth" });
+								/* document.getElementById("mainInvite32").scrollIntoView({ behavior: "smooth" }); */
 								c2.remove();
 				            });
 							}, 200);
@@ -203,7 +203,7 @@
 				<div class="content-wrapper" style=" padding-top: calc(0vmax / 10); padding-bottom: calc(0vmax / 10);" id="yui_3_17_2_1_1759603526106_237">
 					<div class="content" id="yui_3_17_2_1_1759603526106_236">
 						<div class="details-container">
-							<style> .slideup2 { animation: SlideUp 500ms forwards ease-out; } @keyframes SlideUp { from { transform: translateY(0); } to { transform: translateY(-200%); } }.typed-wrapper {font-size: 200%; color: #113c25; font-family: 'Pinyon Script'; font-weight: 900; margin-bottom: 0.5vh;text-align: center;align-self: center; transition: all 1.8s ease;}.typed-text {display: inline; white-space: pre-wrap; word-break: break-word;letter-spacing: 1.5px;text-align: center; }</style>
+							<style> .slideup2 { animation: SlideUp 1000ms forwards ease-out; } @keyframes SlideUp { from { transform: translateY(0); } to { transform: translateY(-2000%); } }.typed-wrapper {font-size: 200%; color: #113c25; font-family: 'Pinyon Script'; margin-bottom: 0.5vh;text-align: center;align-self: center; transition: all 1.8s ease;}.typed-text {display: inline; white-space: pre-wrap; word-break: break-word;letter-spacing: 1.5px;text-align: center; }</style>
 							<div class="typed-wrapper">
 								<span id="typed-intro"></span>
 							</div>
@@ -226,8 +226,8 @@
 					      index++;
 					      setTimeout(typeWriter, 80);
 					    } else {
-							setTimeout(getElementById("typed-wrapper").classList.add(slideup2), 500);
-					      setTimeout(createInvitationContent, 50000);
+							setTimeout(document.getElementById("typed-wrapper").classList.add(slideup2), 500);
+					      setTimeout(createInvitationContent, 500);
 					    }
 					  }
 					
@@ -238,6 +238,9 @@
 					    // Create wrapper
 					    const invitationDiv = document.createElement("div");
 					    invitationDiv.id = "yui_3_17_2_1_1759603526106_235";
+						  invitationDiv.style.transition = "opacity 500ms ease-in";
+						  invitationDiv.style.opacity = "0";
+						  
 					
 					    // Add content
 					    invitationDiv.innerHTML = `
@@ -314,7 +317,7 @@
 					    `;
 						  requestAnimationFrame(() => {
 				      		container.appendChild(invitationDiv);
-							setTimeout(() => { invitationDiv.classList.add("visible");}, 50);
+							setTimeout(() => { invitationDiv.style.opacity = 1;}, 600);
 				    	});
 						}
 					
@@ -1529,6 +1532,7 @@
 	</script>
 </body>
 </html>
+
 
 
 
