@@ -213,6 +213,7 @@
 				<script>
 					document.addEventListener("DOMContentLoaded", () => {
 					  const section21 = document.getElementById("mainInvite33");
+					const typedWrapper = document.querySelector("typed-wrapper");
 					  const typedText = "You’re invited to the Walimatul Urus of Adibah & Abby!";
 					  const typedElement = document.getElementById('typed-intro');
 					  
@@ -226,7 +227,7 @@
 					      index++;
 					      setTimeout(typeWriter, 80);
 					    } else {
-							setTimeout(document.getElementById("typed-wrapper").classList.add(slideup2), 500);
+							setTimeout(typedWrapper.classList.add(slideup2), 500);
 					      setTimeout(createInvitationContent, 500);
 					    }
 					  }
@@ -1532,6 +1533,7 @@
 	</script>
 </body>
 </html>
+
 
 
 
