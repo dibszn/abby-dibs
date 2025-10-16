@@ -213,7 +213,7 @@
 				<script>
 					document.addEventListener("DOMContentLoaded", () => {
 					  const section21 = document.getElementById("mainInvite33");
-					const typedWrapper = document.querySelector("typed-wrapper");
+					const typedWrapper = document.querySelector(".typed-wrapper");
 					  const typedText = "You’re invited to the Walimatul Urus of Adibah & Abby!";
 					  const typedElement = document.getElementById('typed-intro');
 					  
@@ -227,13 +227,13 @@
 					      index++;
 					      setTimeout(typeWriter, 80);
 					    } else {
-							setTimeout(typedWrapper.classList.add(slideup2), 500);
 					      setTimeout(createInvitationContent, 500);
 					    }
 					  }
 					
 					  // --- Create invitation content dynamically ---
 					  function createInvitationContent() {
+						  typedWrapper.classList.add(slideup2);
 					    const container = document.querySelector(".details-container");
 					
 					    // Create wrapper
@@ -1533,6 +1533,7 @@
 	</script>
 </body>
 </html>
+
 
 
 
