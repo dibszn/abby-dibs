@@ -203,7 +203,7 @@
 				<div class="content-wrapper" style=" padding-top: calc(0vmax / 10); padding-bottom: calc(0vmax / 10);" id="yui_3_17_2_1_1759603526106_237">
 					<div class="content" id="yui_3_17_2_1_1759603526106_236">
 						<div class="details-container">
-							<style>.typed-wrapper {font-size: 200%; color: #fff; font-family: 'Pinyon Script'; margin-bottom: 0.5vh;text-align: center;align-self: center;transition: all 1.8s ease;}.typed-text {display: inline; white-space: pre-wrap; word-break: break-word;letter-spacing: 1.5px;text-align: center; }</style>
+							<style>.typed-wrapper {font-size: 200%; color: #113c25; font-family: 'Pinyon Script'; margin-bottom: 0.5vh;text-align: center;align-self: center;transition: all 1.8s ease;}.typed-text {display: inline; white-space: pre-wrap; word-break: break-word;letter-spacing: 1.5px;text-align: center; }</style>
 							<div class="typed-wrapper">
 								<span id="typed-intro"></span>
 							</div>
@@ -311,7 +311,11 @@
 								</div>
 							</div>
 					    `;
-					  }
+						  requestAnimationFrame(() => {
+				      		container.appendChild(invitationDiv);
+							setTimeout(() => { invitationDiv.classList.add("visible");}, 50);
+				    	});
+						}
 					
 					  // --- Observer for section 21 ---
 					  if (section21) {
@@ -1524,6 +1528,7 @@
 	</script>
 </body>
 </html>
+
 
 
 
