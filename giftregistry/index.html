@@ -174,7 +174,7 @@
 
           const priceIcons = item.PriceRange ? item.PriceRange.replace(/\$/g, '💲') : '—';
           const statusColor = item.Status.includes('Available') ? 'green' : 'red';
-          const imageSrc = item.ImagePath || 'https://via.placeholder.com/300x300?text=No+Image';
+          const imageSrc = item.Image;
 
           card.innerHTML = `
             <img src="${imageSrc}" alt="${item.ItemName}">
