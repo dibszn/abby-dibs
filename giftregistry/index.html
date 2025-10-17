@@ -153,10 +153,11 @@
     async function loadGifts(initial = false) {
       try {
         const res = await fetch(`${scriptURL}?action=getWishlist&ts=${Date.now()}`);
-        const newItems = await res.json();
+const data = await res.json();
+const newItems = data.items || []; // 👈 unpack array safely
 
-        const hasChanged = JSON.stringify(newItems) !== JSON.stringify(allItems);
-        allItems = newItems;
+const hasChanged = JSON.stringify(newItems) !== JSON.stringify(allItems);
+allItems = newItems;;
 
         if (initial || hasChanged) updateDisplay();
       } catch (err) {
