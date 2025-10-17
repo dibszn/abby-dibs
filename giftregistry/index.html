@@ -23,7 +23,6 @@
       text-align: center;
     }
 
-    /* === Filter + Sort Toolbar === */
     #controls {
       display: flex;
       justify-content: center;
@@ -48,16 +47,15 @@
       outline: 2px solid #e6b17e;
     }
 
-    /* === Gift Grid === */
     #giftList {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
       width: 100%;
       max-width: 1100px;
+      transition: opacity 0.3s ease;
     }
 
-    /* === Gift Card === */
     .card {
       background: white;
       border-radius: 16px;
@@ -109,14 +107,8 @@
       transition: background 0.2s ease;
     }
 
-    button:hover {
-      background: #c79461;
-    }
-
-    button[disabled] {
-      background: #ccc;
-      cursor: not-allowed;
-    }
+    button:hover { background: #c79461; }
+    button[disabled] { background: #ccc; cursor: not-allowed; }
 
     #refreshNote {
       color: #666;
@@ -129,7 +121,6 @@
 <body>
   <h1>Adibah & Partner’s Wishing Well 💝</h1>
 
-  <!-- Filter + Sort Controls -->
   <div id="controls">
     <input type="text" id="searchItem" placeholder="Search item..." />
     <select id="filterStatus">
@@ -144,58 +135,56 @@
     </select>
   </div>
 
-  <!-- Wishlist Cards -->
   <div id="giftList"></div>
   <p id="refreshNote">🔄 Auto-refreshes every 30 seconds for the latest updates</p>
 
   <script>
-    // === Replace this with your Web App URL ===
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzU2IJ6iU1GnaNngr0RrSvGyG6CbUzDL7Ud8ySj0RBzgduRtH3XUzFnsVm0sUWblVTheg/exec';
+    const scriptURL = 'https://script.google.com/macros/s/PASTE-YOUR-DEPLOYMENT-LINK/exec';
     let allItems = [];
 
-    // === Load wishlist data ===
-    async function loadGifts(showLoading = true) {
-      if (showLoading) {
-        document.getElementById('giftList').innerHTML = '<p>Loading items...</p>';
-      }
-
+    async function loadGifts(initial = false) {
       try {
-        const res = await fetch(`${scriptURL}?action=getWishlist`);
-        allItems = await res.json();
-        updateDisplay();
+        const res = await fetch(`${scriptURL}?action=getWishlist&ts=${Date.now()}`);
+        const newItems = await res.json();
+
+        // Only re-render if data changed
+        const hasChanged = JSON.stringify(newItems) !== JSON.stringify(allItems);
+        allItems = newItems;
+
+        if (initial || hasChanged) updateDisplay();
       } catch (err) {
         console.error(err);
-        alert('Error loading items. Please check your Apps Script URL.');
       }
     }
 
     function renderGifts(items) {
       const container = document.getElementById('giftList');
-      container.innerHTML = '';
+      const existing = container.children.length;
+      if (!existing) container.style.opacity = '0.3';
 
-      if (items.length === 0) {
-        container.innerHTML = '<p style="text-align:center;">No items found.</p>';
-        return;
-      }
+      requestAnimationFrame(() => {
+        container.innerHTML = '';
+        items.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'card';
 
-      items.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'card';
+          const priceIcons = item.PriceRange ? item.PriceRange.replace(/\$/g, '💲') : '—';
+          const statusColor = item.Status.includes('Available') ? 'green' : 'red';
 
-        const priceIcons = item.PriceRange ? item.PriceRange.replace(/\$/g, '💲') : '—';
-        const statusColor = item.Status.includes('Available') ? 'green' : 'red';
-
-        card.innerHTML = `
-          <div>
-            <div class="item-name">${item.ItemName}</div>
-            <div>Quantity: ${item.Quantity || 1}</div>
-            <div class="price">Price: ${priceIcons}</div>
-            <div class="status">Status: <b style="color:${statusColor}">${item.Status}</b></div>
-            <div><a href="${item.Link}" target="_blank">View Item</a></div>
-          </div>
-          <button ${item.Status.includes('Available') ? '' : 'disabled'} onclick="reserveItem('${item.ItemName}', this)">Reserve this item</button>
-        `;
-        container.appendChild(card);
+          card.innerHTML = `
+            <div>
+              <div class="item-name">${item.ItemName}</div>
+              <div>Quantity: ${item.Quantity || 1}</div>
+              <div class="price">Price: ${priceIcons}</div>
+              <div class="status">Status: <b style="color:${statusColor}">${item.Status}</b></div>
+              <div><a href="${item.Link}" target="_blank">View Item</a></div>
+            </div>
+            <button ${item.Status.includes('Available') ? '' : 'disabled'}
+              onclick="reserveItem('${item.ItemName}', this)">Reserve this item</button>
+          `;
+          container.appendChild(card);
+        });
+        container.style.opacity = '1';
       });
     }
 
@@ -210,13 +199,8 @@
       const sort = document.getElementById('sortPrice').value;
       const search = document.getElementById('searchItem').value.toLowerCase();
 
-      if (status !== 'All') {
-        filtered = filtered.filter(i => i.Status.toLowerCase().includes(status.toLowerCase()));
-      }
-
-      if (search) {
-        filtered = filtered.filter(i => i.ItemName.toLowerCase().includes(search));
-      }
+      if (status !== 'All') filtered = filtered.filter(i => i.Status.toLowerCase().includes(status.toLowerCase()));
+      if (search) filtered = filtered.filter(i => i.ItemName.toLowerCase().includes(search));
 
       if (sort !== 'none') {
         const val = { '$': 1, '$$': 2, '$$$': 3, '$$$$': 4, '$$$$$': 5 };
@@ -230,13 +214,9 @@
       renderGifts(filtered);
     }
 
-    // === RESERVE FUNCTION ===
     async function reserveItem(itemName, btn) {
       const name = prompt("Please enter your name to reserve this item 💐");
-      if (!name) {
-        alert("Reservation cancelled.");
-        return;
-      }
+      if (!name) return alert("Reservation cancelled.");
 
       btn.disabled = true;
       btn.textContent = "Reserving...";
@@ -245,18 +225,17 @@
         const res = await fetch(`${scriptURL}?action=reserveItem&itemName=${encodeURIComponent(itemName)}&name=${encodeURIComponent(name)}`);
         const msg = await res.text();
         alert(msg);
-        await loadGifts(false); // Refresh without flashing loading text
+        await loadGifts(false);
       } catch (err) {
-        alert("Error reserving item. Please try again.");
         console.error(err);
+        alert("Error reserving item. Please try again.");
         btn.disabled = false;
         btn.textContent = "Reserve this item";
       }
     }
 
-    // === INITIAL LOAD + AUTO REFRESH ===
-    loadGifts();
-    setInterval(loadGifts, 30000); // refresh every 30 seconds
+    loadGifts(true);
+    setInterval(() => loadGifts(false), 30000);
   </script>
 </body>
 </html>
