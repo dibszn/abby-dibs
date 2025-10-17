@@ -221,14 +221,19 @@
     async function reserveItem(itemName, btn) {
       const name = prompt("Please enter your name to reserve this item 💐");
       if (!name) return alert("Reservation cancelled.");
-
+    
       btn.disabled = true;
       btn.textContent = "Reserving...";
-
+    
       try {
-        const res = await fetch(`${scriptURL}?action=reserveItem&itemName=${encodeURIComponent(itemName)}&name=${encodeURIComponent(name)}`);
-        const msg = await res.text();
-        alert(msg);
+        const res = await fetch(scriptURL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ itemName, name })
+        });
+    
+        const data = await res.json();
+        alert(data.message || "Reservation updated!");
         await loadGifts(false);
       } catch (err) {
         console.error(err);
@@ -237,6 +242,7 @@
         btn.textContent = "Reserve this item";
       }
     }
+
 
     loadGifts(true);
     setInterval(() => loadGifts(false), 30000);
