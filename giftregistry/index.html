@@ -2,119 +2,244 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wishing Well</title>
+  <title>Adibah & Partner’s Wishing Well 💝</title>
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
-      background: #fafafa;
-      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: #f7f5f2;
       padding: 2rem;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
     }
-    .card {
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      padding: 1rem;
-      width: 280px;
+
+    h1 {
+      font-family: "Baskerville Display PT", serif;
+      font-size: 2rem;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      color: #113c25;
       text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
     }
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+
+    #controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
     }
-    .card img {
-      width: 100%;
-      max-height: 10%;
-      object-fit: contain;
-      border-radius: 12px;
-      margin-bottom: 0.8rem;
-    }
-    h3 {
-      margin: 0.4rem 0;
-      font-size: 1.1rem;
-      color: #333;
-    }
-    p {
-      margin: 0.3rem 0;
-      color: #555;
-      font-size: 0.9rem;
-    }
-    button {
-      margin-top: 0.6rem;
-      background-color: #6c63ff;
+
+    #controls select, #controls input {
+      background-color: #113c25;
       color: white;
       border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
+      border-radius: 20px;
+      padding: 0.6rem 1.2rem;
+      font-family: "Poppins", sans-serif;
+      font-size: 0.9rem;
       cursor: pointer;
-      transition: background 0.3s;
     }
-    button:hover {
-      background-color: #594ef5;
+
+    #controls select:focus, #controls input:focus {
+      outline: 2px solid #e6b17e;
+    }
+
+    #giftList {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 1100px;
+      transition: opacity 0.3s ease;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+
+    .card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      background-color: #f0f0f0;
+    }
+
+    .item-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+      color: #113c25;
+    }
+
+    .price {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .status {
+      margin-top: 0.5rem;
+      font-weight: 500;
+    }
+
+    a {
+      color: #e6b17e;
+      text-decoration: none;
+    }
+
+    button {
+      background: #e6b17e;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 0.6rem;
+      margin-top: 1rem;
+      cursor: pointer;
+      font-family: "Poppins", sans-serif;
+      font-weight: 500;
+      transition: background 0.2s ease;
+    }
+
+    button:hover { background: #c79461; }
+    button[disabled] { background: #ccc; cursor: not-allowed; }
+
+    #refreshNote {
+      color: #666;
+      font-size: 0.85rem;
+      margin-top: 1rem;
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <div id="wishlist"></div>
+  <h1>Adibah & Partner’s Wishing Well 💝</h1>
+
+  <div id="controls">
+    <input type="text" id="searchItem" placeholder="Search item..." />
+    <select id="filterStatus">
+      <option value="All">All</option>
+      <option value="Available">Available</option>
+      <option value="Reserved">Reserved</option>
+    </select>
+    <select id="sortPrice">
+      <option value="none">Sort by Price</option>
+      <option value="asc">$ → $$$$</option>
+      <option value="desc">$$$$ → $</option>
+    </select>
+  </div>
+
+  <div id="giftList"></div>
 
   <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxpNWs8BevBc-6zieeL0IJXZUHebzOQPP8o3dbVtJ3UNaVM53flYBpgIPi258YQf_Wzmw/exec';
-    const wishlistContainer = document.getElementById('wishlist');
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyIORZnmO_SxwVjB1dDHdKWcjHDj1ikcmnjE7VXrXfJU66ZZnLEuDIjPb7yhQFV4tCe3A/exec';
+    let allItems = [];
 
-    async function loadWishlist() {
+    async function loadGifts(initial = false) {
       try {
-        const res = await fetch(`${scriptURL}?action=getWishlist`);
-        const items = await res.json();
+        const res = await fetch(`${scriptURL}?action=getWishlist&ts=${Date.now()}`);
+        const newItems = await res.json();
 
-        wishlistContainer.innerHTML = '';
+        const hasChanged = JSON.stringify(newItems) !== JSON.stringify(allItems);
+        allItems = newItems;
 
+        if (initial || hasChanged) updateDisplay();
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    function renderGifts(items) {
+      const container = document.getElementById('giftList');
+      requestAnimationFrame(() => {
+        container.innerHTML = '';
         items.forEach(item => {
           const card = document.createElement('div');
           card.className = 'card';
 
-          const img = item.Image ? `<img src="${item.Image}" alt="${item.ItemName}">` : '';
+          const priceIcons = item.PriceRange ? item.PriceRange.replace(/\$/g, '💲') : '—';
+          const statusColor = item.Status.includes('Available') ? 'green' : 'red';
+          const imageSrc = item.ImagePath || 'https://via.placeholder.com/300x300?text=No+Image';
 
           card.innerHTML = `
-            ${img}
-            <h3>${item.ItemName}</h3>
-            <p><strong>Price Range:</strong> ${item.PriceRange}</p>
-            <p><strong>Quantity:</strong> ${item.Quantity}</p>
-            <p><strong>Status:</strong> ${item.Status}</p>
-            <a href="${item.Link}" target="_blank">View Item</a><br>
-            ${item.Status === 'Available'
-              ? `<button onclick="reserveItem('${item.ItemName}')">Reserve this item</button>`
-              : `<button disabled>Reserved</button>`
-            }
+            <img src="${imageSrc}" alt="${item.ItemName}">
+            <div>
+              <div class="item-name">${item.ItemName}</div>
+              <div>Quantity: ${item.Quantity || 1}</div>
+              <div class="price">Price: ${priceIcons}</div>
+              <div class="status">Status: <b style="color:${statusColor}">${item.Status}</b></div>
+              <div><a href="${item.Link}" target="_blank">View Item</a></div>
+            </div>
+            <button ${item.Status.includes('Available') ? '' : 'disabled'}
+              onclick="reserveItem('${item.ItemName}', this)">Reserve this item</button>
           `;
-          wishlistContainer.appendChild(card);
+          container.appendChild(card);
         });
-      } catch (err) {
-        console.error('Error loading wishlist:', err);
-      }
+      });
     }
 
-    async function reserveItem(itemName) {
-      const guest = prompt("Please enter your name to reserve:");
-      if (!guest) return alert("Reservation cancelled.");
+    document.getElementById('filterStatus').addEventListener('change', updateDisplay);
+    document.getElementById('sortPrice').addEventListener('change', updateDisplay);
+    document.getElementById('searchItem').addEventListener('input', updateDisplay);
+
+    function updateDisplay() {
+      let filtered = [...allItems];
+      const status = document.getElementById('filterStatus').value;
+      const sort = document.getElementById('sortPrice').value;
+      const search = document.getElementById('searchItem').value.toLowerCase();
+
+      if (status !== 'All') filtered = filtered.filter(i => i.Status.toLowerCase().includes(status.toLowerCase()));
+      if (search) filtered = filtered.filter(i => i.ItemName.toLowerCase().includes(search));
+
+      if (sort !== 'none') {
+        const val = { '$': 1, '$$': 2, '$$$': 3, '$$$$': 4, '$$$$$': 5 };
+        filtered.sort((a, b) =>
+          sort === 'asc'
+            ? (val[a.PriceRange] || 0) - (val[b.PriceRange] || 0)
+            : (val[b.PriceRange] || 0) - (val[a.PriceRange] || 0)
+        );
+      }
+
+      renderGifts(filtered);
+    }
+
+    async function reserveItem(itemName, btn) {
+      const name = prompt("Please enter your name to reserve this item 💐");
+      if (!name) return alert("Reservation cancelled.");
+
+      btn.disabled = true;
+      btn.textContent = "Reserving...";
 
       try {
-        const res = await fetch(`${scriptURL}?action=reserveItem&itemName=${encodeURIComponent(itemName)}&name=${encodeURIComponent(guest)}`);
-        const text = await res.text();
-        alert(text);
-        loadWishlist(); // refresh without clearing layout
+        const res = await fetch(`${scriptURL}?action=reserveItem&itemName=${encodeURIComponent(itemName)}&name=${encodeURIComponent(name)}`);
+        const msg = await res.text();
+        alert(msg);
+        await loadGifts(false);
       } catch (err) {
-        console.error('Error reserving item:', err);
+        console.error(err);
+        alert("Error reserving item. Please try again.");
+        btn.disabled = false;
+        btn.textContent = "Reserve this item";
       }
     }
 
-    loadWishlist();
-    setInterval(loadWishlist, 30000); // auto refresh every 30s
+    loadGifts(true);
+    setInterval(() => loadGifts(false), 30000);
   </script>
 </body>
 </html>
