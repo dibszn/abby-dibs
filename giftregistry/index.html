@@ -147,17 +147,16 @@
   <div id="giftList"></div>
 
   <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzQ_G7FbNrE9kFIPGcrYt7F5KgElUc2iKLF4_0v9eB3rDRUIlOzD39jUVPx9g6UMkgHlg/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyIORZnmO_SxwVjB1dDHdKWcjHDj1ikcmnjE7VXrXfJU66ZZnLEuDIjPb7yhQFV4tCe3A/exec';
     let allItems = [];
 
     async function loadGifts(initial = false) {
       try {
         const res = await fetch(`${scriptURL}?action=getWishlist&ts=${Date.now()}`);
-const data = await res.json();
-const newItems = data.items || []; // 👈 unpack array safely
+        const newItems = await res.json();
 
-const hasChanged = JSON.stringify(newItems) !== JSON.stringify(allItems);
-allItems = newItems;;
+        const hasChanged = JSON.stringify(newItems) !== JSON.stringify(allItems);
+        allItems = newItems;
 
         if (initial || hasChanged) updateDisplay();
       } catch (err) {
@@ -175,7 +174,7 @@ allItems = newItems;;
 
           const priceIcons = item.PriceRange ? item.PriceRange.replace(/\$/g, '💲') : '—';
           const statusColor = item.Status.includes('Available') ? 'green' : 'red';
-          const imageSrc = item.Image;
+          const imageSrc = item.Image || 'https://via.placeholder.com/300x300?text=No+Image';
 
           card.innerHTML = `
             <img src="${imageSrc}" alt="${item.ItemName}">
@@ -220,44 +219,24 @@ allItems = newItems;;
     }
 
     async function reserveItem(itemName, btn) {
-  const name = prompt("Please enter your name to reserve this item 💐");
-  if (!name) return alert("Reservation cancelled.");
+      const name = prompt("Please enter your name to reserve this item 💐");
+      if (!name) return alert("Reservation cancelled.");
 
-  btn.disabled = true;
-  btn.textContent = "Reserving...";
+      btn.disabled = true;
+      btn.textContent = "Reserving...";
 
-  try {
-    const res = await fetch(scriptURL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ itemName, name })
-    });
-
-    // Try parse JSON response
-    let data;
-    try {
-      data = await res.json();
-    } catch (err) {
-      // not JSON — show plain text
-      const txt = await res.text();
-      alert(txt || "Reservation response received.");
-      await loadGifts(false);
-      return;
+      try {
+        const res = await fetch(`${scriptURL}?action=reserveItem&itemName=${encodeURIComponent(itemName)}&name=${encodeURIComponent(name)}`);
+        const msg = await res.text();
+        alert(msg);
+        await loadGifts(false);
+      } catch (err) {
+        console.error(err);
+        alert("Error reserving item. Please try again.");
+        btn.disabled = false;
+        btn.textContent = "Reserve this item";
+      }
     }
-
-    // Show server message (friendly)
-    alert(data.message || data.error || (data.success ? "Reserved!" : "Reservation failed."));
-    await loadGifts(false);
-
-  } catch (err) {
-    console.error('Reservation error:', err);
-    alert("Network error reserving item. Please try again.");
-    btn.disabled = false;
-    btn.textContent = "Reserve this item";
-  }
-}
-
-
 
     loadGifts(true);
     setInterval(() => loadGifts(false), 30000);
