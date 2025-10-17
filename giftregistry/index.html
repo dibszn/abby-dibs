@@ -71,6 +71,15 @@
       transform: translateY(-5px);
       box-shadow: 0 6px 15px rgba(0,0,0,0.15);
     }
+    
+    .card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      background-color: #f0f0f0;
+    }
 
     .item-name {
       font-weight: 600;
@@ -139,7 +148,7 @@
   <p id="refreshNote">🔄 Auto-refreshes every 30 seconds for the latest updates</p>
 
   <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzU2IJ6iU1GnaNngr0RrSvGyG6CbUzDL7Ud8ySj0RBzgduRtH3XUzFnsVm0sUWblVTheg/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzlH9xBb-2r_zyea-bSwwhNsz75QOHVLKB6MpahS8XcHRNSHa9a-lPQruzYwsVsZA3TyQ/exec';
     let allItems = [];
 
     async function loadGifts(initial = false) {
@@ -170,8 +179,10 @@
 
           const priceIcons = item.PriceRange ? item.PriceRange.replace(/\$/g, '💲') : '—';
           const statusColor = item.Status.includes('Available') ? 'green' : 'red';
+          const imageSrc = item.ImagePath;
 
           card.innerHTML = `
+          <img src="${imageSrc}" alt="${item.ItemName}">
             <div>
               <div class="item-name">${item.ItemName}</div>
               <div>Quantity: ${item.Quantity || 1}</div>
