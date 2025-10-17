@@ -179,7 +179,7 @@
 
           const priceIcons = item.PriceRange ? item.PriceRange.replace(/\$/g, '💲') : '—';
           const statusColor = item.Status.includes('Available') ? 'green' : 'red';
-          const imageSrc = item.ImagePath;
+          const imageSrc = item.Image;
 
           card.innerHTML = `
           <img src="${imageSrc}" alt="${item.ItemName}">
