@@ -1,241 +1,153 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Adibah & Abby’s Wishing Well 💝</title>
-  <style>
-    body {
-      font-family: "Poppins", sans-serif;
-      background: #f7f5f2;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-    }
+<meta charset="UTF-8">
+<title>Wedding Gift Registry</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    h1 {
-      font-family: "Baskerville Display PT", serif;
-      font-size: 2rem;
-      font-style: italic;
-      margin-bottom: 1.5rem;
-      color: #113c25;
-      text-align: center;
-    }
-
-    #controls {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-    }
-
-    #controls select, #controls input {
-      background-color: #113c25;
-      color: white;
-      border: none;
-      border-radius: 20px;
-      padding: 0.6rem 1.2rem;
-      font-family: "Poppins", sans-serif;
-      font-size: 0.9rem;
-      cursor: pointer;
-    }
-
-    #controls select:focus, #controls input:focus {
-      outline: 2px solid #e6b17e;
-    }
-
-    #giftList {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      width: 100%;
-      max-width: 1100px;
-      transition: opacity 0.3s ease;
-    }
-
-    .card {
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-    }
-
-    .item-name {
-      font-weight: 600;
-      font-size: 1.1rem;
-      margin-bottom: 0.3rem;
-      color: #113c25;
-    }
-
-    .price {
-      color: #666;
-      font-size: 0.9rem;
-    }
-
-    .status {
-      margin-top: 0.5rem;
-      font-weight: 500;
-    }
-
-    a {
-      color: #e6b17e;
-      text-decoration: none;
-    }
-
-    button {
-      background: #e6b17e;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      padding: 0.6rem;
-      margin-top: 1rem;
-      cursor: pointer;
-      font-family: "Poppins", sans-serif;
-      font-weight: 500;
-      transition: background 0.2s ease;
-    }
-
-    button:hover { background: #c79461; }
-    button[disabled] { background: #ccc; cursor: not-allowed; }
-
-    #refreshNote {
-      color: #666;
-      font-size: 0.85rem;
-      margin-top: 1rem;
-      text-align: center;
-    }
-  </style>
+<style>
+body {
+  background-color:#383838;
+  color: white;
+  font-family: 'Baskerville Display PT', serif;
+  margin: 0;
+}
+.wrapper {
+  width: 80%;
+  margin: 5vh auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+}
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  color: #333;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+.card img {
+  width: 25%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+}
+.card-content {
+  flex: 1;
+  padding-left: 20px;
+}
+.card-content span {
+  display: block;
+  font-size: 1.2em;
+  color: #113c25;
+  font-weight: bold;
+}
+.card-content p {
+  margin: 5px 0;
+}
+button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 20px;
+  background-color: #113c25;
+  color: white;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background 0.3s;
+}
+button:disabled {
+  background-color: #777;
+  cursor: not-allowed;
+}
+</style>
 </head>
+
 <body>
-  <h1>Adibah & Partner’s Wishing Well 💝</h1>
+  <div class="wrapper" id="giftList"></div>
 
-  <div id="controls">
-    <input type="text" id="searchItem" placeholder="Search item..." />
-    <select id="filterStatus">
-      <option value="All">All</option>
-      <option value="Available">Available</option>
-      <option value="Reserved">Reserved</option>
-    </select>
-    <select id="sortPrice">
-      <option value="none">Sort by Price</option>
-      <option value="asc">$ → $$$$</option>
-      <option value="desc">$$$$ → $</option>
-    </select>
-  </div>
+<script>
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxrK6JYiINhVI7eXxG_KHhe986lAmiAL2jSZ5waPN59PtuKixqQ8U60-VB_lgdHFTMH2Q/exec';
 
-  <div id="giftList"></div>
-  <p id="refreshNote">🔄 Auto-refreshes every 30 seconds for the latest updates</p>
+async function fetchGifts() {
+  try {
+    const res = await fetch(scriptURL);
+    const items = await res.json();
+    renderGifts(items);
+  } catch (err) {
+    console.error('Fetch error:', err);
+  }
+}
 
-  <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzU2IJ6iU1GnaNngr0RrSvGyG6CbUzDL7Ud8ySj0RBzgduRtH3XUzFnsVm0sUWblVTheg/exec';
-    let allItems = [];
+function renderGifts(items) {
+  const container = document.getElementById('giftList');
 
-    async function loadGifts(initial = false) {
-      try {
-        const res = await fetch(`${scriptURL}?action=getWishlist&ts=${Date.now()}`);
-        const newItems = await res.json();
+  // Only rebuild missing or updated cards
+  const existing = {};
+  [...container.children].forEach(c => existing[c.dataset.name] = c);
 
-        // Only re-render if data changed
-        const hasChanged = JSON.stringify(newItems) !== JSON.stringify(allItems);
-        allItems = newItems;
+  items.forEach(item => {
+    let card = existing[item.name];
+    if (!card) {
+      card = document.createElement('div');
+      card.className = 'card';
+      card.dataset.name = item.name;
+      card.innerHTML = `
+        <img src="${item.image || 'giftimgs/default.png'}" alt="${item.name}">
+        <div class="card-content">
+          <span>${item.name}</span>
+          <p>Quantity: <strong>${item.quantity}</strong></p>
+          <p>Price Range: <strong>${item.price}</strong></p>
+          <p>Status: <strong>${item.status}</strong></p>
+          <a href="${item.link}" target="_blank">View Item</a>
+        </div>
+        <button ${item.status === 'Reserved' ? 'disabled' : ''}>
+          ${item.status === 'Reserved' ? 'Reserved' : 'Reserve this item'}
+        </button>`;
+      container.appendChild(card);
 
-        if (initial || hasChanged) updateDisplay();
-      } catch (err) {
-        console.error(err);
-      }
+      // Button click → reserve
+      const btn = card.querySelector('button');
+      btn.addEventListener('click', () => reserveItem(item.name, btn));
+    } else {
+      // Update existing card values live
+      card.querySelector('p strong').textContent = item.quantity;
+      const ps = card.querySelectorAll('p strong');
+      ps[0].textContent = item.quantity;
+      ps[1].textContent = item.price;
+      ps[2].textContent = item.status;
+      const btn = card.querySelector('button');
+      btn.disabled = item.status === 'Reserved';
+      btn.textContent = item.status === 'Reserved' ? 'Reserved' : 'Reserve this item';
     }
+  });
+}
 
-    function renderGifts(items) {
-      const container = document.getElementById('giftList');
-      const existing = container.children.length;
-      if (!existing) container.style.opacity = '0.3';
+async function reserveItem(itemName, btn) {
+  btn.disabled = true;
+  btn.textContent = 'Reserving...';
+  try {
+    await fetch(scriptURL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ itemName })
+    });
+    await fetchGifts(); // refresh live
+  } catch (err) {
+    console.error('Reservation error:', err);
+    btn.textContent = 'Error!';
+  }
+}
 
-      requestAnimationFrame(() => {
-        container.innerHTML = '';
-        items.forEach(item => {
-          const card = document.createElement('div');
-          card.className = 'card';
-
-          const priceIcons = item.PriceRange ? item.PriceRange.replace(/\$/g, '💲') : '—';
-          const statusColor = item.Status.includes('Available') ? 'green' : 'red';
-
-          card.innerHTML = `
-            <div>
-              <div class="item-name">${item.ItemName}</div>
-              <div>Quantity: ${item.Quantity || 1}</div>
-              <div class="price">Price: ${priceIcons}</div>
-              <div class="status">Status: <b style="color:${statusColor}">${item.Status}</b></div>
-              <div><a href="${item.Link}" target="_blank">View Item</a></div>
-            </div>
-            <button ${item.Status.includes('Available') ? '' : 'disabled'}
-              onclick="reserveItem('${item.ItemName}', this)">Reserve this item</button>
-          `;
-          container.appendChild(card);
-        });
-        container.style.opacity = '1';
-      });
-    }
-
-    // === FILTER, SORT & SEARCH ===
-    document.getElementById('filterStatus').addEventListener('change', updateDisplay);
-    document.getElementById('sortPrice').addEventListener('change', updateDisplay);
-    document.getElementById('searchItem').addEventListener('input', updateDisplay);
-
-    function updateDisplay() {
-      let filtered = [...allItems];
-      const status = document.getElementById('filterStatus').value;
-      const sort = document.getElementById('sortPrice').value;
-      const search = document.getElementById('searchItem').value.toLowerCase();
-
-      if (status !== 'All') filtered = filtered.filter(i => i.Status.toLowerCase().includes(status.toLowerCase()));
-      if (search) filtered = filtered.filter(i => i.ItemName.toLowerCase().includes(search));
-
-      if (sort !== 'none') {
-        const val = { '$': 1, '$$': 2, '$$$': 3, '$$$$': 4, '$$$$$': 5 };
-        filtered.sort((a, b) =>
-          sort === 'asc'
-            ? (val[a.PriceRange] || 0) - (val[b.PriceRange] || 0)
-            : (val[b.PriceRange] || 0) - (val[a.PriceRange] || 0)
-        );
-      }
-
-      renderGifts(filtered);
-    }
-
-    async function reserveItem(itemName, btn) {
-      const name = prompt("Please enter your name to reserve this item 💐");
-      if (!name) return alert("Reservation cancelled.");
-
-      btn.disabled = true;
-      btn.textContent = "Reserving...";
-
-      try {
-        const res = await fetch(`${scriptURL}?action=reserveItem&itemName=${encodeURIComponent(itemName)}&name=${encodeURIComponent(name)}`);
-        const msg = await res.text();
-        alert(msg);
-        await loadGifts(false);
-      } catch (err) {
-        console.error(err);
-        alert("Error reserving item. Please try again.");
-        btn.disabled = false;
-        btn.textContent = "Reserve this item";
-      }
-    }
-
-    loadGifts(true);
-    setInterval(() => loadGifts(false), 30000);
-  </script>
+// Auto-refresh every 10s (cards stay visible)
+fetchGifts();
+setInterval(fetchGifts, 10000);
+</script>
 </body>
 </html>
