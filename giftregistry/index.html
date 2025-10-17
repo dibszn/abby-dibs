@@ -147,7 +147,7 @@
   <div id="giftList"></div>
 
   <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbyIORZnmO_SxwVjB1dDHdKWcjHDj1ikcmnjE7VXrXfJU66ZZnLEuDIjPb7yhQFV4tCe3A/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzQ_G7FbNrE9kFIPGcrYt7F5KgElUc2iKLF4_0v9eB3rDRUIlOzD39jUVPx9g6UMkgHlg/exec';
     let allItems = [];
 
     async function loadGifts(initial = false) {
@@ -219,29 +219,43 @@
     }
 
     async function reserveItem(itemName, btn) {
-      const name = prompt("Please enter your name to reserve this item 💐");
-      if (!name) return alert("Reservation cancelled.");
-    
-      btn.disabled = true;
-      btn.textContent = "Reserving...";
-    
-      try {
-        const res = await fetch(scriptURL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ itemName, name })
-        });
-    
-        const data = await res.json();
-        alert(data.message || "Reservation updated!");
-        await loadGifts(false);
-      } catch (err) {
-        console.error(err);
-        alert("Error reserving item. Please try again.");
-        btn.disabled = false;
-        btn.textContent = "Reserve this item";
-      }
+  const name = prompt("Please enter your name to reserve this item 💐");
+  if (!name) return alert("Reservation cancelled.");
+
+  btn.disabled = true;
+  btn.textContent = "Reserving...";
+
+  try {
+    const res = await fetch(scriptURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ itemName, name })
+    });
+
+    // Try parse JSON response
+    let data;
+    try {
+      data = await res.json();
+    } catch (err) {
+      // not JSON — show plain text
+      const txt = await res.text();
+      alert(txt || "Reservation response received.");
+      await loadGifts(false);
+      return;
     }
+
+    // Show server message (friendly)
+    alert(data.message || data.error || (data.success ? "Reserved!" : "Reservation failed."));
+    await loadGifts(false);
+
+  } catch (err) {
+    console.error('Reservation error:', err);
+    alert("Network error reserving item. Please try again.");
+    btn.disabled = false;
+    btn.textContent = "Reserve this item";
+  }
+}
+
 
 
     loadGifts(true);
