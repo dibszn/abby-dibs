@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html><head>
 <title>Gift Registry</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/png" href="giftimgs/favicon.png">
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="content-security-policy" content="default-src 'none'; connect-src 'self' https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; media-src 'self' data:; script-src 'unsafe-inline' https://embed-cdn.spotifycdn.com/_next/static/iframe_api.37f385c045f385eed0c3.js https://open.spotify.com/embed/iframe-api/v1 data:; script-src-elem 'unsafe-inline' https://open.spotify.com/embed/iframe-api/v1 https://embed-cdn.spotifycdn.com/_next/static/iframe_api.37f385c045f385eed0c3.js data:;object-src 'self' data:; frame-src 'self' https://open.spotify.com/embed/track/1QAwKDm1FPgoD2V6lLiKmC data:;">
+<link rel="icon" type="image/png" href="giftimgs/favicon.png">
+<script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+
 <script> !function(a,b){"use strict";"function"==typeof define&&define.amd?define([],b):"object"==typeof module&&module.exports?module.exports=b():a.html5tooltips=b()}(this,function(){"use strict";function d(a,b){function c(a){var b=f(a).map(function(a){return typeof a}),c={};if("object"===b[0])c=a[0];else if("string"===b[0]){var d=a[0].split(" ");for(var e in d)c[d[e]]=a[1]}else"function"===b[0]&&(c={"":a[0]});return c}function d(a,b){for(var c,e=0;e<a.length;e++){for(var f=0;f<a[e].attributes.length;f++)c=a[e].attributes.item(f).name.replace(/-([a-z])/g,function(a){return a[1].toUpperCase()}),b[c]=b[c]||[],b[c].push(a[e]);d(a[e].children,b)}}function e(a){clearTimeout(m[a]),m[a]=setTimeout(function(){for(var b in k[a])k[a][b](l[a]);if(k[""])for(var b in k[""])k[""][b]()})}function f(a,b){return Array.prototype.slice.call(a,b)}var g=[],h={},i=[],j={},k={},l={},m={};if(b){var n=document.createElement("div");n.innerHTML=b,i=f(n.children),d(i,g)}return h.anchors=g,h.components=a.components={},h.elements=a.elements=i,h.model=a.model=l,h.assignModel=a.assignModel=function(b){h.model=a.model=l=b;for(var c in l)e(c)},h.destroy=a.destroy=function(){for(var a in h.components)h.components[a].destroy&&h.components[a].destroy();for(var b=i.length;b--;)i[b].parentNode&&i[b].parentNode.removeChild(i[b])},h.dispatch=function(b){var c=f(arguments,1);setTimeout(function(){for(var d in j[b])j[b][d].apply(a,c)})},h.on=a.on=function(){var a=c(arguments);for(var b in a)j[b]=j[b]||[],j[b].push(a[b])},h.onModelUpdate=function(){var a=c(arguments);for(var b in a)l[b]=l[b]||null,k[b]=k[b]||[],k[b].push(a[b]),e(b)},h.set=a.set=function(){var a=c(arguments);for(var b in a)l[b]=a[b],e(b)},h}function e(){function e(a,b){q.disableAnimation?b():(a.getBoundingClientRect(),a.classList.add("animating"),b&&b(),setTimeout(function(){a.classList.remove("animating")},q.animateDuration))}function f(a,b,c,d){q.disableAnimation?d&&d():(a.classList.add(b),a.getBoundingClientRect(),a.classList.add("animating"),a.classList.remove(b),a.classList.add(c),d&&d(),setTimeout(function(){a.classList.remove("animating"),a.classList.remove(c)},q.animateDuration))}function g(){return"collapse"!==p.style.visibility&&(p.style.visibility="collapse"),p.style.left="-9999px",p.style.top="-9999px","none"!==n.style.display&&(n.style.display="none",n.style.visibility="collapse",n.style.height="auto"),this}function h(){var a,c;if(k.model.target&&"visible"===p.style.visibility){p.style.width="auto",c=p.getBoundingClientRect();var d=parseInt(q.maxWidth);switch(d&&(p.style.width=c.width>d?d+"px":"auto"),a=k.model.target.getBoundingClientRect(),c=p.getBoundingClientRect(),q.stickTo){case b.stickTo.bottom:p.style.left=a.left+parseInt((a.width-c.width)/2)+"px",p.style.top=a.top+a.height+parseInt(q.stickDistance)+"px";break;case b.stickTo.left:p.style.left=a.left-c.width-parseInt(q.stickDistance)+"px",p.style.top=a.top+(a.height-c.height)/2+"px";break;case b.stickTo.right:p.style.left=a.left+a.width+parseInt(q.stickDistance)+"px",p.style.top=a.top+(a.height-c.height)/2+"px";break;case b.stickTo.top:p.style.left=a.left+(a.width-c.width)/2+"px",p.style.top=a.top-c.height-parseInt(q.stickDistance)+"px"}}}function i(){return"visible"!==p.style.visibility&&(p.style.visibility="visible",setTimeout(function(){h(),f(l,q.animateFunction+"-from",q.animateFunction+"-to")})),this}function j(){if("visible"!==p.style.visibility)p.style.visibility="visible",f(l,q.animateFunction+"-from",q.animateFunction+"-to"),q.contentMore&&(n.style.display="block",n.style.visibility="visible"),h();else if("block"!==n.style.display&&q.contentMore){n.style.display="block",e(p),h();var a=n.getBoundingClientRect().height;n.style.visibility="visible",n.style.height="0px",e(n,function(){n.style.height=a>0?a+"px":"auto"})}return this}var k=new d(this,a),l=k.anchors.box[0],n=(k.anchors.text[0],k.anchors.more[0]),p=(k.anchors.moreText[0],k.elements[0]);g(),"undefined"!=typeof window&&window.addEventListener("scroll",h,!1),k.set(c);var q=k.model;k.onModelUpdate({color:function(a){b.color[a]&&(a=b.color[a],a="rgb("+a.r+", "+a.g+", "+a.b+")"),l.style.backgroundColor=a},contentText:function(a){k.anchors.text[0].innerHTML=a},contentMore:function(a){k.anchors.moreText[0].innerHTML=a},stickTo:function(a){k.elements[0].className="html5tooltip-"+a}}),this.hide=g,this.show=i,this.showMore=j}function h(a,b,c){for(var d,f=c.length;f--;)if(c[f].model.target===a){d=c[f];break}d||(d=new e,c.push(d)),d.set(b),d.set("target",a);var g,h;a.addEventListener("mouseenter",function(){this!==g&&this!==h&&(g=this,document.body.appendChild(d.elements[0]),setTimeout(function(){this===g&&d.show()}.bind(this),d.model.delay))}),a.addEventListener("mouseleave",function(){g=null,this!==h&&(d.hide(),d.elements[0].parentNode&&d.elements[0].parentNode.removeChild(d.elements[0]))}),a.addEventListener("focus",function(){(-1!==["INPUT","TEXTAREA"].indexOf(this.tagName)||null!==this.getAttribute("contenteditable"))&&(h=this,document.body.appendChild(d.elements[0]),d.showMore())}),a.addEventListener("blur",function(){h=null,d.hide(),d.elements[0].parentNode&&d.elements[0].parentNode.removeChild(d.elements[0])})}function i(a,b){for(var f,c=(b||document).getElementsByTagName("*"),d=[],e=0;f=c[e];e++)f.getAttribute(a)&&d.push(f);return d}function j(){i("data-tooltip").forEach(function(a){var b={animateFunction:a.getAttribute("data-tooltip-animate-function")||c.animateFunction,color:a.getAttribute("data-tooltip-color")||"",contentMore:a.getAttribute("data-tooltip-more")||"",contentText:a.getAttribute("data-tooltip")||"",delay:a.getAttribute("data-tooltip-delay")||c.delay,maxWidth:a.getAttribute("data-tooltip-maxwidth")||"auto",stickTo:a.getAttribute("data-tooltip-stickto")||c.stickTo};h(a,b,g)})}function k(a,b){var c=[];try{c=Array.prototype.slice.call((b||document).querySelectorAll(a))}catch(d){}return c}function l(a){a.forEach(function(a){var b=[];a.targetSelector&&(b=k(a.targetSelector)),b.forEach(function(b){h(b,a,f)})})}function n(){document.removeEventListener("DOMContentLoaded",n,!1),window.removeEventListener("load",n,!1),m.refresh()}var a='<div class="html5tooltip" style="box-sizing:border-box;position:fixed;">  <div class="html5tooltip-box" box>    <div class="html5tooltip-text" text></div>      <div class="html5tooltip-more" style="overflow:hidden;" more>        <div class="html5tooltip-text" more-text></div>      </div>    </div></div>',b={animateFunction:{fadeIn:"fadein",foldIn:"foldin",foldOut:"foldout",roll:"roll",scaleIn:"scalein",slideIn:"slidein",spin:"spin"},color:{daffodil:{r:255,g:230,b:23},daisy:{r:250,g:211,b:28},mustard:{r:253,g:183,b:23},"citrus zest":{r:250,g:170,b:33},pumpkin:{r:241,g:117,b:63},tangerine:{r:237,g:87,b:36},salmon:{r:240,g:70,b:57},persimmon:{r:234,g:40,b:48},rouge:{r:188,g:35,b:38},scarlet:{r:140,g:12,b:3},"hot pink":{r:229,g:24,b:93},princess:{r:243,g:132,b:174},petal:{r:250,g:198,b:210},lilac:{r:178,g:150,b:199},lavender:{r:123,g:103,b:174},violet:{r:95,g:53,b:119},cloud:{r:195,g:222,b:241},dream:{r:85,g:190,b:237},gulf:{r:49,g:168,b:224},turquoise:{r:35,g:138,b:204},sky:{r:13,g:96,b:174},indigo:{r:20,g:59,b:134},navy:{r:0,g:27,b:74},"sea foam":{r:125,g:205,b:194},teal:{r:0,g:168,b:168},peacock:{r:18,g:149,b:159},ceadon:{r:193,g:209,b:138},olive:{r:121,g:145,b:85},bamboo:{r:128,g:188,b:66},grass:{r:74,g:160,b:63},kelly:{r:22,g:136,b:74},forrest:{r:0,g:63,b:46},chocolate:{r:56,g:30,b:17},"terra cotta":{r:192,g:92,b:32},camel:{r:191,g:155,b:107},linen:{r:233,g:212,b:167},stone:{r:231,g:230,b:225},smoke:{r:207,g:208,b:210},steel:{r:138,g:139,b:143},slate:{r:119,g:133,b:144},charcoal:{r:71,g:77,b:77},black:{r:5,g:6,b:8},white:{r:255,g:255,b:255},"metalic silver":{r:152,g:162,b:171},"metalic gold":{r:159,g:135,b:89},"metalic copper":{r:140,g:102,b:65}},stickTo:{bottom:"bottom",left:"left",right:"right",top:"top"}},c={animateDuration:300,animateFunction:b.animateFunction.fadeIn,delay:500,disableAnimation:!1,stickTo:b.stickTo.bottom,stickDistance:10},f=[],g=[],m=function(a){Array.isArray(a)||(a=[a]),l(a)};return m.autoinit=m.refresh=function(){j()},m.getTooltipByTarget=function(a){for(var b=f.length;b--;)if(f[b].model.target===a)return f[b];for(var b=g.length;b--;)if(g[b].model.target===a)return g[b]},"undefined"!=typeof window&&("complete"===document.readyState?n():(document.addEventListener("DOMContentLoaded",n,!1),window.addEventListener("load",n,!1)),window.html5tooltipsPredefined||(window.html5tooltipsPredefined=b,window.HTML5TooltipUIComponent=e)),m});</script>
 
 <style>
@@ -17,137 +18,51 @@ body
   margin: 0;
   font-size: 2vmin;
 }
+a {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:25px;
+    width:auto; 
+    padding: 0.6% 2.5%; 
+    font-size:1em;
+    color:white;
+    background-color:#113c25;
+    text-decoration:none;
+    font-family: 'Baskerville Display PT', auto;
+    font-style: italic;
+    outline: none;
+  }
+  p {
+        font-family: 'Baskerville Display PT', auto;
+    font-style: italic;
+    font-size: 1.2em;
+    text-align: center;
+    white-space: pre-wrap;
+    margin: 0;
+    padding: 0;
+  }
+.section {
+  opacity: 1;
+  display: flex;
+  flex-direction: column; 
+}
 
 .section.c2 { 
-    background-color: #383838;
-    background-image: url(giftimgs/songketbg2.png);
-    background-size:cover;
-    background-position: center 50%;
-    padding-bottom: 1.5vh;
-    overflow: hidden;
-    border: 0;
-    align-items: center;
-    justify-content: center;
-    gap: 2vh;
-    font-family: 'The Seasons', auto;
-  height:inherit;
-}
-.swiper{
-  width: 70%;
-  place-self: center;
+  background-color: #383838; 
+  background-image: url(giftimgs/songketbg2.png); 
+  background-size: cover; 
+  background-position: center 50%; 
+  padding-bottom: 1.5vh;
+  border:0;
+  align-items:center;
+  justify-content:center;
+  gap: 2vh;
+  font-family: 'The Seasons', auto;
 }
 
-.card{
-  position: relative;
-  background: #fff;
-  border-radius: 20px;
-  height: fit-content;
-  margin: 20px 0;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-}
-
-.card::before{
-  content: "";
-  position: absolute;
-  height: 40%;
-  width: 100%;
-  background: white;
-  border-radius: 20px 20px 0 0;
-}
-
-.card .card-content{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 30px;
-  position: relative;
-  z-index: 100;
-}
-
-.section .card .image {
-  height: 140px;
-  border-radius: 20%;
-  padding: 3px;
-  background: #fff;
-  margin-top: 30px;
-}
-
-.section .card .image img{
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  border-radius: 20%;
-  border: 3px solid #fff;
-}
-  .card .name-profession{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-  color: black;
-} 
-
-.name-profession .name{
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.name-profession .profession{
-  font-size:15px;
-  font-weight: 500;
-}
-.card .button{
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  margin-top: 20px;
-}
-
-.card .button a{
-  background: #383838;
-  outline: none;
-  border: none;
-  color: #fff;
-  padding: 3% 5%;
-  border-radius: 10px;
-  font-size: 14px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  text-align: center;
-  text-anchor: middle;
-}
-
-.button button:hover{
-  background: #6616d0;
-}
-
-.swiper-pagination{
-  position: absolute;
-  top: 450px;
-}
-
-.swiper-pagination-bullet{
-  height: 7px;
-  width: 26px;
-  border-radius: 25px;
-  background: white;
-}
-
-.swiper-button-next, .swiper-button-prev{
-  opacity: 0.7;
-  color: white;
-  transition: all 0.3s ease;
-}
-.swiper-button-next:hover, .swiper-button-prev:hover{
-  opacity: 1;
-  color: white;
-}
-
-  @media (max-width: 600px) {
-    .swiper{
-      transform: scale(0.8);
-    }
-  }
+.full-height { height: 100%; }
+.height-80 { height: 90%; }
 </style>
 <style>
     @font-face {
@@ -266,192 +181,101 @@ body
     gap: 1.2vh;
     padding: 2%;
     }
-    a {
-    }
+  .wrapper {
+  margin-top: 2vh;
+  padding-bottom: 3vh;
+  width: 80%;
+  margin: 0 auto;
+  font-family: 'Baskerville Display PT', auto;
+}
+
+.card {
+  top: 90px;
+  position: sticky;
+  border: 1px solid #ccc;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  color: #333;
+  padding: 40px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex; 
+
+  img {
+    display: block;
+    align-self: flex-start;
+    width:40%;
+    max-height:150px;
+  }
+  span {
+    display: block;
+    font-size: 1.2em;
+    color: #113c25;
+  }
+  a {
+    align-self: center;
+    text-align: center;
+    border-radius:25px;
+    padding: 0.6% 2.5%; 
+    font-size:1em;
+    color:white;
+    background-color:#113c25;
+    text-decoration:none;
+  }
+}
+
+.card:nth-child(n) {
+  top: calc(20px * var(--i));
+}
+    
 </style>
     <div id="textContainer">
  <img src="giftimgs/favicon.png" crossorigin="anonymous" draggable="false" style="padding-bottom: 5vh; width: 6%;filter: invert(1);">
 <p style="width:80%">We know how stressful it is to pick a gift for newlyweds, the worry of it being duplicates, the aesthetics, etc. Hence why we curated this gift registry as a guide for you to decide what to get us (should you choose to!)</p>
   <p style="font-size: 0.8em; width:60%">P.S: You don't need to get us the exact item we linked here, we are absolutely happy with whatever you wish to gift us. Do contact us should you decide to ship the item direcly to us rather than bringing it to the ceremony.</p>
     
-<div style="display:flex; flex-direction: row; justify-content: space-between; align-items: center; width:40%; padding-top: 0.3vh; color: white; text-decoration: none;">
-  <a style="color: white; text-decoration: none;" href="https://wa.me/+60193821659" target="_blank">Text Dibs on WhatsApp!</a>
-  <a style="color: white; text-decoration: none;" href="https://wa.me/+60106582212" target="_blank">Text Abby on WhatsApp!</a>
+<div style="display:flex; flex-direction: row; justify-content: space-between; align-items: center; width:40%; padding-top: 0.3vh">
+  <a href="https://wa.me/+60193821659" target="_blank">Text Dibs on WhatsApp!</a>
+  <a href="https://wa.me/+60106582212" target="_blank">Text Abby on WhatsApp!</a>
+  </div> </div>
+  
+  <div class="wrapper">
+  <div class="card" style="--i:1">
+    <img src="giftimgs/toaster.png" crossorigin="anonymous" draggable="false" style="object-fit:contain;display:block;">
+    <span>Toaster</span>
+    <a href="https://my.shp.ee/EgVekbU" target="_blank">Toaster</a>
+  </div>
+  <div class="card" style="--i:2">
+    <img src="giftimgs/blender.png" crossorigin="anonymous" draggable="false" style="object-fit:contain;display:block;">
+    <span>Blender</span>
+    <a href="https://my.shp.ee/ZqgGcKJ" target="_blank">Blender</a>
+  </div>
+  <div class="card" style="--i:3">
+    <img src="giftimgs/cookware.jpeg" crossorigin="anonymous" draggable="false" style="object-fit:contain;display:block;">
+    <span>Cookware</span>
+    <a href="https://my.shp.ee/oemLmne" target="_blank">Cooking Set</a>
+  </div>
+  <div class="card" style="--i:4">
+    <img src="giftimgs/airfryer.png" crossorigin="anonymous" draggable="false" style="object-fit:contain;display:block;">
+    <span>Air Fryer</span>
+    <a href="https://my.shp.ee/bnTTYNN" target="_blank">Air Fryer</a>
+  </div>
+  <div class="card" style="--i:5">
+    <img src="giftimgs/vacuum.png" crossorigin="anonymous" draggable="false" style="object-fit:contain;display:block;">
+    <span>Vacuum Cleaner</span>
+    <a href="https://my.shp.ee/We5AbKH" target="_blank">Vacuum Cleaner</a>
+  </div>
+  <div class="card" style="--i:6">
+    <img src="giftimgs/steamiron.png" crossorigin="anonymous" draggable="false" style="object-fit:contain;display:block;">
+    <span>Steam Iron</span>
+    <a href="https://my.shp.ee/b1mzArj" target="_blank">Steam Iron</a>
+  </div>
+  <div class="card" style="--i:7">
+    <img src="giftimgs/ricecooker.JPG" crossorigin="anonymous" draggable="false" style="object-fit:contain;display:block;">
+    <span>Rice Cooker</span>
+    <a href="https://my.shp.ee/R9pHkib" target="_blank">Rice Cooker</a>
+  </div>
 </div>
-    </div>
-
-<div class="swiper mySwiper container">
-      <div class="swiper-wrapper content">
-
-        <div class="swiper-slide card">
-          <div class="card-content">
-            <div class="image">
-              <img src="giftimgs/blender.png" alt="">
-            </div>
-
-            <div class="name-profession" style="text-align: center">
-              <span class="name">Blender</span>
-              <span class="profession">Tefal Uno Blender (1.5L)</span>
-            </div>
-
-
-            <div class="button">
-              <a href="https://www.tefal.com.my/p/tefal-uno-blender-1-5l-with-accessories-bl2b4/7211004386?srsltid=AfmBOopDj3jAXgkLB_DlxakKKUyXZJZLu_D_I9cSz2KbCWGzNLp8Xj_s" target="_blank">Tefal</a>
-              <a href="https://my.shp.ee/ZqgGcKJ" target="_blank">Shopee</a>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide card">
-          <div class="card-content">
-            <div class="image">
-              <img src="giftimgs/toaster.png" alt="">
-            </div>
-
-            <div class="name-profession" style="text-align: center">
-              <span class="name">Toaster</span>
-              <span class="profession">Russell Taylors Bread Toaster</span>
-            </div>
-
-            <div class="button">
-              <a href="https://www.russelltaylors.co.uk/collections/all/products/russell-taylors-7-shades-bread-toaster-t2" target="_blank">Russell Taylors</a>
-              <a href="https://my.shp.ee/EgVekbU" target="_blank">Shopee</a>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide card">
-          <div class="card-content">
-            <div class="image">
-              <img src="giftimgs/cookware.jpeg" alt="">
-            </div>
-
-
-            <div class="name-profession" style="text-align: center">
-              <span class="name">Cookware</span>
-              <span class="profession">Tefal So Chef 7pcs Set</span>
-            </div>
-
-
-            <div class="button">
-              <a href="https://www.tefal.com.my/p/exclusive-tefal-so-chef-7pcs-set-scp-wlid-18-dfp24-fp24-dfp28-small-spatula-ladle-spatula/SOCHEF7" target="_blank">Tefal</a>
-              <a href="https://my.shp.ee/oemLmne" target="_blank">Shopee</a>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide card">
-          <div class="card-content">
-            <div class="image">
-              <img src="giftimgs/airfryer.png" alt="">
-            </div>
-
-
-            <div class="name-profession" style="text-align: center">
-              <span class="name">Airfryer</span>
-              <span class="profession">Philips Air Fryer 1500W (4.2L) </span>
-            </div>
-
-            <div class="button">
-              <a href="https://www.harveynorman.com.my/home-appliances/small-kitchen-appliances-en/fryers/philips-1000-series-4.2l-airfryer-black-na120-09.html" target="_blank">Harvey Norman</a>
-              <a href="https://shopee.com.my/Philips-Air-Fryer-1500W-(-4.2L-)-12-Cooking-Methods-NA120-09-i.154039251.3217689839?sp_atk=3ae0833c-3ff5-46ec-84fe-1b9cb0502d65&xptdk=3ae0833c-3ff5-46ec-84fe-1b9cb0502d65" target="_blank">Shopee</a>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide card">
-          <div class="card-content">
-            <div class="image">
-              <img src="giftimgs/vacuum.png" alt="">
-            </div>
-
-            <div class="name-profession" style="text-align: center">
-              <span class="name">Vacuum Cleaner</span>
-              <span class="profession">Electrolux Bagless Vacuum Cleaner</span>
-            </div>
-
-            <div class="button">
-              <a href="https://www.harveynorman.com.my/home-appliances/vacuum-cleaners-en/upright-and-barrel-vacuum-cleaners-en/electrolux-z-1230-compactgo-cyclonic-bagless-vacuum-cleaner.html" target="_blank">Harvey Norman</a>
-              <a href="https://shopee.com.my/Electrolux-Bagless-Vacuum-Cleaner-HEPA-CompactGo-Cyclonic-with-2-in-1-Performance-Nozzle-Z1230-i.34634245.487141911?sp_atk=f6dfc09e-5dac-498b-aa7f-465575e01c92&xptdk=f6dfc09e-5dac-498b-aa7f-465575e01c92" target="_blank">Shopee</a>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide card">
-          <div class="card-content">
-            <div class="image">
-              <img src="giftimgs/steamiron.png" alt="">
-            </div>
-
-
-            <div class="name-profession" style="text-align: center">
-              <span class="name">Steam Iron</span>
-              <span class="profession">Panasonic Steam Generator Iron</span>
-            </div>
-
-            <div class="button">
-              <a href="https://www.harveynorman.com.my/home-appliances/garment-care/garment-steamers-en/panasonic-steam-generator-iron-with-optimal-care-ni-gt200ask.html" target="_blank">Harvey Norman</a>
-              <a href="https://shopee.com.my/Panasonic-NI-GT200ASK-Anti-calc-Steam-Generator-Iron-for-Quick-Professional-level-Ironing-i.184938635.18465708527?sp_atk=06e0ebcc-3a71-462a-aaeb-7ad76d6507d4&xptdk=06e0ebcc-3a71-462a-aaeb-7ad76d6507d4" target="_blank">Shopee</a>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide card">
-          <div class="card-content">
-            <div class="image">
-              <img src="giftimgs/ricecooker.JPG" alt="">
-            </div>
-
-            <div class="name-profession" style="text-align: center">
-              <span class="name">Rice Cooker</span>
-              <span class="profession">Philips Rice Cooker</span>
-            </div>
-
-            <div class="button">
-              <a href="https://www.harveynorman.com.my/home-appliances/small-kitchen-appliances-en/cookers/philips-5000-series-1.8l-digital-rice-cooker-black-hd-4814-31.html" target="_blank">Harvey Norman</a>
-              <a href="https://my.shp.ee/3qSnL7n" target="_blank">Shopee</a>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide card">
-          <div class="card-content">
-            <div class="image">
-              <img src="giftimgs/knifeset.png" alt="">
-            </div>
-
-            <div class="name-profession" style="text-align: center">
-              <span class="name">Knife Set</span>
-              <span class="profession">Fukuro 5-Pieces Knife Set</span>
-            </div>
-
-            <div class="button">
-              <a href="https://fukuromalaysia.com/product/fukuro-japanese-culinary-5-pieces-knife-set/" target="_blank">Fukuro</a>
-              <a href="https://my.shp.ee/6Sr7N5x" target="_blank">Shopee</a>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide card">
-          <div class="card-content">
-            <div class="image">
-              <img src="giftimgs/sofabed.png" alt="">
-            </div>
-
-            <div class="name-profession" style="text-align: center">
-              <span class="name">Sofa bed</span>
-              <span style="font-size: small">For y'all that will be staying over EVERYDAY 👀</span>
-            </div>
-
-
-            <div class="button">
-              <a href="https://www.ikea.com/my/en/p/fridhult-sofa-bed-knisa-light-grey-60355762/?utm_source=google&utm_medium=organic-shopping&utm_campaign=shopping_feed&utm_content=free_google_shopping_clicks_Livingroomseating" target="_blank">Ikea</a>
-              <a href="https://my.shp.ee/bThSvW2" target="_blank">Shopee</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="swiper-button-next" style="top: var(--swiper-navigation-top-offset, 64%) !important;"></div>
-      <div class="swiper-button-prev" style="top: var(--swiper-navigation-top-offset, 64%) !important;></div>
-      <div class="swiper-pagination"></div>
-
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-  <script src="./script.js"></script> 
+</div>
     
 </body></html>
