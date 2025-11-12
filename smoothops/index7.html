@@ -1360,7 +1360,7 @@
 												          <h4 class="LabelSeconds">seconds</h4>
 												        </div>
 												    </div>
-												    <h3 class="D-Day preFade fadeIn visible"> 🎉 It's D-day! 🎉 </h3>
+												    <h3 id="D-Day" class="D-Day preFade fadeIn visible"> 🎉 It's D-day! 🎉 </h3>
 												</div>
 											</div>
 											<script>
@@ -1370,7 +1370,7 @@
 												const now = new Date().getTime();
 												const distance = targetDate - now;
 													if (distance <= 0) {
-												      countdown.remove();
+														countdown.remove();
 													document.getElementById('D-Day').style.display = 'flex';
 												      clearInterval(timer); // stop updating
 												      return;
@@ -1499,6 +1499,7 @@
 	</script>
 </body>
 </html>
+
 
 
 
