@@ -1369,7 +1369,8 @@
 												const now = new Date().getTime();
 												const distance = targetDate - now;
 													if (distance <= 0) {
-												      document.getElementById('countdownBox').textContent = "It's D-Day!";
+												      document.getElementById('countdownBox').remove();
+													document.getElementById('D-Day').style.display = "flex";
 												      clearInterval(timer); // stop updating
 												      return;
    												 }
@@ -1508,6 +1509,7 @@
 	</script>
 </body>
 </html>
+
 
 
 
