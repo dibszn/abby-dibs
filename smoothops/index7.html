@@ -730,16 +730,17 @@
     const modalTitle = document.getElementById("modalTitle");
     const modalMessage = document.getElementById("modalMessage");
     const nameField = document.querySelector('input[name="firstname"]');
-    const paxInput = paxfield.querySelector('input'); // Assuming the input field inside paxfield is a single <input> element
 
     attendanceRadios.forEach(radio => {
         radio.addEventListener("change", () => {
             if (radio.checked) {
+
                 if (radio.value === "Yes") {
                     paxfield.style.display = "block";
                     setTimeout(() => { paxfield.style.opacity = "1"; }, 150);
                     modalTitle.textContent = "Thanks for the confirmation!";
                     modalMessage.textContent = "See you on 21st December 🥳";
+
                 } else if (radio.value === "No") {
                     paxfield.style.display = "none";
                     modalTitle.textContent = "Wish you were coming! 🥲";
@@ -751,53 +752,52 @@
 
     form.addEventListener("submit", e => {
         e.preventDefault();
-        
+
         const formData = new FormData(form);
-        
-        // Check if name is entered
+
         if (!nameField.value.trim()) {
             alert("Please enter your name before submitting.");
             nameField.focus();
-            return; // Stop submission
+            return;
         }
 
-        // Check if paxfield input is > 1 when "Yes" is selected
-        if (attendanceRadios[0].checked && (!paxInput.value.trim() || parseInt(paxInput.value) <= 1)) {
-            alert("Please confirm the number of guests attending.");
-            paxInput.focus();
-            return; // Stop submission
+        // 🔥 NEW CONDITION ADDED HERE
+        if (
+            document.querySelector('input[name="attendance"]:checked')?.value === "Yes" && (!paxfield.value.trim() || parseInt(paxfield.value) < 1)
+        ) {
+            alert("Please enter a valid number of guests (must be greater than 1).");
+            return;
         }
 
-        // Proceed with form submission if all checks pass
+        if (!paxfield.value.trim()) {
+            alert("Please confirm number of guests attending.");
+            return;
+        }
+
         fetch(form.action, {
             method: "POST",
             body: formData,
-        }).then(response => {
-            // Handle successful submission
-            modal.style.display = "flex";
-            form.reset();
-            paxfield.style.display = "none";
-
-            const closeHandler = () => {
-                modal.style.display = "none";
-                window.removeEventListener("click", closeHandler);
-                window.removeEventListener("touchstart", closeHandler);
-                window.removeEventListener("touchmove", closeHandler);
-                window.removeEventListener("scroll", closeHandler);
-            };
-
-            window.addEventListener("click", closeHandler, { once: true });
-            window.addEventListener("touchstart", closeHandler, { once: true });
-            window.addEventListener("touchmove", closeHandler, { once: true });
-            window.addEventListener("scroll", closeHandler, { once: true });
-        }).catch(error => {
-            // Handle error here if the fetch fails
-            console.error("Form submission error:", error);
         });
+
+        modal.style.display = "flex";
+        form.reset();
+        paxfield.style.display = "none";
+
+        const closeHandler = () => {
+            modal.style.display = "none";
+            window.removeEventListener("click", closeHandler);
+            window.removeEventListener("touchstart", closeHandler);
+            window.removeEventListener("touchmove", closeHandler);
+            window.removeEventListener("scroll", closeHandler);
+        };
+
+        window.addEventListener("click", closeHandler, { once: true });
+        window.addEventListener("touchstart", closeHandler, { once: true });
+        window.addEventListener("touchmove", closeHandler, { once: true });
+        window.addEventListener("scroll", closeHandler, { once: true });
     });
 });
-
-									</script>
+</script>
 								</div>
 							</div>
 						</div>
@@ -1519,6 +1519,7 @@
 	</script>
 </body>
 </html>
+
 
 
 
